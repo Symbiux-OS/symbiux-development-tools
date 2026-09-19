@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<plugin>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="debuggerTOC.xml"
+            primary="true"/>
+      <toc
+            file="tocCarbide.xml"
+            primary="false"/>     
+      <!--<toc
+            file="tocRelease.xml"
+            primary="false"/> -->
+	   
+	 	<!-- Prebuilt Index -->
+		<index path="index" />
+   </extension>
+  
+	
+<!-- =================================================================================== -->
+<!-- Manual Index                                                                        -->
+<!-- =================================================================================== -->
+	
+ <extension point="org.eclipse.help.index">
+    <index file="html/index.xml"/>
+ </extension>
+
+
+<!-- =================================================================================== -->
+<!-- Cheatsheets extension                                                               -->
+<!-- =================================================================================== -->
+	
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="com.nokia.carbide.how_to.cheatsheets"
+            name="Carbide How do I..." />
+            
+            
+         <!-- HOW TO PROJECTS CARBIDE 								-->
+         
+         <!-- HOW TO DEBUG CARBIDE 									-->
+         
+         <!-- HOW TO CUSTOMIZE CARBIDE 								-->
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_customize_code_styles.xml"
+           id="com.nokia.carbide.cpp.doc.user.customize_code_styles"
+           name="Customize Code Styles"/>
+
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_customize_editors.xml"
+           id="com.nokia.carbide.cpp.doc.user.customize_editors"
+           name="Customize Editors"/>
+
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_customize_cmd_group.xml"
+           id="com.nokia.carbide.cpp.doc.user.customize_cmd_group"
+           name="Customize Toolbars and Menus"/>
+
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_customize_key_commands.xml"
+           id="com.nokia.carbide.cpp.doc.user.customize_key_commands"
+           name="Customize Key Commands"/>
+
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_customize_export_settings.xml"
+           id="com.nokia.carbide.cpp.doc.user.customize_export_settings"
+           name="Share my Settings..."/>
+
+		 <cheatsheet
+           composite="false"
+		   category="com.nokia.carbide.how_to.cheatsheets"
+           contentFile="html/cheatsheets/how_to_find_n_add_extensions.xml"
+           id="com.nokia.carbide.cpp.doc.user.add_extensions"
+           name="Find and Add Extensions"/>
+
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+
+		<category
+            id="com.nokia.carbide.trk.cheatsheets"
+            name="Carbide.c++ On-device Debugging"/>
+       
+		 <cheatsheet
+		   category="com.nokia.carbide.trk.cheatsheets"
+           contentFile="html/cheatsheets/new_remote_conn.xml"
+           id="com.nokia.carbide.cpp.doc.user.new_remote_connection"
+           name="Creating On-device Connections"/>
+
+		 <cheatsheet
+		   category="com.nokia.carbide.trk.cheatsheets"
+           contentFile="html/cheatsheets/install_remote_agent.xml"
+           id="com.nokia.carbide.cpp.doc.user.install_remote_agent"
+           name="Downloading and Installing Remote Agents"/>
+
+		 <cheatsheet
+		   category="com.nokia.carbide.trk.cheatsheets"
+           contentFile="html/cheatsheets/run_mode_cs.xml"
+           id="com.nokia.carbide.cpp.doc.user.trk_appTRK_Using"
+           name="Run Mode On-Device Debugging"/>
+	   
+          <cheatsheet
+            category="com.nokia.carbide.trk.cheatsheets"
+			contentFile="html/cheatsheets/stop_mode_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.stop_mode"
+            name="Stop Mode On-Device Debugging" />
+			
+   </extension>
+
+	<!-- CREATED FOR SDK DOCS, NOT NEEDED IN CARBIDE
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+         
+          CREATE A PLATSIM CATEGORY
+		<category
+			id="com.nokia.platsim.cheatsheets"
+			name="PlatSim" />
+         
+          ADD PLATSIM TOPICS TO CATEGORY
+		 
+		<cheatsheet
+			category="com.nokia.platsim.cheatsheets"
+			contentFile="html/cheatsheets/platsim_create_images.xml"
+			id="com.nokia.platsim.platsim_create_images"
+			name="Creating images for PlatSim" />
+			
+		<cheatsheet
+			category="com.nokia.platsim.cheatsheets"
+			contentFile="html/cheatsheets/platsim_debugging.xml"
+			id="com.nokia.platsim.platsim_debugging"
+			name="PlatSim debugging in Carbide.c++" />
+			
+   </extension>
+    -->
+   
+	<!--
+   <extension
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+		 
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_intro_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_intro"
+            name="Introduction to Run Mode Debugging" />
+
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_transfer_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_transfer"
+            name="Transferring and Installing Trk Debug Agent" />
+
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_pkgsis_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_pkgsis"
+            name="Creating a Project .pkg file and Application .sis file" />
+
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_launch_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_launch"
+            name="Defining a Launch Configuration for Run Mode Debugging" />
+
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_debugapps_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_debugapps"
+            name="Debugging DLLs, Applications, and Executables" />
+
+          <cheatsheet
+            contentFile="html/cheatsheets/trk_appTrk_viewdata_cs.xml"
+            id="com.nokia.carbide.cpp.doc.user.trk_appTrk_viewdata"
+            name="Viewing Registers and Symbian OS Data and Troubleshooting Tips" />
+
+
+   </extension>
+	-->
+	
+<!-- =================================================================================== -->
+<!-- CONTEXT IDs for CONTEXTUAL HELP in windows, dialogs, and views                      -->
+<!-- XML help content is stored in these files:                                          -->
+<!--     carbide_debug_dialogs_help.xml  (debugger help)                                 -->
+<!--     carbide_ide_dialogs_help.xml  (ide help)                                        -->
+<!--     cdt_dialogs_help.xml  (cdt help)                                                -->
+<!--     eclipse_dialogs_help.xml  (eclipse ide help)                                    -->
+<!-- =================================================================================== -->
+	
+	<extension point="org.eclipse.help.contexts" >
+
+		<!-- ====================================================  -->
+		<!-- CARBIDE DIALOGS AND PREFS                             -->
+		<!-- XML: carbide_ide_dialogs_help.xml                     -->
+		<!-- ====================================================  -->
+		   
+       <!-- CARBIDE BUILDER HELP -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cdt.builder" />
+
+		<!-- PREPROCESS PREF/PROPERTIES PANEL -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cpp.builder.utils" />
+
+       <!-- SPN VIEW, INF IMPORTER, MMP, MBM, and miscellaneous HELP  -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cpp.project.ui" />
+
+       <!-- SDK Preferences HELP -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cpp.sdk.ui" />
+
+       <!-- NEW OS CLASS/ NEW OS PROJECT WIZARD HELP  -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.templatewizard" />
+
+       <!-- Project Updater HELP  -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.updater" />
+
+        <!-- System Search HELP  (added 1.3) -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.search.system" />
+
+        <!-- System Search HELP  (added 2.0) -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.remoteConnections" />
+
+        <!-- News Reader HELP  (added 2.0.2) -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cpp.news.reader" />
+           
+        <!-- Install Extensions HELP  (added 3.0.0) -->
+       <contexts file="html/context_help/carbide_ide_dialogs_help.xml"
+       		plugin="com.nokia.carbide.discovery.ui" />
+           
+		<!-- ====================================================  -->
+		<!-- CARBIDE DEBUGGER DIALOGS AND PREFS                    -->
+		<!-- XML: carbide_debug_dialogs_help.xml                   -->
+		<!-- ====================================================  -->
+		   
+		<!-- PREFERENCE PANEL F1 HELP -->
+		<contexts file="html/context_help/carbide_debug_dialogs_help.xml" 
+       		plugin="com.freescale.cdt.debug.cw.core.ui" />		
+		
+		<!-- SYMBIAN OS VIEW HELP  -->
+		<contexts file="html/context_help/carbide_debug_dialogs_help.xml"
+       		plugin="com.nokia.cdt.debug.cw.symbian" />
+
+		<!-- SYMBIAN OS DATA VIEW HELP  -->
+		<contexts file="html/context_help/carbide_debug_dialogs_help.xml"
+       		plugin="com.nokia.carbide.cpp.debug.kernelaware" />
+		
+		<!-- LAUNCH CONFIG WIZARD HELP -->
+		<contexts file="html/context_help/carbide_debug_dialogs_help.xml" 
+			plugin="com.nokia.cdt.debug.launch" />
+
+		
+		<!-- ====================================================  -->
+		<!-- CDT DIALOGS AND PREFS                                 -->
+		<!-- XML: cdt_dialogs_help.xml                             -->
+		<!-- ====================================================  -->
+		   
+       <!-- ECLIPSE DEBUG UI CONTEXT HELP (MEM/DIS/SIG, etc)  -->
+       <contexts file="html/context_help/cdt_dialogs_help.xml"
+       		plugin="org.eclipse.cdt.debug.ui" />
+
+       <contexts file="html/context_help/cdt_dialogs_help.xml"
+       		plugin="org.eclipse.cdt.ui" />
+
+			 
+		<!-- ====================================================  -->
+		<!-- ECLIPSE DIALOGS AND PREFS                             -->
+		<!-- XML: eclipse_dialogs_help.xml                         -->
+		<!-- ====================================================  -->
+		   
+       <!-- CARBIDE DEBUG UI HELP  (BRKPT, VAR, EXPR, etc) -->
+       <contexts file="html/context_help/eclipse_dialogs_help.xml"
+       		plugin="org.eclipse.debug.ui" />
+
+       <!-- ECLIPSE NEW/IMPORT/EXPORT WIZARDS and PREF PANELS HELP  -->
+       <contexts file="html/context_help/eclipse_dialogs_help.xml"
+       		plugin="org.eclipse.ui" />
+		
+       <!-- ECLIPSE CONSOLE VIEW HELP  -->
+       <contexts file="html/context_help/eclipse_dialogs_help.xml"
+       		plugin="org.eclipse.ui.console" />
+		
+       <!-- ECLIPSE NEW PROJECT WIZARD HELP -->
+       <contexts file="html/context_help/eclipse_dialogs_help.xml"
+       		plugin="org.eclipse.ui.ide" />
+       		
+       <contexts file="html/context_help/eclipse_dialogs_help.xml"
+       		plugin="org.eclipse.ui.workbench" />
+
+	</extension>
+
+
+
+<!-- =================================================================================== -->
+<!-- Universal intro extensions to show content in welcome pages                         -->
+<!-- =================================================================================== -->
+	<extension
+		point="org.eclipse.ui.intro.configExtension">
+		
+		<configExtension
+			content="intro/whatsnew_IntroExt.xml"
+			configId="org.eclipse.ui.intro.universalConfig" />
+
+		<configExtension
+            content="intro/tutorialsCarbideExtContent.xml"
+			configId="org.eclipse.ui.intro.universalConfig" /> 	
+			 			 
+		<configExtension
+            content="intro/tutorialsCarbideExtContentMisc.xml"
+			configId="org.eclipse.ui.intro.universalConfig" /> 	
+			 			 
+		<!--
+			<configExtension
+            content="intro/migrateExtensionContent.xml" 
+			configId="org.eclipse.ui.intro.universalConfig" /> 	
+			-->
+				 
+	</extension>
+	
+</plugin>

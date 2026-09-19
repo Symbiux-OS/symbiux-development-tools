@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+
+ <context id="REMOTE_CONTROL_SCREEN_VIEW">
+  <description>Remote Control's Screen Capture View</description>
+  <topic label="Basic walk-through" href="html/gettingstarted/walk_through.htm" />
+  <topic label="Screen capture mode" href="html/concepts/screen_capture_mode.htm" />
+  <topic label="Saving screenshots" href="html/tasks/saving_screenshots.htm" />
+  <topic label="Touch User Interface" href="html/concepts/touch_ui.htm" />
+  <topic label="Using PC keyboard" href="html/tasks/using_pc_keyboard.htm" />
+  <topic label="Setting Remote Control preferences" href="html/tasks/setting_preferences.htm" />
+ </context>
+ 
+ <context id="REMOTE_CONTROL_FTP_VIEW">
+  <description>Remote Control's File Transfer View</description>
+  <topic label="Basic walk-through" href="html/gettingstarted/walk_through.htm" />
+  <topic label="File transfer mode" href="html/concepts/file_transfer_mode.htm" />
+  <topic label="Transfering files" href="html/tasks/transferring_files.htm" />
+  <topic label="Setting Remote Control preferences" href="html/tasks/setting_preferences.htm" />
+ </context>
+ 
+ <context id="REMOTE_CONTROL_PREFERENCES">
+  <description>Remote Control's preferences</description>
+  <topic label="Setting Remote Control preferences" href="html/tasks/setting_preferences.htm" />
+ </context>
+
+ <context id="REMOTE_CONTROL_KEYBOARD">
+  <description>Virtual keyboard</description>
+  <topic label="Using virtual keyboard" href="html/tasks/using_virtual_keyboard.htm" />
+ </context>
+   		     
+</contexts>

@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Release notes</title>
+  <link href="../book.css" type="text/css" rel="stylesheet">
+  <style type="text/css">
+ </style>
+</head>
+
+<body>
+<h2>Release notes</h2>
+
+<h4>Creator Carbide.c++ Extension &ndash; Version 1.3.0</h4>
+
+<p>Released 8th September 2010</p>
+<ul>
+  <li><a href="#description">Product description</a></li>
+  <li><a href="#features">Main features</a></li>
+  <li><a href="#newfeatures">What's new</a></li>
+  <li><a href="#installation">Installation notes</a></li>
+  <li><a href="#requirements">System requirements</a></li>
+  <li><a href="#compissues">Compatibility issues</a></li>
+  <li><a href="#issues">Known issues</a></li>
+</ul>
+
+<h3><a name="description"></a>Product description</h3>
+
+<p>The Creator tool is used to create different kinds of test data (for
+example, contacts, messages or calendar entries) into a device. Creator is a
+useful tool for testing situations where a device is saving high amounts of
+data, or the data is either saved to a device several times or to multiple
+devices at the same time. </p>
+
+<p>The test data itself is contained in XML scripts, identified by the
+<i>.creatorxml</i> file extension. The Creator Carbide.c++ Extension automates
+and simplifies the creation of these scripts by enabling you to add components
+such as contacts, messages, notes, and files in the Carbide IDE. You can also
+create advanced test data combinations that associate, for example, contact
+data with messaging data. </p>
+
+<p>The Creator extension can be started by selecting <b>File &gt; New &gt;
+Other &gt; Carbide Extensions &gt; Creator script file</b> or <b>Carbide &gt;
+Creator Script Editor</b>.</p>
+
+<h3><a name="features"></a>Main features</h3>
+<ul>
+  <li>UI for creating an XML format script file. </li>
+  <li>UI for adding the following types of components to the script: 
+    <ul>
+      <li>phonebook items: contacts, contact sets, contact groups</li>
+      <li>connection methods</li>
+      <li>calendar items: to-dos, appointments, events, reminders,
+      anniversaries</li>
+      <li>mail boxes</li>
+      <li>message items: text messages (SMS), multimedia messages (MMS), audio
+        messages (AMS), emails, smart messages (such as vCards and ringing
+        tones), infra-red (IR) messages, Bluetooth (BT) messages</li>
+      <li>notes</li>
+      <li>browser items: bookmarks and bookmark folders, saved pages and saved
+        page folders</li>
+      <li>log entries: sent or received calls, call duration</li>
+      <li>instant messaging and presence service (IMPS) servers</li>
+      <li>landmarks (for location identification purposes) </li>
+      <li>files in the following formats and identifications: 3GPP-70kB,
+        AAC-100kB, AMR-20kB, XLS-15kB, GIF-2kB, JPEG-200kB. JPEG-25kB,
+        JPEG-500kB, MIDI-10kB, MP3-250kB, PNG-15kB, PPT-40kB, RM-95kB, RNG-1kB,
+        TXT-10kB, TXT-70kB, WAV-20kB, DOC-20kB, SWF-15kB, JAD-1kB, JAR-10kB,
+        TIF-25kB, MXMF-40kB, BMP-25kB, JP2-25kB, SVG-15kB, HTML-20kB, VCF-1kB,
+        VCS-1kB, MP4-200kB, SISX-10kB, RAM-1kB, WMV-200kB, WMA-50kB.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3><a name="newfeatures"></a>What's new</h3>
+<ul>
+  <li>Feature: Updated support for Carbide 3 </li>
+</ul>
+
+<h3><a name="installation"></a>Installation notes</h3>
+
+<h5>How to upgrade from the older versions</h5>
+
+<p>New version of the extension comes with the updated versions of common
+utility plug-ins. Once you have installed the new set of plug-ins, perform the
+following steps:</p>
+<ol>
+  <li>Open 'Command Prompt'.</li>
+  <li>Go to the Carbide.c++ installation directory (for example <i>C:\Program
+    Files\Nokia\Carbide.c++ v2.0</i>).</li>
+  <li>Start Carbide.c++ with the following command line: "Carbide.c++.exe"
+    -clean</li>
+</ol>
+
+<p>The starting of Carbide.c++ with the clean option ensures that the latest
+versions of plug-ins are loaded.</p>
+
+<h3><a name="requirements"></a>System requirements</h3>
+
+<p>Basic requirements:</p>
+<ul>
+  <li>Windows 2000, Windows XP</li>
+  <li>Minimum Platform/SDK build PC.</li>
+  <li>Normal Platform/SDK build PC.</li>
+</ul>
+
+<p>Additional requirements:</p>
+<ul>
+  <li>N/A </li>
+</ul>
+
+<h3><a name="compissues"></a>Compatibility issues</h3>
+<ul>
+  <li>N/A</li>
+</ul>
+
+<h3><a name="issues"></a>Known issues</h3>
+<ul>
+  <li>N/A</li>
+</ul>
+
+<h3>Version history</h3>
+
+<h5>Version 1.2.1 &ndash; 21st April 2010</h5>
+<ul>
+  <li><strong>Fix</strong>: Help link to HTI connection documentation
+  fixed.</li>
+</ul>
+
+<h5>Version 1.2.0 &ndash; 5th February 2009</h5>
+<ul>
+  <li>Feature: It is now possible to upload a script file to a target device
+    and run it in the device via an HTI connection.</li>
+  <li>Feature: Added Run in device via HTI connection.</li>
+</ul>
+
+<h5>Version 1.1.0 &ndash; 3rd November 2008</h5>
+<ul>
+  <li>Feature: It is possible to define random length by selecting <b>Mode &gt;
+    Random - Custom length</b>, and define value to the <b>Item value</b>
+  field.</li>
+  <li>With File, DRM encryption added.</li>
+  <li>Feature: Dialogs for Component that can have reference to Contact-set has
+    now a button to create Contact-Sets. Those components are: Contact,
+    Messages (SMS, MMS, AMS, Email, Smart Message, IR message, BT message),
+    Appointment and Contact Group.</li>
+  <li>Feature: All Item values that can have only known values has now fixed
+    values in combos instead of text field. For example in SMS, Folder has
+    values: "Sent", "Inbox", "Draft" and "Outbox" and Status has values: "Read"
+    and "New".</li>
+  <li>Feature: New Mode <b>Increase for each copy</b> added. The Increase for
+    each copy mode is applied only with phone number fields in contacts,
+    messages and logs. This mode is used together with the "amount" attribute.
+    When the Increase for each copy mode is selected, phone number will
+    increase for each copy of component created. For example, if phone number
+    "12300" is given, the first copy will have phone number "123000", and the
+    second copy will have "12301", third "12302" and so on. If the Amount
+    attribute of Phone number is used, each copy will have a different phone
+    number. For more information, see Creator Help or User's Guide.</li>
+  <li>Feature: Added limitation that if element's max occurence is defined, it
+    is not possible to add more than one row of that element to script with the
+    Script Editor. For example, Connection method can have only one Connection
+    Name. </li>
+  <li>Feature: With File, new types added: WMV-200kB and WMA-50kB.</li>
+  <li>Feature: Editor area contains an own button for creating Contact-Sets
+    instead of selecting type from combo.</li>
+  <li>Feature: Wizard selects automatically a project where new Creator Script
+    file will be created if the project is selected in Project Explorer or only
+    one project exists in workspace.</li>
+  <li>Change: 'Random' column header changed to 'Mode. Under 'Mode', there is
+    also Increase for each Copy mode.</li>
+  <li>Change: Several minor UI updates.</li>
+  <li>Fix: Unable to start Wizard for creating a new Creator Script file if no
+    projects exist in workspace.</li>
+</ul>
+
+<h5>Version 1.0.0 &ndash; 29th April 2008</h5>
+
+<p>The first version.</p>
+
+<div id="footer">
+Copyright © 2009 Nokia Corporation and/or its subsidiary(-ies).<br>
+All rights reserved. <br>
+This component and the accompanying materials are made available <br>
+under the terms of "Eclipse Public License v1.0" <br>
+which accompanies this distribution and is available <br>
+at the URL <a
+href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+<br>
+<br>
+Initial Contributors:<br>
+Nokia Corporation - initial contribution <br>
+<br>
+Contributors:<br>
+Description: </div>
+</body>
+</html>

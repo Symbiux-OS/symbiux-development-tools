@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Tasks">	
+	<topic label="Editing HTI connection settings" href="html/tasks/set_preferences.htm" />
+	
+	<topic label="Setting up USB serial connection" href="html/tasks/comm_usb.htm" />
+	<topic label="Setting up Bluetooth connection" href="html/tasks/comm_bt.htm" />
+	<topic label="Viewing remote connections" href="html/tasks/viewing_remote_connections.htm" />
+
+	
+</toc>

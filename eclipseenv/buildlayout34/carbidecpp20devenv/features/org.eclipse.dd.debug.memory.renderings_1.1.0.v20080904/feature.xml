@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.dd.debug.memory.renderings"
+      label="Device Debug Memory Renderings"
+      version="1.1.0.v20080904"
+      provider-name="Eclipse.org">
+
+   <description url="http://www.eclipse.org/dsdp/dd">
+      Device Software Development Platform Project
+Device Debug
+Memory Renderings
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="Device Debug" url="http://download.eclipse.org/dsdp/dd/updates"/>
+   </url>
+
+   <includes
+         id="org.eclipse.dd.debug.memory.renderings.source"
+         version="1.1.0.v20080904"/>
+
+   <plugin
+         id="org.eclipse.dd.debug.memory.renderings.traditional"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v20080904"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dd.debug.ui.memory.transport"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v20080904"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.dd.debug.ui.memory.search"
+         download-size="0"
+         install-size="0"
+         version="1.1.0.v20080904"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Remote Control
+Bundle-SymbolicName: com.nokia.s60tools.remotecontrol;singleton:=true
+Bundle-Version: 1.5.0.qualifier
+Bundle-Activator: com.nokia.s60tools.remotecontrol.RemoteControlActivator
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.core.filesystem,
+ com.nokia.s60tools.util;bundle-version="1.1.11",
+ com.nokia.s60tools.hticonnection;bundle-version="1.3.0",
+ com.nokia.s60tools.ui;bundle-version="1.5.0",
+ org.eclipse.core.expressions;bundle-version="3.4.100"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.nokia.s60tools.remotecontrol;x-friends:="com.nokia.s60tools.remotecontrol.tests",
+ com.nokia.s60tools.remotecontrol.ftp.ui.view;x-friends:="com.nokia.s60tools.remotecontrol.tests",
+ com.nokia.s60tools.remotecontrol.keyboard;x-friends:="com.nokia.s60tools.remotecontrol.tests",
+ com.nokia.s60tools.remotecontrol.preferences;x-friends:="com.nokia.s60tools.remotecontrol.tests";
+  uses:="org.eclipse.jface.util,
+   org.eclipse.jface.preference,
+   org.eclipse.swt.widgets,
+   org.eclipse.ui"

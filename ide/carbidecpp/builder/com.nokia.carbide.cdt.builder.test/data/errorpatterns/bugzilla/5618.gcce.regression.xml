@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <!--Error Marker at index 0-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `CScanEngine::HandleEvent(TECAMEvent const&amp;)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 1-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `CScanEngine::ViewFinderReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 2-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `CScanEngine::ImageBufferReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 3-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `CScanEngine::VideoBufferReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 4-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `non-virtual thunk to CScanEngine::HandleEvent(TECAMEvent const&amp;)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 5-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `non-virtual thunk to CScanEngine::ViewFinderReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 6-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `non-virtual thunk to CScanEngine::ImageBufferReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+  <!--Error Marker at index 7-->
+  <marker_info file="^EMPTY^" line_number="0" message="undefined reference to `non-virtual thunk to CScanEngine::VideoBufferReady(MCameraBuffer&amp;, int)'" severity="2" variable_name="^EMPTY^" external_path_string="..\..\..\..\..\Symbian\9.1\S60_3rd_MR\EPOC32\BUILD\develop\S60-3P\BarcMeProject\BarcMe\CS60-3P\BARCME\GCCE\UREL\ScanEngine.o" />
+</root>
+

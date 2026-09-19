@@ -1,0 +1,28 @@
+<!--****************************************************************************
+ * Configuration tool main build file
+ * This ant build.xml will compile all Configuration tool plugins
+ ****************************************************************************-->
+ 
+	
+	 
+<project name="BuildPuplisher" default="publish">
+	<property file="common.properties"/>
+  <property file="publish.properties"/>
+	<property name="feature.name" value="com.nokia.carbide.extensions.imaker_${plugin.version}.zip" />
+	
+	<target name="publish" depends="publish-release"/>
+	
+	<target name="create.zip">
+		<ant antfile="build.xml" target="zip.distribution" />
+	</target>
+	
+	<!-- publishing build logs --> 
+  <target name="publish-release" depends="create.zip">
+  	<echo>Publishing....</echo>
+    <exec executable="pscp">
+    	<arg line="-batch -pw ${publish.pword}"/>
+    	<arg line="install/${feature.name}"/>
+    	<arg line="'${publish.user}@${publish.server}:${publish.release}'"/>
+    </exec>
+  </target>
+</project>

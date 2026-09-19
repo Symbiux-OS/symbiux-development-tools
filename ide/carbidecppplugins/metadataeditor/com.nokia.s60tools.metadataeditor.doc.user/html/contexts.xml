@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+
+	<context id="METADATA_EDITOR_HELP_TOC">
+      <description>Metadata Editor TOC</description>	   
+		<topic label="Metadata Editor TOC" href="html/toc.html" >		
+	    </topic>
+    </context>	  
+
+	<context id="METADATA_EDITOR_HELP_EDIT">
+      <description>Editing and saving a metadata file</description>	   
+		<topic label="Editing a metadata file" href="html/tasks/edit_metadata.htm" >		
+	    </topic>
+    </context>	  
+    
+	<context id="METADATA_EDITOR_HELP_EDIT_EXTENDED_SDK">
+      <description>Editing and saving a metadata file</description>	   
+		<topic label="Editing an extended SDK" href="html/tasks/edit_metadata.htm#edit_sdk" >		
+	    </topic>
+    </context>
+    
+	<context id="METADATA_EDITOR_HELP_EDIT_ATTRIBS">
+      <description>Editing and saving a metadata file</description>	   
+		<topic label="Editing attributes" href="html/tasks/edit_metadata.htm#edit_attribs" >		
+	    </topic>
+    </context>
+    
+	<context id="METADATA_EDITOR_HELP_EDIT_LIBS">
+      <description>Editing and saving a metadata file</description>	   
+		<topic label="Editing libraries" href="html/tasks/edit_metadata.htm#add_libraries" >		
+	    </topic>
+    </context>
+    
+	<context id="METADATA_EDITOR_HELP_EDIT_RELEASE">
+      <description>Editing and saving a metadata file</description>	   
+		<topic label="Editing release information" href="html/tasks/edit_metadata.htm#edit_release" >		
+	    </topic>
+    </context>                
+
+
+	<context id="METADATA_EDITOR_HELP_CREATE">
+      <description>Creating a new metadata file</description>	   
+		<topic label="Creating a new metadata file" href="html/tasks/create_metadata.htm" >		
+	    </topic>
+    </context>	  
+
+	<context id="METADATA_EDITOR_HELP_NEW_PROJECT">
+      <description>Creating a new project and linking it to the file system</description>	   
+		<topic label="Creating a new project" href="html/tasks/create_new_project.htm" >		
+	    </topic>
+    </context>	  
+    
+	<context id="METADATA_EDITOR_HELP_IMPORT_PROJECT">
+      <description>Importing an existing project</description>	   
+		<topic label="Importing a project" href="html/tasks/import_project.htm" >		
+	    </topic>
+    </context>	
+
+	<context id="METADATA_EDITOR_HELP_CONVERT_FILES">
+      <description>Converting metadata files</description>	   
+		<topic label="Converting metadata files" href="html/tasks/converting_metadata.htm" >		
+	    </topic>
+    </context>	
+    
+    
+     		     
+</contexts>

@@ -1,0 +1,9 @@
+component       dev_build_srctools_tranasm
+
+source          /src/tools/build/srctools/tranasm
+exports         /src/tools/build/srctools/tranasm/group
+
+notes_source    release.txt
+
+ipr T 
+

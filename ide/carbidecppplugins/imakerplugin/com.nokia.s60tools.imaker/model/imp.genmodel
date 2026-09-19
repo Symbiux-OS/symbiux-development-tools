@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.nokia.s60tools.imaker/src"
+    modelPluginID="com.nokia.s60tools.imaker" modelName="Imp" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>imp.ecore</foreignModel>
+  <genPackages prefix="Impmodel" basePackage="com.nokia.s60tools.imaker.internal"
+      disposableProviderFactory="true" ecorePackage="imp.ecore#/">
+    <genClasses ecoreClass="imp.ecore#//ImpDocument">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//ImpDocument/orideFiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//ImpDocument/orideConfs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//ImpDocument/variables"/>
+      <genOperations ecoreOperation="imp.ecore#//ImpDocument/getVariable">
+        <genParameters ecoreParameter="imp.ecore#//ImpDocument/getVariable/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//OverrideFiles">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//OverrideFiles/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//OverrideConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//OverrideConfiguration/entries"/>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//FileListEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//FileListEntry/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//FileListEntry/target"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference imp.ecore#//FileListEntry/actions"/>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//ConfigEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//ConfigEntry/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//ConfigEntry/action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//ConfigEntry/location"/>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//Variable/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//Variable/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="imp.ecore#//LineNumberContainer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//LineNumberContainer/lineNumber"/>
+    </genClasses>
+    <genClasses ecoreClass="imp.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute imp.ecore#//Comment/comment"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="imp.ecore#//CommentContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference imp.ecore#//CommentContainer/comments"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

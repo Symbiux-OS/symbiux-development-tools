@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Creator Help
+Bundle-SymbolicName: com.nokia.s60tools.creator.help;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-Vendor: Nokia
+Bundle-Activator: com.nokia.s60tools.creator.CreatorActivator
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.help,
+ org.eclipse.core.runtime,
+ org.eclipse.ui 

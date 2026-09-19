@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.nokia.s60tools.imaker.tests.feature" default="all" basedir=".">
+	<property file="common.properties" />
+	<property name="plugin.name"  value="com.nokia.s60tools.imaker.tests"/>
+	<property name="application"  value="org.eclipse.pde.junit.runtime.uitestapplication"/>
+	<property name="product"      value="com.nokia.carbide.cpp.product"/>
+	<property name="class.name"   value="com.nokia.s60tools.imaker.internal.tests.AllTests"/>
+	<property name="plugin.dir"   value="${eclipse.home}/plugins"/>
+	<property name="output.dir"   value="${basedir}/output"/>
+	<property name="output.ws"    value="c:/temp/ws"/>
+		
+	<property name="os"                 value="win32"/>
+	<property name="ws"                 value="win32"/>
+	<property name="arch"               value="x86"/>
+	<property name="version"            value="3"/>
+	<property name="testLoaderClass"    value="org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestLoader"/>
+	<property name="loaderpluginname"   value="org.eclipse.jdt.junit.runtime"/>
+
+	<path id="build.class.path">
+        <fileset dir="${eclipse.home}/plugins">
+            <include name="org.eclipse.core.runtime_*.jar"/>
+            <include name="org.eclipse.equinox.common_*.jar"/>
+            <include name="org.eclipse.ui.workbench_*.jar"/>
+            <include name="org.eclipse.jface_*.jar"/>
+            <include name="org.eclipse.swt_*.jar"/>
+            <include name="org.eclipse.swt.win32.win32.x86_*.jar"/>
+            <include name="org.junit_3.*/**/junit.jar"/>
+        </fileset>
+    </path>
+	
+	<path id="pde.test.port.locator.class.path">
+        <pathelement location="${eclipse.home}/plugins/pde.test.utils_3.3.0.jar"/>
+        <fileset dir="${eclipse.home}/plugins">
+            <include name="org.junit_3.*/**/junit.jar"/>
+        </fileset>
+    </path>
+
+    <path id="pde.test.listener.class.path">
+        <path refid="build.class.path"/>
+        <pathelement location="${eclipse.home}/plugins/pde.test.utils_3.3.0.jar"/>
+        <fileset dir="${eclipse.home}/plugins">
+            <include name="org.apache.ant_*/**/ant.jar"/>
+            <include name="org.apache.ant_*/**/ant-junit.jar"/>
+            <include name="org.eclipse.jdt.junit_*.jar"/>
+            <include name="org.eclipse.debug.core_*.jar"/>
+            <include name="org.eclipse.osgi_*.jar"/>
+            <include name="org.eclipse.core.resources_*.jar"/>
+            <include name="org.eclipse.swt_*.jar"/>
+            <include name="org.eclipse.equinox.preferences_*.jar"/>
+        </fileset>
+    </path>
+
+    <path id="equinox.launcher.class.path">
+        <fileset dir="${plugin.dir}">
+            <include name="org.eclipse.equinox.launcher_*.jar"/>
+        </fileset>
+    </path>
+	
+	<target name="init">
+		<property name="feature.temp.folder" value="${basedir}/feature.temp.folder"/>
+		<delete dir="${plugin.lib}"/>
+		<delete dir="${plugin.dist.dir}"/>
+		<mkdir dir="${plugin.lib}"/>
+		<mkdir dir="${plugin.dist.dir}"/>
+	</target>
+
+	<target name="all.plugins" depends="init">
+		<ant antfile="build.xml" dir="com.nokia.s60tools.imaker" target="${target}">
+			<property name="arch" value="x86"/>
+			<property name="ws" value="win32"/>
+			<property name="os" value="win32"/>
+		</ant>
+		<ant antfile="build.xml" dir="com.nokia.s60tools.imaker.doc.user" target="${target}">
+			<property name="arch" value="x86"/>
+			<property name="ws" value="win32"/>
+			<property name="os" value="win32"/>
+		</ant>
+		<ant antfile="build.xml" dir="com.nokia.s60tools.imaker.tests" target="${target}">
+			<property name="arch" value="x86"/>
+			<property name="ws" value="win32"/>
+			<property name="os" value="win32"/>
+		</ant>
+	</target>
+
+	<target name="all.features">
+		<ant antfile="build.xml" dir="com.nokia.carbide.extensions.imaker" target="${target}">
+			<property name="arch" value="x86"/>
+			<property name="ws" value="win32"/>
+			<property name="os" value="win32"/>
+		</ant>
+	</target>
+
+	<target name="build.jars" depends="init" description="Build all the jars for the feature: com.nokia.s60tools.imaker.tests.feature.">
+		<antcall target="all.children">
+			<param name="target" value="build.jars"/>
+		</antcall>
+	</target>
+
+	<target name="build.update.jar" depends="clean, init" description="Build the feature jar of:  for an update site.">
+		<antcall target="all.plugins">
+			<param name="target" value="build.update.jar"/>
+		</antcall>
+	</target>
+
+	<target name="zip.distribution" depends="init" description="Create a zip containing all the plug-ins and features for the feature: com.nokia.s60tools.imaker.tests.feature.">
+		<antcall target="all.features">
+			<param name="target" value="zip.distribution"/>
+		</antcall>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the feature: com.nokia.s60tools.imaker.tests.feature of all the zips, jars and logs created.">
+		<antcall target="all.plugins">
+			<param name="target" value="clean"/>
+		</antcall>
+        <delete>
+		<!--
+            <fileset dir="${eclipse.home}/configuration" includes="**/*" excludes="config.ini"/>
+		-->
+            <fileset dir="${eclipse.home}/plugins" includes="com.nokia.s60tools.imaker*.jar"/>
+        </delete>
+	</target>
+
+    <target name="run_pde_port_creator">
+        <delete file="pde_test_port.properties"/>
+        <java classname="pde.test.utils.PDETestPortLocator" fork="yes" classpathref="pde.test.port.locator.class.path"/>
+        <waitfor maxwait="10" maxwaitunit="second" checkevery="100" checkeveryunit="millisecond">
+            <available file="pde_test_port.properties"/>
+        </waitfor>
+    </target>
+
+    <target name="run_pde_test_listener">
+        <java classname="pde.test.utils.PDETestResultsCollector" fork="yes" classpathref="pde.test.listener.class.path">
+            <arg line="${plugin.name} ${pde.test.port}"/>
+        </java>
+    </target>
+
+    <target name="run_pde_tests">
+        <property name="test.classes.list" value="${class.name}"/>
+		<delete dir="${output.dir}" quiet="true"/>
+		<delete dir="${output.ws}"  quiet="true"/>
+        <mkdir dir="${output.dir}"/>
+        <mkdir dir="${output.ws}"/>
+        <java dir="${output.ws}" classname="org.eclipse.equinox.launcher.Main" fork="yes" classpathref="equinox.launcher.class.path">
+            <arg line="-application ${application} -data ${output.ws} -dev bin -clean -port ${pde.test.port} -testpluginname ${plugin.name} -classnames ${class.name} -os ${os} -ws ${ws} -arch ${arch} -version ${version} -testLoaderClass ${testLoaderClass} -loaderpluginname ${loaderpluginname} -product ${product}"/>
+        </java>
+    </target>
+	
+	<target name="test" depends="run_pde_port_creator">
+        <property file="pde_test_port.properties"/>
+        <echo message="Using port ${pde.test.port} for listening to PDE Test run"/>	
+
+		<parallel>
+            <daemons>
+                <antcall target="run_pde_test_listener"/>
+            </daemons>
+            <sequential>
+                <sleep seconds="5"/> <!-- Give the listener a few seconds to start up -->
+                <antcall target="run_pde_tests"/>
+            </sequential>
+        </parallel>
+		<copy file="${basedir}/TEST-com.nokia.s60tools.imaker.tests.xml" todir="${eclipse.home}/results"/>
+	</target>
+
+	<target name="all" depends="clean, build.update.jar, zip.distribution, install.jars, test">
+	</target>
+	
+	<target name="install.jars">
+		<copy todir="${eclipse.home}" overwrite="true">
+			<fileset dir="${plugin.dist.dir}">
+				<include name="com.nokia.carbide.extensions.imaker_${plugin.version}.zip"/>
+			</fileset>	
+		</copy>
+		<copy todir="${eclipse.home}/plugins" overwrite="true">
+			<fileset dir="${plugin.lib}">
+				<include name="com.nokia.s60tools.imaker.tests*.jar"/>
+			</fileset>	
+		</copy>
+		<unzip src="${eclipse.home}/com.nokia.carbide.extensions.imaker_${plugin.version}.zip"
+		   dest="${eclipse.home}" overwrite="true">
+		</unzip>
+	</target>
+	
+</project>

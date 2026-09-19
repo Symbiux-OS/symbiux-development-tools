@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Importing the SDK example and leavescan plug-ins</title>
+<link rel="StyleSheet" href="../../book.css" type="text/css"/>
+<style type="text/css">
+<!--
+.style1 {color: #000000}
+-->
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+
+<h2><a name="import" id="import"></a>Importing the SDK Example </h2>
+<p>You can import any of the plug-ins in Carbide.c++ and examine the source code. However, the SDK provides a plug-in you can import and examine as an example of Carbide.c++ API usage.</p>
+<ul>
+<li>The Examples plugin (<span class="code">com.nokia.carbide.cpp.sdk.examples</span>) is part of the Carbide.c++ Development Kit (CDK). It
+provides examples of installing items in the Carbide menu, creating new projects programatically, and accessing
+project and Symbian build information. See <a href="#showExamplesMenu">below</a> for instructions on how to enable the example menu
+commands inside Carbide. </li>
+</ul>
+<p>You can import this and other plugins into your workspace and view/debug all the source to get a better understanding of the 
+Carbide.c++ APIs in a functional plugin. Plesae see the page on <a href="env_setup.htm">setting up your development environment</a> for information on how to import a source project. </p>
+<p class="note"><strong>Note</strong> that the example plugins were built with JRE1.5, you will likely receive errors with JRE1.6. Select Window &gt; Preferences &gt; Java &gt; Installed JREs to add currently installed JREs and select the JRE to use.</p>
+When you are done importing you should have new plugins in your workspace and be able to view the 
+      sources for both plugin projects. Your workspace should look something like this:<br />
+<br />
+<img src="../img/dev_ide_complete.JPG" width="1024" height="757"/>
+<h3>Adding a Carbide menu</h3>
+ <p>The menu items contributed by the Examples plugin are not visible by default in the Carbide.c++ program. To show the missing menu, follow these steps:</p>
+<ol>
+ <li>In Carbide.c++ (not in your Eclipse Java development SDK) choose <b>Window &gt; Customize Perspective...</b></li>
+ <li>Select the <b>Commands</b> tab</li>
+ <li>Select the checkbox for <b>Carbide.c++ Examples Action Set</b><br/>
+   <br/>
+ <img src="../img/show_examples_menu.jpg" width="711" height="501"/></li>
+</ol>
+ <p>Click OK, and you should now see the Carbide menu in the menu bar. You can now examine the source code and run it in the debugger. See <a href="launchconfig.htm">debugging a debugging a Carbide.c++ plug-in</a> for information on setting up a plug-in debug session. </p>
+   <div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. <br>License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></div>
+</body>
+</html>

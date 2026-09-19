@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+<!-- The following UI elements from CDT are unused and are hidden using this activity -->
+
+   <extension
+         point="org.eclipse.ui.activities">
+
+<!-- The following UI elements are from org.eclipse.cdt.launch & org.eclipse.cdt.core -->
+      <category
+            name="CDT - C/C++ Standard Launch Configurations"
+            description="C/C++ Standard launch configurations provided by CDT"
+            id="org.eclipse.cdt.standard.category">
+      </category>
+<!-- Create Process Configuration -->
+      <activity
+            name="CDT - C/C++ Standard Create Process Type"
+            description="Start new application optionally under control of the standard debugger"
+            id="org.eclipse.cdt.standard.launch.activityAppLaunch">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.standard.launch.activityAppLaunch"
+            categoryId="org.eclipse.cdt.standard.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.standard.launch.activityAppLaunch"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.launch/org.eclipse.cdt.cdi.launch.localCLaunch">
+      </activityPatternBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.standard.launch.activityAppLaunch"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.applicationLaunchType">
+      </activityPatternBinding>
+
+<!-- Multiple Launch Configuration -->
+      <activity
+            name="CDT - C/C++ Launch Group Type"
+            description="Launch several other configurations sequentially"
+            id="org.eclipse.cdt.standard.launch.activityGroupLaunch">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.standard.launch.activityGroupLaunch"
+            categoryId="org.eclipse.cdt.standard.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.standard.launch.activityGroupLaunch"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.launch/org.eclipse.cdt.launch.launchGroup">
+      </activityPatternBinding>
+<!-- Standard Postmortem Debugger -->
+      <activity
+            name="CDT - C/C++ Postmortem Debugger Type"
+            description="Load an application dump into the standard debugger"
+            id="org.eclipse.cdt.standard.launch.activityPostmortem">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.standard.launch.activityPostmortem"
+            categoryId="org.eclipse.cdt.standard.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.standard.launch.activityPostmortem"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.postmortemLaunchType">
+      </activityPatternBinding>
+<!-- Standard Attach to Process -->
+      <activity
+            name="CDT - C/C++ Standard Attach to Process Type"
+            description="Attach standard debugger to a running program"
+            id="org.eclipse.cdt.standard.launch.activityAttach">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.standard.launch.activityAttach"
+            categoryId="org.eclipse.cdt.standard.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.standard.launch.activityAttach"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.attachLaunchType">
+      </activityPatternBinding>
+<!-- Local C/C++ Application Shorcut -->
+      <activity
+            name="CDT - C/C++ Application Launch Shortcut"
+            description="Runs/Debugs a local C/C++ application from a shortcut"
+            id="org.eclipse.cdt.standard.launch.activityAppLaunchShortcut">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.standard.launch.activityAppLaunchShortcut"
+            categoryId="org.eclipse.cdt.standard.category">
+      </categoryActivityBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.standard.launch.activityAppLaunchShortcut"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.debug.ui/org.eclipse.cdt.debug.ui.localCShortcut">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.dsf.gdb  NOT INCLUDED IN C3-->
+<!--      <category
+            name="CDT - DSF GDB"
+            description="CDT DSF GDB Elements"
+            id="org.eclipse.cdt.dsf.gdb.category">
+      </category>
+      <activity
+            name="CDT DSF GDB UI"
+            description="CDT DSF GDB UI"
+            id="org.eclipse.cdt.dsf.gdb.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.dsf.gdb.activity"
+            categoryId="org.eclipse.cdt.dsf.gdb.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.dsf.gdb.activity"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.dsf.gdb/org.eclipse.cdt.dsf.gdb.launch.localCLaunch">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.dsf.gdb.activity"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.dsf.gdb/org.eclipse.cdt.dsf.gdb.launch.remoteCLaunch">
+      </activityPatternBinding>-->
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.debug.core MERGED ABOVE-->
+<!--      <category
+            name="CDT - Core Debug Launch"
+            description="CDT Core Debug Launch"
+            id="org.eclipse.cdt.debug.core.category">
+      </category>
+      <activity
+            name="CDT - Core Debug Launch UI"
+            description="CDT Core Debug Launch"
+            id="org.eclipse.cdt.debug.core.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.core.activity"
+            categoryId="org.eclipse.cdt.debug.core.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.debug.core.activity"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.postmortemLaunchType">
+      </activityPatternBinding>
+      
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.debug.core.activity"
+            isEqualityPattern="true"
+            pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.attachLaunchType">
+      </activityPatternBinding>
+
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.debug.core.activity"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.debug.core/org.eclipse.cdt.launch.applicationLaunchType">
+      </activityPatternBinding> -->
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.launch.remote NOT IN C3-->
+<!--      <category
+            name="CDT - Remote Launch"
+            description="CDT Remote Launch Elements"
+            id="org.eclipse.cdt.launch.remote.category">
+      </category>
+      <activity
+            name="CDT - Remote Launch UI"
+            description="CDT Remote Launch Elements"
+            id="org.eclipse.cdt.launch.remote.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.launch.remote.activity"
+            categoryId="org.eclipse.cdt.launch.remote.category">
+      </categoryActivityBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.launch.remote.activity"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.launch.remote/org.eclipse.rse.remotecdt.RemoteApplicationLaunch">
+      </activityPatternBinding>-->
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.examples.dsf.pda NOT IN C3-->
+<!--      <category
+            name="CDT - DSF PDA"
+            description="CDT DSF PDA Elements"
+            id="org.eclipse.cdt.examples.dsf.pda.category">
+      </category>
+      <activity
+            name="CDT - DSF PDA UI"
+            description="CDT DSF PDA Elements"
+            id="org.eclipse.cdt.examples.dsf.pda.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.examples.dsf.pda.activity"
+            categoryId="org.eclipse.cdt.examples.dsf.pda.category">
+      </categoryActivityBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.examples.dsf.pda.activity"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.examples.dsf.pda/org.eclipse.cdt.examples.dsf.pda.launchType">
+      </activityPatternBinding> -->
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.debug.ui -->
+      <category
+            name="CDT - C/C++ Standard Debug UI"
+            description="CDT C/C++ Standard debug preferences, actions, and views"
+            id="org.eclipse.cdt.debug.ui.category">
+      </category>
+<!-- Debugger Types Preference Page -->
+      <activity
+            name="CDT - Debugger Types Preference Page"
+            description="CDT Debugger types preference page"
+            id="org.eclipse.cdt.debug.ui.activityDebuggerTypesPref">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.ui.activityDebuggerTypesPref"
+            categoryId="org.eclipse.cdt.debug.ui.category">
+      </categoryActivityBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.debug.ui.activityDebuggerTypesPref"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.debug.ui/org.eclipse.cdt.debug.ui.DebuggerTypesPreferencePage">
+      </activityPatternBinding>
+<!-- Debugger Signals View -->
+      <activity
+            name="CDT - Debugger Signals View"
+            description="CDT Debugger Signals View"
+            id="org.eclipse.cdt.debug.ui.activitySignalsView">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.ui.activitySignalsView"
+            categoryId="org.eclipse.cdt.debug.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.debug.ui.activitySignalsView"
+            pattern="org.eclipse.cdt.debug.ui/org.eclipse.cdt.debug.ui.SignalsView">
+      </activityPatternBinding>
+<!-- Debugger Add Breakpoint Event Action -->
+      <activity
+            name="CDT - Debugger Add Breakpoint Event Action"
+            description="CDT Debugger Add Breakpoint Event Action"
+            id="org.eclipse.cdt.debug.ui.activityAddBreakpointEvent">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.ui.activityAddBreakpointEvent"
+            categoryId="org.eclipse.cdt.debug.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.debug.ui.activityAddBreakpointEvent"
+            pattern="org.eclipse.cdt.debug.ui/org.eclipse.cdt.debug.internal.ui.actions.AddEventBreakpointActionDelegate">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.debug.gdbjtag.core NOT IN C3-->
+<!--      <category
+            name="CDT - GDB JTAG Debug UI"
+            description="CDT GDB JTAG Debug UI Elements"
+            id="org.eclipse.cdt.debug.gdbjtag.core.category">
+      </category>
+      <activity
+            name="CDT - GDB JTAG Debug UI"
+            description="CDT GDB JTAG Debug UI Elements"
+            id="org.eclipse.cdt.debug.gdbjtag.core.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.gdbjtag.core.activity"
+            categoryId="org.eclipse.cdt.debug.gdbjtag.core.category">
+      </categoryActivityBinding>
+     <activityPatternBinding
+           activityId="org.eclipse.cdt.debug.gdbjtag.core.activity"
+           isEqualityPattern="true"
+           pattern="org.eclipse.cdt.debug.gdbjtag.core/org.eclipse.cdt.debug.gdbjtag.launchConfigurationType">
+      </activityPatternBinding> -->
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.managedbuilder.ui -->
+      <category
+            name="CDT - C/C++ Managed Builder UI"
+            description="All preferences, actions, wizards supplied by the Managed Builder CDT plug-ins"
+            id="org.eclipse.cdt.managedbuilder.ui.category">
+      </category>
+      <activity
+            name="CDT - C/C++ Managed Builder UI"
+            description="All preferences, actions, wizards supplied by the Managed Builder CDT plug-ins"
+            id="org.eclipse.cdt.managedbuilder.ui.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            categoryId="org.eclipse.cdt.managedbuilder.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.ui.wizards.ConvertToMakeWizard">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.ui.wizards.NewMakeFromExisting">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.ui.wizards.MakeProjFromExisting">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_NewCDTWizard">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_NewCDTProject">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_Vars">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_Env">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_PropertyPage">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.managedbuilder.ui.preferences.PrefPage_MultiConfig">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.ui.buildConfigToolbarAction">
+      </activityPatternBinding>
+
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.managedbuilder.ui.activity"
+            pattern="org.eclipse.cdt.managedbuilder.ui/org.eclipse.cdt.ui.buildConfigMenuAction">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.make.ui -->
+      <category
+            name="CDT - C/C++ Make UI"
+            description="CDT C/C++ Make file preferences"
+            id="org.eclipse.cdt.make.ui.category">
+      </category>
+      <activity
+            name="CDT - C/C++ Build Make Targets Preference Page"
+            description="CDT C/C++ Build Make Targets Preference Page"
+            id="org.eclipse.cdt.make.ui.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.make.ui.activity"
+            categoryId="org.eclipse.cdt.make.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.make.ui.activity"
+            pattern="org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.preferences.MakePreferencePage">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.cdt.ui dealing with C/C++ projects -->
+      <category
+            name="CDT - C/C++ Standard Project Actions"
+            description="CDT C/C++ Standard Project Creation and Modification Actions"
+            id="org.eclipse.cdt.ui.category">
+      </category>
+<!-- Project settings import/export -->
+      <activity
+            name="CDT - Project Settings Wizards"
+            description="CDT C/C++ Standard project settings import and export wizards"
+            id="org.eclipse.cdt.ui.activityProjectSettings">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityProjectSettings"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityProjectSettings"
+            pattern="org.eclipse.cdt.ui/org.eclipse.cdt.ui.projectSettingsImportWizard">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityProjectSettings"
+            pattern="org.eclipse.cdt.ui/org.eclipse.cdt.ui.projectSettingsExportWizard">
+      </activityPatternBinding>
+<!-- Resource Configurations -->
+      <activity
+            name="CDT - Resource Configurations"
+            description="CDT C/C++ Resource configurations context menu commands"
+            id="org.eclipse.cdt.ui.activityResourceConfigurations">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityResourceConfigurations"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityResourceConfigurations"
+            pattern="org.eclipse.cdt.ui/org.eclipse.cdt.ui.buildConfigContributionM">
+      </activityPatternBinding>
+<!-- Import Executable action -->      
+      <activity
+            name="CDT - C/C++ Import Executable Wizard"
+            description="CDT C/C++ import executable wizard"
+            id="org.eclipse.cdt.ui.activityImportExecutable">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityImportExecutable"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityImportExecutable"
+            pattern=".*ImportExecutableWizard">
+      </activityPatternBinding>
+<!-- New C/C++ Project wizards -->
+      <activity
+            name="CDT - New C/C++ Project Wizards"
+            description="CDT New C and New C++ project wizards"
+            id="org.eclipse.cdt.ui.activityNewProject">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityNewProject"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewProject"
+            pattern="org.eclipse.cdt.ui/org.eclipse.cdt.ui.wizards.NewCWizard1">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewProject"
+            pattern="org.eclipse.cdt.ui/org.eclipse.cdt.ui.wizards.NewCWizard2">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewProject"
+            pattern="org\.eclipse\.cdt.*/.*NewProjectDropDown">
+      </activityPatternBinding>
+<!-- New Type Wizard -->
+      <activity
+            name="CDT - New C++ Class Wizard"
+            description="CDT New C++ class wizard"
+            id="org.eclipse.cdt.ui.activityNewType">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityNewType"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewType"
+            pattern="org\.eclipse\.cdt.*/.*NewTypeDropDown">
+      </activityPatternBinding>
+<!-- New File Wizard -->
+      <activity
+            name="CDT - New C/C++ File Wizard"
+            description="CDT New C/C++ source file wizard"
+            id="org.eclipse.cdt.ui.activityNewFile">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityNewFile"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewFile"
+            pattern="org\.eclipse\.cdt.*/.*NewFileDropDown">
+      </activityPatternBinding>
+<!-- New Folder Wizard -->
+      <activity
+            name="CDT - New C/C++ Folder Wizard"
+            description="CDT New C/C++ source folder wizard"
+            id="org.eclipse.cdt.ui.activityNewFolder">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.ui.activityNewFolder"
+            categoryId="org.eclipse.cdt.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.ui.activityNewFolder"
+            pattern="org\.eclipse\.cdt.*/.*NewFolderDropDown">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.debug.ui -->
+      <category
+            name="Platform Debug Actions"
+            description="Debugger actions supplied by the Eclipse Platform"
+            id="org.eclipse.debug.ui.category">
+      </category>
+<!-- Terminate, remove, relaunch actions -->
+      <activity
+            name="Debugger Terminate/Launch"
+            description="Relaunch, terminate and relaunch, terminate and remove, terminate all actions"
+            id="org.eclipse.debug.ui.activityTerminateLaunch">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.debug.ui.activityTerminateLaunch"
+            categoryId="org.eclipse.debug.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityTerminateLaunch"
+            pattern="org\.eclipse\.debug.*/.*relaunch">
+      </activityPatternBinding>
+       <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityTerminateLaunch"
+            pattern="org\.eclipse\.debug.*/.*TerminateAndRelaunch">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityTerminateLaunch"
+            pattern="org\.eclipse\.debug.*/.*terminateAndRemove">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityTerminateLaunch"
+            pattern="org\.eclipse\.debug.*/.*terminateAll">
+      </activityPatternBinding>
+<!-- Step filters actions -->
+      <activity
+            name="Debugger Filtered Stepping"
+            description="Stepping with filtering actions"
+            id="org.eclipse.debug.ui.activityStepFilters">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.debug.ui.activityStepFilters"
+            categoryId="org.eclipse.debug.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityStepFilters"
+            pattern="org\.eclipse\.debug.*/.*stepWithFilters">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityStepFilters"
+            pattern="org\.eclipse\.debug.*/.*toggleStepFilters">
+      </activityPatternBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.debug.ui.activityStepFilters"
+            pattern="org\.eclipse\.debug.*/.*ToggleStepFilters">
+      </activityPatternBinding>
+<!-- -->
+<!-- The following UI elements are from org.eclipse.ui.ide -->
+      <category
+            name="Platform Build Actions"
+            description="Build project actions supplied by the Eclipse Platform"
+            id="org.eclipse.ui.ide.category">
+      </category>
+<!-- Build Automatically -->
+      <activity
+            name="Build Automatically Action"
+            description="Build all projects automatically action"
+            id="org.eclipse.ui.ide.activityBuildAuto">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.ui.ide.activityBuildAuto"
+            categoryId="org.eclipse.ui.ide.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.ui.ide.activityBuildAuto"
+            pattern="org.eclipse.ui.project.buildAutomatically">
+      </activityPatternBinding>
+<!-- Build All Action -->
+      <activity
+            name="Build All Action"
+            description="Build all projects action"
+            id="org.eclipse.ui.ide.activityBuildAll">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.ui.ide.activityBuildAll"
+            categoryId="org.eclipse.ui.ide.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.ui.ide.activityBuildAll"
+            pattern="org.eclipse.ui.project.buildAll">
+      </activityPatternBinding>
+<!-- -->
+  
+<!-- The following UI elements are from org.eclipse.cdt.debug.mi.ui NOT IN C3-->
+<!--      <category
+            name="CDT - MI Debug UI"
+            description="CDT - MI Debug UI Elements"
+            id="org.eclipse.cdt.debug.mi.ui.category">
+      </category>
+      <activity
+            name="CDT - MI Debug UI"
+            description="CDT - MI Debug Preference Page"
+            id="org.eclipse.cdt.debug.mi.ui.activity">
+      </activity>
+      <categoryActivityBinding
+            activityId="org.eclipse.cdt.debug.mi.ui.activity"
+            categoryId="org.eclipse.cdt.debug.mi.ui.category">
+      </categoryActivityBinding>
+      <activityPatternBinding
+            activityId="org.eclipse.cdt.debug.mi.ui.activity"
+            pattern="org.eclipse.cdt.debug.mi.ui/org.eclipse.cdt.debug.mi.ui.MIPreferencePage">
+      </activityPatternBinding> -->
+<!-- -->
+   </extension>
+
+</plugin>

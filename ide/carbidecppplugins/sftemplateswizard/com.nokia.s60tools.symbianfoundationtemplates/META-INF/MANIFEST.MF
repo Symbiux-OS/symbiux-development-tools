@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Symbian Foundation Templates
+Bundle-SymbolicName: com.nokia.s60tools.symbianfoundationtemplates;singleton:=true
+Bundle-Version: 1.3.0
+Bundle-Activator: com.nokia.s60tools.symbianfoundationtemplates.SymbianFoundationTemplates
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.ide,
+ com.nokia.carbide.cdt.builder,
+ org.eclipse.core.resources,
+ org.eclipse.cdt.ui,
+ com.nokia.carbide.cpp.ui,
+ com.nokia.carbide.cpp.epoc.engine,
+ org.eclipse.help
+Eclipse-LazyStart: true

@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_xerces-2.9.0
+
+source /src/tools/dev/hostenv/javatoolsplat/xerces-2.9.0
+
+exports /src/tools/dev/hostenv/javatoolsplat/xerces-2.9.0/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/xerces-2.9.0/group/release.txt

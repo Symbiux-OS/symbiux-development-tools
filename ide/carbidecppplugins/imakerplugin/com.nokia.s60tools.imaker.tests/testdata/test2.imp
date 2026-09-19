@@ -1,0 +1,10 @@
+#iMaker properties
+#Fri Sep 18 09:31:17 EEST 2009
+PRODUCT=image_conf_dilbert_ui.mk
+TARGET=core
+HWID=0100
+NAME=FIELD_VALUE
+MAKEFILE=/epoc32/rom/config/ncp70/dilbert/image_conf_dilbert_ui.mk
+TYPE=rnd
+TARGET_LIST=core 
+DEBUG_FILES=true;false;\\epoc32\\data\\welcome.gif;\\welcome.gif;ROFS3

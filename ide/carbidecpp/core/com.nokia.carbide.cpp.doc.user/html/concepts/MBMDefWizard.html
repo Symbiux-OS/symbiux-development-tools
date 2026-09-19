@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><html><head>
+<title>MBM File in Concepts</title>
+<link rel="StyleSheet" href="../../book.css" type="text/css"/>
+</head>
+   <body>
+   <h2>MBM File</h2>
+   
+   <p>
+	  MBM, or multi-bitmap, is a Symbian-specific bitmap file format. This
+		file contains multiple bitmaps and  can contain  bitmaps with masks and
+		bitmaps without masks. It optimizes the bitmap handling capability of Symbian
+		OS. The <a href="../projects/mmp/MMP_Editor.html">MMP Editor</a> (in <b>Sources</b> tab <b>&gt; Resources &gt; Bitmaps</b>) and <a href="../projects/views/view_sym_proj_nav.htm">Symbian Project Navigator</a> view provide support for creating and editing MBM
+   files. In the <a href="../projects/views/view_sym_proj_nav.htm">Symbian Project Navigator</a> view you can right-click on a scalable icon makefile (for example, <span class="code">Icons_scalable_dc.mk</span>) and select <b>Add MBM/MIF Entry...</b> to open the Edit MBM/MIF Contents window.</p>
+<p>
+	  The following information is required to add a bitmap without a mask: 
+   </p>
+   <ul> 
+	  <li> 
+	    <p>
+		   <b>Color format </b>: Specifies whether the bitmap is a gray
+			 scale image or a color scale image. 
+	    </p> 
+	  </li> 
+	  <li> 
+	    <p>
+		   <b>Color Depth</b>: Specifies the color depth, if the bitmap is
+			 a color scale image. 
+	    </p> 
+	  </li> 
+	  <li> 
+	    <p>
+		   <b>Bitmap</b>: This is the name of the bitmap file to add to
+			 the MBM file. 
+	    </p> 
+	  </li> 
+   </ul>
+   <p>
+	  To add a bitmap with a mask, you will also need to specify: 
+   </p>
+   <ul> 
+	  <li> 
+	    <p>
+		   <b>Mask Depth</b>: Specifies the depth of the mask being
+			 applied to the bitmap. 
+	    </p> 
+	  </li> 
+	  <li> 
+	    <p>
+		   <b>Mask</b>: The name of the bitmap file that is used to mask
+			 the original bitmap. 
+	    </p> 
+	  </li> 
+   </ul>
+	 <h5>Related tasks</h5>
+	 <ul>
+       <li><a href="../tasks/Multi-BitmapFile.html">Creating an MBM File</a></li>
+   </ul>
+	 <h5>Related references</h5>
+	 <ul>
+       <li><a href="../reference/MBMEditor.html">MBM Editor</a></li>
+   </ul>
+	 <div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. <br>License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></div>
+
+   </body>
+   </html>
+   

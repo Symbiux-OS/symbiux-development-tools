@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+
+
+	<context id="IMAKERPLUGIN_HELP_PRODUCT" title="Product">
+      	<description>Product selection</description>	   
+		<topic label="Product makefiles" href="html/tasks/taskPreferences.html" />
+	</context>
+ <context id="IMAKERDIALOG_CONFIGURATION" title="Configurations">
+    <description>List of all files where data values are saved</description>
+    <topic href="html/tasks/taskPreferences.html#config" label="Configuration"/>
+ </context>
+   <context id="IMAKERDIALOG_CONTENTTAB" title="Add files to the image">
+      <description>Add binary or data files to the image. Refer to see also below for more information.</description>
+      <topic href="html/tasks/taskPreferences.html#fields" label="Content"/>
+   </context>
+	
+   <context id="IMAKERDIALOG_SETTINGSTAB" title="Settings">
+      <description>To modify the values of the variables of the selected product.</description>
+      <topic href="html/tasks/taskPreferences.html#settings" label="Settings tab"/>
+   </context>
+	
+   <context id="IMAKERDIALOG_PLATSIMTAB" title="Platsim">
+      <description>Settings related to PlatSim</description>
+      <topic href="html/tasks/taskPreferences.html#platsim" label="Platsim tab"/>
+   </context>
+	
+	
+	<context id="IMAKERPLUGIN_HELP_TARGETS" title="Available Targets">
+      	<description>List of available targets</description>	   
+		<topic label="Selecting target" href="html/tasks/taskPreferences.html" />
+	</context>
+	
+	<context id="IMAKERPLUGIN_HELP_SELECTED_TARGETS" title="Selected target">
+      	<description>Target(s) for which to build an image. Specifies what to build.</description>	   
+		<topic label="Build targets" href="html/tasks/taskPreferences.html" />
+	</context>
+	
+	<context id="IMAKERPLUGIN_HELP_IMAGE_TYPE" title="Image Type">
+      	<description>Type of image to build. Passed as TYPE=&lt;type&gt; to imaker commandline tool.</description>	   
+		<topic label="Image type" href="html/tasks/taskPreferences.html" />
+	</context>
+	
+	<context id="IMAKERPLUGIN_HELP_FLAGS" title="Flags">
+      	<description>Build flags to specify image characteristics. Symbol files will create symbolic files and verbose will cause iMaker commandline tool to print additional information</description>	   
+		<topic label="Build flags" href="html/tasks/taskPreferences.html" />
+	</context>
+	
+	<context id="IMAKERPLUGIN_HELP_ADDITIONAL_PARAMS" title="Additional parameters">
+      	<description>Additional build parameters to insert for iMaker commandline tool</description>	   
+		<topic label="Additional parameters" href="html/tasks/taskPreferences.html" />
+	</context>
+	
+		
+	<context id="IMAKERPLUGIN_HELP">
+      	<description>Help for iMakerPlugin</description>	   
+		<topic label="Help for iMakerPlugin" href="html/tool.html" />
+	</context>
+
+	<context id="IMAKER_DEBUGTAB_TABLE">
+      	<description>Help for iMakerPlugin</description>	   
+		<topic label="Help for iMakerPlugin" href="html/tool.html" />
+	</context>
+     		     
+</contexts>

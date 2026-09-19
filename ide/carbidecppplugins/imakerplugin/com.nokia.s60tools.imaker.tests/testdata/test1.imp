@@ -1,0 +1,9 @@
+#iMaker properties
+#Fri Sep 18 09:31:17 EEST 2009
+PRODUCT=my_product.mk
+TARGET=all
+HWID=1010
+NAME=FIELD_VALUE
+MAKEFILE=\\epoc32\\rom\\config\\ncp70\\corolla\\corolla12mpix\\image_conf_corolla12mpix.mk
+TYPE=rnd
+TARGET_LIST=all 

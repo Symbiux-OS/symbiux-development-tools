@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Creator Script Editor"
+            extensions="creatorxml"
+            icon="icons/creator_16x16.png"
+            class="com.nokia.s60tools.creator.editors.CreatorScriptEditor"
+            id="com.nokia.s60tools.creator.editors.CreatorScriptEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Carbide Extensions"
+            id="com.nokia.s60tools">
+      </category>
+      <wizard
+            category="com.nokia.s60tools"
+            class="com.nokia.s60tools.creator.wizards.CreatorScriptNewWizard"
+            descriptionImage="icons/creator_55x46.png"
+            icon="icons/creator_16x16.png"
+            id="com.nokia.s60tools.creator.wizards.CreatorScriptNewWizard"
+            name="Creator script file">
+         <description>
+            Create a Creator script file
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="Creator">
+         <property
+               name="appName"
+               value="Carbide.c++ Extensions - Creator">
+         </property>
+      </product>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Creator Actions"
+            id="com.nokia.s60tools.creator.ui.actionSet"
+            label="New Creator script"
+            visible="true">
+         <action
+               class="com.nokia.s60tools.creator.ui.actions.ToolsMenuAction"
+               icon="icons/creator_16x16.png"
+               id="com.nokia.s60tools.creator.ui.actions.ToolsMenuAction"
+               label="Creator Script Editor"
+               menubarPath="com.nokia.carbide.cpp.ui.CarbideMenu/CarbideExtensions"
+               style="push"
+               tooltip="%view.Tooltip"/>
+         <menu
+               id="com.nokia.carbide.cpp.ui.CarbideMenu"
+               label="Carbide"
+               path="additions">
+            <groupMarker name="additions"/>
+         </menu>
+      </actionSet>
+   </extension>  
+   
+       <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Creator Script Editor"
+            class="com.nokia.s60tools.creator.preferences.CreatorPreferencePage"
+            category="com.nokia.carbide.cpp.preferences.ExtensionsPreferencesPage"
+            id="com.nokia.s60tools.creator.preferences.CreatorPreferencePage">
+            <keywordReference
+             id="com.nokia.s60tools.creator.keywords.common">
+            </keywordReference>
+      </page>
+   </extension>   
+<extension
+       point="org.eclipse.ui.keywords">
+    <keyword
+          id="com.nokia.s60tools.creator.keywords.common"
+          label="%creatorKeywords.common">
+    </keyword>
+ </extension>
+</plugin>

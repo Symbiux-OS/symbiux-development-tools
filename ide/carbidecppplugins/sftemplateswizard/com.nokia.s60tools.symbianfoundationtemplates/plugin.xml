@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+	<!-- Templates in File->New->Other... -->
+	<extension point="org.eclipse.ui.newWizards"> 
+		<!-- Categories -->
+		<category 
+			id="com.nokia.s60tools.symbianfoundationtemplates" 
+	        name="Symbian Foundation Templates"> 
+		</category> 
+		<category 
+        	id="com.nokia.s60tools.symbianfoundationtemplates.headers" 
+        	name="Headers" 
+        	parentCategory="com.nokia.s60tools.symbianfoundationtemplates"> 
+      	</category> 
+      	<category 
+        	id="com.nokia.s60tools.symbianfoundationtemplates.classes" 
+        	name="Classes" 
+        	parentCategory="com.nokia.s60tools.symbianfoundationtemplates"> 
+      	</category> 
+      	
+      	<!-- Headers -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.CClassHeaderTemplate" 
+          	name="C Class Header"
+          	icon="images\newhfile_wiz.gif"
+           	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.headers" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.headerwizards.CHeaderWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation C class header. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.MClassHeaderTemplate" 
+          	name="M Class Header" 
+          	icon="images\newhfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.headers" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.headerwizards.MHeaderWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation M class header. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.RClassHeaderTemplate" 
+          	name="R Class Header"
+          	icon="images\newhfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.headers" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.headerwizards.RHeaderWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation R class header. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.TClassHeaderTemplate" 
+          	name="T Class Header"
+          	icon="images\newhfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.headers" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.headerwizards.THeaderWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation T class header. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	
+       	<!-- Classes -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.CClassTemplate" 
+          	name="C Class"
+          	icon="images\newclass_wiz.gif"
+           	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.classes" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.classwizards.CClassWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation C class. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.MClassTemplate" 
+          	name="M Class"
+          	icon="images\newclass_wiz.gif"
+           	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.classes" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.classwizards.MClassWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation M class. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.RClassTemplate" 
+          	name="R Class"
+          	icon="images\newclass_wiz.gif"
+           	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.classes" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.classwizards.RClassWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation R class. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.TClassTemplate" 
+          	name="T Class"
+          	icon="images\newclass_wiz.gif"
+           	category="com.nokia.s60tools.symbianfoundationtemplates/com.nokia.s60tools.symbianfoundationtemplates.classes" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.classwizards.TClassWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation T class. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	
+      	<!-- Source -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.SourceTemplate" 
+          	name="Source File" 
+          	icon="images\newcfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.sourcewizards.SourceWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation source file. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	
+      	<!-- Resources -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.ResourceTemplate" 
+          	name="Resource File"
+          	icon="images\newfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.resourcewizards.ResourceWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation resource file. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+ 		
+ 		<!-- Icons -->
+ 		<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.IconTemplate" 
+          	name="Icon Makefile"
+          	icon="images\newfile_wiz.gif"
+          	category="com.nokia.s60tools.symbianfoundationtemplates" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.projectwizards.IconWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation icon file. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	
+      	<!-- MMP -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.MMPTemplate" 
+          	name="MMP File"
+          	icon="images\MMP_Definition_file.png"
+          	category="com.nokia.s60tools.symbianfoundationtemplates" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.projectwizards.MMPWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation MMP file. 
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+      	
+      	<!-- BLD.INF -->
+      	<wizard 
+          	id="com.nokia.s60tools.symbianfoundationtemplates.BuildInfoTemplate" 
+          	name="Build Info File"
+          	icon="images\Bld_inf_Definition_file.png"
+          	category="com.nokia.s60tools.symbianfoundationtemplates" 
+          	class="com.nokia.s60tools.symbianfoundationtemplates.ui.wizards.s60.projectwizards.BuildInfoWizard"> 
+          		<description> 
+              		Create a new Symbian Foundation build info file.
+          		</description> 
+           		<selection class="org.eclipse.core.resources.IResource"/>          
+      	</wizard>
+   	</extension>
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <objectContribution
+          adaptable="true"
+          id="com.nokia.s60tools.symbianfoundationtemplates.symbianfoundationtemplatesobjectContribution"
+          nameFilter="*.mmp"
+          objectClass="org.eclipse.core.resources.IResource">
+       <menu
+             id="com.nokia.s60tools.symbianfoundationtemplates.menu1"
+             label="Symbian Foundation"
+             path="group.reorganize">
+          <groupMarker name="SourceActionGroup"/>
+          <separator name="separator"/>
+          <groupMarker name="ClassGroup"/>
+          <groupMarker name="HeaderGroup"/>
+       </menu>
+       <menu
+             id="com.nokia.s60tools.symbianfoundationtemplates.menu2"
+             label="Header File"
+             path="com.nokia.s60tools.symbianfoundationtemplates.menu1/HeaderGroup"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newhfile_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.tcheader"
+             label="T Class Header"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu2/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newhfile_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.rcheader"
+             label="R Class Header"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu2/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newhfile_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.mcheader"
+             label="M Class Header"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu2/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newhfile_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.ccheader"
+             label="C Class Header"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu2/additions"/>
+       <menu
+             id="com.nokia.s60tools.symbianfoundationtemplates.menu3"
+             label="Symbian OS C++ Class"
+             path="com.nokia.s60tools.symbianfoundationtemplates.menu1/ClassGroup"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newclass_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.tclass"
+             label="T Class"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu3/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newclass_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.cclass"
+             label="R Class"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu3/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newclass_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.rclass"
+             label="M Class"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu3/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newclass_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.mclass"
+             label="C Class"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/com.nokia.s60tools.symbianfoundationtemplates.menu3/additions"/>
+       <action
+             class="com.nokia.s60tools.symbianfoundationtemplates.actions.OpenWizardAction"
+             icon="images/newcfile_wiz.gif"
+             id="com.nokia.s60tools.symbianfoundationtemplates.sourcefile"
+             label="Source File"
+             menubarPath="com.nokia.s60tools.symbianfoundationtemplates.menu1/SourceActionGroup"/>
+    </objectContribution>
+ </extension> 
+</plugin>

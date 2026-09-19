@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Metadata Editor
+Bundle-SymbolicName: com.nokia.s60tools.metadataeditor; singleton:=true
+Bundle-Version: 1.1.2.qualifier
+Bundle-Activator: com.nokia.s60tools.metadataeditor.MetadataEditorActivator
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ com.nokia.s60tools.util,
+ org.eclipse.help,
+ org.eclipse.core.filesystem
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.s60tools.metadataeditor,
+ com.nokia.s60tools.metadataeditor.common,
+ com.nokia.s60tools.metadataeditor.core,
+ com.nokia.s60tools.metadataeditor.dialogs,
+ com.nokia.s60tools.metadataeditor.editors,
+ com.nokia.s60tools.metadataeditor.util,
+ com.nokia.s60tools.metadataeditor.wizards,
+ com.nokia.s60tools.metadataeditor.xml
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

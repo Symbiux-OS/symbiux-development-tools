@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.index"?>
+
+	<!-- INDEX INSTRUCTIONS
+	
+	Use the index.xml file to define the index entries for the plugin's 
+	help contents. In Eclipse 3.2 and beyond an Index tab appears in the Help
+	viewer making it possible for user to more easily locate subjects of
+	interest to them.
+		
+	In brief, every file used in the help documentation should have at least one
+	associated index entry for it. Ideally, it's simple to make two entries per
+	page by simply re-wording the subject slightly. For example, a view could
+	be indexed twice like this, 1) Breakpoint view, and 2) Views/Breakpoint.
+	
+	See ??? for details on creating indexes.
+	
+	-->
+
+<index>
+
+	<!-- AAAAAAAA -->
+
+	<entry keyword="adding script components" >
+		<topic href="html/tasks/adding_components.htm" />
+	</entry>
+
+	<!-- BBBBBBBB -->	
+
+	<!-- CCCCCCCC -->	
+
+	<entry keyword="calendar items in Creator" >
+		<topic href="html/reference/calendar.htm" />
+	</entry>
+
+	<entry keyword="contact items in Creator" >
+		<topic href="html/reference/contacts.htm" />
+	</entry>
+
+	<entry keyword="contact set component" >
+		<topic href="html/reference/contacts.htm" />
+	</entry>
+
+	<entry keyword="contact set, overview" >
+		<topic href="html/concepts/contact_set.htm" />
+	</entry>
+
+	<entry keyword="Creator script" >
+		<topic href="html/gettingstarted/overview.htm" />
+	</entry>
+
+	<entry keyword="Creator overview" >
+		<topic href="html/gettingstarted/overview.htm" />
+	</entry>
+
+	<entry keyword="component types in Creator" >
+		<topic href="html/release_notes.htm" />
+	</entry>
+
+	<entry keyword="Creator walk-through" >
+		<topic href="html/gettingstarted/walk_through.htm" />
+	</entry>
+
+
+	<!-- DDDDDDDD -->		
+
+	<!-- EEEEEEEE -->	
+
+	<!-- FFFFFFFF -->
+
+	<!-- GGGGGGGG -->	
+	
+	<!-- HHHHHHHH -->	
+	
+	<!-- IIIIIIII -->
+	
+	<!-- JJJJJJJJ -->
+	
+	<!-- KKKKKKKK -->
+	
+	<!-- LLLLLLLL -->
+	
+	<!-- MMMMMMMM -->
+	
+	<entry keyword="message items in Creator" >
+		<topic href="html/reference/messages.htm" />
+	</entry>
+
+	<entry keyword="modifying script components" >
+		<topic href="html/tasks/modifying_components.htm" />
+	</entry>
+
+	<!-- NNNNNNNN -->
+	
+	<!-- OOOOOOOO -->
+	
+	<!-- PPPPPPPP -->
+	
+	<!-- QQQQQQQQ -->
+	
+	<!-- RRRRRRRR -->
+	
+	<!-- SSSSSSSS -->
+
+	<entry keyword="script files, XML" >
+		<topic href="html/gettingstarted/overview.htm" />
+	</entry>
+
+	
+	<!-- TTTTTTTT -->
+	
+	<!-- UUUUUUUU -->
+	
+	<!-- VVVVVVVV -->
+	
+	<!-- WWWWWWWW -->
+	
+	<!-- XXXXXXXX -->
+
+	<entry keyword="XML script file" >
+		<topic href="html/gettingstarted/overview.htm" />
+	</entry>
+	
+	<!-- YYYYYYYY -->
+	
+	<!-- ZZZZZZZZ -->
+
+</index>

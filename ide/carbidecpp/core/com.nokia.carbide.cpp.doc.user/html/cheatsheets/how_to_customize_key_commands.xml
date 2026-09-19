@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet
+      title="Customize Key Commands">
+`	<intro>
+    	<description>
+			To manage the key bindings available while developing, use the Keys preference panel.
+    	</description>
+	</intro>
+	<item
+       title="Customize key bindings">
+		<description>
+			Open the <b>Preferences &gt; General &gt; Keys</b> preference panel to change the key commands used in Carbide. Choose from a preset theme or modify the current one to better suit your requirements.
+		</description>
+  <command
+        required="false"
+        serialization="org.eclipse.ui.window.preferences(preferencePageId=org.eclipse.ui.preferencePages.Keys)"/>
+	</item>
+</cheatsheet>

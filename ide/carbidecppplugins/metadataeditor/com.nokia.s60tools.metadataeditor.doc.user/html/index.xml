@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Arbortext, Inc., 1988-2004, v.4002-->
+<?APT Element gi="index"?>
+<?APT Element gi="entry" attrs="keyword"?>
+<?APT Element gi="topic" empty="yes" attrs="href"?>
+<?NLS TYPE="org.eclipse.help.index"?><!-- INDEX INSTRUCTIONS
+	
+	Use the index.xml file to define the index entries for the plugin's 
+	help contents. In Eclipse 3.2 and beyond an Inex tab appears in the Help
+	viewer making it possible for user to more easily locate subjects of
+	interest to them.
+		
+	In brief, every file used in the help documentation should have at least one
+	associated index entry for it. Ideally, it's simple to make two entries per
+	page by simply re-wording the subject slightly. For example, a view could
+	be indexed twice like this, 1) Breakpoint view, and 2) Views, Breakpoint.
+	
+	See ??? for details on creating indexes.
+	
+	--><index>  	<!-- AAAAAAAA -->  	<entry keyword="API metadata"> 		<topic
+href="html/concepts/metadata_file.htm"/> 	</entry>   	  	<entry keyword="attributes in API metadata"> 
+	<topic href="html/tasks/edit_metadata.htm"/><?Pub Caret1?> 	</entry>   	<!-- BBBBBBBB -->
+	<!-- CCCCCCCC -->	  	<entry keyword="creating API metadata"> 		<topic href="html/tasks/create_metadata.htm"/> 	</entry> <entry
+keyword="converting API metadata"><topic href="html/tasks/converting_metadata.htm"/></entry> 	<!-- DDDDDDDD -->
+ 	<!-- EEEEEEEE -->	  	<entry keyword="editing API metadata"> 		<topic href="html/tasks/edit_metadata.htm"/> 	</entry> 
+	<entry keyword="extended SDK metadata"> 		<topic href="html/tasks/edit_metadata.htm"/> 	</entry> 
+	<!-- FFFFFFFF --> 	<!-- GGGGGGGG -->	 	<!-- HHHHHHHH -->	 	<!-- IIIIIIII -->
+	<!-- JJJJJJJJ --> 	<!-- KKKKKKKK --> 	<!-- LLLLLLLL --> 	<!-- MMMMMMMM -->
+ 	<entry keyword="metadata file"> 		<topic href="html/concepts/metadata_file.htm"/> 	</entry> 
+	<!-- NNNNNNNN --> 	<!-- OOOOOOOO --> 	<!-- PPPPPPPP --> 	<!-- QQQQQQQQ -->
+	<!-- RRRRRRRR --> 	<!-- SSSSSSSS --> 	<!-- TTTTTTTT --> 	<!-- UUUUUUUU -->
+	<!-- VVVVVVVV --> 	<!-- WWWWWWWW --> 	<!-- XXXXXXXX -->  	<entry keyword="XML metadata"> 
+	<topic href="html/concepts/metadata_file.htm"/> 	</entry>   	<!-- YYYYYYYY -->
+	<!-- ZZZZZZZZ -->  </index>

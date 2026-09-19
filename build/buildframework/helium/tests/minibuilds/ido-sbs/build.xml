@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<project name="minibuild.ido-sbs" default="help" xmlns:au="org.apache.ant.antunit" xmlns:hlm="http://www.nokia.com/helium" basedir="..\ido">
+    <property environment="env"/>
+    <!--property name="config.temp.build.dir" location="${ant.file.minibuild.ido-sbs}/../build"/ -->
+    
+    <!-- Configuring raptor build system -->
+    <property name="build.system" value="sbs"/>
+    <property name="qmake.enabled" value="true" />
+
+    <!-- Configuring get latest env. -->
+    <property name="s60.grace.service" value="s60_devices_sw" />
+    <property name="s60.grace.product" value="DFS7x.92" />
+    <property name="s60.grace.release" value="92_\d{6}_hw79" />
+    
+    <!-- Synergy project for TB92 -->
+	<property name="ccm.project" value="MinibuildDomain-tr1ido#20100928_3:project:tr1test1#1" />
+    
+    <!-- Compatibility analyser enabling flag, causes binary check to be run -->
+    <property name="ca.enabled" value="true" />
+    <property name="bc.prep.ca.file" location="${helium.dir}/tools/quality/compatibility_analyser/ca.cfg.xml" />
+
+    <property name="codescanner.enabled" value="false" />
+    
+
+    <!-- Run the full sequence of target for the minibuild. ,minibuild-prep,compile-main,zip-ee,minibuild-check-->
+    <!--<target name="do-minibuild" depends="minibuild-cleanup,
+                                            compile-main"/>-->
+
+    <property name="build.name" value="minibuild_ido_sbs" />
+    <property name="build.family" value="test_minibuild_ido_sbs" />
+
+    <target name="minibuild-check-blocks">
+        <if>
+            <istrue value="${blocks.enabled}" />
+            <then>
+                <if>
+                    <istrue value="${sysdef3.enabled}" />
+                    <then>
+                        <au:assertFileExists file="${blocks.config.dir}/helloworld_api.blocks_component.xml" />
+                        <au:assertFileExists file="${blocks.config.dir}/helloworldcons_app.blocks_component.xml" />
+                        <au:assertFileExists file="${blocks.config.dir}/qt_helloworld_app.blocks_component.xml" />
+                    </then>
+                    <else>
+                        <au:assertFileExists file="${blocks.config.dir}/minibuild_helloworldapi.blocks_component.xml" />
+                        <au:assertFileExists file="${blocks.config.dir}/minibuild_helloworldcons.blocks_component.xml" />
+                    </else>
+                </if>
+            </then>
+        </if>
+    </target>
+
+    <target name="minibuild-check" depends="minibuild-check-blocks">
+        <!-- Check if prep has set some prop correctly... -->
+        <echo>'${arm.compiler.version}'</echo>
+        <au:assertMatches string="${arm.compiler.version}" pattern="RVCT2\.2 \[Build 686\]" casesensitive="false" multiline="true"/>
+
+        <!-- Check if compile-main step did what expected... -->
+        <au:assertFileExists file="${canonical.sysdef.file}"/>
+    </target>
+    
+
+    <import file="../ido/build.xml"/>
+    <import file="build.sbsinput.ant.xml" />
+
+    <!-- We should defer the failure for raptor. -->
+    <hlm:signalInput id="raptorErrorSignalInput" failbuild="defer">
+        <hlm:notifierListRef refid="defaultFailNotifier" />
+    </hlm:signalInput>
+
+    <!-- used by the compatibility analyser to define the build log that is to be
+     scanned and the output used for the comparison-->
+    <property name="bc.log.file.to.scan" location="${build.log.dir}/compile/${build.id}_dfs_build_armv5_compile.log" />
+
+</project>
+
+    

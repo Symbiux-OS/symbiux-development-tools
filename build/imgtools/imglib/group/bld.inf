@@ -1,0 +1,68 @@
+/*
+* Copyright (c) 1999-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+* Base tools (e.g. petran)
+*
+*/
+
+
+/**
+ @file
+*/
+
+PRJ_PLATFORMS
+TOOLS2
+
+PRJ_EXPORTS
+#ifdef TOOLS2_LINUX
+../boostlibrary/binary/linux/libboost_filesystem-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/rel/libboost_filesystem-1.39.a
+../boostlibrary/binary/linux/libboost_thread-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/rel/libboost_thread-1.39.a
+../boostlibrary/binary/linux/libboost_regex-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/rel/libboost_regex-1.39.a
+../boostlibrary/binary/linux/libboost_system-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/rel/libboost_system-1.39.a
+
+../boostlibrary/binary/linux/libboost_filesystem-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/deb/libboost_filesystem-1.39.a
+../boostlibrary/binary/linux/libboost_thread-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/deb/libboost_thread-1.39.a
+../boostlibrary/binary/linux/libboost_regex-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/deb/libboost_regex-1.39.a
+../boostlibrary/binary/linux/libboost_system-1.39.a /epoc32/release/tools2/linux-i386-libc2_5/deb/libboost_system-1.39.a
+
+../boostlibrary/binary/linux/libboost_filesystem-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/rel/libboost_filesystem-1.39.a
+../boostlibrary/binary/linux/libboost_thread-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/rel/libboost_thread-1.39.a
+../boostlibrary/binary/linux/libboost_regex-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/rel/libboost_regex-1.39.a
+../boostlibrary/binary/linux/libboost_system-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/rel/libboost_system-1.39.a
+
+../boostlibrary/binary/linux/libboost_filesystem-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/deb/libboost_filesystem-1.39.a
+../boostlibrary/binary/linux/libboost_thread-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/deb/libboost_thread-1.39.a
+../boostlibrary/binary/linux/libboost_regex-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/deb/libboost_regex-1.39.a
+../boostlibrary/binary/linux/libboost_system-1.39.a /epoc32/release/tools2/linux-x86_64-libc2_5/deb/libboost_system-1.39.a
+
+#else
+../boostlibrary/binary/windows/libboost_thread-1.39.a	/epoc32/release/tools2/rel/libboost_thread-1.39.a
+../boostlibrary/binary/windows/libboost_regex-1.39.a	/epoc32/release/tools2/rel/libboost_regex-1.39.a
+../boostlibrary/binary/windows/libboost_filesystem-1.39.a /epoc32/release/tools2/rel/libboost_filesystem-1.39.a 
+../boostlibrary/binary/windows/libboost_system-1.39.a /epoc32/release/tools2/rel/libboost_system-1.39.a 
+
+../boostlibrary/binary/windows/libboost_thread-1.39.a	/epoc32/release/tools2/deb/libboost_thread-1.39.a
+../boostlibrary/binary/windows/libboost_regex-1.39.a	/epoc32/release/tools2/deb/libboost_regex-1.39.a
+../boostlibrary/binary/windows/libboost_filesystem-1.39.a /epoc32/release/tools2/deb/libboost_filesystem-1.39.a 
+../boostlibrary/binary/windows/libboost_system-1.39.a /epoc32/release/tools2/deb/libboost_system-1.39.a 
+
+../boostlibrary/binary/windows/mingwm10.dll	/epoc32/tools/mingwm10.dll
+#endif
+
+PRJ_MMPFILES
+patchdataprocessor
+parameterfileprocessor
+memmap
+uidcrc
+uniconv

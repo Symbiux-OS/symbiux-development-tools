@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : sbs.ant.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package compile -->
+<project name="compile.sbs" xmlns:hlm="http://www.nokia.com/helium">
+    <description>
+    Executes compilation of a System Model of System Definition file using Symbian SBS (Raptor) tools. 
+    </description>
+
+
+    <!--
+        Executes compilation  of a System Model of System Definition file using Symbian SBS (Raptor) tools. 
+        Should not be called directly but through compile-main by setting ${build.system.sbs} property.
+    -->
+
+    <!--* @property sbs.ctc.enabled
+    This property enables Raptor compilation using ctc. 
+    @type boolean
+    @editable required
+    @scope public
+    -->
+     
+    <!--* @property sbs.build.ctc
+    This property enables Raptor compilation using ctc. - deprecated: Start using sbs.ctc.enabled property.
+    @type boolean
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+
+    <!--* @property sbs.checksource.enabled
+    This property enables Raptor checksource analysis. 
+    @type boolean
+    @editable required
+    @scope public
+    -->
+
+    
+    <!-- This property enables sbs layer filtering of the canonical system definition file 
+         for system definition schema 1.4.0 using ${sysdef.configuration}. 
+     @type boolean
+    -->
+    <property name="sbs.layer.generation.enabled" value="true" />
+
+    <!-- This property enables the downgrading of the canonical system
+         definition v3 model into 2.0 before passing the file to sbs.  
+     @type boolean
+    -->
+    <property name="sbs.downgrade.sysdef.enabled" value="true" />
+        
+    
+    <!-- Default CTC command line option, override it to customize it. -->
+    <hlm:argSet id="ctc.build.options" />
+
+    <!-- This property define what instrumentation CTC should create.
+    @type string
+    -->
+    <property name="ctc.instrument.type" value="m" />
+    
+    
+    <!-- This target filters the canonical system definition file compare to the "raptor_${sysdef.configuration}" filter. -->
+    <macrodef name="generate-layers" uri="http://www.nokia.com/helium">
+        <sequential>
+            <echo message="cannonical sysdef file: ${canonical.sysdef.file}" />
+            <echo message="raptor-filters: raptor_${sysdef.configuration}" />
+            <if>
+                <isfalse value="${sbs.layer.generation.enabled}" />
+                <then>
+                    <if>
+                        <isreference refid="sysdef.layers.${sysdef.configuration}" />
+                        <then>
+                            <property name="sbs.patternset" value="sysdef.layers.${sysdef.configuration}" />
+                            <echo message="sbs.patternset: ${sbs.patternset}" />
+                        </then>
+                        <else>
+                            <echo message="The sysdef.layers.${sysdef.configuration} pattern set is not defined." />
+                        </else>
+                    </if>
+                    <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+                </then>
+                <else>
+                    <hlm:compileGenxmlFilterMacro input="${canonical.sysdef.file}" filter="raptor_${sysdef.configuration}"
+                        output="${build.output.dir}/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+                </else>
+            </if>
+            <copy file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"
+                    tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml">
+                <filterchain>
+                    <linecontainsregexp negate="true">
+                        <regexp pattern="^\s*$"/>
+                    </linecontainsregexp>
+                </filterchain>
+            </copy>
+            <delete file="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}_temp.xml"/>
+        </sequential>
+    </macrodef>
+
+    
+    <condition property="build.system.sbs-any">
+        <or>
+            <equals arg1="${build.system}" arg2="sbs" />
+            <equals arg1="${build.system}" arg2="sbs-ec" />
+        </or>
+    </condition>
+    
+    
+    <!-- SBS build with gmake as engine type.
+        
+    Default is using sbs macro, to use old implementation to
+    use using exec task, then sbs.using.exec needs to be set.
+    -->
+    <target name="compile-sbs" if="build.system.sbs-any">
+        <echo message="Copying Helium filter plugin to sbs home" />
+        <var name="sbs.internal.inputs.list" unset="true"/>
+        <if>
+            <istrue value="${sysdef3.enabled}" />
+            <then>
+                <if>
+                    <isreference refid="sysdef.filters.${sysdef.configuration}" />
+                    <then>
+                        <hlm:filterSysdef epocroot="${build.drive}/" srcfile="${canonical.sysdef.file}" 
+                            destfile="${build.drive}/output/build/canonical_system_definition_filtered_${sysdef.configuration}.xml">
+                            <filterSet refid="sysdef.filters.${sysdef.configuration}" />
+                        </hlm:filterSysdef>
+                    </then>
+                    <else>
+                        <echo message="The sysdef.filters.${sysdef.configuration} sysdefFilterSet is not defined." />
+                        <copy file="${canonical.sysdef.file}"
+                            tofile="${build.drive}/output/build/canonical_system_definition_filtered_${sysdef.configuration}.xml" />
+                    </else>
+                </if>
+                <if>
+                    <istrue value="${sbs.downgrade.sysdef.enabled}" />
+                    <then>
+                        <hlm:downgradeSysdef epocroot="${build.drive}/" srcfile="${build.drive}/output/build/canonical_system_definition_filtered_${sysdef.configuration}.xml" 
+                            destfile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml"/>
+                    </then>
+                    <else>
+                        <echo message="Downgrading to 2.0 model disabled." />
+                        <copy file="${build.drive}/output/build/canonical_system_definition_filtered_${sysdef.configuration}.xml"
+                            tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" />
+                    </else>
+                </if>
+                <var name="sbs.patternset" unset="true"/>
+                <if>
+                    <isreference refid="sysdef.layers.${sysdef.configuration}" />
+                    <then>
+                        <property name="sbs.patternset" value="sysdef.layers.${sysdef.configuration}" />
+                        <echo message="sbs.patternset: ${sbs.patternset}" />
+                    </then>
+                    <else>
+                        <echo message="The sysdef.layers.${sysdef.configuration} patternset is not defined." />
+                    </else>
+                </if>
+            </then>
+            <else>
+                <var name="sbs.patternset" unset="true"/>
+                <if>
+                    <isreference refid="sysdef.layers.${sysdef.configuration}" />
+                    <then>
+                        <property name="sbs.patternset" value="sysdef.filters.${sysdef.configuration}" />
+                        <echo message="sbs.patternset: ${sbs.patternset}" />
+                        <copy file="${canonical.sysdef.file}" tofile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" />
+                    </then>
+                    <else>
+                        <echo message="The sysdef.layers.${sysdef.configuration} patternset is not defined." />
+                        <hlm:generate-layers />
+                    </else>
+                </if>
+            </else>
+        </if>              
+        <hlm:getsbsinputs config="sbs.${sysdef.configuration}" outputProperty="sbs.internal.inputs.list"/>
+        <for list="${sbs.internal.inputs.list}" delimiter="," param="sbs.input">
+            <sequential>
+                <echo message="building raptor input: @{sbs.input}" />
+                <var name="sbs.log.file" unset="true" />
+                <property name="sbs.log.file" location="${compile.log.dir}/${build.id}_${sysdef.configuration}_@{sbs.input}_compile.log" />
+                <!-- run arm license checking / setting arm version only for arm config -->
+                <hlm:getVariableValue name="-c" property="compilevalue.var" failOnerror="false">
+                    <hlm:sbsinput refid="@{sbs.input}" />
+                </hlm:getVariableValue>
+                <echo message="config parameter -c : ${compilevalue.var}" />
+                <if>
+                    <and>
+                        <isset property="compilevalue.var"/>
+                        <matches string="${compilevalue.var}" pattern="arm.*"/>
+                    </and>
+                    <then>
+                        <runtarget target="set-arm-version"/>
+                    </then>
+                </if>
+                <!-- Generate the filtered layers -->
+                <if>
+                    <or>
+                        <istrue value="${coverity.enabled}" />
+                        <istrue value="${enabled.coverity}"/>
+                    </or>
+                    <then>
+                        <hlm:coveritybuild  sbsinput="@{sbs.input}" 
+                                            sysdeffile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml"
+                                            layerpatternsetref="${sbs.patternset}" 
+                                            workingdir="${build.drive}/" 
+                                            execute="true"
+                                            failonerror="false"
+                                            outputlog="${sbs.log.file}" 
+                                            erroroutput="${sbs.log.file}.sbs_error.log">
+                            <hlm:coverityoptions refid="coverity.build.options"/>
+                        </hlm:coveritybuild>
+                    </then>
+                    <elseif>
+                        <or>
+                            <istrue value="${sbs.ctc.enabled}"/>
+                            <isset property="sbs.build.ctc"/>
+                        </or>
+                        <then>
+                            <hlm:ctctask sbsinput="@{sbs.input}" 
+                                            sysdefFile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" 
+                                            layerPatternSetRef="${sbs.patternset}" 
+                                            errorOutput="${sbs.log.file}.sbs_error.log" 
+                                            workingDir="${build.drive}/" 
+                                            failOnError="false" 
+                                            outputLog="${sbs.log.file}"
+                                            instrumentType="${ctc.instrument.type}">
+                                <hlm:CTCOptions refid="ctc.build.options" />
+                            </hlm:ctctask>
+                        </then>
+                    </elseif>
+                    <else>
+                        <hlm:sbstask sbsinput="@{sbs.input}" 
+                                        sysdefFile="${build.drive}/output/build/canonical_system_definition_${sysdef.configuration}.xml" 
+                                        layerPatternSetRef="${sbs.patternset}" 
+                                        errorOutput="${sbs.log.file}.sbs_error.log" 
+                                        workingDir="${build.drive}/" 
+                                        failOnError="false" 
+                                        outputLog="${sbs.log.file}" />
+                    </else>
+                </if>
+                <hlm:assertFileExists file="${sbs.log.file}"/>
+                <hlm:assertFileExists file="${sbs.log.file}.sbs_error.log"/>
+                <!-- run arm license checking / setting arm version only for arm config --> 
+                <hlm:sbsProcessOutputMacro sbsLogFile="${sbs.log.file}"
+                                           sbsErrorOutputFile="${sbs.log.file}.sbs_error.log"/>
+            </sequential>
+        </for>
+    </target>
+    
+    
+    <!-- Runs the SBS checksource filter on the SBS log file. -->
+    <macrodef name="sbsChecksourceMacro" uri="http://www.nokia.com/helium">
+        <attribute name="sbsLogFile" />
+        <sequential>
+            <var name="sbs.checksource.log.file" unset="true"/>
+            <property name="sbs.checksource.log.file" location="@{sbsLogFile}.checksource.log" />
+            <exec osfamily="windows" executable="cmd" dir="${build.drive}/" input="@{sbsLogFile}"
+                  output="${sbs.checksource.log.file}" failonerror="false">
+                <arg value="/c" />
+                <arg value="sbs_filter.bat" />
+                <arg value="--filters=FilterCheckSource" />
+            </exec>
+            <hlm:metadatarecord database="${metadata.dbfile}">
+                <hlm:textmetadatainput>
+                    <fileset file="${sbs.checksource.log.file}"/>
+                    <metadatafilterset refid="filterset.sbs.checksource"/>
+                </hlm:textmetadatainput>
+            </hlm:metadatarecord>
+        </sequential>
+    </macrodef>
+    
+    
+    <macrodef name="sbsProcessOutputMacro" uri="http://www.nokia.com/helium">
+        <attribute name="sbsLogFile" />
+        <attribute name="sbsErrorOutputFile" />
+        <sequential>
+            <var name="sbs.scan2.template" value="${helium.dir}/tools/common/templates/log/scan2_orm.html.ftl" />
+            <var name="base.sbs.log" unset="true"/>
+            <basename property="base.sbs.log" file="@{sbsLogFile}" />
+            <echo message="base.sbs.log: ${base.sbs.log}" />
+            <hlm:metadatarecord database="${metadata.dbfile}">
+                <hlm:textmetadatainput>
+                    <fileset casesensitive="false" file="@{sbsErrorOutputFile}"/>
+                    <metadatafilterset refid="filterset.sbs.cli" />
+                </hlm:textmetadatainput>
+            </hlm:metadatarecord>
+            <hlm:signalMacro logfile="@{sbsErrorOutputFile}" 
+                             signal.input="raptorErrorSignalInput" phase="compile"/>
+            <!-- update the resultes to database -->
+            <if>
+                <available file="@{sbsLogFile}" />
+                <then>
+                    <echo message="sbs log file: @{sbsLogFile}" />
+                    <if>
+                        <istrue value="${internal.compile.cmd.clean.enabled}" />
+                        <then>
+                            <hlm:metadatarecord  database="${metadata.dbfile}">
+                                <hlm:sbsmetadatainput failOnInvalidXml="false" checkMissing="false" epocroot="${build.drive}/">
+                                    <fileset casesensitive="false" file="@{sbsLogFile}"/>
+                                    <metadatafilterset refid="filterset.sbs" />
+                                </hlm:sbsmetadatainput>
+                            </hlm:metadatarecord>
+                        </then>
+                        <else>
+                            <hlm:metadatarecord  database="${metadata.dbfile}">
+                                <hlm:sbsmetadatainput failOnInvalidXml="false" epocroot="${build.drive}/">
+                                    <fileset casesensitive="false" file="@{sbsLogFile}"/>
+                                    <metadatafilterset refid="filterset.sbs" />
+                                </hlm:sbsmetadatainput>
+                            </hlm:metadatarecord>
+                            <if>
+                                <istrue value="${sbs.checksource.enabled}" />
+                                <then>
+                                    <hlm:sbsChecksourceMacro sbsLogFile="@{sbsLogFile}" />
+                                </then>
+                            </if>
+                        </else>
+                    </if>
+                    <fmpp sourceFile="${sbs.scan2.template}"
+                          outputfile="${build.log.dir}/${base.sbs.log}.scan2.html">
+                        <freemarkerLinks expandProperties="yes">
+                            macro: ${helium.dir}/tools/common/templates/macro
+                        </freemarkerLinks>
+                        <data expandProperties="yes">
+                            dbPath: ${metadata.dbfile}
+                            logfilename: @{sbsLogFile}
+                            ant: antProperties()
+                        </data>
+                    </fmpp>
+                    <hlm:assertFileExists file="${build.log.dir}/${base.sbs.log}.scan2.html"/>
+                    
+                    <echo message="generating signal" />                    
+                    <hlm:compileLogSignalMacro compile.summary.file="@{sbsLogFile}" 
+                        error.limit="${build.errors.limit}" phase="compile"/>
+                    
+                    <!-- Blocks packaging configuration generation. -->
+                    <if>
+                        <istrue value="${blocks.enabled}" />
+                        <then>
+                            <mkdir dir="${blocks.config.dir}" />
+                            <exec executable="python">
+                                <arg value="-m"/>
+                                <arg value="packager.cli"/>
+                                <arg value="--epocroot=${build.drive}/" />
+                                <arg value="--config=${blocks.config.dir}" />
+                                <arg value="--datasource=sbs" />
+                                <arg value="-Dsbslog=${sbs.log.file}" />
+                                <arg value="-Dsysdef=${canonical.sysdef.file}" />
+                                <arg value="-Dthreads=20" />
+                                <arg value="--updateData" />
+                            </exec>
+                        </then>
+                    </if>
+                </then>
+                <else>
+                    <echo>Could not find the sbs log: @{sbsLogFile}.</echo>
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+        
+        
+    <!-- Uploads the SBS checksource results to Diamonds. -->
+    <target name="sbs-checksource" if="build.system.sbs-any" />
+    
+</project>
+

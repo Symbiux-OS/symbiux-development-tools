@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.nokia.s60tools.imaker.help" default="build.jars" basedir=".">
+	<property file="../common.properties"/>
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+	<property name="bundleId" value="com.nokia.s60tools.imaker.help"/>
+
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="true"/>
+	<property name="logExtension" value=".log"/>
+	<property name="compilerArg" value=""/>
+
+	<target name="init" depends="properties">
+		<property name="pluginTemp" value="${basedir}"/>
+		<property name="build.result.folder" value="${basedir}/build.result"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the plug-in: com.nokia.s60tools.imaker.doc.user for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<jar destfile="${plugin.destination}/com.nokia.s60tools.imaker.doc.user_${plugin.version}.jar" basedir="${temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}" filesetmanifest="merge"/>
+		<copy todir="../${plugin.lib}" file="${plugin.destination}/com.nokia.s60tools.imaker.doc.user_${plugin.version}.jar" failonerror="true" overwrite="true" />
+		<delete dir="${temp.folder}"/>
+		<delete dir="${build.result.folder}"/>
+	</target>
+
+	<target name="@dot" depends="init" unless="@dot" description="Create jar: com.nokia.s60tools.imaker.doc.user @dot.">
+		<delete dir="${temp.folder}/@dot.bin"/>
+		<mkdir dir="${temp.folder}/@dot.bin"/>
+		<path id="@dot.classpath">
+			<fileset dir="${eclipse.home}/plugins">
+		    	<include name="**/*.jar"/>
+		   	</fileset>
+		</path>
+		<!-- compile the source code -->
+		<javac destdir="${temp.folder}/@dot.bin" failonerror="${javacFailOnError}" source="${common.javac-source}" target="${common.javac-target}">
+			<classpath refid="@dot.classpath" />
+			<src path="src/"			/>
+		</javac>
+		<!-- Copy necessary resources -->
+		<copy todir="${temp.folder}/@dot.bin" failonerror="true" overwrite="false">
+			<fileset dir="src/">
+				<exclude name="**/*.java"/>
+				<exclude name="**/package.htm*"/>
+			</fileset>
+		</copy>
+		<mkdir dir="${build.result.folder}"/>
+		<copy todir="${build.result.folder}/@dot" failonerror="true" overwrite="false">
+			<fileset dir="${temp.folder}/@dot.bin">
+			</fileset>
+		</copy>
+		<delete dir="${temp.folder}/@dot.bin"/>
+	</target>
+
+	<target name="src.zip" depends="init" unless="src.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<antcall target="zip.src.zip"/>
+	</target>
+	<target name="zip.src.zip">
+		<zip destfile="${build.result.folder}/src.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/">
+				<include name="**/*.java"/>
+			</fileset>
+		</zip>
+	</target>
+	<target name="copy.src.zip">
+		<copy todir="${source.destination.folder}/" failonerror="true" overwrite="true">
+			<fileset dir="src/">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build.jars" depends="init" description="Compile classes and build nested jars for the plug-in: com.nokia.s60tools.imaker.doc.user.">
+		<available property="@dot" file="${build.result.folder}/@dot"/>
+		<antcall target="@dot"/>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="src.zip" file="${build.result.folder}/src.zip"/>
+		<antcall target="src.zip"/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}"/>
+		<copy todir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}/@dot">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}" failonerror="true" overwrite="false">
+			<fileset dir="${basedir}">
+				<include name="META-INF/"/>
+				<include name="html/"/>
+				<include name="plugin.xml"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}"/>
+		<copy file="${build.result.folder}/src.zip" todir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}" failonerror="false" overwrite="false"/>
+		<antcall target="copy.src.includes">
+			<param name="source.destination.folder" value="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}"/>
+		</antcall>
+	</target>
+
+	<target name="gather.individual.sources" depends="init">
+		<antcall target="copy.src.zip">
+			<param name="source.destination.folder" value="${destination.temp.folder}"/>
+		</antcall>
+		<antcall target="copy.src.includes">
+			<param name="source.destination.folder" value="${destination.temp.folder}"/>
+		</antcall>
+	</target>
+
+	<target name="copy.src.includes" depends="init">
+		<copy todir="${source.destination.folder}" failonerror="false" overwrite="false">
+			<fileset dir="${basedir}">
+				<include name="src/"/>
+				<include name="html/"/>
+				<include name="plugin.xml"/>
+				<include name="META-INF/"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}"/>
+		<copy todir="${destination.temp.folder}/com.nokia.s60tools.imaker.doc.user_${plugin.version}" failonerror="false" overwrite="false">
+			<fileset dir="${temp.folder}">
+				<include name="@dot.bin${logExtension}"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: com.nokia.s60tools.imaker.doc.user of all the zips, jars and logs created.">
+		<delete dir="${build.result.folder}/@dot"/>
+		<delete file="${build.result.folder}/src.zip"/>
+		<delete file="${plugin.destination}/com.nokia.s60tools.imaker.doc.user_${plugin.version}.jar"/>
+		<delete file="${plugin.destination}/com.nokia.s60tools.imaker.doc.user_${plugin.version}.zip"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="E:/workspaces/imaker/imaker_plugin/com.nokia.s60tools.imaker.doc.user" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: com.nokia.s60tools.imaker.doc.user.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}">
+				<include name="**/*.bin${logExtension}"/>
+			</fileset>
+		</delete>
+		<zip destfile="${plugin.destination}/com.nokia.s60tools.imaker.doc.user_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+	<target name="collect.jar">
+		<copy todir="${destination.temp.folder}" file="com.nokia.s60tools.imaker.doc.user_${plugin.version}.jar" failonerror="true" overwrite="true" />
+	</target>
+</project>

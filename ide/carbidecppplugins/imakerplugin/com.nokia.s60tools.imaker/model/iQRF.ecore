@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="iQRF"
+    nsURI="iqrf" nsPrefix="">
+  <eClassifiers xsi:type="ecore:EClass" name="Result">
+    <eOperations name="addConfiguration">
+      <eParameters name="config" eType="#//Configuration"/>
+    </eOperations>
+    <eOperations name="addInterface">
+      <eParameters name="intf" eType="#//Interface"/>
+    </eOperations>
+    <eOperations name="addTarget">
+      <eParameters name="target" eType="#//Target"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interfaces" lowerBound="1"
+        upperBound="99999" eType="#//Interface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" lowerBound="1"
+        upperBound="99999" eType="#//Configuration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="99999"
+        eType="#//Target" defaultValueLiteral="" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Configuration">
+    <eOperations name="addSetting">
+      <eParameters name="setting" eType="#//Setting"/>
+    </eOperations>
+    <eOperations name="addTargetRef">
+      <eParameters name="target" eType="#//Target"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="settings" lowerBound="1"
+        upperBound="999999" eType="#//Setting" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetrefs" upperBound="99999"
+        eType="#//Target" defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Setting">
+    <eOperations name="setConfigurationElement">
+      <eParameters name="element" eType="#//ConfigurationElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ConfigurationElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface">
+    <eOperations name="addConfigurationElement">
+      <eParameters name="element" eType="#//ConfigurationElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurationElements"
+        lowerBound="1" upperBound="999999" eType="#//ConfigurationElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigurationElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Target">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IMaker">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+        eType="#//Result" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,88 @@
+# Copyright (c) 2007-2009 Nokia Corporation and/or its subsidiary(-ies).
+# All rights reserved.
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Nokia Corporation - initial contribution.
+#
+# Contributors:
+#
+# Description:
+# Header file exporting Function Like Makefile (FLM)
+# The file destinations  relative to EPOCROOT
+# 
+#
+
+## Parameters that are expected:
+# SOURCE
+# HEADERONLY
+# OUTPUTPATH
+# EPOCROOT
+# EXPORTPATH
+
+## GLOBAL TARGETS ###############################################
+.PHONY:: $(ALLTARGET)
+$(ALLTARGET):: $(RELEASEABLES)
+
+
+# StringTable FLM
+
+
+EXPORT::
+
+CLEANTARGETS:=
+RELEASEEXPORTS:=
+CREATABLEPATHS:=$(OUTPUTPATH) $(EXPORTPATH)
+
+# Work out the names of the various output files before
+# trying to use them in rules and dependencies. Cuts repetition
+# and avoids mistakes.
+EXPORTEDSTRINGTABLEHEADER:=$(EXPORTPATH)/$(TARGET).h
+STRINGTABLECPP:=$(OUTPUTPATH)/$(TARGET).cpp
+STRINGTABLEHEADER:=$(OUTPUTPATH)/$(TARGET).h
+STRINGTABLEPHONYTARGET:=$(OUTPUTPATH)_$(TARGET)
+TEMPSOURCE:=$(OUTPUTPATH)/$(TARGET).st
+
+# Macro to generate string table targets and rules
+# Always return true if the make engine doesn't support 
+# the .IGNORE:: target.
+define exportstringtableheader
+
+EXPORT:: $(EXPORTEDSTRINGTABLEHEADER)
+
+$(EXPORTEDSTRINGTABLEHEADER): $(STRINGTABLEHEADER) 
+	$(call startrule,exportstringtableheader,FORCESUCCESS) \
+	$(GNUCP) '$(STRINGTABLEHEADER)' '$$@'  \
+	$(call endrule,exportstringtableheader) 
+
+RELEASEEXPORTS:=$(EXPORTEDSTRINGTABLEHEADER)
+endef
+
+define genstringtable
+$(STRINGTABLECPP) : $(STRINGTABLEHEADER)
+
+$(STRINGTABLEHEADER): $(SOURCE) 
+	$(call startrule,stringtable,FORCESUCCESS) \
+	$(GNUCP) --remove-destination --no-preserve=mode $(SOURCE) $(TEMPSOURCE)  && $(GNUCHMOD) a+w $(TEMPSOURCE) &&  \
+	$(STRINGTABLE) $(TEMPSOURCE)  \
+	$(call endrule,stringtable)
+
+CLEANTARGETS:=$(STRINGTABLEHEADER) $(STRINGTABLECPP)
+
+endef
+
+
+$(if $(EXPORTPATH),$(eval $(exportstringtableheader)),)
+$(if $(EXPORTPATH),,$(eval EXPORT:: $(STRINGTABLEHEADER)))
+$(eval $(genstringtable))
+
+
+## Clean up and log releasables
+$(call raptor_clean,$(CLEANTARGETS))
+# make the output directories while reading makefile - some build engines prefer this
+$(call makepath,$(CREATABLEPATHS))
+$(call raptor_release,$(RELEASEEXPORTS),STRINGTABLE)
+

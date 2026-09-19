@@ -1,0 +1,54 @@
+/*
+* Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description:  Build information file for project ?myapp
+*
+*/
+
+
+PRJ_PLATFORMS
+
+DEFAULT
+
+PRJ_EXPORTS
+
+..\inc\?headerfile.h
+..\inc\?headerfile_2.h                   \epoc32\include\?path_somewhere_else\?headerfile_2.h
+..\data\?inifile.ini                     \epoc32\data\c\private\?uid3\?inifile.ini
+..\graphics\?qgn_myapp_icon_1.bmp        \s60\bitmaps2\?qgn_myapp_icon_1.bmp
+..\graphics\?qgn_myapp_icon_1_mask.bmp   \s60\bitmaps2\?qgn_myapp_icon_1_mask.bmp
+..\graphics\?qgn_myapp_icon_2.bmp        \s60\bitmaps2\?qgn_myapp_icon_2.bmp
+..\graphics\?qgn_myapp_icon_2_mask.bmp   \s60\bitmaps2\?qgn_myapp_icon_2_mask.bmp
+
+PRJ_MMPFILES
+gnumakefile icons.mk
+#ifdef __SCALABLE_ICONS
+    // Remember to change the mk-file name to be unique within the
+    // Architecture domain
+    gnumakefile icons_aif_scalable.mk
+#else
+    // Remember to change the mk-file name to be unique within the
+    // Architecture domain
+    gnumakefile icons_aif_bitmaps.mk
+#endif 
+myproject.mmp
+myhelpproject.mmp tidy
+#if defined( MARM )
+    myarmspecificproject.mmp
+#endif
+
+PRJ_TESTMMPFILES
+..\test\group\mytest.mmp
+
+PRJ_TESTEXPORTS
+..\test\inc\mytestcommon.h     \epoc32\somewhere\mytestcommon.h

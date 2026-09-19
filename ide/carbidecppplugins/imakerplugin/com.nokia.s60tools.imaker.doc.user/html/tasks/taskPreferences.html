@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?Pub Inc>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="content-style-type" content="text/css" />
+<title>Managing preferences</title>
+<link href="../book.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h2>Managing image creation preferences</h2>  
+<p>Before you can build a ROM image, you must define the preferences for a configuration. In iMaker,
+a configuration can be thought of as a container of product and other information. Follow these steps to create a ROM image with the specified settings:</p> 
+<ol>
+<li>Select the project that you want to use as the basis for image creation from carbide.c++ <i>Project Explorer</i> view. </li>
+<li>Select <b>Open iMaker Dialog...</b> option from the iMaker pulldown menu on the toolbar see below image. <p><img src="images/launch_imaker.png"></p> iMaker Extension will now start scanning the environtment to query 
+information from the underlying iMaker commandline tool. This may take a while, but this action occurs only once for each project.</li>
+<li>When the <b>iMaker Dialog</b> is opened, it is populated with data from the active environment. Default product is selected if one is configured, otherwise the first product is selected. 
+User can change the product using the <b>Change...</b> button. Example is shown bellow. <p><img
+src="images/iMakerPluginPreferences.png"></p></li>
+<li>Once data is filled in the fields, a flashable image can be created. Press
+the <b>Run</b> button at the bottom of the dialog. Remember to add the desired targets to the <b>selected</b> list of targets. Usual targets include <i>flash</i>, <i>core</i>, <i>variant</i> etc..</li>
+</ol> 
+<a name="config"></a><h3>Saving the preferences</h3> 
+<p>To save the specified data values in the dialog to a file, do the following: </p><ol>
+<li>Press the <b>Save as...</b></li>
+<li>Choose the parent folder where to save the file, it is recommended to save under the selected project. See below image.<p><img src="images/iMakerPluginSaveAction.png"></p> Specify name and press <i>finish</i></li>
+<li>All saved preferences are visible in the <b>configuration</b> combobox on the top of the dialog. Any of these saved files can be activated and used for image creation.</li>
+
+<a name="settings"></a><h3>Settings tab</h3> <p>To modify the values
+of the variables of the selected product (or makefile), select the <b>Settings
+</b> tab in the iMaker dialog. See the following example: </p><p><img src="images/iMakerPluginPreferencesDetails.png"> </p> Through this tab user can override the default variable values in the iMaker core. Any modified parameter will be passed to iMaker cmd through execution command. 
+
+<a name="debug"></a><h3>Content tab</h3>
+<p>The content tab allows user to add binary and data files to the image. These files can be added to different sections of the image. Currently CORE and ROFS sections are supported. Files can also be removed, hidden or changes to udeb/urel version. The <b>Action</b>s column provides the list of available actions.  
+Files cannot be added to UDA through this tab.<br>
+<img src="images/content_tab.png"></p>
+<p><a name="fields"></a>Table fields:
+<ul>
+<li><b>Enable</b>: Enablement, only enabled items are saved or taken to the image</li>
+<li><b>File</b>: Component source location. The source file must exist in the file system.</li>
+<li><b>Target</b>: Component target location in the device.</li>
+<li><b>Location</b>: Image section. Possible values: <ul><li><i>core</i> - core section of the image</li><li><i>rofs2</i> - rofs2 section of the image</li><li><i>rofs3</i> - rofs3 or customer section of the image</li></ul></li>
+<li><b>Action</b>: Action to perform with the component. Possible values: <ul><li><i>udeb</i> - take udeb version of the component to the image</li><li><i>udeb-add</i> - take udeb version of the component, add the component to the specified image section if it is not already there</li>
+<li><i>urel</i> - take urel version of the component to the image</li><li><i>urel-add</i> - take urel version of the component, add the component to the specified image section if it is not already there</li>
+<li><i>remove</i> - remove the component from the specified image section</li>
+<li><i>hide</i> - hide the component in the specified image section</li>
+<li><i>replace</i> - replace the component in the image section specified, if the component does not exist then do nothing</li>
+<li><i>replace-add</i> - Replace the component in the image section specified, if the component does not exist then add it as a new component</li>
+</ul></li>
+</ul>
+</p>
+<p><a name="buttons"></a>Right buttons:
+<ul>
+<li><b>Add</b>: Add a new component to the list, causes a dialog to pop-up</li>
+<li><b>Remove</b>: Remove selected component from the list</li>
+<li><b>Duplicate</b>: Duplicate the selected component e.g. add a new entry with same <i>File</i> and <i>Target</i> as the selected one. The entry is added below the selected entry</li>
+<li><b>Populate</b>: Add the binaries and any resource-type files generated by all mmp files in the selected project</li>
+</ul>
+</p>
+<a name="platsim"></a><h3>Platsim tab</h3>
+<p>The contents of the platsim tab will be enabled, when you select a valid platsim configuration from the main tab. The platsim configuration must define USE_PLATSIM variable, in order it to be 
+consider as valid. This variable must be non-empty. Users can edit the platsim configuration makefile and add USE_PLATSIM=1 then restart carbide.c++. Currently only all target is supported. All 
+target creates an image, which contains all image sections (core, rofsx, ...) and configures the selected platsim instance with the created image. Selecting (run platsim after image creation) checkbox causes 
+platsim instance to be started in the end of the image creation process.<br>
+<img src="images/platsim_tab.png"> </p> 
+<div id="footer">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 	License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/*
+* ============================================================================
+*  Name        : bld.inf
+*  Part of     : TestSubSystem / TestModule       *** Info from the SWAD
+*  Description : Build information file for project TestAppName
+*  Version     : %version: % << Don't touch! Updated by Synergy at check-out.
+*
+*  Copyright © 2000-2001 Nokia Corporation and/or its subsidiary(-ies).
+*  All rights reserved.
+*  This component and the accompanying materials are made available
+*  under the terms of "Eclipse Public License v1.0"
+*  which accompanies this distribution, and is available
+*  at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+*  Initial Contributors:
+*  Nokia Corporation - initial contribution.
+*
+*  Contributors:
+* 
+* ============================================================================
+* Template version: 4.1.1
+*/
+
+*** INSTRUCTIONS TO THE TEMPLATE USER:
+
+*** This template follows the S60 coding conventions
+*** (S60_Coding_Conventions.doc).  Remove all unneeded declarations
+*** and definitions before checking the file in!  Also remove the
+*** template's usage instructions, that is, everything that begins
+*** with "***".
+
+*** The copyright years should be < the year of the file's creation >
+*** - < the year of the file's latest update >.
+
+*** Words that begin with "?" are for you to replace with your own
+*** identifiers, filenames, or comments.
+
+*** To support building on Linux, use only forward slashes in include
+*** directives.  Also, all filenames and pathnames must be completely
+*** in lowercase.
+
+*** A line should not end with a backslash (\).  If it is absolutely
+*** necessary to have a line end in a backslash, add a comment after
+*** it, or some versions of the build system might think it's a
+*** continuing line.
+
+*** Indent four spaces per step, using spaces, not tabs, to display
+*** the code consistently across different editors.
+
+
+PRJ_PLATFORMS
+*** Specify the platforms your component needs to be built for here.  Example:
+DEFAULT
+
+PRJ_EXPORTS
+*** Specify the source file followed by its destination here
+*** copy will be used to copy the source file to its destination
+*** If there's no destination then the source file will be copied
+*** to the same name in \epoc32\include.  Example:
+..\inc\?headerfile.h
+..\inc\?headerfile_2.h                   \epoc32\include\?path_somewhere_else\?headerfile_2.h
+..\data\?inifile.ini                     \epoc32\data\c\private\?uid3\?inifile.ini
+..\graphics\?qgn_myapp_icon_1.bmp        \s60\bitmaps2\?qgn_myapp_icon_1.bmp
+..\graphics\?qgn_myapp_icon_1_mask.bmp   \s60\bitmaps2\?qgn_myapp_icon_1_mask.bmp
+..\graphics\?qgn_myapp_icon_2.bmp        \s60\bitmaps2\?qgn_myapp_icon_2.bmp
+..\graphics\?qgn_myapp_icon_2_mask.bmp   \s60\bitmaps2\?qgn_myapp_icon_2_mask.bmp
+
+PRJ_MMPFILES
+*** Icons are built using a makefile.  Example:
+gnumakefile icons.mk
+#ifdef __SCALABLE_ICONS
+    // Remember to change the mk-file name to be unique within the
+    // Architecture domain
+    gnumakefile icons_aif_scalable.mk
+#else
+    // Remember to change the mk-file name to be unique within the
+    // Architecture domain
+    gnumakefile icons_aif_bitmaps.mk
+#endif 
+*** Specify the .mmp files required for building the important component
+*** releasables. Specify "tidy" if the component you need to build doesn't
+*** need to be released.  Example:
+myproject.mmp
+myhelpproject.mmp tidy
+#if defined( MARM )
+    myarmspecificproject.mmp
+#endif
+
+PRJ_TESTMMPFILES
+*** Specify the .mmp files required for building any test programs here.
+*** Example:
+..\test\group\mytest.mmp
+
+PRJ_TESTEXPORTS
+*** Specify the files to be copied from the source directories to the
+*** releasables' directories for use with test programs.  Example:
+..\test\inc\mytestcommon.h     \epoc32\somewhere\mytestcommon.h

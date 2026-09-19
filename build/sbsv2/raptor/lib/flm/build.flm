@@ -1,0 +1,77 @@
+# Copyright (c) 2009-2010 Nokia Corporation and/or its subsidiary(-ies).
+# All rights reserved.
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Nokia Corporation - initial contribution.
+#
+# Contributors:
+#
+# Description:
+#
+#
+
+# Parameters:
+# COMPONENT_PATHS
+# CONFIGS
+#
+
+CREATABLEPATHS:=
+CLEANTARGETS:=
+
+.PHONY:: PP_EXPORTS
+
+ifneq ($(filter win,$(HOSTPLATFORM)),)
+SBS:=$(subst \,/,$(SBS_HOME)/bin/sbs.bat)
+else
+SBS:=$(SBS_HOME)/bin/sbs
+endif
+
+
+define doexports
+PP_EXPORTS::
+	$(call startrule,makefile_generation_exports) \
+	$(SBS) --toolcheck=off --export-only $(pp_system_definition) $(config_list) -f- -m $(MAKEFILE_PATH).exports $(CLI_OPTIONS)  \
+	$(call endrule,makefile_generation_exports)
+
+CLEANTARGETS:=$$(CLEANTARGETS) $(MAKEFILE_PATH).exports 
+endef
+
+# Generate makefiles for a particular system definition
+# $(1) = source target source target......
+define generate_makefiles
+
+ALL:: $(MAKEFILE_PATH)
+
+$(MAKEFILE_PATH): $(COMPONENT_PATHS) $(if $(DOEXPORT),| PP_EXPORTS )
+	$(call startrule,makefile_generation) \
+	$(SBS) --noexport --toolcheck=off -n $(CLI_OPTIONS) $(pp_system_definition) $(config_list) -m $$@ -f- \
+	$(call endrule,makefile_generation)
+
+CLEANTARGETS:=$$(CLEANTARGETS) $(MAKEFILE_PATH) 
+
+endef
+
+# Create config list for commands
+config_list:=$(addprefix -c ,$(CONFIGS))
+pp_system_definition:=-s $(PP_SYSTEM_DEFINITION)
+
+$(if $(FLMDEBUG),$(info <debug>build.flm: configlist: $(config_list)</debug>))
+$(if $(FLMDEBUG),$(info <debug>build.flm: pp_system_definition file in use: $(pp_system_definition)</debug>))
+
+# Do exports only if asked. This doesn't work brilliantly in emake
+# since exports are often duplicated in some components - leads to conflicts 
+# and rebuilds.  Better to export before trying to do parallel parsing at all.
+$(if $(DOEXPORT),$(eval $(doexports)),$(if $(FLMDEBUG),$(info <debug>build.flm: Exports off </debug>)))
+
+# Create the Makefiles
+$(eval $(call generate_makefiles))
+
+CREATABLEPATHS:=$(CREATABLEPATHS) $(dir $(MAKEFILE_PATH))
+
+$(eval $(call GenerateStandardCleanTarget,$(CLEANTARGETS),$(CREATABLEPATHS),))
+$(call makepath,$(CREATABLEPATHS))
+

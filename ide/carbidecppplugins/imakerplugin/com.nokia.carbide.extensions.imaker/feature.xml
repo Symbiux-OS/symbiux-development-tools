@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.nokia.carbide.extensions.imaker"
+      label="Carbide.c++ Extensions - IMaker"
+      version="3.1.0"
+      provider-name="Nokia"
+      plugin="com.nokia.s60tools.imaker">
+
+   <description>
+      The iMaker extension for Carbide.c++ is a wrapper tool for iMaker Commandline tool for building ROM images.
+   </description>
+
+   <copyright>
+      Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved. License: http://www.eclipse.org/legal/epl-v10.html.
+   </copyright>
+
+   <license url="license.txt">
+      Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+
+This component and the accompanying materials are made available
+under the terms of &quot;Eclipse Public License v1.0&quot;
+which accompanies this distribution, and is available
+at the URL &quot;http://www.eclipse.org/legal/epl-v10.html&quot;.
+   </license>
+
+   <url>
+      <update label="Carbide.c++ Update Site" url="http://tools.ext.nokia.com/updates/carbide203"/>
+      <discovery label="Carbide.c++ Update Site" url="http://tools.ext.nokia.com/updates/carbide203"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui.editors"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.jface.text"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor"/>
+      <import plugin="org.eclipse.help"/>
+      <import plugin="com.nokia.s60tools.util" version="1.5.0" match="greaterOrEqual"/>
+      <import plugin="com.nokia.carbide.cpp.sdk.core" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.console" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="com.nokia.carbide.cdt.builder" version="2.0.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.nokia.s60tools.imaker"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.nokia.s60tools.imaker.doc.user"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.dd.debug.memory.renderings.source; si
+ ngleton=true
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Version: 1.1.0.v20080904
+Bundle-Vendor: %providerName
+

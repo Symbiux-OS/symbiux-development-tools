@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<!-- 
+	Links tool docs to main TOC for Carbide help in the defined location. 
+	NOTE: Tool name seems to be ignored here for display purposes but needed to
+	make the link_to section work.
+-->
+
+<!-- Current link_to attribute works on top of Carbide 1.3 -->
+<toc label="Symbian Foundation Templates Wizard" 
+	link_to="../com.nokia.carbide.help.common/carbideHelpTOC.xml#anchorCarbideFeature">
+	
+<!-- 
+    This is old link_to attribute working on top of Carbide 1.2:
+	link_to="../com.nokia.carbide.cpp/nokiaTOC.xml#anchorCarbideFeature">
+	-->
+
+	<!--
+		Define the TOOL NAME as it should appear in the TOC. The tool.htm page
+		is the cover page for the tool help.
+	-->
+	   <topic label="Symbian Foundation Templates Wizard" href="html/toc.htm" >
+		
+	   <topic label="Release Notes" href="html/release_notes.htm" />
+		
+	   <topic label="Overview" href="html/overview.htm" />
+		   
+	   <topic label="Legal" href="html/legal.htm" />
+   		
+	</topic>
+		
+</toc>

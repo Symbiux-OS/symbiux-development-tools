@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : scm_release.ant.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package releases -->
+<project name="scm-release" xmlns:hlm="http://www.nokia.com/helium">
+    <description>
+        SCM Release publishing.
+    </description>
+    
+    
+    
+    <!--
+     The release-work-area target will reuse the prep-work-area configuration 
+     to retrieve what project to release based on the releasable 
+     and baseline.release configuration xml properties.
+     Each project releasing will follow these steps:
+        * un-maitained work area
+        * Using RBT tool 
+          * deconfigure
+          * rebaseline
+        * update
+        * maintain the work area
+     -->
+    <target name="release-work-area" if="internal.ccm.enabled">
+        <mkdir dir="${release.log.dir}" />
+        <hlm:record name="${release.log.dir}/${build.id}_release_work_area.log" action="start"/>
+        <runtarget target="get-ccm-password"/>
+        <runtarget target="ccm-prepare-input"/>
+        
+        <hlm:assertPropertySet property="prep.delivery.file" message="Property prep.delivery.file is not defined." />
+        <trycatch>
+            <try>
+                <hlm:python failonerror="true">
+import preparation
+import configuration
+import traceback
+import logging            
+import ant
+import sys
+import os.path
+
+# enabling logging
+logging.basicConfig(level=logging.INFO)
+
+configBuilder = configuration.NestedConfigurationBuilder(open(ant.get_property(r'${prep.delivery.conf.parsed}'), 'r'))
+configSet = configBuilder.getConfiguration()
+password = ant.get_property(r'${ccm.user.password}')
+builder = preparation.PreparationBuilder(configSet.getConfigurations(), ant.get_property(r'${ccm.user.login}'), password, cache=ant.get_property(r'${ccm.cache.xml}'))
+try:
+    builder.extract_release_data(r'${release.log.dir}/${build.id}_releasable.xml')
+finally:
+    builder.close()
+                </hlm:python>
+            </try>
+            <finally>
+                <hlm:record name="${release.log.dir}/${build.id}_release_work_area.log" action="stop"/>
+                <hlm:assertFileExists file="${release.log.dir}/${build.id}_release_work_area.log" />
+            </finally>
+        </trycatch>
+        <hlm:assertFileExists file="${release.log.dir}/${build.id}_releasable.xml" />
+        
+        <fmpp sourceFile="${helium.dir}/tools/release/templates/release_ccm_project.ant.xml.ftl"
+            outputFile="${temp.build.dir}/release_ccm_project.ant.xml">
+            <data expandProperties="yes">
+                data: xml(${release.log.dir}/${build.id}_releasable.xml)
+                ant: antProperties()
+            </data>
+        </fmpp>
+        <hlm:assertFileExists file="${temp.build.dir}/release_ccm_project.ant.xml" />
+        <ant antfile="${temp.build.dir}/release_ccm_project.ant.xml" target="all" />
+    </target>
+    
+</project>

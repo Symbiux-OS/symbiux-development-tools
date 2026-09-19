@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.symbian.tools.tmw.debug.internal.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.debug.ui.DebugPreferencePage"
+            class="org.symbian.tools.tmw.debug.ui.DebugPreferencePage"
+            id="org.symbian.tools.tmwtools.debug"
+            name="Tools for Mobile Web">
+         <keywordReference
+               id="org.symbian.tools.wrttools.wrtwords">
+         </keywordReference>
+         <keywordReference
+               id="org.symbian.tools.tmwtools.debug.page">
+         </keywordReference>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.symbian.tools.tmw.debug.internal.launch.WidgetLaunchDelegate"
+            id="org.symbian.tools.tmwtools.debug.widget"
+            modes="debug,run"
+            name="Mobile Web Application"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.symbian.tools.tmw.debug.ui.launch.WidgetLaunchConfigurationTabGroup"
+            description="Mobile Web Application"
+            id="org.symbian.tools.tmwtools.debug.tmwTabGroup"
+            type="org.symbian.tools.tmwtools.debug.widget">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.symbian.tools.tmwtools.debug.widget"
+            icon="icons/main16.gif"
+            id="org.symbian.tools.tmwtools.debug.widget.image">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.symbian.tools.tmw.debug.ui.launch.WidgetLaunchShortcut"
+            icon="icons/main16.gif"
+            id="org.symbian.tools.tmwtools.debug.tmwshortcut"
+            label="Mobile Web Application"
+            modes="run, debug">
+         <configurationType
+               id="org.symbian.tools.tmwtools.debug.widget">
+         </configurationType>
+         <contextualLaunch>
+         <enablement>
+            <with
+                  variable="selection">
+               <count
+                     value="1"/>
+                     <iterate>
+            <adapt
+                  type="org.eclipse.core.resources.IResource">
+               <test
+                     forcePluginActivation="true"
+                     property="org.symbian.isTmwProject"
+                     >
+               </test>
+            </adapt>
+                     </iterate>
+            </with>
+         </enablement>
+            <contextLabel
+                  label="Mobile Web Application"
+                  mode="run">
+            </contextLabel>
+            <contextLabel
+                  label="Mobile Web Application"
+                  mode="debug">
+            </contextLabel></contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.symbian.tools.tmw.debug.internal.property.DebuggerPropertyTester"
+            id="org.symbian.tools.tmwtools.debug.projectTester"
+            namespace="org.symbian"
+            properties="isTmwProject"
+            type="org.eclipse.core.resources.IResource">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="org.symbian.tools.tmwtools.debug.core.js"
+            targetID="#JavaScriptRulerContext">
+         <action
+               class="org.eclipse.debug.ui.actions.RulerEnableDisableBreakpointActionDelegate"
+               id="org.chromium.debug.ui.actions.EnableDisableBreakpointRulerActionDelegate"
+               label="Toggle Enablement"
+               menubarPath="debug">
+         </action>
+         <action
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.chromium.debug.ui.actions.EnableDisableBreakpointAction"
+               label="Toggle Breakpoint"
+               menubarPath="debug">
+         </action>
+         <action
+               class="org.symbian.tools.tmw.debug.ui.actions.JsBreakpointPropertiesRulerActionDelegate"
+               id="org.symbian.tools.tmwtools.debug.core.js.JavaBreakpointPropertiesRulerActionDelegate"
+               label="Breakpoint Properties..."
+               menubarPath="group.properties">
+         </action>
+      </viewerContribution>
+      <viewerContribution
+            id="org.symbian.tools.tmwtools.debug.core.ro"
+            targetID="#ReadOnlyJavaScriptRulerContext">
+         <action
+               class="org.eclipse.debug.ui.actions.RulerEnableDisableBreakpointActionDelegate"
+               id="org.chromium.debug.ui.actions.EnableDisableBreakpointRulerActionDelegate"
+               label="Toggle Enablement"
+               menubarPath="debug">
+         </action>
+         <action
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.chromium.debug.ui.actions.EnableDisableBreakpointAction"
+               label="Toggle Breakpoint"
+               menubarPath="debug">
+         </action>
+         <action
+               class="org.symbian.tools.tmw.debug.ui.actions.JsBreakpointPropertiesRulerActionDelegate"
+               id="org.symbian.tools.tmwtools.debug.core.ro.JavaBreakpointPropertiesRulerActionDelegate"
+               label="Breakpoint Properties..."
+               menubarPath="group.properties">
+         </action>
+      </viewerContribution>
+      <viewerContribution
+            id="org.symbian.tools.tmwtools.debug.core.watch"
+            targetID="#JavaScriptEditorContext">
+         <action
+               class="org.symbian.tools.tmw.debug.ui.actions.WatchExpression"
+               icon="icons/watch.gif"
+               id="org.symbian.tools.tmwtools.debug.core.watchExpression"
+               label="Add to Expressions View"
+               menubarPath="group.edit">
+         </action>
+      </viewerContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.wst.jsdt.internal.ui.javaeditor.JavaEditor"
+            class="org.symbian.tools.tmw.debug.internal.BreakpointAdapterFactory">
+         <adapter
+               type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="org.symbian.tools.tmwtools.debug.core.CompilationUnitEditor.BreakpointRulerActions"
+            targetID="org.eclipse.wst.jsdt.ui.CompilationUnitEditor">
+         <action
+               actionID="RulerDoubleClick"
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.eclipse.wst.jsdt.debug.ui.actions.ManageBreakpointRulerAction"
+               label="Toggle Breakpoint">
+         </action>
+      </editorContribution>
+      <editorContribution
+            id="org.symbian.tools.tmwtools.debug.core.ClassFileEditor.BreakpointRulerActions"
+            targetID="org.eclipse.wst.jsdt.ui.ClassFileEditor">
+         <action
+               actionID="RulerDoubleClick"
+               class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+               id="org.eclipse.wst.jsdt.debug.ui.actions.ManageBreakpointRulerAction"
+               label="Toggle Breakpoint">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="org.symbian.tools.tmw.debug.internal.model.SymbianDebugModelPresentation"
+            id="org.symbian.debug">
+      </debugModelPresentation>
+   </extension>
+     <extension point="org.eclipse.debug.core.watchExpressionDelegates">
+    <watchExpressionDelegate
+        debugModel="org.symbian.debug"
+        delegateClass="org.symbian.tools.tmw.debug.internal.model.JsWatchExpressionDelegate"/>
+  </extension>
+    <extension
+          point="org.eclipse.wst.sse.ui.breakpoint">
+       <breakpointContribution
+             id="org.symbian.tools.tmwtools.debug.htmlbreakpoints">
+          <provider
+                class="org.symbian.tools.tmw.debug.internal.HtmlBreakpointProvider"
+                contentTypes="org.eclipse.wst.html.core.htmlsource"
+                id="org.symbian.tools.tmwtools.debug.htmlbreakpoints">
+          </provider>
+       </breakpointContribution>
+    </extension>
+    <extension
+          point="org.eclipse.core.runtime.adapters">
+     	 <factory 
+            class="org.symbian.tools.tmw.debug.internal.property.LaunchableFactory" 
+            adaptableType="org.eclipse.wst.jsdt.core.IJavaScriptElement">
+            <adapter type="org.eclipse.debug.ui.actions.ILaunchable"/>
+         </factory>
+         <factory 
+            class="org.symbian.tools.tmw.debug.internal.property.LaunchableFactory" 
+            adaptableType="org.eclipse.core.resources.IResource">
+            <adapter type="org.eclipse.debug.ui.actions.ILaunchable"/>
+         </factory>
+    </extension>
+
+    <extension
+          point="org.eclipse.ui.keywords">
+       <keyword
+             id="org.symbian.tools.tmwtools.debug.page"
+             label="chrome debug widget">
+       </keyword>
+    </extension>
+    <extension
+          point="org.symbian.tools.tmw.previewer.commands">
+       <command
+             handler="org.symbian.tools.tmw.debug.internal.session.TerminateSession"
+             name="terminateDebug">
+       </command>
+    </extension>
+  
+</plugin>

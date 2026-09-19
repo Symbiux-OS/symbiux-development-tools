@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> -->
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <title>Carbide.c++ Bugs Fixed</title>
+  <link href="../book.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link href="../book.css" rel="stylesheet" type="text/css" />
+  <style type="text/css">
+	ul > li {font-weight: normal }
+  </style>
+</head>
+<body >
+<h2>Carbide.c++ bugs fixed </h2>
+<p>This is a comprehensive list of bugs fixed by release: </p>
+<ul>
+  <li>Bugs Fixed in <a href="#bugs300">3.0.0</a></li>
+  <li>Previous releases: <a href="#bugs270">2.7.0</a>, <a href="#bugs270">2.6.0</a></li>
+</ul>
+<h3><a name="bugs300" id="bugs10"></a>Bugs Fixed in v3.0.0</h3>
+<ul>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10833">10755</a> - The News Reader has transformed into the Carbide Portal which no longer causes any slowdowns until its accessed.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10833">10833</a> - Fixed an ordering issue when spilling byte instructions and only the EBX and EDI registers are available.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10833">11239</a> - Fixed an issue that caused variables to display incorrectly during a debug session. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11563">11563</a> - The Build Project dialog now also shows the project name. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11650">11650</a> - Fixed an issue that prevented copying of the executables listed in the Executables view for pasting into another file.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11744">11744</a> - Resolved an issue that prevented breakpoints from being hit when two processes were being debugged.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11759">11759</a> - Fixed an issue where the line being executed was not the line currently pointed to in the display.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11874">11874</a> - Syntax coloring no longer flickers on/off during a stepover action.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11926">11926</a> - The debugger now correctly uses <span class="code">controlif</span> single stepover instead of <span class="code">stepinto</span> at branch instructions.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11947">11947</a> - The epoc engine now correctly replaces the '~' character in def files with a directory based on the current build configuration.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11995">11995</a> - You can now toggle service testing on and off from within the Remote Connections view.</li>
+</ul>
+<h4><a name="bugs270" id="bugs2"></a>v2.7.0</h4>
+<ul>
+    
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10267">11222</a> - You can now disable device discovery in the <strong>Remote Connection</strong> view to avoid conflicts between different connection protocols within Carbide. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11240">11240</a> - Ensured that the temporary project session property <span class="code">symbian-abld</span> is set before <span class="code">qmake</span> is called. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11255">11255</a> - The <strong>Run builds concurrently</strong> option now correctly passes '<span class="code">-j 1</span>' when disabled. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11353">11353</a> - Fixed a parsing issue where non-alphanumeric characters would halt the parsing process. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11381">11381</a> - Customizing a perspective should no longer generate an NPE. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11390">11390</a> - Fixed an issue that would sometimes cause the Symbian SDK list to remain blank when creating a new template project. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11397">11397</a> - Fixed bug where program arguments were not being passed with run configurations. </li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11416">11416</a> - Fixed an issue where the debugger might crash when it encountered breakpoints in several projects.</li>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11442">11442</a> - Compiler no longer interprets the string 'instantiated from here' as an error in GCC builds. </li>
+</ul>
+<h4><a name="bugs260" id="bugs"></a>v2.6.0</h4>
+<ul>
+    <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10267">10267</a> - Fixed an issue that prevented some executables from appearing in the Executables view. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10525">10525</a> - Raptor builds correctly report an error of a missing header file and not the input source file itself. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10591">10591</a> - Carbide now recognizes the Symbian ^3 SDK and supplies the proper templates and build configurations. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10659">10659</a> - Updated x86 WINSCW tools to build 489. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10674">10674</a> - Resolved an issue where SBSv2 variant names where not parsed and located correctly. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10681">10681</a> - Carbide is now more robust in automatically detecting Qt installations. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10742">10742</a> - SBSv2 now always appears as a build option and now displays appropriate errors if the SBS_HOME environment variable is missing.</li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10743">10743</a> - Corrected an issue that prevented compiling of files with different case handling of file names across different OS systems. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10759">10759</a> - Corrected an issue where a remote connection was not removed from the Remote Connections view when the device was no longer connected. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10795">10795</a> - Carbide detection of Symbian^3 SDKs is now more robust. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10805">10805</a> - Improved device connection behavior when devices are plugged and unplugged or when devices are swapped making notification message more reliable. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10861">10861</a> - Launch wizard can no longer automatically select DLLs as the executable.</li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=10967">10967</a> - Resolved an issue where use of the hyphen character (-) in a file name was not recognized as a valid character. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11022">11022</a> - Carbide no longer relies on the <span class="code">SBS_HOME</span> environment variable being present to work with Raptor builds.</li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11072">11072</a> - Fixed an indentation issue that added additional tabs after typing &lt;enter&gt;. </li>
+  <li><a href="https://xdabug001.ext.nokia.com/bugzilla/show_bug.cgi?id=11096">11096</a> - Resolved a crasher where the number of binaries being debugged exceeded the stop-mode limit allowed.<br />
+</li>
+</ul>
+<div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. <br>License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></div>
+
+</body>
+</html>

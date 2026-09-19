@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_commons-cli-2.0
+
+source /src/tools/dev/hostenv/javatoolsplat/commons-cli-2.0
+
+exports /src/tools/dev/hostenv/javatoolsplat/commons-cli-2.0/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/commons-cli-2.0/group/release.txt

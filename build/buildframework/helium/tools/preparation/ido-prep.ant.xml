@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : ido-prep.ant.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package preparation -->
+<project name="ido-prep" xmlns:hlm="http://www.nokia.com/helium">
+    <description>
+        IDO related targets.
+         * Build area preparation
+         * Codescanner integration
+         * Cenrep generation (old way)
+         * IBY export (old way)
+    </description>
+        
+    <!-- Path to the cenrep root. Default value is "${build.drive}/epoc32/tools/cenrep/ido/src"
+    @type string
+    @scope private
+    -->
+    <property name="ido.cenrep.root" location="${build.drive}/epoc32/tools/cenrep/ido/src"  />
+    <!-- Path to the cenrep target directory. Default value is "${build.drive}/epoc32/data/z/private/10202be9"
+    @type string
+    @scope private
+    -->
+    <property name="ido.cenrep.target" value="${build.drive}/epoc32/data/z/private/10202be9"  />
+    <!-- Defines the location of Codescanner output.
+    @type string
+    -->
+    <property name="ido.codescanner.output.dir" location="${build.output.dir}/${build.id}_codescanner"/>
+
+    <!-- Defines the location of CMT++ output and the input for the diamonds creation target.
+    @type string
+    -->
+    <property name="ido.cmt.html.output.dir" location="${build.log.dir}/${build.id}_cmt"/>
+    
+    <!--* @property package.cone.validation.enabled
+    Enables to run confml file validation.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    
+    <!--* @property internal.package.cone.validation.enabled
+    Enables the targets to run confml file validation if package.cone.validation.enabled set to true.
+    @type boolean
+    @scope private
+    -->
+
+    <!-- Path to a INI file that contains the mapping between the ADO from Synergy WA and it's location on the BA for quality targets.
+    @type string
+    @scope private
+    @deprecated since 12.0 Not used, ido-create-ado-mapping is not used, it is replaced with macro createAdoMappingMacro.
+    -->
+    <property name="ado.mapping.file" location="${build.output.dir}/build/ado_mapping.ini"/>
+
+    <!-- Path to a INI file that contains the quality mapping between the ADO from Synergy WA and it's location on the BA for quality targets.
+    @type string
+    @scope private
+    @deprecated since 12.0 Not used, ido-create-ado-mapping is not used, it is replaced with macro createAdoMappingMacro.
+    -->
+    <property name="ado.quality.mapping.file" location="${build.output.dir}/build/ado_quality_mapping.ini"/>
+
+    <!-- Path to the build romtree; the location contains iby files. Default value is "${build.drive}${env.EPOCROOT}/epoc32/rom/include"
+    deprecated: Not used, ido-create-ado-mapping is not used, it is replaced with macro createAdoMappingMacro.
+    @type string
+    @scope private
+    @deprecated 12.0 since Not used, ido-create-ado-mapping is not used, it is replaced with macro createAdoMappingMacro.
+    -->
+    
+    <!--* @property cmt.enabled
+    Enables to run cmt, testing code coverage tool.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    
+    <!--* @property internal.cmt.enabled
+    Enables to run cmt tools targets if cmt.enabled is set to true, testing code coverage tool.
+    @type boolean
+    @scope private
+    -->
+    
+    <!--* @property enable.cmt
+    Enables to run cmt, testing code coverage tool. - deprecated: Start using cmt.enabled property.
+    @type boolean
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!--* Enables codescanner tool to run.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    <property name="codescanner.enabled" value="true"/>
+
+    <!--* @property codescanner.lxr.source.url
+    Enables source files referring to lxr url path in codescanner output html files. Should not include source path on platform.
+    @type string
+    @scope public
+    @since 12.0
+    -->
+    
+    <!--* @property internal.codescanner.enabled
+    Enables codescanner targets to run if codescanner.enabled is set to true.
+    @type boolean
+    @scope private
+    -->
+    
+    <!--* @property skip.codescanner
+    Enables codescanner tool to run. - deprecated: Start using codescanner.enabled property.
+    @type boolean
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!-- Set to true to keep old sources of build area.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    <property name="keep.old.source.enabled" value="false"/>
+    
+    <!--* @property ido.keep.old
+    Set to true to keep old sources of build area. - deprecated: Start using keep.old.source.enabled property.
+    @type boolean
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!-- Set to true to copy internal folders while coping source from wa to build area.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    <property name="keep.internal.folders.enabled" value="false"/>
+    
+    <!--* @property keep.internals
+    Set to true to keep old internal folder while coping source from wa to build area. - deprecated: Start using keep.internal.folders.enabled property.
+    @type boolean
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!-- Internal target that generates the '''ado.mapping.file'''.
+     It is a INI file that contains ADO location as a key and target location as value.
+    -->
+    
+    <!-- To enable to confml file validation -->
+    <condition property="internal.package.cone.validation.enabled">
+        <istrue value="${package.cone.validation.enabled}" />
+    </condition>
+    
+    <!-- check, is cmt enabled -->
+    <condition property="internal.cmt.enabled">
+        <or>
+            <istrue value="${cmt.enabled}" />
+            <isset property="enable.cmt"/>
+        </or>
+    </condition>
+    
+    <!-- check is codescanner enabled-->
+    <condition property="internal.codescanner.enabled">
+        <and>
+            <not>
+                <isfalse value="${codescanner.enabled}" />
+            </not>
+            <not>
+                <isset property="skip.codescanner"/>
+            </not>
+        </and>
+    </condition>
+
+    <!--
+    @deprecated: since 12.0: Use createAdoMappingMacro  
+     -->
+    <target name="ido-create-ado-mapping">
+        <hlm:createAdoMappingMacro adoMapFile="${ado.mapping.file}" />
+        <hlm:createAdoMappingMacro adoMapFile="${ado.quality.mapping.file}" mapForQuality="true"/>
+    </target>
+
+    <!-- Internal target to generate ado mapping for old sysdef format, this would be deprecated once
+         the sysdef3 is deployed. 
+    -->
+    <scriptdef name="adoMappingOldSysdefMacro" language="jython" uri="http://www.nokia.com/helium">
+        <attribute name="adomapfile" />
+        <attribute name="mapforquality" />
+import os
+import idoprep
+idoprep.create_ado_mapping(project.getProperty(r"prep.dynamic.sysdef.config"), attributes.get(r"adomapfile"), attributes.get(r"mapforquality"), project.getProperty(r"build.drive"), project.getProperty(r"ado.quality.dirs.path"))
+    </scriptdef>
+
+    <!-- Generates ado mapping file which could be used to identify the new sources. 
+        e.g: 
+        <pre>
+            <property name="prep.copy.mapping.file" location="${build.output.dir}/build/ado_mapping_copy.ini" />
+            <hlm:createAdoMappingMacro adoMapFile="${prep.copy.mapping.file}" />
+        </pre>
+
+    Usage example:
+    <pre>
+        <target name="ido-map-file">
+            <property name="prep.copy.mapping.file" location="${build.output.dir}/build/ado_mapping_copy.ini" />
+            <hlm:createAdoMappingMacro adoMapFile="${prep.copy.mapping.file}" />
+        </target>
+    </pre>
+    -->
+    <macrodef name="createAdoMappingMacro" uri="http://www.nokia.com/helium">
+        <attribute name="adoMapFile"/>
+        <attribute name="mapForQuality" default="false"/>
+        <sequential>
+            <mkdir dir="${build.output.dir}/build"/>
+            <mkdir dir="${temp.build.dir}"/>
+            <if>
+                <istrue value="${sysdef3.enabled}" />
+                <then>
+                    <if>
+                        <and>
+                            <isreference refid="ado.quality.dirs" />
+                            <equals arg1="@{mapForQuality}" arg2="true" />
+                        </and>
+                        <then>
+                            <hlm:createPackageMapping epocroot="${build.drive}" destFile="@{adoMapFile}"
+                                filterDirSet="ado.quality.dirs" >
+                                <path refid="system.definition.files" />
+                            </hlm:createPackageMapping>
+                        </then>
+                        <else>
+                            <hlm:createPackageMapping epocroot="${build.drive}" destFile="@{adoMapFile}">
+                                <path refid="system.definition.files" />
+                            </hlm:createPackageMapping>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <tempfile property="prep.dynamic.sysdef.config" suffix=".txt" deleteonexit="false" destdir="${temp.build.dir}"/>
+                    <trycatch property="error.message">
+                        <try>
+                            <hlm:referenceToFileMacro refid="system.definition.files" output="${prep.dynamic.sysdef.config}"/>
+                        </try>
+                        <catch>       
+                            <propertyregex property="message" input="${error.message}"
+                              regexp=":(.*)$"
+                              select="\1" casesensitive="false" />
+                            <fail message="Error: ${message}" />     
+                        </catch>               
+                    </trycatch>
+                    <trycatch>
+                        <try>
+                            <pathconvert pathsep="," property="ado.quality.dirs.path">
+                                <dirset refid="ado.quality.dirs"/>
+                            </pathconvert>                              
+                        </try>
+                    </trycatch>
+                    <hlm:adoMappingOldSysdefMacro adomapfile="@{adoMapFile}"  mapforquality="@{mapForQuality}" />
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!-- Target to generate cenreps using cone tool -->
+    <target name="ido-gen-cenrep">
+        <mkdir dir="${post.log.dir}" />
+        <mkdir dir="${temp.build.dir}" />
+        <tempfile property="cenrep.dynamic.config" suffix=".xml" deleteonexit="false" destdir="${temp.build.dir}"/>
+        <fmpp sourceFile="${helium.dir}/tools/preparation/templates/ido-cenrep-gen.xml.ftl"
+              outputfile="${cenrep.dynamic.config}">
+            <data expandProperties="yes">
+                dbPath: ${metadata.dbfile}
+                ant: antProperties()
+                os: eval('System.getProperty("os.name")')
+            </data>
+        </fmpp>
+        <ant antfile="${cenrep.dynamic.config}"/>
+        <copy file="${post.log.dir}/${build.id}_cenrep.cone.log" tofile="${temp.build.dir}/${build.id}_cenrep_includefile.txt" overwrite="true" failonerror="false">
+            <filterchain>
+                <linecontainsregexp>
+                    <regexp pattern="^\s*Generating file"/>
+                </linecontainsregexp>
+            </filterchain>
+        </copy>
+        <hlm:metadatarecord database="${metadata.dbfile}">
+            <hlm:textmetadatainput>
+                <fileset casesensitive="false" file="${post.log.dir}/${build.id}_cenrep.cone.log" />
+                <metadatafilterset>
+                    <metadatafilter priority="error" regex="^ERROR\s+:.*" description="cone error" />
+                    <metadatafilter priority="warning" regex="^WARNING\s+:.*" description="cone warnings" />
+                    <metadatafilter priority="info" regex="^INFO\s+:.*" description="cone info" />
+                </metadatafilterset>
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+        <hlm:metadataCountSeverity severity="ERROR" log="${post.log.dir}/${build.id}_cenrep.cone.log" database="${metadata.dbfile}" property="cone.error.total"/>
+        <echo>ConE error: ${cone.error.total}</echo>
+        <hlm:generateBuildStatus file="${post.log.dir}/${build.id}_cenrep.cone.log" />
+    </target>
+    
+    <!-- To validate confml files of packages.-->
+    <target name="ido-validate-confml" if="internal.package.cone.validation.enabled">
+        <mkdir dir="${post.log.dir}" />
+        <mkdir dir="${temp.build.dir}" />
+        <tempfile property="confml.dynamic.config" suffix=".xml" deleteonexit="false" destdir="${temp.build.dir}"/>
+        <fmpp sourceFile="${helium.dir}/tools/preparation/templates/ido-confml-validate.ant.xml.ftl"
+              outputfile="${confml.dynamic.config}">
+            <data expandProperties="yes">
+                dbPath: ${metadata.dbfile}
+                ant: antProperties()
+                os: eval('System.getProperty("os.name")')
+            </data>
+        </fmpp>
+        <trycatch property="confml.validate.thrown">
+            <try>
+                <ant antfile="${confml.dynamic.config}"/>
+            </try>
+            <catch>
+                <fail message="${confml.validate.thrown}"/>
+            </catch>
+            <finally>
+                <hlm:metadatarecord database="${metadata.dbfile}">
+                    <hlm:textmetadatainput>
+                        <fileset dir="" casesensitive="false" file="${post.log.dir}/${build.id}_validate_confml.log" />
+                        <metadatafilterset>
+                            <metadatafilter priority="error" regex="^ERROR\s+:.*" description="cone error" />
+                            <metadatafilter priority="warning" regex="^WARNING\s+:.*" description="cone warnings" />
+                            <metadatafilter priority="info" regex="^INFO\s+:.*" description="cone info" />
+                            <metadatafilter priority="error" regex="\s*[1-9]\d*\s*problem\(s\).*?" description="cone validation error" />
+                        </metadatafilterset>
+                    </hlm:textmetadatainput>
+                </hlm:metadatarecord>
+                <hlm:metadataCountSeverity severity="ERROR" log="${post.log.dir}/${build.id}_validate_confml.log" database="${metadata.dbfile}" property="confml.validate.error.total"/>
+                <echo>ConE error: ${confml.validate.error.total}</echo>
+                <hlm:generateBuildStatus file="${build.id}_validate_confml.log" />
+                <hlm:signalMacro logfile="${post.log.dir}/${build.id}_validate_confml.log" phase="post" signal.input="ConEValidateSignalInput" />
+            </finally>
+        </trycatch>
+        
+    </target>
+
+
+    <!--* Defines which template to use in order to achive the package copying.
+    @type string
+    @scope public
+    -->
+    <property name="ido.prep.copy.template" location="${helium.dir}/tools/preparation/templates/ido-ant-copy.xml.ftl" />
+    
+    <!-- Target that uses the information from the system.definition.files to prepare the IDO build area.
+        It relies on the fact that layer_real_source_path entity is declared in each ADO configuration.
+        
+        By default it deletes the previous content. If you want to backup what was previoulsy used please
+        defined '''keep.old.source.enabled''' property.         
+        -->
+    <target name="ido-prep-copy">
+        <property name="prep.copy.mapping.file" location="${build.output.dir}/build/ado_mapping_copy.ini" />
+        <hlm:createAdoMappingMacro adoMapFile="${prep.copy.mapping.file}" />
+        <mkdir dir="${temp.build.dir}"/>
+        <tempfile property="prep.dynamic.config" suffix=".xml" deleteonexit="false" destdir="${temp.build.dir}"/>
+        <fmpp sourceFile="${ido.prep.copy.template}"
+            outputFile="${prep.dynamic.config}">
+            <data expandProperties="yes">
+                inputfile: antProperty(prep.copy.mapping.file)
+                ant: antProperties()
+                    data: eval('
+                            java.io.FileInputStream pin = new java.io.FileInputStream(filename);
+                            java.util.Properties props = new java.util.Properties();
+                            props.load(pin);
+                            return props;
+                            ', {filename:get(inputfile)})
+            </data>
+        </fmpp>
+        <ant antfile="${prep.dynamic.config}"/>
+    </target>
+    
+    
+    <!--
+    Run cleanup system definition configuration. The configuration name are
+    generated from the ``sysdef.configurations.list`` property, appending '_clean'
+    at the end of each configuration also reversing their build order.
+    if ``sysdef.clean.configurations.list`` is defined it overrides
+    the previous beharvious and is used to cleanup the environment.
+    -->
+    <target name ="ido-prep-clean">
+        <if>
+            <not>
+                <isset property="sysdef.clean.configurations.list"/>
+            </not>
+            <then>
+                <if>
+                    <isset property="sysdef.configurations.list"/>
+                    <then>
+                        <script language="jython" setbeans="false">
+rev_names = ""
+for sysdef in project.getProperty("sysdef.configurations.list").split(","):    
+    rev_names = sysdef + "_clean," + rev_names
+project.setProperty("sysdef.clean.configurations.list", rev_names)
+                        </script>
+                    </then>
+                    <else>
+                        <fail message="You should either define sysdef.clean.configurations.list or sysdef.configurations.list."/>
+                    </else>
+                </if>
+            </then>
+        </if>
+        
+        <antcall target="compile-main" inheritRefs="true">
+            <param name="sysdef.configurations.list" value="${sysdef.clean.configurations.list}"/>
+            <param name="compile.signal.input" value="compileCleanSignalInput"/>
+            <param name="internal.compile.discard.result.enabled" value="true"/>
+            <param name="internal.compile.cmd.clean.enabled" value="true"/>
+        </antcall>
+    </target>
+
+    <!--
+        This targets run the codescanner application on each discovered ADO.
+        The location of the output is defined byt ``ido.codescanner.output.dir`` property.
+        And the type is defined by ``ido.codescanner.output.type`` (default is HTML). 
+        To update the HTML files with lxr source URL you need to set the property ``codescanner.lxr.source.url`` 
+        URL should not include source path on platform.
+    -->
+    <target name="ido-codescanner" if="internal.codescanner.enabled">
+        <property name="codescanner.mapping.file" location="${build.output.dir}/build/ado_mapping_codescanner.ini" />
+        <hlm:createAdoMappingMacro adoMapFile="${codescanner.mapping.file}" mapForQuality="true"/>
+        <!--hlm:iniKeys2Path ini="${codescanner.mapping.file}" pathid="ado.src.path"/-->
+        <!-- Defines the format of Codescanner output (html|xml|std).
+        @type string
+        -->
+        <hlm:resourceaccess lockName="subst-drive">
+            <property name="ido.codescanner.output.type" value="html"/>
+            
+            <!-- Defines the fmpp template for Codescanner.
+            @type string
+            @scope private
+            -->
+            <property name="ido.codescanner.template" value="${helium.dir}/tools/preparation/templates/ido-codescanner.ant.xml.ftl"/>
+            <script language="jython" setbeans="false">
+#internal.codescanner.drive
+import os
+import fileutils
+import configuration
+import pathaddition.relative
+
+config = configuration.PropertiesConfiguration(stream=open(str(project.getProperty("codescanner.mapping.file")), 'r'))
+prefix = pathaddition.relative.commonprefix(config.keys())
+if not os.path.exists(prefix):
+    raise Exception("Could not find common prefix for the following paths:\n" + "\n".join(config.keys()))
+if os.sep == '\\':
+    self.log(str('Substing %s' % prefix))
+    drive = fileutils.get_next_free_drive()
+    fileutils.subst(drive, prefix)
+else:
+    drive = prefix
+project.setProperty('internal.codescanner.drive', drive)
+
+# creating the structure form subst drive.
+path = project.createDataType("path")
+for location in config.keys():
+    self.log(str("From %s" % location))
+    location = drive + os.sep + pathaddition.relative.abs2rel(location, prefix)
+    self.log(str("To %s" % location))
+    pe = path.createPathElement()
+    pe.setPath(location)
+project.addReference('substed.ado.src.path', path)
+            </script>
+        </hlm:resourceaccess>
+        <trycatch property="codescanner.thrown">
+            <try>
+                <if>
+                    <isset property="codescanner.lxr.source.url"/>
+                    <then>
+                        <tempfile property="codescanner.dynamic.config" suffix=".xml" deleteonexit="false" destdir="${temp.build.dir}"/>
+                        <fmpp sourceFile="${ido.codescanner.template}"
+                            outputFile="${codescanner.dynamic.config}">
+                            <data expandProperties="yes">
+                                inputfile: antProperty(codescanner.mapping.file)
+                                ant: antProperties()
+                                data: eval('
+                                        java.io.FileInputStream pin = new java.io.FileInputStream(filename);
+                                        java.util.Properties props = new java.util.Properties();
+                                        props.load(pin);
+                                        return props;
+                                        ', {filename:get(inputfile)})
+                            </data>
+                        </fmpp>
+                        <ant antfile="${codescanner.dynamic.config}"/>
+                    </then>
+                    <else>
+                        <hlm:codescanner dest="${ido.codescanner.output.dir}"
+                            format="${ido.codescanner.output.type}"
+                            configuration="${ido.codescanner.config}">
+                            <path refid="substed.ado.src.path"/>
+                        </hlm:codescanner>
+                    </else>
+                </if>
+            </try>
+            <catch>
+                <fail message="${codescanner.thrown}" />
+            </catch>
+            <finally>
+                <hlm:unsubst drive="${internal.codescanner.drive}"/>
+            </finally>
+        </trycatch>
+        
+    </target>
+
+        <!-- CMT Tool target. Complexity tool measures. Supported options for cmt tool macro is
+        1. input - files to be measured
+        2. output - output xml file (file size is huge 68MB for JAVA IDO, if this needs to be send, need to consider
+        3. config - input config . 
+        -->
+    <target name="ido-cmt" if="internal.cmt.enabled">
+        <property name="cmt.mapping.file" location="${build.output.dir}/build/ado_mapping_cmt.ini" />
+        <hlm:createAdoMappingMacro adoMapFile="${cmt.mapping.file}" mapForQuality="true"/>
+        <fmpp sourceFile="${helium.dir}/tools/preparation/templates/ido-cmt-ant.xml.ftl"
+                          outputFile="${temp.build.dir}/ido-cmt.ant.xml">
+            <data expandProperties="yes">
+                        inputfile: antProperty(cmt.mapping.file)
+                        ant: antProperties()
+                            data: eval('
+                                    java.io.FileInputStream pin = new java.io.FileInputStream(filename);
+                                       java.util.Properties props = new java.util.Properties();
+                                    props.load(pin);
+                                    return props;
+                                    ', {filename:get(inputfile)})
+            </data>
+        </fmpp>
+        <ant antfile="${temp.build.dir}/ido-cmt.ant.xml"/>
+        <runtarget target="cmt-generate-diamond-summary" />
+    </target>
+
+        <!-- CMT Tool target. Once the CMT tool has been run this scans the results file and puts the
+        results into a .XML file in the diamonds folder ready for transmission to diamonds. 
+        The target uses the ido-cmt-summary-ant.xml.ftl file to create a file called ido-cmt-summary.ant.xml
+        which contains 1 new target for each of the input folders found under the build area. Then the 
+        ido-cmt-summary.ant.xml file is called as an ant file and the targets executed. Each target runs
+        the file scanner looking for CMT summary information which it extracts and writes to an 
+        XML file in the diamonds folder.
+        -->
+    <target name="cmt-generate-diamond-summary" if="internal.cmt.enabled">
+        
+        <!--use the header.ftl template file to create the init part of the output file
+        that can be copied to the final output file by the java class-->
+        <property name="temp.diamonds.header.xml" location="${env.TEMP}/diamonds_header.xml" />
+        <fmpp sourcefile="${helium.dir}/tools/common/templates/diamonds/diamonds_header.ftl" 
+              outputfile="${temp.diamonds.header.xml}" quiet="true"/>
+        <property name="temp.diamonds.footer.xml" location="${env.TEMP}/diamonds_footer.xml" />
+        <fmpp sourcefile="${helium.dir}/tools/common/templates/diamonds/diamonds_footer.ftl" 
+              outputfile="${temp.diamonds.footer.xml}" quiet="true"/>
+        
+        <hlm:cmtsummarytask diamondsHeaderFileName="${temp.diamonds.header.xml}" diamondsFooterFileName="${temp.diamonds.footer.xml}"
+            outputFile="${diamonds.build.output.dir}/cmt_summary.xml"
+            inputFile="${ido.cmt.html.output.dir}/CMTHTML/index.html" />
+        <delete file="${temp.diamonds.header.xml}" failonerror="false" />
+        <delete file="${temp.diamonds.footer.xml}" failonerror="false" />
+        
+    </target>
+
+    <!-- Target to copy files based on ado mapping.
+    -->
+    <target name="ido-create-copy-file">
+        <property name="create.copy.mapping.file" location="${build.output.dir}/build/ado_mapping_create_copy.ini" />
+        <hlm:createAdoMappingMacro adoMapFile="${create.copy.mapping.file}" />
+        <tempfile property="copyfile.dynamic.config" suffix=".ant.xml" deleteonexit="false" destdir="${temp.build.dir}"/>
+        <fmpp sourceFile="${helium.dir}/tools/preparation/templates/ido-export.ant.xml.ftl"
+                      outputFile="${copyfile.dynamic.config}">
+            <data expandProperties="yes">
+                inputfile: antProperty(create.copy.mapping.file)
+                ant: antProperties()
+                data: eval('
+                            java.io.FileInputStream pin = new java.io.FileInputStream(filename);
+                               java.util.Properties props = new java.util.Properties();
+                            props.load(pin);
+                            return props;
+                            ', {filename:get(inputfile)})
+            </data>
+        </fmpp>
+    </target>
+
+    <!-- Do the export of the ibys from ADO work area level to epoc32 tree. -->    
+    <target name="ido-copy-iby" depends="ido-create-copy-file">
+        <ant antfile="${copyfile.dynamic.config}" target="ido-copy-iby"/>
+    </target>
+
+    <!-- Do the export of the Excel keys*.xls from ADO work area level to 
+    epoc32 tree.
+    -->
+    <target name="ido-copy-cenrep" depends="ido-create-copy-file">
+        <delete dir="${ido.cenrep.root}"/>
+        <mkdir dir="${ido.cenrep.root}"/>
+        <ant antfile="${copyfile.dynamic.config}" target="ido-copy-cenrep"/>
+    </target>
+
+    <!-- Generated cenrep from exported keys*.xls files. -->
+    <target name="ido-create-cenrep" depends="ido-copy-cenrep">
+        <delete dir="${ido.cenrep.root}/../data"/>
+        <mkdir dir="${ido.cenrep.root}/../data"/>
+        <exec executable="perl" dir="${ido.cenrep.root}" failonerror="true">
+            <arg value="${build.drive}/epoc32/tools/cenrep/generate_cenrep_inifile.pl"/>
+            <arg value="-r"/>
+            <arg value="${ido.cenrep.platform}"/>
+            <arg value="-d"/>
+            <arg value="${ido.cenrep.root}"/>
+            <arg value="-rd"/>
+            <arg value="${ido.cenrep.root}/../data"/>
+        </exec>
+        <!-- Copy generated files to target path -->
+        <copy todir="${ido.cenrep.target}" verbose="true" flatten="true" overwrite="true">
+            <fileset dir="${ido.cenrep.root}/../data">
+                <include name="*.txt"/>
+            </fileset>
+        </copy>    
+        
+    </target>
+
+    <!-- Gets the contents from a network drive or Dragonfly -->
+    <target name="ido-check-latest-release" depends="ido-check-latest-release-network" unless="env.HLM_SUBCON">
+        <runtarget target="ido-check-latest-release-dragonfly"/>
+    </target>
+
+    <!--* @property s60.grace.service
+        File service to look into.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.service
+        File service to look into.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.service" value="${s60.grace.service}">
+        <isset property="s60.grace.service" />
+    </condition>
+
+    <!--* @property s60.grace.server
+        UNC path to file server.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.server
+        UNC path to file server.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.server" value="${s60.grace.server}">
+        <isset property="s60.grace.server" />
+    </condition>
+    
+    <!--* @property s60.grace.product
+        Product to look into.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.product
+        Product to look into.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.product" value="${s60.grace.product}">
+        <isset property="s60.grace.product" />
+    </condition>
+    
+    <!--* @property s60.grace.release
+        Regular expression to match a particular realease.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+        
+    <!--* @property download.release.regex
+        Regular expression to match a particular realease.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.regex" value="${s60.grace.release}">
+        <isset property="s60.grace.release" />
+    </condition>
+    
+    <!-- Regular expression to match a particular release fixbuilds. Example _(.*?)$ or _(\d+)$ 
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <property name="s60.grace.release.fixbuildregex" value="_(.*?)$" />
+    
+    <!-- Regular expression to match a particular release fixbuilds. Example _(.*?)$ or _(\d+)$ 
+        @type string
+        @editable required
+        @scope public
+    -->
+    <property name="download.release.fixbuildregex" value="${s60.grace.release.fixbuildregex}" />
+    
+    <!--* @property s60.grace.cache
+        Location of the result cache for a builder.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.cache
+        Location of the result cache for a builder.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.cache" value="${s60.grace.cache}">
+        <isset property="s60.grace.cache" />
+    </condition>
+    
+    <!--* @property s60.grace.checkmd5.enabled
+        Enable MD5 validation for release metadata (default: false).
+        @type boolean
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.checkmd5.enabled
+        Enable MD5 validation for release metadata (default: false).
+        @type boolean
+        @editable required
+        @scope public
+    -->
+        
+    <!--* @property s60.grace.revision
+        Defined the regular expression to find a particular revision.
+        @type string
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.revision
+        Defined the regular expression to find a particular revision.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.revision" value="${s60.grace.revision}">
+        <isset property="s60.grace.revision" />
+    </condition>
+    
+    <!--* @property s60.grace.usetickler
+        Enable the detection of ready release using release tickler mechanism.
+        @type boolean
+        @editable required
+        @scope public
+        @deprecated since 12.0
+    -->
+    <!--* @property download.release.usetickler
+        Enable the detection of ready release using release tickler mechanism.
+        @type string
+        @editable required
+        @scope public
+    -->
+    <condition property="download.release.usetickler" value="${s60.grace.usetickler}">
+        <isset property="s60.grace.usetickler" />
+    </condition>
+    
+    <condition property="internal.release.checkmd5.enabled" else="false" value="true">
+        <or>
+            <istrue value="${s60.grace.checkmd5.enabled}"/>
+            <istrue value="${download.release.checkmd5.enabled}"/>
+        </or>
+    </condition>
+    <!-- Checks the contents from the release. -->    
+    <target name="ido-check-latest-release-network" unless="internal.dragonfly.enabled">
+        <script language="jython" setbeans="false">
+import os
+import idoprep
+from com.nokia.ant.util import Helper
+result = idoprep.get_s60_env_details(Helper.getProperty(project, 'download.release.server'), Helper.getProperty(project, 'download.release.service'), Helper.getProperty(project, 'download.release.product'), Helper.getProperty(project, 'download.release.regex'), project.getProperty('download.release.revision'), project.getProperty('download.release.cache'), project.getProperty('internal.release.checkmd5.enabled'), project.getProperty('download.release.usetickler'))
+resultname = os.path.basename(result[0])
+project.setProperty('s60.getenv.path', str(result[0]))
+project.setProperty('s60.getenv.release', str(resultname))
+version = idoprep.get_version(project.getProperty('build.drive'), resultname)
+if version is None or version.strip() != resultname:
+    project.setProperty('s60.getenv.update', "1")
+        </script>
+    </target>
+    
+    <!-- Replaced by ido-update-build-area-network.
+    @deprecated since 12.0
+    -->
+    <target name="ido-update-build-area-grace" depends="ido-update-build-area-network"/>
+
+    <!-- Updates the build area from either a network drive or Dragonfly server.-->
+    <target name="ido-update-build-area" depends="backup-subst-drives,ido-update-build-area-grace" unless="env.HLM_SUBCON">
+        <runtarget target="ido-update-build-area-dragonfly"/>
+    </target>
+
+    <!-- Creates the build area by getting the contents from the release.-->    
+    <target name="ido-update-build-area-network" if="s60.getenv.update" depends="ido-check-latest-release" unless="internal.dragonfly.enabled">
+        <!-- Just get S60 for IDOs -->
+        <echo>Location of the new release:${s60.getenv.path}</echo>
+        <tstamp>
+            <format property="getenv.tstamp" pattern="yyyyMMddHHmmss"/>
+        </tstamp>
+        <!-- For linux build prep.build.dir value should not be changed as 
+        as prep.build.dir <==> build.drive -->
+        <condition property="ba.root.dir" value="${prep.build.dir}" else="${prep.root.dir}/${getenv.tstamp}_${s60.getenv.release}">
+            <os family="unix"/>
+        </condition>
+        <antcall target="init-drive">
+            <param name="prep.build.dir" location="${ba.root.dir}"/>            
+        </antcall>
+        <antcall target="preparation-getenv">
+            <param name="base_release.path" value="${s60.getenv.path}"/>
+        </antcall>
+        <antcall target="ido-prep-variant"/>
+
+        <if>
+            <not>
+                <hlm:hasSeverity severity="error" file="${build.cache.log.dir}/${build.id}_getenv.log.xml" />
+            </not>
+            <then>
+                <hlm:python>
+from path import path
+print "Writing version file...."
+vfile = path(r'${build.drive}'+"/").joinpath('s60_version.txt')
+f = open(str(vfile), 'w')
+f.write(path(r'${s60.getenv.path}').name)
+f.close()
+                </hlm:python>
+            </then>
+        </if>
+    </target>
+
+    <!-- Gets the Contents for particular variant, by unpacking the variant zip from the metadata file.-->
+    <target name="ido-prep-variant" if="ido.variant">
+        <script language="jython" setbeans="false">
+import re
+import os
+import symrec
+from com.nokia.ant.util import Helper
+rel_path = Helper.getProperty(project, 's60.getenv.path')
+metadata = symrec.find_latest_metadata(str(rel_path))
+self.log(str("Release metadata file: %s." % metadata))
+rel_metadata = symrec.ReleaseMetadata(metadata)
+variant_pkg = rel_metadata.getVariantPackage(project.getProperty('ido.variant'))
+project.setProperty('ido.variant.package', os.path.join(rel_path, variant_pkg))
+        </script>
+        <unzip src="${ido.variant.package}" dest="${build.drive}/"/>
+    </target>
+
+
+    <!-- This target will help CI tool to trigger a build by updating a 's60.getenv.trigger.location' file timestamp. -->
+    <target name="ido-latest-release-trigger" if="s60.getenv.update" depends="ido-check-latest-release">
+        <if>
+            <isset property="s60.getenv.trigger.location"/>
+            <then>
+                <echo>Touching the trigger.</echo>
+                <touch file="${s60.getenv.trigger.location}"/>
+            </then>
+            <else>
+                <echo>Property s60.getenv.trigger.location is not defined, trigger will not get updated.</echo>
+            </else>
+        </if>
+    </target>
+    
+    <!-- Convert keys of an ini file into a path structure.
+        e.g: <pre><hlm:iniKeys2Path ini="${ado.mapping.file}" pathid="ado.src.path"/></pre>
+
+    Usage example:
+      <pre>
+        <target name="test-iniKeys2Path" depends="ido-create-ado-mapping">
+            <hlm:iniKeys2Path ini="${ado.mapping.file}" pathid="ado.src.path"/>
+            <hlm:codescanner dest="${build.drive}/codescanner">
+                <path refid="ado.src.path"/>
+            </hlm:codescanner>
+        </target>
+        </pre>
+    -->
+    <scriptdef name="iniKeys2Path" language="beanshell" uri="http://www.nokia.com/helium">
+        <attribute name="ini"/>
+        <attribute name="pathid"/>
+if (attributes.get("ini") == null) {
+    throw new org.apache.tools.ant.BuildException("ini is not defined");
+}
+if (attributes.get("pathid") == null) {
+    throw new org.apache.tools.ant.BuildException("pathid is not defined");
+}
+try {
+    java.io.FileInputStream pin = new java.io.FileInputStream(attributes.get("ini"));
+    java.util.Properties props = new java.util.Properties();
+    props.load(pin);
+    org.apache.tools.ant.types.Path path = project.createDataType("path");
+    for (java.util.Iterator i = props.stringPropertyNames().iterator(); i.hasNext() ; ) { 
+        org.apache.tools.ant.types.Path.PathElement pe = (org.apache.tools.ant.types.Path.PathElement)path.createPathElement();
+        pe.setPath(i.next()); 
+    }
+    self.log("Creating reference: " + attributes.get("pathid"));
+    project.addReference(attributes.get("pathid"), path);
+}
+catch (java.io.IOException e) {
+    throw new org.apache.tools.ant.BuildException(e);
+}
+    </scriptdef>
+
+    <!-- Target to get the Substituted drives information-->
+    <target name="backup-subst-drives">
+        <exec dir="${cache.dir}" executable="subst.exe" osfamily="windows" output="${cache.dir}\hlmsubsteddrives.bat" failonerror="false"/>
+        <trycatch property="backup-subst-drives.exception">
+            <try>
+                <if>
+                    <available file="${cache.dir}/hlmsubsteddrives.bat" type="file"/>
+                    <then>
+                        <replaceregexp file="${cache.dir}\hlmsubsteddrives.bat" match="\\: => " replace=" " flags="g" byline="true"/>
+                        <replaceregexp file="${cache.dir}\hlmsubsteddrives.bat" match="\A" replace="subst.exe " byline="true"/>
+                        <replaceregexp file="${cache.dir}\hlmsubsteddrives.bat" match="UNC" replace="\\\\" byline="true"/>
+                    </then>
+                </if>
+            </try>
+            <catch>
+                <echo>${backup-subst-drives.exception}</echo>
+            </catch>
+        </trycatch>
+    </target>
+
+    <import file="ci.ant.xml"/>
+</project>
+
+
+
+

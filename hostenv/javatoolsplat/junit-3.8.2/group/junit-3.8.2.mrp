@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_junit-3.8.2
+
+source /src/tools/dev/hostenv/javatoolsplat/junit-3.8.2
+
+exports /src/tools/dev/hostenv/javatoolsplat/junit-3.8.2/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/junit-3.8.2/group/release.txt

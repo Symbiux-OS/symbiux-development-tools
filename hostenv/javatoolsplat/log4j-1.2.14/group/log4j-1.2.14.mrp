@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_log4j-1.2.14
+
+source /src/tools/dev/hostenv/javatoolsplat/log4j-1.2.14
+
+exports /src/tools/dev/hostenv/javatoolsplat/log4j-1.2.14/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/log4j-1.2.14/group/release.txt

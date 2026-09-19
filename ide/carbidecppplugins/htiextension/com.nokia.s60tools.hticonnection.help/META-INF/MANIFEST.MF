@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name:  Carbide.c++ Extensions - HTI Connection Help
+Bundle-SymbolicName: com.nokia.s60tools.hticonnection.help;singleton:=true
+Bundle-Version: 1.5.0.qualifier
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.help
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.nokia.s60tools.hticonnection.help.HelpPlugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

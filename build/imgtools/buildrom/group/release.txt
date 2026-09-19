@@ -1,0 +1,245 @@
+Version 3.33.0 (BUILDROM)
+===============
+Released by Marvin Shi, 30/11/2010
+	1) Feature add option for -bsymbols
+
+Version 3.32.2 (BUILDROM)
+===============
+Released by Ross Qin, 30/11/2010
+	1) ou1cimx1#665657  [MCL]Some cases of PREQ1230 fail because of buildrom issue
+
+Version 3.32.1 (BUILDROM)
+===============
+Released by Lorence Wang, 24/11/2010
+	1) ou1cimx1#657440 [MCL]external tools cannot specify path.
+
+Version 3.32.0 (BUILDROM)
+===============
+Released by Ross Qin, 18/11/2010
+	1) Moving feature configuration out of the buildrom scope.
+	
+Version 3.31.0 (BUILDROM)
+===============
+Released by Lorence Wang, 20/10/2010
+	1) Volume Serial NO. for FAT image.
+
+Version 3.30.0 (BUILDROM)
+===============
+Released by Lorence Wang, 12/10/2010
+	1) ROM tools performance improvement: ignore configuration check.
+
+Version 3.29.1 (BUILDROM)
+===============
+Released by Zheng Shen, 30/09/2010
+	1) ou1cimx1#577011 [MCL]Fallback failed in case of {} exists in filename, and file doesn't exists in default ABI folder
+
+Version 3.29.0 (BUILDROM)
+===============
+Released by Lorence Wang, 17/09/2010
+	1) Whole directory support in FAT.
+
+Version 3.28.1 (BUILDROM)
+===============
+Released by Lorence Wang, 13/09/2010
+	1) ou1cimx1#560005 Buildrom failed with -workdir="folder of different drive"
+	2) ou1cimx1#563537 Rofsbuild generates the log file for smr image and datadrive image in wrong location
+
+Version 3.28.0 (BUILDROM)
+===============
+Released by Marvin Shi, 7/09/2010
+	1) feature for XIP image only
+
+Version 3.27.1 (BUILDROM)
+===============
+Released by Lorence Wang, 10/08/2010
+	1) -cpp=xxx option support
+
+Version 3.27.0 (BUILDROM)
+Version 0.1    (charsettran)
+===============
+Released by Marvin Shi, 02/08/2010
+	1) UTF-8 OBY Support
+	
+Version 3.26.1 (BUILDROM)
+Version 0.2 (checkepocroot.pl)
+===============
+Released by Lorence Wang 28/07/2010
+	1) Standard cpp selection -stdcpp option
+	2) Case insensitive in checkepocroot.pl
+
+Version 3.26.0 (BUILDROM)
+===============
+Released by Lorence Wang 28/06/2010
+	1) Prepend EPOCROOT to epoc32 feature
+
+Version 3.25.2 (BUILDROM)
+===============
+Reoleased by Jason Cui 11/06/2010
+	1) Empty Directory Support in FAT Image
+
+Version 3.24.2 (BUILDROM)
+===============
+Reoleased by Jason Cui 09/06/2010
+	1) DPDEF145499: buildrom cannot support romname <name>
+
+Version 3.24.1 (buildrom)
+===============
+Released by Lorence Wang, 31/05/2010
+	1) DPDEF145359 Buildrom cannot find dso file in linux
+	2) DPDEF145470 buildrom with "-wordir=pathname" has error
+
+Version 3.24.0 (buildrom)
+===============
+Released by Lorence Wang, 20/05/2010
+	1) DPDEF145452 work path config -workdir feature
+
+Version 3.23.1 (buildrom)
+===============
+Released by Lorence Wang, 04/05/2010
+	1) DPDEF145374 Symbian Foundation License found in package build
+
+Version 3.23.0 (buildrom)
+===============
+Released by Lorence Wang, 21/04/2010
+	1) DPDEF145365 check path submit  
+
+Version 3.22.2 (buildrom)
+===============
+Released by Ross Qin, 14/04/2010
+	1) DPDEF145300 Rombuild hangs in S60 2010wk13 vasco_ui rom building 
+
+Version 1.2.1 (configpaging)
+===============
+Released by Zheng Shen, 09/04/2010
+	1) DPDEF145281 Paged meaning change
+
+Version 3.22.1 (buildrom)
+===============
+Released by Zheng Shen, 07/04/2010
+	1) DPDEF145287 ROmbuild.exe will hang with -symbols on TB92
+
+Version 3.22.0 (buildrom)
+===============
+Released by Ross Qin, 26/03/2010
+  1. RM-RIM406-1232: BU: MAKSYMROFS Integration
+Version 3.21.4 (buildrom)
+===============
+Released by Lorence Wang, 25/03/2010
+	1) DPDEF145165: S60 build break caused by latest Buildrom.
+
+Version 3.21.3 (buildrom)
+Version 1.1.1 (configpaging)
+===============
+Released by Zheng Shen, 16/03/2010
+	1) DPDEF145030  configpaging will hang as some time.
+        2) DPDEF144882  buildrom, rombuild,rofsbuil -keepgoing option
+
+Version 3.20.2 (buildrom)
+===============
+Released by Zheng Shen, 08/03/2010
+	1) DPDEF144795  ROM Tools cannot handle mixed binary variation scenario.
+    2) DPDEF144862  Correct handling of variant configuration file in a platform independent way
+
+Version 3.20.1 (buildrom)
+===============
+Released by Zheng Shen, 05/03/2010
+	1) DPDEF144535  remove -fastcompress option for rombuild/rofsbuild
+
+version 3.20.0 (buildrom)
+version 0.3 (features)
+Version 1.1.0 (configpaging)
+===============
+Released by Zheng Shen, 22/02/2010
+	1) DPDEF144562	Build Tools cannot be built in Linux
+
+Version 3.19.4 (buildrom)
+================
+(Made by Marvin Shi, 27/01/2010)
+  1. DPDEF143872 the warning from features.pl needs to be updated
+
+Version 3.19.3 (buildrom)
+Version 1.0.0 (configpaging)
+================
+(Made by Zheng Shen, 15/12/2009)
+  1. DPDEF143392 Change Configpaging.pm to Configpaging.exe
+
+Version 3.19.2
+================
+(Made by Marvin Shi, 23/11/2009)
+  1. DPDEF143057 BUILDROM reports "Invalid Switch" if one or more options contains "/" 
+  2. DPDEF143123 Feature variant failed in wk47 SOS. 
+  
+Version 3.19.1
+================
+(Made by Marvin Shi, 17/11/2009)
+  1. DPDEF142921 TSW error CSTI-7X4GHW: Buildtool creates invalid long names in FAT images 
+  2. DEF142972  buildrom produces garbled logs 
+
+Version 3.19.0
+================
+(Made by Marvin Shi, 13/11/2009)
+  1. RM-RIM406-1233: BU: MAKSYMROFS Integration
+Version 3.18.1
+================
+(Made by Marvin Shi, 13/11/2009)
+  1. DPDEF142937  S60 image creation is failed at feature variant phase 
+Version 3.18.0
+================
+(Made by Zhi Dou, 03/11/2009)
+  1. RM-RIM406-1228: BU: ROFSBUILD Cache
+  
+Version 3.17.1
+================
+(Made by Zhi Dou, 28/10/2009)
+  1. DPDEF142726 - ROM tools needs to be running stand alone according to the requirement of SymSEE  
+
+Version 3.17.0
+================
+(Made by Zhi Dou, 26/10/2009)
+  1. RM-RIM406-1263: BU: Visual ROM Layout
+
+Version 3.16.1
+================
+(Made by Zhi Dou, 26/10/2009)
+  1. DEF142435 Configpaging is case sensitive when trying to match binary names
+
+Version 3.16.0
+================
+(Made by Zhi Dou, 21/10/2009)
+  1. RM-RIM406-1229: BU: Feature Name Alias.
+
+Version 3.15.2
+================
+(Made by Zhi Dou, 19/10/2009)
+  1. Minor change for copyright from SPL to EPL.
+
+Version 3.15.1
+================
+(Made by Zhi Dou, 19/08/2009)
+  1. DPDEF141566 Textshell ROM fails to build due to 'cannot open obey file' 
+
+Version 3.15.0
+================
+(Made by Zhi Dou, 31/07/2009)
+  1. PREQ2465's REQ12562 Byte-pair compression update
+
+Version 3.14.0
+================
+(Made by Zhi Dou, 21/07/2009)
+  1. PREQ2465's REQ12561 BUILDROM performance improvement
+
+Version 3.13.1
+================
+(Made by Zhi Dou, 21/07/2009)
+  1. DPDEF140655 Update of tools_romkit for DEF140419 need to be propagated to TCL as well   
+
+Version 3.13.0
+================
+(Made by Zhi Dou, 20/07/2009)
+  1. PREQ2131 Hardware Configuration Repository
+
+Version 3.12.38
+================
+(Made by Zhi Dou, 16/07/2009)
+  1. DPDEF140976 breaks textshell builds (RAM-ROM)
+

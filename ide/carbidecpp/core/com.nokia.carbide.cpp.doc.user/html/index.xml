@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.index"?>
+<index>
+
+<!-- A -->
+
+    <entry keyword="Active Build Configuration">
+       <topic href="html/concepts/build_configurations.htm"/>
+    </entry>
+
+    <entry keyword="ARM registers">
+       <topic href="html/concepts/registers.htm"/>
+	</entry>
+
+    <entry keyword="Attaching to a Symbian OS Process ">
+	   <topic href="html/tasks/processes/attach_to_process.htm" label="Attaching debugger to Symbian OS Process"/>
+	</entry>
+
+<!-- B -->
+
+	<entry keyword="Bitmaps (Importing)">
+	   <topic href="html/reference/wnd_import_bitmaps.htm"/>
+	</entry>
+
+	<entry keyword="Bluetooth setup">
+	   <topic href="html/tasks/trk/trk_connection_bluetooth.htm" label="TRK"/>
+	</entry>
+
+    <entry keyword="Breakpoints">
+       <topic href="html/concepts/breakpoints.htm"/>
+    </entry>
+
+	<entry keyword="breakpoints">
+	   <topic href="html/debugger/breakpoints/breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/conditional_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/exporting_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/importing_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/properties_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/resolving_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/temporary_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/toggling_breakpoints.htm"/>
+	   <topic href="html/debugger/breakpoints/viewing_breakpoints.htm"/>
+	</entry>
+
+	<!--
+    <entry keyword="Breakpoint templates">
+       <topic href="html/concepts/working_with_bp_templates.htm"/>
+    </entry>
+	-->
+
+	<entry keyword="Breakpoints view">
+	   <topic href="html/reference/view_breakpoints.htm"/>
+	</entry>
+
+	<entry keyword="build">
+	   <topic href="html/projects/launch/wiz_new_launch_config.htm"/>
+	   <topic href="html/projects/launch/page_main.htm"/>
+	</entry>
+
+	<entry keyword="Build preference panel">
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	</entry>
+
+    <entry keyword="Build All Configurations">
+       <topic href="html/reference/menus/build_all_targets.htm"/>
+    </entry>
+
+    <entry keyword="Build Target Only">
+		<topic href="html/reference/menus/build_target.htm" />
+    </entry>
+
+	<entry keyword="build configuration">
+	   <topic href="html/concepts/build_configurations.htm" />
+	   <topic href="html/tasks/projects/prj_new_build_config.htm" />
+	   <topic href="html/tasks/projects/prj_set_build_tgt.htm" />
+	</entry>
+
+    <entry keyword="Build PKG File">
+       <topic href="html/reference/menus/build_pkg_file.htm"/>
+    </entry>
+
+    <entry keyword="Build Symbian Component">
+       <topic href="html/reference/menus/build_symbian_comp.htm"/>
+    </entry>
+
+	<entry keyword="Building Projects">
+	   <topic href="html/tasks/projects/prj_build.htm"/>
+	</entry>
+
+	<entry keyword="Build Options Selection">
+	   <topic href="html/projects/launch/wiz_new_launch_config.htm"/>
+	   <topic href="html/projects/launch/page_main.htm"/>
+	</entry>
+
+
+<!-- C -->
+
+	<entry keyword="Carbide">
+       <topic label="build configurations"		href="html/reference/build_properties/prop_carb_build_config.htm"/>
+       <topic label="project settings"			href="html/reference/build_properties/prop_carb_project_settings.htm"/>
+	</entry>
+
+
+	<entry keyword="Carbide.c++ Debugger">
+	   <topic href="html/concepts/debugger_about.htm"/>
+	</entry>
+
+	<entry keyword="Carbide.c++ Perspective">
+	   <topic href="html/concepts/CarbidePerspective.html"/>
+	</entry>
+
+	<entry keyword="Carbide.c++ Portal">
+		<topic href="html/reference/view_carbide_portal.htm" />
+	</entry>
+
+	<entry keyword="clean">
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	   <topic href="html/tasks/projects/prj_clean.htm"/>
+       <topic href="html/reference/menus/clean_symbian_comp.htm"/>
+	</entry>
+
+
+	<entry keyword="Command-Line Tools">
+	   <topic href="html/tasks/projects/prj_build_cmd_line.htm"/>
+	</entry>
+
+	<entry keyword="Common Debugging Actions">
+	   <topic href="html/concepts/common_debug_actions.htm"/>
+	</entry>
+
+	<entry keyword="Compile Source">
+	   <topic href="html/reference/menus/compile_source.htm"/>
+	</entry>
+
+	<entry keyword="Concurrent Versions System">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+	<entry keyword="Connection pane">
+	   <topic href="html/reference/trk/view_remote_connection.htm"/>
+	</entry>
+
+	<entry keyword="Console view">
+	   <topic href="html/reference/view_console.htm"/>
+	</entry>
+
+	<entry keyword="Context menus">
+	   <topic href="html/concepts/contextual_menus.htm"/>
+	</entry>
+
+	<entry keyword="concurrent builds">
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	</entry>
+
+	<entry keyword="Controlling Program Execution">
+	   <topic href="html/concepts/working_with_programs.htm"/>
+	</entry>
+
+	<entry keyword="creating">
+       <topic label="MBM files"		href="html/tasks/Multi-BitmapFile.html" />
+	   <topic label="projects"		href="html/tasks/CreatingNewProjects.html"/>
+       <topic label="SIS files"		href="html/tasks/projects/prj_creating_sis_file.htm"/>
+       <topic href="html/qt_help/qt_creating_projs_01.htm"/>
+	</entry>
+
+	<entry keyword="CODA">
+		<topic href="html/concepts/trk.htm" label="Carbide On-device Debug Agent" />
+		<topic href="html/reference/trk/panel_trk_overview.htm"/>
+		<topic href="html/tasks/debugger/stop_mode_debug.htm" />
+	</entry>
+
+	<entry keyword="ClearCase">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+<!-- D -->
+
+	<!--
+	<entry keyword="Data Viewer Plug-ins">
+	   <topic href="html/concepts/data_viewer_plugins.htm"/>
+	</entry>
+	-->
+
+	<entry keyword="Debug Preferences">
+	   <topic href="html/reference/pref_carb_debugger.htm"/>
+	</entry>
+
+	<entry keyword="debugger">
+	   <topic href="html/concepts/working_with_data.htm" label="Working with Debugger Data"/>
+	   <topic href="html/reference/projects/launch/emulation.htm" label="Symbian OS Emulator Launch Configuration" />
+	   <topic href="html/reference/projects/launch/run_mode.htm" label="Symbian OS Device (Install SIS) Launch Configuration" />
+	   <topic href="html/reference/projects/launch/stop_mode.htm" label="Symbian OS Device Launch Configuration" />
+	   <topic href="html/reference/debugger_settings.htm" label="Debugger Settings"/>
+	</entry>
+
+	<entry keyword="debugging">
+	   <topic label="Debugging a Program" href="html/tasks/debugger/work_debug_act_debug.htm" />
+	   <topic label="Debugging Applications" href="html/tasks/projects/prj_debug_console.htm" />
+	   <topic href="html/tasks/projects/prj_debug_dlls.htm"/>
+	   <topic label="Debugging Multiple Projects" href="html/tasks/projects/prj_debug_multiple_projects.htm" />
+	   <topic href="html/tasks/start/carbide_debugging.htm" />
+	</entry>
+
+    <entry keyword="Debugging in ROM">
+       <topic href="html/tasks/projects/prj_debug_rom.htm"/>
+	</entry>
+
+	<entry keyword="debug agent">
+	   <topic href="html/concepts/trk.htm" label="On-device Debugging" />
+	   <topic href="html/tasks/trk/trk_overview.htm" label="CODA Overview" />
+	   <topic href="html/tasks/trk/trk_install_pcsuite.htm" label="PC Suite"/>
+	   <topic href="html/tasks/trk/trk_install_bluetooth.htm" label="Bluetooth"/>
+	   <topic href="html/tasks/trk/trk_install_usb.htm" label="USB"/>
+	</entry>
+
+	<entry keyword="Debug Perspective">
+	   <topic href="html/reference/perspective_debug.htm"/>
+	</entry>
+
+	<entry keyword="Debug view">
+	   <topic href="html/debugger/debug/viewing_debug.htm"/>
+	</entry>
+
+	<entry keyword="Debug window">
+	   <topic href="html/reference/wnd_debug_configuration.htm" label="Debug window" />
+	   <topic href="html/projects/launch/launch_configs_overview.htm" label="Launch Configuration Overview" />
+	   <topic href="html/projects/launch/wiz_new_launch_config.htm" label="New Launch Configuration" />
+	</entry>
+
+	<entry keyword="dependency tracking">
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	</entry>
+
+	<entry keyword="Disassembly view">
+	   <topic href="html/reference/view_disassembly.htm"/>
+	</entry>
+
+	<entry keyword="DLL">
+	   <topic href="html/tasks/projects/prj_debug_dlls.htm"/>
+	   <topic label="Simple DLL Example" 		href="html/concepts/SampleExampleProjectCreate.html"/>
+	</entry>
+
+<!-- E -->
+
+	<entry keyword="emulator">
+	   <topic href="html/projects/launch/emulation.htm"/>
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	</entry>
+
+    <entry keyword="Environment variables">
+       <topic href="html/reference/build_properties/pane_build_config_env.htm"/>
+	</entry>
+
+	<entry keyword="Executables">
+	   <topic href="html/projects/launch/page_executables.htm"/>
+	</entry>
+
+	<entry keyword="External Build">
+	   <topic href="html/concepts/ext_build_support.htm"/>
+	</entry>
+
+	<entry keyword="Expressions">
+	   <topic href="html/debugger/variables/adding_expressions.htm" />
+	   <topic href="html/debugger/variables/editing_expressions.htm" />
+	   <topic href="html/debugger/variables/viewing_expressions.htm" />
+	</entry>
+
+	<entry keyword="Expressions view">
+	   <topic href="html/reference/view_expressions.htm"/>
+	</entry>
+
+	<entry keyword="Executables view">
+	   <topic href="html/reference/view_executables.htm"/>
+	</entry>
+
+	<entry keyword="extensions">
+		<topic href="html/reference/view_carbide_portal.htm" />
+	</entry>
+
+
+<!-- F -->
+
+	<entry keyword="File Transfer Pane">
+	   <topic href="html/projects/launch/page_file_transfer.htm"/>
+	</entry>
+
+	<entry keyword="FPU Registers">
+	   <topic href="html/concepts/registers.htm"/>
+	</entry>
+
+	<entry keyword="Freezing DLL Projects">
+	   <topic href="html/tasks/projects/prj_freeze_def_file.htm"/>
+	</entry>
+
+<!-- G -->
+
+	<entry keyword="General Registers">
+	   <topic href="html/concepts/registers.htm"/>
+	</entry>
+
+	<entry keyword="Git">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+<!-- H -->
+
+	<entry keyword="Hints and Tips">
+	   <topic href="html/hints_tips.htm"/>
+	</entry>
+
+	<entry keyword="Host Registers">
+	   <topic href="html/concepts/registers.htm"/>
+	</entry>
+
+<!-- I -->
+
+	<entry keyword="Importing">
+	   <topic href="html/tasks/ImportingProjects.html"/>
+       <topic href="html/qt_help/qt_importing_projs_01.htm"/>
+	</entry>
+
+	<entry keyword="INF Editor">
+	   <topic href="html/reference/INF_Editor.html" />
+	   <topic href="html/reference/INF_Editor_exports.html" />
+	   <topic href="html/reference/INF_Editor_file.html" />
+	   <topic href="html/reference/INF_Editor_addedit_make.html" />
+	   <topic href="html/reference/INF_Editor_addedit_mmp.html" />
+	</entry>
+
+	<entry keyword="Installation Pane">
+	   <topic href="html/projects/launch/page_installation.htm"/>
+	</entry>
+
+<!-- J -->
+<!-- K -->
+<!-- L -->
+
+	<entry keyword="Launch Configuration">
+	   <topic href="html/concepts/launch_configuration.htm" label="Overview"/>
+	   <topic href="html/tasks/trk/trk_carbide_setup.htm" label="Launch Configuration Setup"/>
+	   <topic href="html/tasks/projects/prj_debug_config.htm" label="Creating"/>
+	</entry>
+
+	<entry keyword="Launch Configuration Filter">
+	   <topic href="html/reference/trk/panel_filter.htm"/>
+	</entry>
+
+
+<!-- M -->
+
+	<entry keyword="Main pane">
+	   <topic href="html/projects/launch/page_main.htm"/>
+	</entry>
+
+	<entry keyword="MBM Editor">
+       <topic href="html/reference/MBMEditor.html"/>
+	</entry>
+
+	<entry keyword="MBM File">
+       <topic href="html/concepts/MBMDefWizard.html"/>
+	</entry>
+
+	<entry keyword="memory">
+	   <topic href="html/concepts/working_with_memory.htm" />
+	   <topic href="html/tasks/memory/memory_monitor_adding.htm" label="Adding memory monitor"/>
+	   <topic href="html/tasks/memory/memory_monitor_removing.htm" label="Removing memory monitor"/>
+	   <topic href="html/tasks/memory/memory_rendering_adding.htm" label="Adding memory rendering pane"/>
+	   <topic href="html/tasks/memory/view_memory_show.htm" label="Opening memory view"/>
+	</entry>
+
+	<entry keyword="Memory Rendering Options">
+	   <topic href="html/reference/memory_rendering_options.htm"/>
+	</entry>
+
+	<entry keyword="Memory view">
+	   <topic href="html/reference/view_memory.htm"/>
+	</entry>
+
+	<entry keyword="Mercurial">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+	<entry keyword="menus">
+		<topic href="html/reference/menus/abld.htm" />
+
+	    <topic label="Symbian OS C++ Class" href="html/reference/new_symbian_class.htm" />
+	    <topic label="Symbian OS C++ Project" href="html/reference/new_symbian_project.htm" />
+
+	    <topic href="html/reference/menus/open_cmd_window.htm" />
+	    <topic href="html/reference/menus/open_explorer_window.htm" />
+
+		<topic href="html/tasks/projects/prj_preprocess.htm" />
+
+		<topic href="html/tasks/projects/prj_build.htm" />
+		<topic href="html/tasks/projects/prj_clean.htm" />
+
+		<topic href="html/reference/menus/build_all_targets.htm" />
+		<topic href="html/reference/menus/compile_source.htm" />
+
+		<topic href="html/reference/menus/build_symbian_comp.htm" />
+		<topic href="html/reference/menus/clean_symbian_comp.htm" />
+		<topic href="html/reference/menus/freeze_symbian_comp.htm" />
+
+		<topic href="html/reference/menus/build_pkg_file.htm" />
+		<topic href="html/reference/ROM_build_settings.html" />
+
+   		<topic href="html/reference/menus/freeze_exports.htm" />
+	</entry>
+
+
+	<entry keyword="MIF Editor">
+	   <topic href="html/reference/view_mifdef_editor.htm"/>
+	</entry>
+
+	<entry keyword="MMP Editor">
+	   <topic href="html/reference/MMP_Editor.html" label="MMP Editor" />
+	   <topic href="html/reference/MMP_Editor_sources.html" label="Sources tab"/>
+	   <topic href="html/reference/MMP_Editor_libraries.html" label="Libraries tab"/>
+	   <topic href="html/reference/MMP_Editor_options.html" label="Options tab"/>
+	   <topic href="html/reference/MMP_Editor_mmp_tab.html" label="MMP File tab"/>
+	   <topic href="html/reference/MMP_Editor_resource_block.html" label="Resource Block"/>
+	</entry>
+
+	<entry keyword="MMP Files">
+	   <topic href="html/concepts/mmpfiles.htm"/>
+	</entry>
+
+	<entry keyword="MMP Wizard">
+	   <topic href="html/reference/NewMMP_wizard.html"/>
+	</entry>
+
+	<entry keyword="Modify">
+	   <topic href="html/concepts/Modify.html"/>
+	</entry>
+
+	<entry keyword="Modifying Resources">
+	   <topic href="html/tasks/ModifyingResources.html"/>
+	</entry>
+
+	<entry keyword="Modules View">
+	   <topic href="html/reference/view_module.htm"/>
+	</entry>
+
+	<entry keyword="Multi-core Debugging">
+	   <topic href="html/concepts/work_mcore_debug.htm"/>
+	</entry>
+
+<!-- N -->
+
+	<entry keyword="New Connection">
+	   <topic href="html/reference/trk/wnd_new_connection_wizard.htm"/>
+	   <topic href="html/reference/trk/wnd_on_device_check_tab.htm"/>
+	   <topic href="html/reference/trk/wnd_new_conn_install_tab.htm"/>
+       <topic href="html/reference/trk/view_remote_connection.htm" />
+	</entry>
+
+<!-- O -->
+
+   <entry keyword="On-device Connections">
+   		<topic href="html/reference/trk/wnd_new_connection_wizard.htm" />
+     	<topic href="html/reference/trk/view_remote_connection.htm" />
+		<topic label="Editing connections"	href="html/reference/trk/wnd_new_conn_wiz_edit.htm"/>
+  		<topic href="html/reference/trk/exporting_remote_conns.htm" />
+	</entry>
+
+<!-- P -->
+
+	<entry keyword=".pkg file symbols">
+	   <topic href="html/concepts/symbols_pkg.htm"/>
+	</entry>
+
+	<entry keyword="PKG and SIS Files">
+	   <topic href="html/tasks/projects/working_with_sis_pkg_files.htm"/>
+	</entry>
+
+    <entry keyword="Platform Filtering Preferences">
+        <topic href="html/tasks/sdks/sdk_platform_filter.htm"/>
+    </entry>
+
+    <entry keyword="preferences">
+		<topic href="html/reference/pref_carb_build.htm" />
+		<topic href="html/reference/pref_carb_cpp.htm" />
+		<topic href="html/reference/pref_cpp_code_style.htm" />
+		<topic href="html/reference/pref_carb_debugger.htm" />
+		<topic href="html/tasks/sdks/sdk_platform_filter.htm" />
+	   <topic href="html/reference/pref_carb_symbian_sdk.htm" />
+		<topic href="html/reference/pref_carb_preprocess.htm" />
+		<topic href="html/reference/pref_carb_diagnostic_logs.htm" />
+    </entry>
+
+	<entry keyword="portal">
+		<topic href="html/reference/view_carbide_portal.htm" />
+	</entry>
+
+	<entry keyword="Processes">
+	   <topic href="html/tasks/processes/attach_to_process.htm" label="Attaching debugger to Symbian OS Process"/>
+	</entry>
+
+    <entry keyword="Projects">
+       <topic href="html/concepts/Projects.html" label="Projects" />
+       <topic href="html/qt_help/qt_creating_projs_01.htm"/>
+       <topic href="html/qt_help/qt_importing_projs_01.htm"/>
+	</entry>
+
+    <entry keyword="Project and File Properties">
+	   <topic href="html/reference/ProjectPreferences.html"/>
+	</entry>
+
+	<entry keyword="Project Dependencies">
+	   <topic href="html/tasks/projects/prj_build_multi_projects.htm"/>
+	</entry>
+
+    <entry keyword="Project Updater">
+	   <topic href="html/reference/olderproject_updater.html"/>
+	</entry>
+
+
+	<entry keyword="Perforce">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+<!-- Q -->
+
+    <entry keyword="Qt">
+       <topic href="html/qt_help/qt_creating_projs_01.htm"/>
+       <topic href="html/qt_help/qt_importing_projs_01.htm"/>
+       <topic href="html/qt_help/qt_perspectives.htm"/>
+       <topic href="html/qt_help/qt_pref_panel.htm"/>
+       <topic href="html/qt_help/qt_project_properties.htm"/>
+	</entry>
+
+<!-- R -->
+
+	<entry keyword="register">
+	   <topic href="html/concepts/registers.htm"/>
+	</entry>
+
+	<entry keyword="registers">
+	   <topic href="html/concepts/registers.htm" label="Overview"/>
+	   <topic href="html/tasks/registers/mem_reg_changing.htm" label="Changing Values"/>
+	   <topic href="html/tasks/registers/mem_reg_data_views.htm" label="Changing Data Views"/>
+	   <topic href="html/tasks/registers/mem_reg_open_wnd.htm" label="Opening Registers View"/>
+	   <topic href="html/tasks/registers/mem_reg_viewing.htm" label="Expanding Groups"/>
+	</entry>
+
+	<entry keyword="Registers View">
+	   <topic href="html/reference/view_registers.htm"/>
+	</entry>
+
+	<entry keyword="Restarting Debugger">
+	   <topic href="html/debugger/debug/cmds_resuming.htm"/>
+	</entry>
+
+	<entry keyword="Resuming Program Execution">
+	   <topic href="html/debugger/debug/cmds_resuming.htm"/>
+	</entry>
+
+	<entry keyword="Requirements">
+	   <topic href="html/tasks/start/carbide_requirements.htm"/>
+	</entry>
+
+	<entry keyword="Remote Connections view">
+	    <topic href="html/reference/trk/view_remote_connection.htm" />
+	</entry>
+
+	<entry keyword="ROM Build Settings">
+	   <topic href="html/reference/ROM_build_settings.html"/>
+	</entry>
+
+	<entry keyword="Running a Program">
+	   <topic href="html/debugger/debug/cmds_starting.htm"/>
+	</entry>
+
+
+<!-- S -->
+
+	<entry keyword="SDKs">
+	   <topic href="html/reference/pref_carb_symbian_sdk.htm" />
+	   <topic href="html/tasks/sdks/sdk_add.htm" />
+	   <topic href="html/tasks/sdks/sdk_search.htm" label="Searching"/>
+	   <topic href="html/tasks/sdks/sdk_view_properties.htm" label="Viewing Properties"/>
+       <topic href="html/qt_help/qt_pref_panel.htm"/>
+	</entry>
+
+	<entry keyword="Symbian SDKs">
+		<topic href="html/reference/pref_carb_symbian_sdk.htm" />
+		<topic href="html/qt_help/qt_pref_panel.htm"/>
+	</entry>
+
+	<entry keyword="SDK Support">
+	   <topic href="html/tasks/sdks/sdk_add.htm" />
+	   <topic href="html/tasks/WorkingwithSDKs.html"/>
+	</entry>
+
+	<entry keyword="SIS File">
+	   <topic href="html/tasks/start/carbide_deploying.htm" label="Uploading"/>
+	</entry>
+
+	<entry keyword="Starting the Debugger">
+	   <topic href="html/debugger/debug/cmds_starting.htm"/>
+	</entry>
+
+	<entry keyword="Step Into">
+	   <topic href="html/debugger/debug/cmds_stepping.htm"/>
+	</entry>
+
+	<entry keyword="Step Over">
+	   <topic href="html/debugger/debug/cmds_stepping.htm"/>
+	</entry>
+
+	<entry keyword="Step Return">
+	   <topic href="html/debugger/debug/cmds_stepping.htm"/>
+	</entry>
+
+	<entry keyword="Stop Debug Session">
+	   <topic href="html/debugger/debug/cmds_starting.htm"/>
+	</entry>
+
+	<entry keyword="Stop Mode Debugging">
+	   <topic href="html/tasks/debugger/stop_mode_debug_precond.htm" label="Stop Mode Debugging"/>
+	</entry>
+
+	<entry keyword="Subversive">
+	   <topic href="html/concepts/cvs.htm"/>
+	</entry>
+
+	<entry keyword="Symbian OS Classes">
+	   <topic href="html/tasks/projects/prj_adding_symbian_class.htm" label="Adding"/>
+	</entry>
+
+	<entry keyword="Symbian OS Data view">
+	   <topic label="Symbian OS Data view" 	href="html/reference/view_symbian_kernel.htm"/>
+	   <topic label="Setting Symbian OS Data View Refresh Rate" 	href="html/tasks/debugger/view_symbian_kernel_set.htm" />
+	</entry>
+
+    <entry keyword="Symbian OS SDKs">
+	   <topic href="html/reference/ProjectTypeandSDK.html"/>
+	</entry>
+
+    <entry keyword="Symbian Project Navigator">
+       <topic href="html/reference/view_sym_proj_nav.htm"/>
+    </entry>
+
+	<entry keyword="Symbol Hint">
+	   <topic href="html/concepts/symbol_hints.htm"/>
+	</entry>
+
+	<entry keyword="Symbolics Files">
+	   <topic href="html/concepts/symbolic_files_about.htm"/>
+	</entry>
+
+	<entry keyword="Symbian Build System">
+	   <topic href="html/concepts/sbsv2.htm" label="Symbian Build System" />
+	</entry>
+
+	<entry keyword="SBSv2">
+	   <topic href="html/concepts/sbsv2.htm" label="Symbian Build System" />
+	</entry>
+
+
+<!-- T -->
+
+	<entry keyword="templates">
+	   <topic href="html/concepts/templates.htm"/>
+	</entry>
+
+	<entry keyword="Terminate Program">
+	   <topic href="html/debugger/debug/cmds_starting.htm"/>
+	</entry>
+
+	<entry keyword="test components">
+	   <topic href="html/reference/pref_carb_build.htm"/>
+	</entry>
+
+	<entry keyword="Thread Breakpoint">
+	   <topic href="html/concepts/thread_cond_breakpoints.htm"/>
+	</entry>
+
+
+<!-- U -->
+
+	<entry keyword="updating">
+	   <topic label="Carbide.c++"	href="html/tasks/start/carbide_updating.htm"/>
+	   <topic label="projects"		href="html/reference/olderproject_updater.html"/>
+	</entry>
+
+	<entry keyword="USB setup">
+	   <topic href="html/tasks/trk/trk_connection_usb.htm" label="TRK"/>
+	</entry>
+
+<!-- V -->
+
+	<entry keyword="variables">
+	   <topic href="html/concepts/working_with_variables.htm" label="Working with Variables" />
+	   <topic href="html/debugger/variables/adding_variables.htm" />
+	   <topic href="html/debugger/variables/viewing_variables.htm" />
+	   <topic href="html/debugger/variables/variables.htm" />
+	</entry>
+
+	<entry keyword="Variables view">
+	   <topic href="html/reference/view_variables.htm"/>
+	</entry>
+
+	<entry keyword="views">
+		<topic href="html/reference/view_carbide_portal.htm" />
+		<topic href="html/reference/view_breakpoints.htm" />
+		<topic href="html/reference/view_console.htm" />
+		<topic href="html/debugger/debug/viewing_debug.htm" />
+		<topic href="html/reference/view_disassembly.htm" />
+		<topic href="html/reference/view_executables.htm" />
+		<topic href="html/reference/view_expressions.htm" />
+		<topic href="html/reference/view_memory.htm" />
+		<topic href="html/reference/view_mifdef_editor.htm" />
+		<topic href="html/reference/view_module.htm" />
+	    <topic href="html/reference/view_proj_explorer.htm" />
+		<topic href="html/reference/view_registers.htm" />
+	    <topic href="html/reference/trk/view_remote_connection.htm" />
+	    <topic href="html/reference/view_signals.htm" label="Symbols" />
+	    <topic href="html/reference/view_symbian_kernel.htm" label="Symbian OS Data" />
+	    <topic href="html/reference/view_sym_proj_nav.htm" />
+	    <topic href="html/reference/view_variables.htm" />
+	</entry>
+
+
+<!-- W -->
+
+	<entry keyword="watchpoints">
+	   <topic href="html/debugger/watchpoints/watchpoints.htm" />
+	   <topic href="html/debugger/watchpoints/setting_watchpoints.htm" />
+	   <topic href="html/debugger/watchpoints/status_watchpoints.htm" />
+	   <topic href="html/debugger/watchpoints/toggling_watchpoints.htm" />
+	</entry>
+
+    <entry keyword="workspaces">
+	   <topic href="html/concepts/workspaces.htm"/>
+	</entry>
+
+<!-- X -->
+
+	<entry keyword="x86 Exceptions Pane">
+	   <topic href="html/projects/launch/page_x86_exceptions.htm"/>
+	</entry>
+
+<!-- Y -->
+<!-- Z -->
+</index>

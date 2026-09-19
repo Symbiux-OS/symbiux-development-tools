@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : testing.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package framework -->
+<project name="internal.testing" xmlns:au="org.apache.ant.antunit" xmlns:hlm="http://www.nokia.com/helium"> 
+    <description>
+        Targets to test Helium itself.
+    </description>
+    
+    <!-- Runs all the unit testing targets. -->
+    <target name="unittest" depends="ant-unittest"/>
+        
+    <!-- Run Ant unit tests. -->
+    <target name="ant-unittest">
+        <mkdir dir="${helium.build.dir}/temp"/>
+        <mkdir dir="${helium.build.dir}/report/antunit"/>
+        <au:antunit>
+            <propertyset>
+                <propertyref name="cache.dir"/>
+                <propertyref name="synergy71.enabled"/>
+            </propertyset>
+            <fileset dir="${helium.dir}" includes="tools/**/test_*.ant.xml"/> 
+            <fileset dir="${helium.dir}" includes="extensions/*/tools/**/test_*.ant.xml"/>
+            <au:plainlistener/>
+            <hlm:antcoveragelistener outputfile="${helium.build.dir}/report/antunit/ant_coverage.txt"/>
+            <au:xmllistener toDir="${helium.build.dir}/report/antunit" logLevel="info" />
+        </au:antunit>
+    </target>
+    
+    <target name="antunit" depends="ant-unittest"/>
+
+</project>

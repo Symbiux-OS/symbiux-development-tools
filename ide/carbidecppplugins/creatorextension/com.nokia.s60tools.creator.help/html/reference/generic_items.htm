@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Generic component reference</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Generic component reference</h2>
+<p>The following fields are included for all component types in Creator Script Editor: </p>
+
+<table width="500" border="1" cellspacing="1" cellpadding="2">
+<colgroup>
+<col width="53*">
+<col width="146*"></colgroup>
+<tbody>
+<tr>
+<td><b>Amount</b> </td>
+<td><p>Defines how many entries of the selected component are created on the script. If this field is empty, the default is one entry. </p></td>
+</tr>
+<tr>
+<td><b>Set all values as random with length</b></td>
+<td><p>Defines how the S60 Creator tool will randomly pick the values for all items: </p><ul>
+<li><b>Default:</b> the typical length of an item, for example, the length of a contact's name. </li>
+<li><b>Maximum:</b> S60 Creator tool will generate as much data as allowed for a given component type. </li>
+<li><b>Custom length:</b> the value is show in the <b>Item value</b> field. You can add the custom length manually in the Item value field, or select from the <b>Mode</b> drop-down list.</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>The following table provides more information on specific handling of some fields. Note that it is important to enter data in the correct format, unless you use random values.</p>
+<p><b>Tip:</b> For additional guidance, follow the instructions available on the Creator component dialogs.</p>
+
+<table width="500" border="1" cellspacing="1" cellpadding="2">
+<colgroup>
+<col width="40*">
+<col width="159*"></colgroup>
+<tbody>
+<tr>
+<td><b>Date time</b></td>
+<td><p>In date and time fields, the data should be entered as:</p><ul>
+<li><i>YYYY-MM-DD</i> (for year-month-date), </li>
+<li><i>T</i> (a separator between date and time), </li>
+<li><i>HH:MM:SS</i> (for hour-minute-second). </li>
+</ul><p>For example: <i>2008-03-03T12:45:30</i></p></td>
+</tr>
+<tr>
+<td><b>Landmark</b></td>
+<td><p>For the geographical coordinates of the location, enter the numerical values in the following format: <i>-nn.nnnn - nn.nnnn</i>, which is used in XML. </p><ul>
+<li><b>Latitude:</b> positive value means North, negative value means South, and zero is the Equator. </li>
+<li><b>Longitude:</b> positive value means East, negative value means West, and zero is the Prime Meridian. </li>
+<li><b>Altitude:</b> zero point is the sea level. </li>
+</ul><p>For example: <i>139.9194 35.6361</i> </p></td>
+</tr>
+<tr>
+<td><b>Files</b></td>
+<td><ul>
+<li><b>Directory:</b> defines which types of files are created to the device. By default, the directory path is <i>c:\data</i>. To change the location, type the new directory here. </li>
+<li><b>Type:</b> defines the file format and identification for the file types created on the device. For example, in the case of the JPEG file format, three different identifications are possible: 200kB, 25kB and 500kB. For a list of supported file types in the current release, see the <a href="../release_notes.htm#features">Release Notes</a>. You can also add <b>DRM encryption</b> to files in the <b>Item type</b> field. <b>Note!</b> For the <b>Accumulated</b> and <b>Interval </b> fields, only the following format for duration is supported: <b>PnYnMnDTnHnMnS.</b> For example,  "P3Y6M4DT12H30M5S" represents a duration of "three years, six months, four days, twelve hours, thirty minutes, and five seconds".</li>
+<li>If you leave the <b>Type</b> field empty, an empty directory is created.
+</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h5>Related references</h5>
+<ul>
+<li><a href="contacts.htm">Contact components</a></li>
+<li><a href="messages.htm">Message components</a></li>
+<li><a href="calendar.htm">Calendar components</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2007-2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

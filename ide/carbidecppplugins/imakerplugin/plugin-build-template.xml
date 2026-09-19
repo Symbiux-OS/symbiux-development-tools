@@ -1,0 +1,99 @@
+<!--****************************************************************************
+ * Configuration tool plugin build template
+ * This ant pluging-build-template.xml will contain the common targets
+ * to build a eclipse plugin
+ ****************************************************************************-->
+ 
+<project name="${pluginName}" default="all">
+ 	<property file="../common.properties"/>
+  <property file="../${common.buildproperties}"/>
+  <property file="build.properties"/>
+  <property file="plugin.properties"/>
+  <fileset id="plugin-resources" dir="." includes="${bin.includes}"/>
+
+
+ <path id="project.class.path">
+    <!-- add lib jars to classpath -->
+    <fileset dir="${common.plugin-lib}" casesensitive="yes">
+      <include name="**/*.jar"/>
+    </fileset>
+    <!-- add also the generated Configuration Tool jars to classpath -->
+    <fileset dir="${common.plugin-dist}" casesensitive="yes">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <!-- Gets the svnversion with the svnversion command and stores the output to svnrevision. 
+       The target is executed only if the svnrevision has not been set. 
+       -->
+  <target name="get-svnversion" unless="common.svnversion">
+    <exec dir="." executable="svnversion" outputproperty="common.svnversion" />
+    <echo message="svnversion from svn command = ${common.svnversion}" />
+  </target>
+  <!-- Sets the buildate property if it has not been set by the common property file -->
+  <target name="get-builddate" unless="common.builddate">
+    <tstamp prefix="build"/>
+    <property name="common.builddate" value="${build.DSTAMP}"/>
+  </target>
+
+    <!-- generate a build property file -->
+  <target name="update-properties" depends="get-svnversion">
+    <tstamp prefix="build"/>
+    <echo file="${common.buildproperties}">
+    common.svnversion     =${svnrevision}
+    </echo>
+  <!-- replace the possible : characters because the do not work in filenames-->
+    <replace file="${common.buildproperties}" token=":"/>
+    <property file="${common.buildproperties}"/>
+  </target>
+
+
+  <!-- All target will clean and then commit all the build steps-->
+	<target name="all" depends="clean, build"/> 
+	
+	<!-- Build target will commit all the build steps and can be used for incremental 
+	building, because ant recognized changed files -->
+	<target name="build" depends="init, resource, compile, jar"/> 
+	
+  <target name="clean">
+    <delete dir="${common.plugin-target}" quiet="true" />
+  </target>
+
+  <target name="info">
+    <echoproperties/>
+  </target>    
+
+  <target name="init" depends="get-svnversion,get-builddate">
+    <mkdir dir="${common.plugin-target}/bin" />
+    <mkdir dir="${common.plugin-dist}" />
+  </target>
+    
+  <target name="resource" depends="init">
+    <copy todir="${common.plugin-target}/bin/">
+      <fileset refid="plugin-resources" /> 
+    </copy>
+    <manifest file="${common.plugin-target}/bin/META-INF/MANIFEST.MF" mode="update">
+    	<attribute name="Bundle-FOO" value="${common.plugin-version}"/>
+    	<attribute name="Bundle-Version" value="${common.plugin-version}"/>
+    	<attribute name="Bundle-Date" value="${common.builddate}"/>
+    	<attribute name="Bundle-RepositoryVersion" value="${common.svnversion}"/>
+    </manifest>
+    
+  </target>
+
+  <target name="compile" depends="init"
+    description="compile the source">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${source..}" destdir="${common.plugin-target}/bin">
+      <classpath refid="project.class.path"/>
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile,resource">
+  	<jar jarfile="${common.plugin-dist}/${pluginName}_${common.plugin-version}.jar" 
+         basedir="${common.plugin-target}/bin"
+         manifest="${common.plugin-target}/bin/META-INF/MANIFEST.MF">
+    </jar>
+  </target>
+    
+</project>

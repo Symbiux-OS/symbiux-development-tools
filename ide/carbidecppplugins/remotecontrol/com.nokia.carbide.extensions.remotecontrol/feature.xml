@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.nokia.carbide.extensions.remotecontrol"
+      label="Carbide.c++ Extensions - Remote Control"
+      version="1.5.0.qualifier"
+      provider-name="Nokia"
+      plugin="com.nokia.s60tools.remotecontrol">
+
+   <description>
+      Remote Control is a tool for using phones remotely by commanding HTI framework in device.
+   </description>
+
+   <copyright>
+      Copyright (c) 2010 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved. License:: &quot;http://www.eclipse.org/legal/epl-v10.html&quot;.
+   </copyright>
+
+   <license url="license.txt">
+      Copyright (c) 2010 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of &quot;Eclipse Public License v1.0&quot;
+which accompanies this distribution, and is available
+at the URL &quot;http://www.eclipse.org/legal/epl-v10.html&quot;.
+   </license>
+
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import feature="com.nokia.s60tools.extensions.framework"/>
+      <import feature="com.nokia.carbide.extensions.hticonnection" version="1.4.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="com.nokia.s60tools.remotecontrol"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.nokia.s60tools.remotecontrol.help"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

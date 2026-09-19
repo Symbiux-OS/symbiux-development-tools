@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Utilities
+Bundle-SymbolicName: com.nokia.s60tools.util
+Bundle-Version: 1.9.0.qualifier
+Bundle-Activator: com.nokia.s60tools.util.internal.UtilPlugin
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui.console,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.core.resources,
+ org.eclipse.cdt.core;bundle-version="5.0.1",
+ com.nokia.carbide.cpp.project.core,
+ com.nokia.carbide.cpp.sdk.core,
+ com.nokia.carbide.cdt.builder
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.s60tools.util.cmdline,
+ com.nokia.s60tools.util.console,
+ com.nokia.s60tools.util.debug,
+ com.nokia.s60tools.util.exceptions,
+ com.nokia.s60tools.util.python,
+ com.nokia.s60tools.util.resource,
+ com.nokia.s60tools.util.sourcecode,
+ com.nokia.s60tools.util.xml
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

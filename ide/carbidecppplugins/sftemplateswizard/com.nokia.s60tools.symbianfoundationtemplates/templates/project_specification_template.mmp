@@ -1,0 +1,105 @@
+/*
+* ============================================================================
+*  Name        : ?filename.mmp
+*  Part of     : ?Subsystem_name / ?Module_name
+*  Description : Project definition file for project ?myapp
+*  Version     : %version: %
+*
+*  Copyright © ?year-?year ?Company_copyright.
+*  All rights reserved.
+*  This component and the accompanying materials are made available
+*  under the terms of the License "?License"
+*  which accompanies this distribution, and is available
+*  at the URL "?LicenseUrl".
+*
+*  Initial Contributors:
+*  ?Company_name - initial contribution.
+*
+*  Contributors:
+*  ?Company_name
+* ============================================================================
+* Template version: 4.1
+*/
+
+*** INSTRUCTIONS TO THE TEMPLATE USER:
+
+*** This template follows the Symbian Foundation coding conventions.
+*** Remove all unneeded declarations and definitions before checking 
+*** the file in!  Also remove the template's usage instructions, that is, 
+*** everything that begins with "***".
+
+*** The copyright years should be < the year of the file's creation >
+*** - < the year of the file's latest update >.
+
+*** Words that begin with "?" are for you to replace with your own
+*** identifiers, filenames, or comments.
+
+*** To support building on Linux, use only forward slashes in include
+*** directives.  Also, all filenames and pathnames must be completely
+*** in lowercase.
+
+*** A line should not end with a backslash (\).  If it is absolutely
+*** necessary to have a line end in a backslash, add a comment after
+*** it, or some versions of the build system might think it's a
+*** continuing line.
+
+
+#include <platform_paths.hrh>
+#include <data_caging_paths.hrh>
+
+TARGET                  ?target_name
+TARGETTYPE              ?target_type
+UID                     0x?uid2 0x?uid3
+
+CAPABILITY              ?capabilities
+VENDORID                VID_DEFAULT
+
+SOURCEPATH              ../src
+SOURCE                  ?source_file
+SOURCE                  ?source_file_2
+
+START RESOURCE          ?resource_file
+HEADER
+TARGETPATH              ?target_path
+*** Uncomment LANG SC below if and only if the resource file needs localisation
+// LANG                 SC
+END // RESOURCE
+
+USERINCLUDE             ?user_include_directory
+USERINCLUDE             ?user_include_directory_2
+
+// Select one, only one, of the following layer specific include macros, which
+// are specified in the /epoc32/include/platform_paths.hrh.
+// It should be the layername to which your component belongs to.
+//APP_LAYER_SYSTEMINCLUDE
+//MW_LAYER_SYSTEMINCLUDE
+//OS_LAYER_SYSTEMINCLUDE
+
+// Note: 
+// The only other SYSTEMINCLUDE should you shall add are Symbian specific ones.
+// If there is a S60 header in the subdirectory then that should be
+// added into the include statements (like #include <phonebook/header.h>)
+//SYSTEMINCLUDE           /epoc32/include/ecom
+//SYSTEMINCLUDE           ?system_include_directory
+
+LIBRARY                 ?library_name
+LIBRARY                 ?library_name_2
+
+*** Other possible keywords:
+
+START WINS
+?wins_specific_information
+END
+
+START MARM
+?marm_specific_information
+END
+
+DEFFILE                 ?deffilename
+
+START RESOURCE          ?resource_reg.rss
+// Do not change the UID 10003a3f below.
+TARGETPATH              /private/10003a3f/apps
+END
+
+MACRO                   ?macro_name

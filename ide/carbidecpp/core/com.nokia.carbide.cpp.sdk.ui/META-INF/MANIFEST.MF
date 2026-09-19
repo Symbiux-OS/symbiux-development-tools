@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SDK UI
+Bundle-SymbolicName: com.nokia.carbide.cpp.sdk.ui; singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: com.nokia.carbide.cpp.sdk.ui.SDKUIPlugin
+Bundle-Vendor: Nokia
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ com.nokia.carbide.cpp.sdk.core,
+ com.nokia.carbide.cpp.ui,
+ com.nokia.carbide.templatewizard,
+ com.nokia.cpp.utils.core,
+ com.nokia.cpp.utils.ui,
+ com.nokia.carbide.discovery.ui;bundle-version="1.0.0",
+ com.nokia.carbide.remoteConnections;bundle-version="3.0.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.carbide.cpp.internal.api.sdk.ui,
+ com.nokia.carbide.cpp.sdk.ui.shared
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

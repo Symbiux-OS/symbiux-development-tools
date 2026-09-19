@@ -1,0 +1,4 @@
+syntax: regexp
+^[\w\./]*/bin/
+.*/Thumbs.db
+.*\.DS_Store

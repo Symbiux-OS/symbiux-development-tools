@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Tasks">
+	
+	<!-- Enter topic entries here for Tasks section of help -->
+	
+	<topic label="Managing preferences" href="html/tasks/taskPreferences.html#create" />
+	<topic label="Use previously saved preferences" href="html/tasks/build_image.html#select_prev" />
+	<topic label="Build a ROM image" href="html/tasks/build_image.html#build" />
+
+	
+</toc>

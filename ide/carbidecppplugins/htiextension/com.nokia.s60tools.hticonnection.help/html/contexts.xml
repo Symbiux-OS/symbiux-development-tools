@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+
+ <context id="HTI_CONNECTION_MAIN_VIEW">
+  <description>HTI Connection's Main View</description>
+  <topic label="Basic walk-through" href="html/gettingstarted/walk_through.htm" />
+  <topic label="Setting HTI Connection preferences" href="html/tasks/set_preferences.htm" />    	
+  <topic label="Setting up USB serial connection" href="html/tasks/comm_usb.htm" />
+  <topic label="Setting up Bluetooth connection" href="html/tasks/comm_bt.htm" />
+  <topic label="Toolbar" href="html/reference/toolbar.htm" />
+  <topic label="Troubleshooting" href="html/reference/troubleshooting.htm" />
+ </context>
+ 
+ <context id="HTI_CONNECTION_PREFERENCES">
+  <description>HTI Connection's preferences</description>
+  <topic label="Setting HTI Connection preferences" href="html/tasks/set_preferences.htm" />
+  <topic label="Setting up USB serial connection" href="html/tasks/comm_usb.htm" />
+  <topic label="Setting up Bluetooth connection" href="html/tasks/comm_bt.htm" />
+  <topic label="Troubleshooting" href="html/reference/troubleshooting.htm" /> 	
+ </context>
+ 
+ <context id="HTI_CONNECTION_ERROR_MESSAGE">
+  <description>Connection problems</description>
+  <topic label="Troubleshooting" href="html/reference/troubleshooting.htm" /> 	
+  <topic label="Basic walk-through" href="html/gettingstarted/walk_through.htm" />
+  <topic label="Setting HTI Connection preferences" href="html/tasks/set_preferences.htm" />
+  <topic label="Setting up USB serial connection" href="html/tasks/comm_usb.htm" />
+  <topic label="Setting up Bluetooth connection" href="html/tasks/comm_bt.htm" />
+ </context>
+ 
+</contexts>

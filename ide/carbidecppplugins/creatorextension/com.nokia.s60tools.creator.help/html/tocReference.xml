@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Reference">
+	
+	<!-- Enter topic entries here for References section of help -->
+	
+	<topic label="Generic component reference" href="html/reference/generic_items.htm" />
+	<topic label="Contact components" href="html/reference/contacts.htm" />
+	<topic label="Message components" href="html/reference/messages.htm" />
+	<topic label="Calendar components" href="html/reference/calendar.htm" />
+	
+</toc>

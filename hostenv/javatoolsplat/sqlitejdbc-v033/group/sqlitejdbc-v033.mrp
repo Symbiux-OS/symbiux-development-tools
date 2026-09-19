@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_sqlitejdbc-v033
+
+source /src/tools/dev/hostenv/javatoolsplat/sqlitejdbc-v033
+
+exports /src/tools/dev/hostenv/javatoolsplat/sqlitejdbc-v033/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/sqlitejdbc-v033/group/release.txt

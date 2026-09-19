@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Generic Project Builder and Project Natures  -->		
+ 	
+<!-- Widget Project Nature -->	
+ <extension
+       id="WidgetProjectNature"
+       point="org.eclipse.core.resources.natures">
+    <runtime>
+       <run class="org.symbian.tools.wrttools.WidgetProjectNature"/>
+    </runtime>
+ </extension> 
+ 
+<!-- Widget Project Nature Images -->
+        <extension
+              point="org.eclipse.ui.ide.projectNatureImages">
+           <image
+                 icon="icons/WRT_main_16.png"
+                 id="org.symbian.tools.wrttools.natureImage"
+                 natureId="org.symbian.tools.wrttools.WidgetProjectNature">
+           </image>
+        </extension>
+        
+<!-- Web Runtime Preferences --> 
+ <extension
+    point="org.eclipse.core.runtime.preferences">
+    <initializer
+          class="org.symbian.tools.wrttools.core.WrtIdeCorePreferences">
+    </initializer>
+ </extension>
+
+<!-- WRT Tool Integration (Package, Validate, Include, Exclude Settings)-->
+ <extension	
+          point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IResource"            
+            id="org.symbian.tools.wrttools.widget.wrttool.packageoptions">
+         <visibility>
+            <not>
+               <or>
+               <objectState name="persistentProperty" value="org.symbian.tools.wrttools.core.packager.exclude"/>
+			   <objectState name="extension" value="plist"/>
+			   <objectClass name="org.eclipse.core.resources.IProject"/>
+			   </or>
+            </not>
+         </visibility>
+     	 <filter
+         	name="projectNature"
+         	value="org.symbian.tools.wrttools.WidgetProjectNature"/>           
+         <action
+             class="org.symbian.tools.wrttools.core.packager.ExcludeFileAction"
+             icon="icons/exclude_archive.gif"
+             id="org.symbian.tools.wrttools.widget.wrttool.packageoptions.ExcludeFileAction"
+             label="Exclude From Archive"
+             menubarPath="org.symbian.tools.wrttools.contextMenuGroupMarker"> 
+         </action>  
+      </objectContribution>    
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IResource"            
+            id="org.symbian.tools.wrttools.widget.wrttool.packageoptions">
+      <visibility>
+        <and>
+	        <not>
+	        	<objectState name="extension" value="wgz"/>
+	        </not>
+	        <and>
+	        	<objectState name="persistentProperty" value="org.symbian.tools.wrttools.core.packager.exclude"/>
+	        	<objectState name="projectNature" value="org.symbian.tools.wrttools.WidgetProjectNature"/>
+	        </and>
+        </and>
+       </visibility>
+       <action
+             class="org.symbian.tools.wrttools.core.packager.IncludeFileAction"
+             icon="icons/include_archive.gif"
+             id="org.symbian.tools.wrttools.widget.wrttool.packageoptions.IncludeFileAction"
+             label="Include in Archive"
+             menubarPath="org.symbian.tools.wrttools.contextMenuGroupMarker"> 
+      </action>  
+    </objectContribution>
+   </extension>  
+
+<!-- WRT Project Templates -->
+	
+<!-- Import Wizard -->
+	<extension point="org.eclipse.ui.importWizards">
+		<wizard category="org.symbian.tools.tmw.import"
+			class="org.symbian.tools.wrttools.wizards.projectimport.WrtProjectsImportWizard"
+			icon="icons/import_aptana_project.gif" id="org.symbian.tools.wrttools.import.projectImport"
+			name="Existing Mobile Web Projects into Workspace">
+     <description>
+        Import WRT project created in Aptana, Adobe Dreamweaver or WRT IDE
+     </description>
+		</wizard>
+	
+    </extension>
+	
+<!-- WRT Content Descriptor (.plist) file -->
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type base-type="org.eclipse.core.runtime.xml"
+			file-extensions="plist" id="org.symbian.tools.wrttools.contenttype.plist"
+			name="WebRuntime Descriptor File" priority="normal">
+		</content-type>
+	</extension>
+	
+ <extension
+       point="org.eclipse.wst.jsdt.core.JsGlobalScopeContainerInitializer">
+    <JsGlobalScopeContainerInitializer
+       class="org.symbian.tools.wrttools.core.libraries.WrtLibInitializer"
+       id="org.symbian.wrt">
+    </JsGlobalScopeContainerInitializer>
+ </extension>
+ <extension
+        point="org.eclipse.wst.jsdt.ui.JsGlobalScopeContainerPage">
+    <JsGlobalScopeContainerPage
+            name="Tools for Mobile Web"
+            class="org.symbian.tools.wrttools.wizards.WrtLibraryWizardPage"
+            id="org.symbian.wrt">
+    </JsGlobalScopeContainerPage>    
+  </extension>
+ <extension
+       id="org.symbian.tools.wrttools.core.plistvalidator"
+       name="WRT Application Descriptor Validator"
+       point="org.eclipse.wst.validation.validatorV2">
+    <validator
+          build="true"
+          class="org.symbian.tools.wrttools.core.internal.validation.WrtApplicationValidator"
+          manual="true"
+          markerId="org.symbian.tools.wrttools.core.cssValidationMarker"
+          version="0.0.1">
+       <include>
+          <rules>
+             <projectNature
+                   id="org.symbian.tools.wrttools.WidgetProjectNature">
+             </projectNature>
+             <facet
+                   id="tmw.core">
+             </facet>
+          </rules>
+       </include>
+    </validator>
+ </extension>
+ <extension
+       point="org.eclipse.ui.keywords">
+    <keyword
+          id="org.symbian.tools.wrttools.wrtwords"
+          label="wrt, webruntime, web runtime, cwrt widget">
+    </keyword>
+ </extension>
+ <extension
+       id="org.symbian.tools.wrttools.platformservices"
+       name="Platform Services Inferrence Support"
+       point="org.eclipse.wst.jsdt.core.inferrenceSupport">
+    <inferenceProvider
+          class="org.symbian.tools.wrttools.core.libraries.PlatformServicesTypeProvider">
+    </inferenceProvider>
+ </extension>
+ <extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          locationURI="toolbar:org.eclipse.ui.main.toolbar">
+       <toolbar
+             id="org.symbian.tools.wrttools">
+          <command
+                commandId="org.symbian.tools.tmw.commands.deploy"
+                icon="icons/deploy_widget.gif"
+                id="org.symbian.tools.wrttools.toolbars.deploy">
+          </command>
+       </toolbar>
+    </menuContribution>
+    <menuContribution
+          locationURI="menu:project?after=additions">
+       <separator
+             name="org.symbian.tools.wrttools.beginwert"
+             visible="true">
+       </separator>
+       <separator
+             name="org.symbian.tools.wrttools.deploypackage"
+             visible="true">
+       </separator>
+       <command
+             commandId="org.symbian.tools.tmw.commands.deploy"
+             icon="icons/deploy_widget.gif"
+             id="org.symbian.tools.wrttools.toolbars.deploy">
+       </command>
+       <separator
+             name="org.symbian.tools.wrttools.endwrt"
+             visible="true">
+       </separator>
+    </menuContribution>
+    <menuContribution
+          locationURI="popup:org.eclipse.ui.popup.any?after=sourceMenuId">
+       <separator
+             name="org.symbian.tools.wrttools.beginwert"
+             visible="true">
+       </separator>
+       <command
+             commandId="org.symbian.tools.tmw.commands.deploy"
+             icon="icons/deploy_widget.gif"
+             id="org.symbian.tools.wrttools.toolbars.deploy">
+          <visibleWhen>
+             <and>
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IProject">
+                   </adapt>
+                </iterate>
+                <count
+                      value="1">
+                </count>
+             </and>
+          </visibleWhen>
+       </command>
+       <separator
+             name="org.symbian.tools.wrttools.endwrt"
+             visible="true">
+       </separator>
+    </menuContribution>
+ </extension>
+ <extension
+       point="org.eclipse.ui.decorators">
+    <decorator
+          adaptable="true"
+          class="org.symbian.tools.wrttools.navigator.PackagingInformationDecorator"
+          icon="icons/main16.gif"
+          id="org.symbian.tools.wrttools.packagingDeclarator"
+          label="Mobile Web Packaging Information"
+          lightweight="true"
+          location="TOP_RIGHT"
+          state="true">
+       <enablement>
+       	<objectClass
+              name="org.eclipse.core.resources.IResource">
+       	</objectClass>
+       </enablement>
+    </decorator>
+ </extension>
+ <extension
+       id="org.symbian.tools.wrttools.excluded"
+       name="Excluded from Mobile Web packaging marker"
+       point="org.eclipse.core.resources.markers">
+    <persistent
+          value="true">
+    </persistent>
+ </extension>
+ <extension
+       point="org.eclipse.ltk.core.refactoring.renameParticipants">
+    <renameParticipant
+          class="org.symbian.tools.wrttools.core.project.ProjectRenameParticipant"
+          id="org.symbian.tools.wrttools.renameParticipant1"
+          name="WRT Projects Rename Participant">
+    <enablement>
+      <with variable="affectedNatures">
+        <iterate operator="or">
+          <equals value="org.symbian.tools.wrttools.WidgetProjectNature"/>
+        </iterate>
+      </with>
+      <with variable="element">
+         <adapt
+               type="org.eclipse.core.resources.IProject">
+         </adapt>
+      </with>
+    </enablement>
+          
+    </renameParticipant>
+ </extension>
+ <extension
+       point="org.eclipse.ui.editors.templates">
+    <include
+          file="templates/default-templates.xml">
+    </include>
+ </extension>
+ <extension
+       point="org.eclipse.wst.common.snippets.SnippetContributions">
+    <category
+          description="WRT-specific JavaScript snippets"
+          id="org.symbian.tools.wrttools.wrtsnippets"
+          label="Symbian Web Runtime"
+          smallicon="icons/main16.gif"
+          contenttypes="org.eclipse.wst.jsdt.core.jsSource">
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Retrieves list of the contacts"
+             id="org.symbian.tools.wrttools.contacts"
+             label="Get contacts">
+          <content>
+var contactService = device.getServiceObject("Service.Contact",
+			"IDataSource");
+	var result = contactService.IDataSource.GetList(
+			{ Type : "Contact", Sort : { Order : "Ascending" } }
+			);
+	if (result.ErrorCode == 0) {
+		var contacts = result.ReturnValue;
+		for ( var contact = contacts.getNext(); contact != null; contact = contacts.getNext()) {
+			var firstName = contact.FirstName;
+			var lastName = contact.LastName;
+			var mobile = contact.MobilePhoneGen;
+			var landPhone = contact.LandPhoneGen;
+			var jobTitle = contact.JobTitle;
+			// Consult WRT documentation for other possible fields
+			// TODO Process contact information
+		}
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Cannot retrieve contacts list
+	}
+          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="This function can be used as a callback in GetLocation and Trace calls to location service."
+             id="org.symbian.tools.wrttools.location"
+             label="Location callback">
+          <content>
+// This function can be passed as a callback to locationService.ILocation
+// GetLocation or Trace method
+function locationUpdated(transactionId, code, result) {
+	if (result.ErrorCode == 0) {
+		var longitude = result.ReturnValue.Longitude; // Longitude estimate in degrees. The value range is [+180, -180].
+		var latitude = result.ReturnValue.Latitude; // Latitude estimate in degrees. The value range is [+90, -90].
+		var altitude = result.ReturnValue.Altitude; // Elevation estimate in meters relative to the WGS 84 datum.
+		var satelliteNumView = result.ReturnValue.SatelliteNumView; // Number of satellites currently in view.
+		var satelliteNumViewUsed = result.ReturnValue.SatelliteNumViewUsed; // Number of satellites used to obtain the location fix.
+		var horizontalSpeed = result.ReturnValue.HorizontalSpeed; // Horizontal speed estimate in meters per second. This is the speed of the device at the time the location fix was obtained.
+		var horizontalSpeedError = result.ReturnValue.HorizontalSpeedError; // Horizontal speed error in meters per second.
+		var trueCourse = result.ReturnValue.TrueCourse; // Current direction of movement in degrees in relation to true north.
+		var trueCourseError = result.ReturnValue.TrueCourseError; // TrueCourse error in degrees.
+		var magneticHeading = result.ReturnValue.MagneticHeading; // Current direction of movement in degrees in relation to magnetic north.
+		var magneticHeadingError = result.ReturnValue.MagneticHeadingError; // MagneticHeading error in degrees.
+		var heading = result.ReturnValue.Heading; // Current instantaneous direction of movement in degrees in relation to true north.
+		var headingError = result.ReturnValue.HeadingError; // Heading error in degrees.
+		var magneticCourse = result.ReturnValue.MagneticCourse; // Current instantaneous direction of movement in degrees in relation to magnetic north.
+		var magneticCourseError = result.ReturnValue.MagneticCourseError; // MagneticCourse error in degrees
+		// TODO Location information was received
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Failed to retrieve location information
+	}
+}          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Sends SMS message"
+             id="org.symbian.tools.wrttools.dial"
+             label="Send SMS message">
+          <content>
+var phoneNumber = "+6505551214";
+	var text = "Sent from WRT application";
+	var messaging = device.getServiceObject("Service.Messaging", "IMessaging");
+	var result = messaging.IMessaging.Send({ MessageType : "SMS", To : phoneNumber, BodyText : text });
+	if (result.ErrorCode != null) {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Cannot send SMS message
+	}
+          </content>
+       </item>
+       
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Use this code to track battery status"
+             id="org.symbian.tools.wrttools.battery"
+             label="Watch battery status">
+          <content>
+function watchBatteryNotifications() {
+	var sysInfo = device.getServiceObject("Service.SysInfo", "ISysInfo");
+	var result = sysInfo.ISysInfo.GetNotification( {
+		Entity : "Battery",
+		Key : "BatteryStrength"
+	}, batteryUpdated);
+	if (result.ErrorCode == 0) {
+		var transactionId = result.TransactionID;
+		// TODO Use this ID to cancel notifications
+	} else {
+		var message = result.ErrorMessage;
+		// TODO Process error
+	}
+}
+
+function batteryUpdated(tId, code, result) {
+	if (result.ErrorCode == 0) {
+		var batteryStatus = result.ReturnValue.Status;
+		// TODO Process battery charge level
+	} else {
+		var message = result.ErrorMessage;
+		// TODO Process error
+	}
+}
+          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Use this code to track acceleration, orientation or rotation changes"
+             id="org.symbian.tools.wrttools.sensor"
+             label="Watch sensor notifications">
+          <content>
+// Call this function to add a callback that will be notified of orientation changes
+function watchSensorNotifications() {
+	var sensors = device.getServiceObject("Service.Sensor", "ISensor");
+	var SensorParams = {
+		SearchCriterion : "Orientation" // TODO Possible values (one of):
+			// SearchCriterion : "All"
+			// SearchCriterion : "AccelerometerAxis"
+			// SearchCriterion : "AccelerometerDoubleTapping"
+			// SearchCriterion : "Rotation"
+	};
+	var result = sensors.ISensor.FindSensorChannel(SensorParams);
+
+	if (result.ErrorCode != 0) {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Handle error
+		return null;
+	}
+    // TODO Function named "sensorCallback" will be called when device orientation changes. This function should be created. 
+	var result2 = sensors.ISensor.RegisterForNotification(
+			{ ChannelInfoMap : result.ReturnValue[0], 
+				ListeningType : "ChannelData" }, sensorCallback);
+	if (result.ErrorCode == 0) {
+		var transactionId = result.TransactionID;
+		// TODO Use this transaction ID to cancel notifications when watching orientation is no longer needed
+		return transactionId;
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Handle error
+		return null;
+	}
+}
+
+// This function can be passed as callback to 
+// sensors.ISensor.RegisterForNotification method
+function sensorCallback(transactionId, code, result) {
+	if (result.ErrorCode == 0) {
+		// TODO Process notification
+		var dataType = result.ReturnValue.DataType; // One of: "AxisData", "DoubleTappingData", "OrientationData" or "RotationData"
+		var orientation = result.ReturnValue.DeviceOrientation; // Orientation
+		// var xAxis = result.ReturnValue.XAxisData; // Accelerometer
+		// var yAxis = result.ReturnValue.YAxisData; // Accelerometer
+		// var zAxis = result.ReturnValue.ZAxisData; // Accelerometer
+		// var direction = result.ReturnValue.DeviceDirection; // Accelerometer double tapping
+		// var xRotation = result.ReturnValue.XRotation; // Rotation
+		// var yRotation = result.ReturnValue.YRotation; // Rotation
+		// var zRotation = result.ReturnValue.ZRotation; // Rotation
+	} else {
+		var errorCode = result.ErrorCode;
+		var errorMessage = result.ErrorMessage;
+		// TODO Handle error
+	}
+}
+
+         </content>
+       </item>
+    </category>
+    <category
+          description="Snippets using PhoneGap APIs"
+          id="org.symbian.tools.wrttools.phonegapsnippets"
+          label="PhoneGap"
+          smallicon="icons/phonegap.png">
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Accepts accerelometer data"
+             id="org.symbian.tools.wrttools.phonegap.accererometer"
+             label="Accelerometer callback">
+          <content>
+// This callback can be passed as a successCallback argument to  
+// navigator.accelerometer getCurrentAcceleration and watchAcceleration methods
+function updateAcceleration(accel) {
+	var x = accel.x;
+	var y = accel.y;
+	var z = accel.z;
+	
+	// TODO process the data
+}
+          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Accepts contacts data"
+             id="org.symbian.tools.wrttools.phonegap.contacts"
+             label="Contacts callback">
+          <content>
+// This method can be passed as a successCallback argument to
+// navigator.contacts.find method
+function displayContacts(contacts) {
+	for (var i=0; i &lt; contacts.length; i++) {
+		var contact = contacts[i];
+		var name = contact.name.formatted;
+		var phones = contact.name.phone; // Array of phone numbers
+		var name = contact.name.address;
+		
+		// TODO Insert your code here
+	}
+}
+          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Accepts location data"
+             id="org.symbian.tools.wrttools.phonegap.location"
+             label="Location callback">
+          <content>
+// This method can be passed as a successCallback argument to 
+// navigator.geolocation getCurrentPosition or watchPosition methods
+function updateLocation(position) {
+	var pt = position.coords;
+	var latitude = pt.latitude;
+	var longitude = pt.longitude;
+	var altitude = pt.altitude;
+	var heading = pt.heading;
+	var speed = pt.speed;
+
+	// TODO Insert your code here
+}
+          </content>
+       </item>
+       <item
+             class="org.symbian.tools.wrttools.util.SnippetInsertion"
+             description="Accepts orientation data"
+             id="org.symbian.tools.wrttools.phonegap.orientation"
+             label="Orientation callback">
+          <content>
+// This method can be passed as a successCallback argument to 
+// navigator.orientation getCurrentOrientation or watchOrientation methods
+function updateOrientation(orientation) {
+	switch (orientation) {
+		case DisplayOrientation.PORTRAIT: break;
+		case DisplayOrientation.REVERSE_PORTRAIT: break;
+		case DisplayOrientation.LANDSCAPE_LEFT_UP: break;
+		case DisplayOrientation.LANDSCAPE_RIGHT_UP: break;
+		case DisplayOrientation.FACE_UP: break;
+		case DisplayOrientation.FACE_DOWN: break;
+	}
+
+	// TODO Insert your code here
+}
+          </content>
+       </item>
+    </category>
+ </extension>
+ <extension
+       point="org.symbian.tools.tmw.core.projectProvider">
+    <projectProvider
+          class="org.symbian.tools.wrttools.core.project.WRTIDEProjectProvider">
+       <enablement>
+          <adapt
+                type="org.eclipse.core.resources.IProject">
+             <test
+                   property="org.eclipse.core.resources.projectNature"
+                   value="org.symbian.tools.wrttools.WidgetProjectNature">
+             </test>
+          </adapt>
+       </enablement>
+    </projectProvider>
+ </extension>
+   <extension
+        point="org.symbian.tools.tmw.core.runtimes">
+     <runtime
+           component-id="org.symbian.tools.wrttools.wrt"
+           component-version="1.1"
+           name="Symbian WRT 1.1">
+        <runtime-component
+              id="tmw.geolocation"
+              version="1.0">
+        </runtime-component>
+        <fixed-facet
+              id="tmw.geolocation"
+              version="1.0">
+        </fixed-facet>
+     </runtime>
+  </extension>
+   <extension
+         point="org.symbian.tools.tmw.core.packagers">
+      <packager
+            delegate="org.symbian.tools.wrttools.core.packager.WrtPackager"
+            target-runtime="org.symbian.tools.wrttools.wrt"
+            target-runtime-version="1.1">
+      </packager>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.ui.deploymentTargetType">
+      <deployment-target-type
+            class="org.symbian.tools.wrttools.core.deploy.emulator.EmulatorTargetType"
+            icon="icons/deploy_settings.gif"
+            id="org.symbian.tools.wrttools.symbianemulator"
+            priority="50">
+      </deployment-target-type>
+   </extension>
+   <extension
+         point="org.eclipse.wst.common.project.facet.core.runtimes">
+      <runtime-component-type
+            id="org.symbian.tools.wrttools.wrt">
+      </runtime-component-type>
+      <runtime-component-version
+            type="org.symbian.tools.wrttools.wrt"
+            version="1.1">
+      </runtime-component-version>
+      <supported>
+         <facet
+               id="symbian.wrtkit"
+               version="1.0">
+         </facet>
+         <runtime-component
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </runtime-component>
+         <facet
+               id="symbian.phonegap">
+         </facet>
+      </supported>
+   </extension>
+   <extension
+         point="org.eclipse.wst.common.project.facet.ui.images">
+      <image
+            path="icons/main16_prev.gif"
+            runtime-component-type="org.symbian.tools.wrttools.wrt"
+            version="1.1">
+      </image>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.core.runtimeIncludePath">
+      <runtime-include-path
+            id="org.symbian.tools.wrttools.wrt"
+            version="1.1">
+         <include-path-entry
+               file="libraries/core/widget.js"/>
+         <include-path-entry
+               file="libraries/core/services.js"/>
+         <include-path-entry
+               file="libraries/core/menu.js"/>
+      </runtime-include-path>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.ui.projectTemplate">
+      <template
+            icon="icons/flickr.gif"
+            id="org.symbian.wrt11.flickr"
+            name="Flickr Project"
+            weight="3">
+         <archive
+               file="projecttemplates/flickr.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+         <description>
+            This wizard generates an Flickr project with a minimal Info.plist, html,css and js and WRTKit.
+         </description>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <default-parameter-value
+               name="mainCss"
+               value="style">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="flickr">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="flickr">
+         </default-parameter-value>
+         <default-parameter-value
+               name="flickrUrl"
+               value="http://flickr.com/photos/symbianfoundation">
+         </default-parameter-value>
+         <required-facet
+               id="symbian.wrtkit"
+               version="1.0">
+         </required-facet>
+      </template>
+      <template
+            icon="icons/rss.gif"
+            id="org.symbian.wrt11.rssreader"
+            name="RSS Reader Project"
+            weight="3">
+         <archive
+               file="projecttemplates/rssreader.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+         <required-facet
+               id="symbian.wrtkit"
+               version="1.0">
+         </required-facet>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <description>
+            This wizard generates an RSS Reader project with a minimal Info.plist, html,css and js and WRTKit.
+         </description>
+         <default-parameter-value
+               name="mainCss"
+               value="style">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="rssreader">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="rssreader">
+         </default-parameter-value>
+         <default-parameter-value
+               name="feedUrl"
+               value="http://twitter.com/statuses/user_timeline/21138778.rss">
+         </default-parameter-value>
+         <default-parameter-value
+               name="feedName"
+               value="Symbian Twitter">
+         </default-parameter-value>
+      </template>
+      <template
+            icon="icons/WRT_main_16.png"
+            id="org.symbian.wrt11.basic"
+            name="Hello World Project"
+            weight="1">
+         <archive
+               file="projecttemplates/helloWithWRTKit.zip"
+               open-files="${mainJs}.js">
+         </archive>
+         <description>
+            This wizard generates a basic Hello project with a minimal Info.plist, html,css and js along with WRTKit.
+         </description>
+         <required-facet
+               id="symbian.wrtkit"
+               version="1.0">
+         </required-facet>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <default-parameter-value
+               name="mainCss"
+               value="style">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="main">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="index">
+         </default-parameter-value>
+      </template>
+      <template
+            icon="icons/phonegap.png"
+            id="org.symbian.wrt11.phonegap"
+            name="PhoneGap"
+            weight="2">
+         <archive
+               file="projecttemplates/phonegap.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+         <description>
+            This wizard generates a project based on the PhoneGap library that showcases PhoneGap API usage. PhoneGap applications require WRT 1.1 or newer.
+         </description>
+         <required-facet
+               id="symbian.phonegap"
+               version="1.0">
+         </required-facet>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <default-parameter-value
+               name="mainCss"
+               value="style">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="main">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="index">
+         </default-parameter-value>
+         <installer
+               class="org.symbian.tools.wrttools.core.project.SetResolution">
+         </installer>
+      </template>
+      <template
+            icon="icons/main16.gif"
+            id="org.symbian.wrt11.advanced"
+            name="Various UI Templates"
+            weight="2">
+         <archive
+               file="projecttemplates/uitemplate.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+         <description>
+            Includes templates for high-end devices from Forum.Nokia.
+         </description>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <default-parameter-value
+               name="mainCss"
+               value="style">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="main">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="index">
+         </default-parameter-value>
+      </template>
+      <template
+            icon="icons/main16_prev.gif"
+            id="org.symbian.wrt11.empty"
+            name="Minimal Project"
+            weight="4">
+         <description>
+            This wizard generates an empty widget project with a minimal Info.plist, html,css and js.
+         </description>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <archive
+               file="projecttemplates/basic.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+      </template>
+      <runtime-template
+            runtime-id="org.symbian.tools.wrttools.wrt"
+            version="1.1">
+         <archive
+               file="projecttemplates/basic.zip">
+         </archive>
+         <default-parameter-value
+               name="homeScreen"
+               value="false">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainHtml"
+               value="index">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainCss"
+               value="basic">
+         </default-parameter-value>
+         <default-parameter-value
+               name="mainJs"
+               value="basic">
+         </default-parameter-value>
+      </runtime-template>
+      <template
+            icon="icons/cow copy.png"
+            id="org.symbian.wrt11.orientation"
+            name="Orientation Demo Project"
+            weight="2">
+         <archive
+               file="projecttemplates/orientationsample.zip"
+               open-files="${mainHtml}.html">
+         </archive>
+         <description>
+            Uses phone orientation sensor to select what wallpaper to show
+         </description>
+         <supported-runtime
+               id="org.symbian.tools.wrttools.wrt"
+               version="1.1">
+         </supported-runtime>
+         <installer
+               class="org.symbian.tools.wrttools.core.project.SetResolution">
+         </installer>
+      </template>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.ui.wizardPages">
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewFlickrApplicationWizardPage"
+            template-id="org.symbian.wrt11.flickr">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewRSSReaderApplicationWizardPage"
+            template-id="org.symbian.wrt11.rssreader">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewWrtAppTemplatePage"
+            template-id="org.symbian.wrt11.basic">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewWrtAppTemplatePage"
+            template-id="org.symbian.wrt11.orientation">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewWrtAppTemplatePage"
+            template-id="org.symbian.wrt11.phonegap">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewWrtAppTemplatePage"
+            template-id="org.symbian.wrt11.advanced">
+      </template-page>
+      <template-page
+            class="org.symbian.tools.wrttools.wizards.NewWrtAppTemplatePage"
+            template-id="org.symbian.wrt11.empty">
+      </template-page>
+   </extension>
+   <extension
+         point="org.eclipse.wst.common.project.facet.core.facets">
+      <project-facet
+            id="symbian.wrtkit">
+         <label>
+            Symbian WRTKit
+         </label>
+         <description>
+            WRTKit UI library for Symbian WRT
+         </description>
+         <default-version
+               version="1.0">
+         </default-version>
+      </project-facet>
+      <project-facet-version
+            facet="symbian.wrtkit"
+            version="1.0">
+         <constraint>
+            <requires
+                  facet="tmw.core"
+                  version="[1.0">
+            </requires>
+         </constraint>
+         <action
+               type="install">
+            <delegate
+                  class="org.symbian.tools.wrttools.core.libraries.InstallWrtKitDelegate">
+            </delegate>
+            <config-factory
+                  class="org.symbian.tools.tmw.core.runtimes.ProjectCreationConfigFactory">
+            </config-factory>
+         </action>
+      </project-facet-version>
+      <project-facet
+            id="symbian.phonegap">
+         <label>
+            PhoneGap
+         </label>
+         <description>
+            PhoneGap is an open source development framework for building cross-platform mobile apps. It provides a cross-platform JavaScript APIs for accessing services on the mobile devices.
+         </description>
+      </project-facet>
+      <project-facet-version
+            facet="symbian.phonegap"
+            version="1.0">
+         <constraint>
+            <requires
+                  facet="tmw.core"
+                  version="[1.0">
+            </requires>
+         </constraint>
+         <action
+               type="install">
+            <delegate
+                  class="org.symbian.tools.wrttools.core.libraries.InstallPhoneGapDelegate">
+            </delegate>
+            <config-factory
+                  class="org.symbian.tools.tmw.core.runtimes.ProjectCreationConfigFactory">
+            </config-factory>
+         </action>
+      </project-facet-version>
+   </extension>
+   <extension
+         point="org.eclipse.wst.common.project.facet.ui.images">
+      <image
+            facet="symbian.wrtkit"
+            path="icons/main16_prev.gif"
+            version="1.0">
+      </image>
+      <image
+            facet="symbian.phonegap"
+            path="icons/phonegap.png"
+            version="1.0">
+      </image>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.core.runtimeAppLayout">
+      <layout-provider
+            class="org.symbian.tools.wrttools.core.project.WRT11ApplicationLayout"
+            runtime-id="org.symbian.tools.wrttools.wrt"
+            runtime-version="1.1">
+      </layout-provider>
+   </extension>
+   <extension
+         point="org.symbian.tools.tmw.ui.applicationImporter">
+      <importer
+            class="org.symbian.tools.wrttools.core.project.WgzImporter">
+      </importer>
+   </extension>
+   <extension
+         point="org.eclipse.wst.common.project.facet.core.detectors">
+      <detector
+            class="org.symbian.tools.wrttools.core.libraries.WrtKitFacetDetector">
+      </detector>
+      <detector
+            class="org.symbian.tools.wrttools.core.libraries.PhoneGapFacetDetector">
+      </detector>
+   </extension>
+ 
+</plugin>

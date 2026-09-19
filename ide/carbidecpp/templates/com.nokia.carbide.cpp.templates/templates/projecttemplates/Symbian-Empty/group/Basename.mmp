@@ -1,0 +1,16 @@
+/*
+============================================================================
+ Name		: $(baseName).mmp
+ Author	  : $(author)
+ Copyright   : $(copyright)
+ Description : This is the project specification file for $(baseName).
+============================================================================
+*/
+
+TARGET		  $(baseName).exe
+TARGETTYPE	  exe
+UID			 0 $(uid3)
+
+SYSTEMINCLUDE   \epoc32\include
+
+DEBUGGABLE_UDEBONLY

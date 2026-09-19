@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="iContent"
+    nsURI="http://www.nokia.com" nsPrefix="ic">
+  <eClassifiers xsi:type="ecore:EClass" name="ImageContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+        eType="#//IbyEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IbyEntry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//IMAGESECTION"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//ACTION"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statusMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IMAGESECTION">
+    <eLiterals name="CORE" literal="core"/>
+    <eLiterals name="ROFS2" value="1" literal="rofs2"/>
+    <eLiterals name="ROFS3" value="2" literal="rofs3"/>
+    <eLiterals name="ANY" value="3" literal="*"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ACTION">
+    <eLiterals name="UDEB" literal="udeb"/>
+    <eLiterals name="REMOVE" value="1" literal="remove"/>
+    <eLiterals name="HIDE" value="2" literal="hide"/>
+    <eLiterals name="UDEB_ADD" value="3" literal="udeb-add"/>
+    <eLiterals name="UREL" value="4" literal="urel"/>
+    <eLiterals name="UREL_ADD" value="5" literal="urel-add"/>
+    <eLiterals name="REPLACE" value="6" literal="replace"/>
+    <eLiterals name="REPLACE_ADD" value="7" literal="replace-add"/>
+  </eClassifiers>
+</ecore:EPackage>

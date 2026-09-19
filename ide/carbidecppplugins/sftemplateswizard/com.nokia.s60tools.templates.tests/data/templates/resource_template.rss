@@ -1,0 +1,81 @@
+/*
+* ============================================================================
+*  Name        : ?filename.rss
+*  Part of     : ?Subsystem_name / ?Module_name       *** Info from the SWAD
+*  Description : Resource definitions for project ?myapp
+*  Version     : %version: % << Don't touch! Updated by Synergy at check-out.
+*
+*  Copyright © ?year-?year Nokia Corporation and/or its subsidiary(-ies).
+*  All rights reserved.
+*  This component and the accompanying materials are made available
+*  under the terms of the License "?License"
+*  which accompanies this distribution, and is available
+*  at the URL "?LicenseUrl".
+*
+*  Initial Contributors:
+*  ?Company_name - initial contribution.
+*
+*  Contributors:
+* 
+* ============================================================================
+* Template version: 4.1
+*/
+
+*** INSTRUCTIONS TO THE TEMPLATE USER:
+
+*** This template follows the S60 coding conventions
+*** (S60_Coding_Conventions.doc).  Remove all unneeded declarations
+*** and definitions before checking the file in!  Also remove the
+*** template's usage instructions, that is, everything that begins
+*** with "***".
+
+*** The copyright years should be < the year of the file's creation >
+*** - < the year of the file's latest update >.
+
+*** Words that begin with "?" are for you to replace with your own
+*** identifiers, filenames, or comments.
+
+*** To support building on Linux, use only forward slashes in include
+*** directives.  Also, all filenames and pathnames must be completely
+*** in lowercase.
+
+*** A line should not end with a backslash (\).  If it is absolutely
+*** necessary to have a line end in a backslash, add a comment after
+*** it, or some versions of the build system might think it's a
+*** continuing line.
+
+*** Indent four spaces per step, using spaces, not tabs, to display
+*** the code consistently across different editors.
+
+
+*** For a component's main .rss file, resource NAME identifier go here:
+
+NAME ?four_letter_resource_name_in_uppercase_and_unique_in_module
+
+*** include files go here:
+
+#include <?include_file>
+
+*** resource identifiers go here:
+
+RESOURCE RSS_SIGNATURE { }
+RESOURCE TBUF { buf=""; }
+
+*** constants go here:
+
+#define ?constant ?value
+
+*** resource definitions go here:
+
+// ---------------------------------------------------------------------------
+// ?resource_name
+// ?description
+// ---------------------------------------------------------------------------
+//
+RESOURCE ?structure_name [?resource_name]
+    {
+    ?resource_data; // ?comment
+
+    // ?comment
+    ?resource_data;
+    };

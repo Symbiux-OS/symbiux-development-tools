@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="html/toolTOC.xml"
+            primary="true">
+      </toc>
+      <toc
+            file="html/tocConcepts.xml"
+            primary="false"/>
+      <toc
+            file="html/tocTasks.xml"
+            primary="false"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="html/contexts.xml"
+            plugin="com.nokia.s60tools.metadataeditor.help"/>
+   </extension>
+   
+
+</plugin>

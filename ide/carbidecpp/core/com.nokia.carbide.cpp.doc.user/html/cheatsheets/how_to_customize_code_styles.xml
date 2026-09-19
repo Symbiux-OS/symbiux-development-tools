@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet
+      title="Customize Code Styles">
+`	<intro>
+		<description>
+			To control the automatic formatting of your source code, use the <b>Code Style</b> preference panel.
+		</description>
+	</intro>
+	<item
+       title="Customize code styles">
+		<description>
+			Use the <b>Preferences &gt; C/C++ &gt; Code Style</b> preference panel to select a code style profile to format source files.
+		</description>
+  <command
+        required="false"
+        serialization="org.eclipse.ui.window.preferences(preferencePageId=org.eclipse.cdt.ui.preferences.CodeFormatterPreferencePage)"/>
+	</item>
+</cheatsheet>

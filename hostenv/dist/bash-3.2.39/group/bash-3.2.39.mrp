@@ -1,0 +1,8 @@
+component dev_hostenv_dist_bash-3.2.39
+
+source ..
+
+ipr B
+
+notes_source release.txt
+

@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_jmock-1.1.0
+
+source /src/tools/dev/hostenv/javatoolsplat/jmock-1.1.0
+
+exports /src/tools/dev/hostenv/javatoolsplat/jmock-1.1.0/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/jmock-1.1.0/group/release.txt

@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.nokia.carbide.extensions.creator Discovery Items
+Bundle-SymbolicName: com.nokia.carbide.extensions.creator.discovery;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-Localization: plugin
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.equinox.p2.discovery

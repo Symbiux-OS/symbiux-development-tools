@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="LASTUPDATED" content="06/17/05 11:09:43" />
+<title>Building Projects</title>
+<link rel="StyleSheet" href="../../../book.css" type="text/css"/>
+<script language="JavaScript" src="PLUGINS_ROOT/org.eclipse.help/livehelp.js"></script>
+</head>
+<body >
+<h2>Building Projects and Symbian Components </h2>
+<p>Building projects consists of a new sbs-based build system (Raptor) that wraps build functionality around existing SDK build tools which invoke <span class="code">makmake</span> commands (e.g. <span class="code">bldmake bldfiles</span> and <span class="code">sbs build</span>).</p>
+<p> The plug-ins provide extra functionality to set up suitable build configurations for Symbian C++ projects.  The initial selection of a build configuration is done when you create a project, as described in <a href="../CreatingNewProjects.html">Creating New Projects</a>. You can later <a href="prj_set_build_tgt.htm">change</a> the Active Build Configuration. A command is available (<b>Project &gt; <a href="../../reference/menus/build_all_targets.htm">Build All Configurations</a></b>) to build all the selected build configurations in a batch.</p>
+<p> Building Symbian C++ projects can involve the use of Symbian specific tools, such as the Symbian resource compiler. For detailed information on such tools, see the documentation for the SDK that you are using.</p>
+<p>You build  projects to process the source files that comprise a program and
+  generate object code. The compiler flags syntax errors in the source files. Use the  <a href="../../reference/ProjectPreferences.html">Properties for &lt;project_name&gt;</a> dialog to control how the project is built. The following methods build a project:</p>
+<ul>
+    <li><b>Build All Configurations</b> (<span class="code">CTRL+ALT+A</span>) &#8212;builds all build configurations for a project</li>
+  <li><b>Build Project</b> (<span class="code">CTRL+B</span>) &#8212;  builds the entire project if it has never been built before or on subsequent builds only those files that have changed since the last build operation</li>
+  <li><b>Build Working Set</b>&#8212;specify which projects to build in a working set </li>
+</ul>
+<p align="center"><img src="images/menu_build_project.png" width="280" height="262" /></p>
+<p class="figure">Figure 1 - Project menu includes all build options</p>
+<div class="step">
+  <h4>Building a project</h4>
+  <ul>
+    <li>Choose one of the following to build a project:</li>
+        <table width="800" border="0" cellpadding="2" cellspacing="0">
+            <tr valign="top">
+                <th width="30%" class="Cell"><div align="left">From the ...</div></th>
+                    <th width="70%" class="Cell"><div align="left">Do the following...</div></th>
+                </tr>
+            <tr valign="top">
+                <td class="Cell"><b>Menu bar</b></td>
+                    <td class="Cell"> Click the <strong>Project &gt; Build Project</strong> menu option.</td>
+            </tr>
+            <tr valign="top">
+                <td class="Cell"><b>Toolbar</b></td>
+                    <td class="Cell">Click the <b>Build</b> icon (<img src="../../projects/images/icon_build_project.png" alt="Build project icon" width="17" height="17" align="absmiddle">) on the toolbar</td>
+            </tr>
+            <tr valign="top">
+                <td class="Cell"><b>Project</b></td>
+                    <td class="Cell"><ol>
+                            <li>Right-click the project              
+                            <li>Select Build Project</li>
+                    </ol></td>
+            </tr>
+        </table>
+        </ul>
+  <p>Carbide.c++ builds the project. A build dialog  and a task bar appear during a build process. All build output  is shown in the Console view while build errors and warnings appear in the Problems view.</p>
+  <p>Whether a full build or incremental build is requested, Carbide forwards the request to the SDK make system. The SDK make system determines if anything needs to be
+      built. Carbide  always checks that makefiles are up-to-date and
+      dependencies present.</p>
+  <p>Projects are also built if you make a change to it and then click <b>Debug</b>. It may be useful to automatically save modified resources before a manual build process by enabling the <b>Save automatically before build</b> option in the <b>Window &gt; Preferences &gt; General &gt;</b> <img src="../../images/command_link.png" width="16" height="12"> <a class="command-link" href='javascript:executeCommand("org.eclipse.ui.window.preferences(preferencePageId=org.eclipse.ui.preferencePages.Workbench)")'> Workspace</a> preference panel. </p>
+  <p class="note"><b>NOTE</b> If you want to turn off building before launching, uncheck the <b>Build (if required) before launching</b> option in the <b>Window &gt; Preferences &gt; Run/Debug &gt;<img src="../../images/command_link.png" width="16" height="12"> <a class="command-link" href='javascript:executeCommand("org.eclipse.ui.window.preferences(preferencePageId=org.eclipse.debug.ui.LaunchingPreferencePage)")'> Launching</a></b> preference panel.</p>
+  <p>When performing a build, output is displayed in the <a href="../../projects/views/view_console.htm">Console</a> view. If you do not want to clear the console before each build you need to uncheck the option <b>Always clear console before building</b> in the <b>Build Console</b> panel. This option is enabled by default. You can access this panel by selecting <b>Window &gt; Preferences &gt; C/C++ &gt; Build &gt; <img src="../../images/command_link.png" width="16" height="12"> <a class="command-link" href='javascript:executeCommand("org.eclipse.ui.window.preferences(preferencePageId=org.eclipse.cdt.ui.preferneces.CBuildConsolePreferernces)")'> Build Console</a></b> preference panel (figure 4).</p>
+  <p align="center"><img src="images/build_console.png" alt="Build Console" width="630" height="214" /></p>
+  <p align="left" class="figure">Figure 4 - Build Console preference panel</p>
+  <p>Not clearing the console is useful when you are performing multiple builds, such as a regular project build, building a project package (.pkg) file, and building a ROM image. For example, if you do not clear the console before each build, then a subsequent build will not overwrite information from a previous build.</p>
+</div>
+  <h5>Concepts</h5>
+  <ul>
+    <li><a href="../../concepts/Projects.html">Projects</a></li>
+</ul>
+  <h5>Tasks</h5>
+  <ul>
+    <li><a href="prj_clean.htm">Cleaning Projects</a> </li>
+    <li><a href="../../reference/menus/compile_source.htm">Compile Source</a></li>
+    <li><a href="../CreatingNewProjects.html">Creating Projects</a></li>
+    <li><a href="prj_debug_config.htm">Creating a Launch Configuration</a></li>
+    <li><a href="../start/carbide_debugging.htm">Debugging a Symbian Program</a></li>
+    <li><a href="../../reference/menus/build_symbian_comp.htm">Build Symbian Component</a></li>
+    <li><a href="../../reference/menus/clean_symbian_comp.htm">Clean Symbian Component</a></li>
+    <li><a href="../../reference/menus/build_pkg_file.htm">Build Package (.pkg) File</a></li>
+    <li><a href="../ImportingProjects.html">Importing BLD.INF Files</a></li>
+  </ul>
+  <div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. <br>License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></div>
+
+</body>
+</html>

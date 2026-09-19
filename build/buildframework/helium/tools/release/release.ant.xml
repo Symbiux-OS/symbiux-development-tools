@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : release.ant.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package releases -->
+<project name="release" xmlns:hlm="http://www.nokia.com/helium">
+    <description>
+        Release publising.
+    </description>
+
+    <import file="scm_release.ant.xml" />
+    
+    <!-- This is where the release build logs are stored.
+    @type string
+    @scope private
+    -->
+    <property name="release.log.dir" location="${build.log.dir}/release"/>
+    
+    <!--* @property robot.release.enabled
+    Set to true to do build robot release after completing the build and if it successful.
+    @type boolean
+    @editable required
+    @scope public
+    @since 11.0
+    -->
+    
+    <!--* @property do.robot.release
+    Set to synergy project name to doing the build robot release. - deprecated: Start using robot.release.enabled property.
+    @type string
+    @editable required
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!--* @property internal.robot.release.enabled
+    Internal property to run the robot release property if robot.release.enabled set to true. 
+    @type string
+    @scope private
+    -->
+    
+    <!-- Check, is robot release is enabled -->
+    <condition property="internal.robot.release.enabled">
+        <or>
+            <istrue value="${robot.release.enabled}"/>
+            <isset property="do.robot.release"/>
+        </or> 
+    </condition>
+
+    <fileset id="release.files" dir="${publish.dir}">
+        <include name="logs/**/*" />
+        <include name="development_flash_images/**/*" />
+        <include name="release_flash_images/**/*" />
+        <include name="sisfiles/**/*" />
+        <include name="build_area/**/*" />
+        <include name="test_results/**/*" />
+        <include name="utilities/**/*" />
+    </fileset>
+
+    <!-- Copies release.files fileset into publish.release.folder destination -->
+    <target name="release">
+        <mkdir dir="${publish.release.dir}" />
+        <copy todir="${publish.release.dir}" preservelastmodified="true" failonerror="false">
+            <fileset refid="release.files" />
+        </copy>
+    </target>
+
+    <!--* @property s60.build.robot.path
+    Location where to publish the build robot delivery.
+    @type string
+    @editable required
+    @scope public
+    -->
+
+    <!--* @property s60.build.robot.date
+    This property represent the releasing interval. The syntax is as follow: day1,time1,day2,time2,projectname;day1,time1,day2,time2,projectname2 With day and time matching the following properties: day [1, 14] time [00, 23]:[00, 59] Example: 2,10:00,3,20:00,ABS_domain
+    @type string
+    @editable required
+    @scope public
+    -->
+    
+    <!--* @property robot.release.project
+    Synergy project name to be delivered onto build robot.
+    @type string
+    @scope private
+    -->
+    
+    <!-- Will check is it required to do the sources release to build robot using the property  s60.build.robot.date -->
+    <target name="check-robot-release" if="internal.robot.release.enabled">
+        <script language="jython" setbeans="false">
+            <![CDATA[
+self.setTaskName("check-robot-release")
+
+import ido
+projects = []
+mconfigstr = project.getProperty('s60.build.robot.date')
+if mconfigstr != None:
+    for configstr in mconfigstr.split(';'):
+        config = [x.strip() for x in configstr.split(',')]
+        if len(config) < 4:
+            raise Exception(configstr + ' is invalid config')
+        if ido.is_in_interval(int(config[0]), config[1], int(config[2]), config[3]):
+            self.log("It is release time!")
+            projects.append(config[4])
+            project.setProperty('robot.release.project', ",".join(projects))
+        else:
+            self.log("It is not release time!")
+else:
+    self.log("'s60.build.robot.date' is not defined.")
+]]>
+        </script>
+    </target>
+
+    <!-- Sources are sent to the S60 build robot by all the IDOs. 
+    This target collects all the sources based on the System Definition file, 
+    zip them all and send to the specified location. There is only one but mandatory 
+    property to tell the location of the build server which is "s60.build.robot.path".
+    -->
+    <target name="ido-sources-to-s60-build-robot" if="internal.robot.release.enabled" depends="check-robot-release,lookup-email">
+        <if>
+            <isset property="robot.release.project"/>
+            <then>
+                <property name="robot.mapping.file" location="${build.output.dir}/build/ado_mapping_robot.ini" />
+                <hlm:createAdoMappingMacro adoMapFile="${robot.mapping.file}" />
+                <!-- Location of the ready.txt FMPP template (override that property if you want to customize the content).
+                @type string
+                @scope private
+                -->
+                <property name="ido.template.robot.ready" location="${helium.dir}/tools/release/templates/ready.txt.ftl" />
+                <tempfile property="s60robot.dynamic.config" suffix=".xml" deleteonexit="false" destdir="${temp.build.dir}" />
+                <fmpp sourceFile="${helium.dir}/tools/release/templates/ido-robot-zip.ant.xml.ftl" outputFile="${s60robot.dynamic.config}">
+                    <data expandProperties="yes">
+                            inputfile: antProperty(robot.mapping.file)
+                            ant: antProperties()
+                            data: eval('
+                                java.io.FileInputStream pin = new java.io.FileInputStream(filename);
+                                java.util.Properties props = new java.util.Properties();
+                                props.load(pin);
+                                return props;
+                                    ', {filename: get(inputfile)})
+                    </data>
+                </fmpp>
+                <ant antfile="${s60robot.dynamic.config}" target="all" />
+                <fmpp sourceFile="${ido.template.robot.ready}" outputFile="${s60.build.robot.path}/ready.txt">
+                    <data expandProperties="yes">
+                        ant: antProperties()
+                    </data>
+                </fmpp>
+            </then>
+            <else>
+                <echo>It is not release time!</echo>
+            </else>
+        </if>
+    </target>
+
+</project>

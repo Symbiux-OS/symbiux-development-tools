@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<introContent>
+
+	<extensionContent 
+		id="com.nokia.carbide.cpp.doc.user-tutorials" 
+		name="Carbide.c+ Development" 
+		alt-style="carbide.properties" 
+		style="carbide.css" 
+		path="tutorials/@">
+		
+		<group label="Carbide.c++ Development" id="carbide-cpp" style-id="content-group">
+		
+			<link 
+				label="Emulator Application Projects" 
+				url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.nokia.carbide.cpp.doc.user/html/projects/tutorials/new_proj_from_template_00.htm" 
+				id="carbide-tutorial" 
+				style-id="content-link">
+				<text>Learn how to create, build, and debug programs on the emulator using Carbide project templates.</text>
+			</link>
+			
+			<link 
+				label="DLL Projects" 
+				url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.nokia.carbide.cpp.doc.user/html/projects/tutorials/new_proj_dll_example_00.htm"  
+				id="carbide-tutorial" 
+				style-id="content-link">
+				<text>Learn how to create and debug DLL projects.</text>
+			</link>
+			
+			<link 
+				label="Remote Target Debugging (Run-mode)" 
+				url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.nokia.carbide.cpp.doc.user/html/projects/tutorials/run_mode_debug_example_00.htm"  
+				id="carbide-tutorial" 
+				style-id="content-link">
+				<text>Learn how debug applications on remote devices using the TRK remote agent.</text>
+			</link>
+
+			<!--
+			<link 
+				label="Create a stop mode debugging application" 
+				url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.nokia.carbide.cpp.doc.user/html/tasks/debugger/stop_mode_debug.htm"  
+				id="carbide-tutorial" 
+				style-id="content-link">
+				<text>Learn how to create and build an application and debug it on a device using JTAG debug software on Lauterbach hardware.</text>
+			</link>
+			-->
+			
+		</group>
+	</extensionContent>
+	
+</introContent>

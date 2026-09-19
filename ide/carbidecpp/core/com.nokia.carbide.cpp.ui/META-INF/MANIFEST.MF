@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ UI
+Bundle-SymbolicName: com.nokia.carbide.cpp.ui;singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: com.nokia.carbide.cpp.ui.CarbideUIPlugin
+Bundle-Vendor: Nokia
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.nokia.cpp.utils.core,
+ com.nokia.sdt.utils,
+ org.eclipse.ui.forms,
+ com.nokia.carbide.cpp.featureTracker;bundle-version="3.0.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.carbide.cpp.internal.ui.images;
+  x-friends:="com.nokia.sdt.symbian,
+   com.nokia.carbide.cpp.project.ui,
+   com.nokia.carbide.cpp.ui.tests,
+   com.nokia.sdt.symbian.ui",
+ com.nokia.carbide.cpp.ui,
+ com.nokia.carbide.cpp.ui.images
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

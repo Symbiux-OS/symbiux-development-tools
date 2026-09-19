@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.nokia.carbide.extensions.hticonnection Discovery Items
+Bundle-SymbolicName: com.nokia.carbide.extensions.hticonnection.discovery;singleton:=true
+Bundle-Version: 1.5.0.qualifier
+Bundle-Localization: plugin
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.equinox.p2.discovery

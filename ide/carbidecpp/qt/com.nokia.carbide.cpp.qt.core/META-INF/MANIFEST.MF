@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide Qt Core
+Bundle-SymbolicName: com.nokia.carbide.cpp.qt.core;singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: com.nokia.carbide.cpp.internal.qt.core.QtCorePlugin
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ com.nokia.carbide.cpp.sdk.core,
+ com.nokia.carbide.cpp.sdk.ui,
+ com.nokia.cpp.utils.core;bundle-version="1.0.0",
+ com.trolltech.qtcppproject;bundle-version="1.6.0";resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.carbide.cpp.internal.qt.core

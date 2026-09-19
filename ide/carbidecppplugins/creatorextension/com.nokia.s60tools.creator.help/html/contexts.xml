@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+
+<!-- An example context definition in contexts.xml file:
+ 
+ <context id="TOOL_NAME_MAIN_VIEW">
+   
+  <topic label="Adding components" href="html/tasks/adding_components.htm" />    	
+  <topic label="Creating the script file" href="html/tasks/creating_xml_file.htm" />    	
+  <topic label="Modifying components" href="html/tasks/modifying_components.htm" />    	
+  
+  <topic label="Calendar components" href="html/reference/calendar.htm" />
+  <topic label="Contact components" href="html/reference/contacts.htm" />
+  <topic label="Message components" href="html/reference/message.htm" />
+  <topic label="Generic component reference" href="html/reference/generic_items.htm" />
+  
+  <topic label="Components" href="html/concepts/components.htm" />
+  <topic label="Random component values" href="html/concepts/html/concepts/components.htm#random" />
+  <topic label="Contact set" href="html/concepts/contact_set.htm" />
+  
+  <description>Creator TOC</description>	    
+  <topic label="Creator Online Help" href="toc.htm" />
+   
+ </context>	  
+
+-->
+
+ <context id="CREATOR_HELP_TOC">
+  
+  <description>Creator TOC</description>	    
+  <topic label="Creator TOC" href="toc.htm" />
+   
+ </context>	 
+
+ <context id="CREATOR_HELP_ADD_COMPONENT">
+   
+  <description>Adding components</description>
+  <topic label="Adding components" href="html/tasks/adding_components.htm" />    	
+ </context>	  
+
+ <context id="CREATOR_HELP_MODIFY_COMPONENT">
+   
+   <description>Modifying components</description>
+  <topic label="Modifying components" href="html/tasks/modifying_components.htm" />    	
+ </context>	  
+  
+ <context id="CREATOR_HELP_CREATE_SCRIPT">
+   
+   <description>Creating the script file</description>
+  <topic label="Creating the script file" href="html/tasks/creating_xml_file.htm" />    	
+ </context>	  
+ 
+
+
+
+ <context id="CREATOR_HELP_CALENDAR">
+   
+   <description>Editing Calendars</description>
+  <topic label="Calendar components" href="html/reference/calendar.htm" />
+  <topic label="Generic component reference" href="html/reference/generic_items.htm" />
+
+ </context>	 
+ 
+ <context id="CREATOR_HELP_CONTACTS">
+   
+   <description>Editing Contacts</description>
+  <topic label="Contact components" href="html/reference/contacts.htm" />
+  <topic label="Generic component reference" href="html/reference/generic_items.htm" />
+  
+ </context>	 
+ <context id="CREATOR_HELP_MESSAGES">
+   
+   <description>Editing Messages</description>
+  <topic label="Message components" href="html/reference/messages.htm" />
+  <topic label="Generic component reference" href="html/reference/generic_items.htm" />
+  
+  
+ </context>	 
+ <context id="CREATOR_HELP_GENERIC_COMPONENT">
+   
+   <description>Editing components</description>
+  <topic label="Generic component reference" href="html/reference/generic_items.htm" />
+  
+ </context>	 
+ 
+ 
+ <context id="CREATOR_HELP_COMPONENTS">
+   
+   <description>Components</description>
+  <topic label="Components" href="html/concepts/components.htm" />
+
+ </context>	   
+
+ <context id="CREATOR_HELP_RANDOM_VALUES">
+   
+   <description>Editing random values</description>
+  <topic label="Random component values" href="html/concepts/components.htm#random" />
+   
+ </context>	   
+
+ <context id="CREATOR_HELP_CONTACT_SET">
+   
+   <description>Understanding Contact sets</description>
+  <topic label="Contact set" href="html/concepts/contact_set.htm" />
+   
+ </context>	   
+
+ <context id="CREATOR_HELP_PREFERENCES">
+   
+   <description>Setting Creator preferences</description>
+  <topic label="Setting Creator preferences" href="html/tasks/setting_creator_preferences.htm" />    
+   
+ </context>	   
+
+ <context id="CREATOR_HELP_RUN_IN_DEVICE">
+   <description>Running script in device</description>
+  <topic label="Running script in device" href="html/tasks/run_in_device.htm" />    
+   
+ </context>	   
+     		     
+</contexts>

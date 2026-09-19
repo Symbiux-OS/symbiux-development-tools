@@ -1,0 +1,111 @@
+Product Description:
+====================
+The iMaker extension for Carbide.c++ is a tool for building ROM images. Its core functionality is implemented in a command line executable called imaker.cmd. 
+The iMaker offers a Carbide.c++ integration that provides a graphical user interface for the imaker.cmd command line tool. The iMaker enables you to set and 
+modify the build parameters that are used by iMaker.
+
+Image building process is started by launching iMaker dialog by choosing the Open iMaker Dialog... menu item from iMaker pulldown menu (hammer with 'i') on the Carbide.c++ toolbar.
+The ROM image is built using the preferences configured in this dialog. Although not necessary, these preferences can be saved for future use for image building if needed. 
+Once preferences are configured, an image can be built by clicking the Run button in the dialog.
+
+Version 3.1.0
+===========================================
+New Features
+Ticket #1255: As iMaker plugin user I want to hide/remove binaries from rom or with rofs section so that I can populate debug binaries via Trk or User disk
+
+Enhancements
+Small improvements to the UI (e.g. made dialog resizable)
+Help updated
+Better support of .imp file format
+
+Error fixes
+Reload button functionality
+Populate button functionality
+
+Version 3.0.0
+===========================================
+New Features
+Ticket #1136: As a iMaker plugin user I don't want to load all the product configurations when starting the plugin (takes too long)
+Ticket #1188: As a Carbide.c++ user I want to modify my .IMP file using iMaker plugin
+Ticket #1137: Rename debug tab in iMaker plugin to something else
+Ticket #1055: As a SW developer I don't want to have temporary files in my Carbide.c++ workspace
+Ticket #1245: Update target selection required to avoid yellow warnings on content tab
+Ticket #1135: As a iMaker plugin user i want to reload available configurations (reload the current configuration)
+Ticket #1099: As a developer I want to enable/disable selected files so that I don't need to manually select each one separately
+
+Enhancements
+License changed from SFL to EPL
+Total number of unit tests almost doubled
+
+Error fixes
+Fixed invalid imp file selection problem
+
+Version 2.2.4
+===========================================
+New Features
+Ticket #1052: As a SW developer I don't want to have pop-up suggesting to add generated makefile to bld.inf because I consider that as a temporary file
+Ui changes to debug tab related to Ticket #1053. Ability to remember environment specific previous run. Only enabled entries in the debug tab are included to the images.
+Ticket #1053: As a SW developer I want to add automatically all build files to debug dialog so that my manual work is minimized
+Ticket #1115: As a Carbide.c++ developer I want to use iMaker plugin API to create images with .imp file
+
+Enhancements
+iMaker plugin code separated to internal and public API
+
+Error fixes
+iMaker plugin to show appropriate error message if iMaker Core execution fails
+
+Version 2.2.0
+===========================================
+New Features
+- New simplified UI
+- Automatic environment recognition based on Carbide.c++ workspace/project
+- Automatic selection of default product and variant of the environment (needs AMPI configuration in iMaker makefiles)
+- Summary for the created images in console window
+- Platsim integration
+- Support for adding binaries to image in urel/udeb mode.
+- Possibility to cancel fetching on configurations
+
+Enhancements
+- Handling of imp files
+
+Error fixes
+
+Version 2.1.2
+===========================================
+New Features
+
+Enhancements
+- Help updated
+- code cleaned
+- copy right headers updated
+
+Error fixes
+- two error fixed relating to the interface with iMaker core 
+
+Version 2.1.1
+===========================================
+New Features
+#365 The imaker plugin should be able to notice the success/failure of imaker image creation
+#630 Better integration to S60 Configuration Tool
+
+Enhancements
+
+Error fixes
+Fixed to work with iMaker 08.4x.xx interface changes
+ 
+Version 2.1.0
+===========================================
+New Features:
+- The structure and implementation has been changed. 
+- The preferences pages are no longer used. 
+- An independent dialog has been implemented for the iMaker extension. 
+- New way of managing preferences files have been implemented. 
+- A list has been added which displays prefereneces files and which allows deletation and creatation of new file. 
+- Renaming of preferences files has been added. 
+- The detailed settings page has been made editable. 
+- Better integration with S60 Configuration Tool has been implemented. 
+
+Enhancements:
+- Querying of configuration from the environment has been enhanced. 
+- Editing and saving has been enhanced.
+- Querying of targets and variables from one product. 

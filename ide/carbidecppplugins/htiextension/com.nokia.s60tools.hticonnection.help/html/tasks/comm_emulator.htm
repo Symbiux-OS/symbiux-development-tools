@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Setting up virtual port for emulator connection</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Setting up virtual port for emulator connection</h2>
+<p>If you want to use HTI connection with an emulator, do the following:</p>
+<ol>
+<li><a href="#installport">Install a virtual COM port driver.</a></li>
+<li><a href="#confport">Configure the serial port settings and add a pair of emulated ports.</a></li>
+<li><a href="#confemul">Configure the emulator to use the defined emulated ports.</a></li>
+<li><a href="#testcomm">Test the communication between the emulator and the Datagateway.</a></li>
+</ol>
+
+<h3><a name="installport"></a>Installing a virtual COM port driver</h3>
+<ol>
+<li>Search the internet for a virtual COM port driver or a serial port bridge, and download a driver to a temporary folder.</li>
+<li>Open the Add Hardware Wizard by opening the <b>Control Panel</b>, selecting <b>Add Hardware</b>, and clicking <b>Next</b>. The Add Hardware Wizard first scans your system for new hardware.</li>
+<li>Select <b>Yes, I have already connected the hardware</b>, and click <b>Next</b>.</li>
+<li>In the <b>Installed hardware</b> list, select <b>Add a new hardware device</b>, and click <b>Next</b>.<p><img src="../images/add_hw_01.png "></p></li>
+<li>Select the option <b>Install the hardware that I manually select from a list (Advanced)</b>, and click <b>Next</b>.<p><img src="../images/add_hw_02.png "></p></li>
+<li>In <b>Common hardware types</b>, select <b>Multi-port serial adapters</b>, and click <b>Next</b>.<p><img src="../images/add_hw_03.png "></p></li>
+<li>Click <b>Have Disk</b> and browse to the driver file that you saved in a temporary folder. Select the file and click <b>Open</b>.</li>
+<li>Confirm the installation by clicking <b>OK</b>.</li>
+<li>If prompted, ignore the warning that the driver is not digitally signed, and click <b>Next</b>. This will install the virtual COM port driver.</li>
+</ol>
+
+<h3><a name="confport"></a>Configuring the serial port settings</h3>
+<ol>
+<li>In Control Panel, open <b>System</b> > <b>Hardware</b> > <b>Device Manager</b>.</li>
+<li>Open <b>Multi-port serial adapters</b> and right-click the driver that you installed, and select <b>Properties</b>.</li>
+<li>In the driver <b>Properties</b>, define at least one pair of emulated ports. Use COM ports that are not in use (COM7 and COM8). When you are done, click <b>OK</b>.<p><img src="../images/add_hw_04.png "></p><p><b>Note:</b> Adding a new pair of emulated ports requires a restart.</p><p><b>Note:</b> Do not use any existing COM ports. These are listed in the <b>Ports (COM & LPT)</b> section of <b>Device Manager</b>.</p></li>
+<li>Restart the computer.</li>
+</ol>
+
+<h3><a name="confemul"></a>Configuring the emulator</h3>
+<ol>
+<li>Open the S60 platfrom folder <b>\epoc32\winscw\c</b>, and set the following parameters in <b>hti.cfg</b> and <b>HtiSerialComm.cfg</b>:
+<p><b>hti.cfg</b>:</p>
+<ul>
+<li><b>EnableHtiAutoStart=1</b>: start the HTI framework during emulator startup.</li>
+<li><b>CommPlugin=SERIAL</b>: use serial communication.</li>
+<li><b>ShowConsole=1</b>: open console at startup.</li>
+</ul>
+
+<p><b>HtiSerialComm.cfg</b>:</p>
+<ul>
+<li><b>CommPort=7</b>: use COM port 8 (the port numbers run from 0 onwards, i.e. 0=COM1 etc.).</li>
+<li><b>SendDelay=5</b>: prevent data communication problems caused by virtual com ports.</li>
+</ul>
+</li>
+<li>Start the emulator <b>epoc.exe</b> in <b>\epoc32\RELEASE\WINSCW\urel</b>.</li>
+<li>In the emulator, start <b>HtiAdmin</b> by selecting <b>Menu</b> > <b>RnD Tools</b> > <b>HtiAdmin</b>.</li>
+<li>Check from the HtiAdmin that <b>Communication=SERIAL</b> and <b>Port=7</b>.</li>
+<li>If not started, start the HTI Framework by selecting <b>Options</b> > <b>Start</b>.</li>
+</ol>
+
+<h3><a name="testcomm"></a>Testing the communication between emulator and Datagateway</h3>
+<ol>
+<li>Start the emulator and HtiAdmin as instructed above.<p><b>Note:</b> Make sure that you start <b>urel</b> version of the emulator: <b>\Epoc32\Release\winscw\urel\epoc.exe</b></p></li>
+<li>Start the HTI Connection Carbide.c++ Extension by selecting <b>Carbide > HTI Connection</b>.</li>
+<li>Open the HTI Connection Preferences by clicking <img src="../images/environment_co.png">.</li>
+<li>Set the <b>Connection Type</b> to <b>Serial</b>, and select the serial port that you configured for the virtual COM port (COM7). Click <b>OK</b> to close the Preferences dialog.<p><img src="../images/add_hw_05.png "></p></li>
+<li>Start the Datagateway by clicking <img src="../images/run_exc.gif">. The connection status will be displayed in the status line above the console screen.</li>
+</ol>
+
+<p>To stop the Datagateway, click <img src="../images/stop.gif">.</p>
+
+<div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

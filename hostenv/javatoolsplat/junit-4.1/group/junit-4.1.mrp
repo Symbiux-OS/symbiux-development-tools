@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_junit-4.1
+
+source /src/tools/dev/hostenv/javatoolsplat/junit-4.1
+
+exports /src/tools/dev/hostenv/javatoolsplat/junit-4.1/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/junit-4.1/group/release.txt

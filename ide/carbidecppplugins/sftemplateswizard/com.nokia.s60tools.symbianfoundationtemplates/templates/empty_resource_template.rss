@@ -1,0 +1,45 @@
+/*
+* ============================================================================
+*  Name        : ?filename.rss
+*  Part of     : ?Subsystem_name / ?Module_name
+*  Description : Resource definitions for project ?myapp
+*  Version     : %version: %
+*
+*  Copyright © ?year-?year ?Company_copyright.
+*  All rights reserved.
+*  This component and the accompanying materials are made available
+*  under the terms of the License "?License"
+*  which accompanies this distribution, and is available
+*  at the URL "?LicenseUrl".
+*
+*  Initial Contributors:
+*  ?Company_name - initial contribution.
+*
+*  Contributors:
+*  ?Company_name
+* ============================================================================
+* Template version: 4.1
+*/
+
+
+NAME ?four_letter_resource_name_in_uppercase_and_unique_in_module
+
+#include <?include_file>
+
+RESOURCE RSS_SIGNATURE { }
+RESOURCE TBUF { buf=""; }
+
+#define ?constant ?value
+
+// ---------------------------------------------------------------------------
+// ?resource_name
+// ?description
+// ---------------------------------------------------------------------------
+//
+RESOURCE ?structure_name [?resource_name]
+    {
+    ?resource_data; // ?comment
+
+    // ?comment
+    ?resource_data;
+    };

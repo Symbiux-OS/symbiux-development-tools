@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Metadata file</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Metadata file</h2>
+<p>A metadata file is used to provide information about an Application Programming Interface (API). Metadata files contain the following information of an API, as shown in the example below: </p>
+<p><code>&lt;?xml version="1.0"&nbsp;?><br>
+&lt;api id="16bdb6fdf38e8ced9e907a4eea1f68c5" dataversion="2.0"><br>
+&nbsp; &lt;name>Phone Parser API&lt;/name><br>
+&nbsp; &lt;description>This API is used to parse and validate phone numbers.&lt;/description><br>
+&nbsp; &lt;type>c++&lt;/type><br>
+&nbsp; &lt;collection>commonservices&lt;/collection><br>
+&nbsp; &lt;libs><br>&nbsp;&nbsp;&nbsp; &lt;lib name="CommonEngine.lib" /><br>
+&nbsp; &lt;/libs><br>&nbsp; &lt;release category="public" sinceversion="1.0" deprecatedsince="9.1"/><br>
+&nbsp; &lt;attributes><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;htmldocprovided>yes&lt;/htmldocprovided><br>
+&nbsp;&nbsp;&nbsp;&nbsp; &lt;adaptation>no&lt;/adaptation><br>
+&nbsp; &lt;/attributes><br>
+&lt;/api>
+</code></p>
+<p>Metadata files are identified by the extension <i>.metaxml</i>. This way, the Carbide.c++ development environment can easily associate these files with the API Metadata Editor tool. </p>
+<p>Metadata can then be viewed, example, in the <i>API Query</i> tool (<b>Carbide > API Query</b>), as well as in the common Software Development Kit (SDK) documentation if the API belongs to an SDK.</p><p>The name of the file comes from the API name and should be the same as the API directory name. For example, if the API directory is&nbsp;<i>phone_parser_api</i>, the corresponding metadata file name should be <i>phone_parser_api.metaxml</i>. The file is located directly under the API's own directory.</p>
+
+<h5>Related tasks</h5>
+<ul>
+<li><a href="../tasks/create_metadata.htm">Creating a metadata file</a></li>
+<li><a href="../tasks/edit_metadata.htm">Editing a metadata file</a></li>
+<li><a href="../tasks/converting_metadata.htm">Converting metadata files</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+  <br>
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

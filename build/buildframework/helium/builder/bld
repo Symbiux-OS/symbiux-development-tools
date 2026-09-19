@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#
+# Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+# All rights reserved.
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Nokia Corporation - initial contribution.
+#
+# Contributors:
+#
+# Description: 
+#
+
+export LANG="en_US.UTF-8"
+
+if [ ! $EPOCROOT ]; then
+    export EPOCROOT="/"
+fi 
+
+BUILDER_HOME=$(cd ${0%/*} && pwd -P)
+
+export JYTHONPATH=$BUILDER_HOME/antlibs/jython-2.5-py2.5.egg
+export USERNAME=$USER
+export PATH=$PATH:.
+ant -lib $BUILDER_HOME/antlibs $*

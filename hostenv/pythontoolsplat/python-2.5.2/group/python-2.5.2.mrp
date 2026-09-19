@@ -1,0 +1,10 @@
+component dev_hostenv_pythontoolsplat_python-2.5.2
+
+
+source /src/tools/dev/hostenv/pythontoolsplat/python-2.5.2
+exports /src/tools/dev/hostenv/pythontoolsplat/python-2.5.2/group
+
+ipr B
+
+notes_source release.txt
+

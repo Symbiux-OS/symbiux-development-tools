@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - SDK Manager Service
+Bundle-SymbolicName: com.nokia.s60tools.sdk
+Bundle-Version: 1.9.0.qualifier
+Bundle-Activator: com.nokia.s60tools.sdk.internal.SdkPlugin
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.core.runtime,
+ com.nokia.carbide.cpp.sdk.core,
+ org.eclipse.cdt.core
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.s60tools.sdk
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

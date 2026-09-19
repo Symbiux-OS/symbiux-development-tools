@@ -1,0 +1,8 @@
+component dev_hostenv_dist_zip-3.0
+
+source ..
+
+ipr B
+
+notes_source release.txt
+

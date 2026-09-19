@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="connectionType" name="Connection Type" schema="schema/connectionType.exsd"/>
+   <extension-point id="service" name="Service" schema="schema/service.exsd"/>
+   <extension-point id="extensionFilter" name="Extension Filter" schema="schema/extensionFilter.exsd"/>
+   <extension-point id="connectedServiceFactory" name="Connected Service Factory" schema="schema/connectedServiceFactory.exsd"/>
+   <extension-point id="deviceDiscoveryAgent" name="Device Discovery Agent" schema="schema/deviceDiscoveryAgent.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="%ViewName"
+            icon="icons/connection.png"
+            category="com.nokia.carbide.cpp"
+            class="com.nokia.carbide.remoteconnections.view.ConnectionsView"
+            id="com.nokia.carbide.remoteconnections.view.ConnectionsView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.nokia.carbide.cpp.CarbideCppPerspective">
+         <view
+               id="com.nokia.carbide.remoteconnections.view.ConnectionsView"
+               relationship="stack"
+               relative="org.eclipse.cdt.debug.ui.executablesView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="com.nokia.carbide.remoteConnections.category"
+            name="%CategoryName">
+      </category>
+      <wizard
+            category="com.nokia.carbide.remoteConnections.category"
+            class="com.nokia.carbide.remoteconnections.wizard.ExportWizard"
+            icon="icons/connection.png"
+            id="com.nokia.carbide.remoteConnections.exportWizard"
+            name="%WizardName">
+         <description>
+            %Export.desc
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            id="com.nokia.carbide.remoteConnections.category"
+            name="%CategoryName">
+      </category>
+      <wizard
+            category="com.nokia.carbide.remoteConnections.category"
+            class="com.nokia.carbide.remoteconnections.wizard.ImportWizard"
+            icon="icons/connection.png"
+            id="com.nokia.carbide.remoteConnections.importWizard"
+            name="%WizardName">
+         <description>
+            %Import.desc
+         </description>
+      </wizard>
+   </extension>
+
+<!-- We use an Eclipse toolbar command to show the ToolItem icon for the 
+current connection status.  This is required to get the same kind of
+UI as a toolbar item, without resorting to exorbant recreation of
+the platform UI.  But this also means we directly depend on being
+able to find the ToolItem at runtime.  Thus, this command id 
+should not change without syncing with the ConnectionStatusSelectorContribution
+class. -->
+
+<extension point="org.eclipse.ui.commands">
+	<command
+		id="com.nokia.carbide.remoteConnections.commands.openRemoteConnectionsView"
+		name="Open Remote Connections View">
+	</command>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="com.nokia.carbide.remoteconnections.internal.ui.OpenConnectionViewCommandHandler"
+		commandId="com.nokia.carbide.remoteConnections.commands.openRemoteConnectionsView">
+	</handler>
+</extension>
+
+<extension point="org.eclipse.ui.menus">
+	<menuContribution
+		locationURI="toolbar:org.eclipse.ui.trim.status">
+        <toolbar
+			id="com.nokia.carbide.remoteConnections.contributions.toolbar.trim">
+			<command
+				commandId="com.nokia.carbide.remoteConnections.commands.openRemoteConnectionsView"
+				icon="icons/connection.png"
+				label=""
+				id="openRemoteConnectionsView"
+				
+				tooltip="Current connection status">
+			</command>
+			
+			<control
+				class="com.nokia.carbide.remoteconnections.internal.ui.ConnectionStatusSelectorContribution"
+				id="deviceStatusSelectorContribution">
+			</control>
+        </toolbar>
+	</menuContribution>
+</extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="platform:/resource/com.nokia.carbide.remoteConnections/schema/InstallPackages.xsd"
+            class="com.nokia.carbide.installpackages.gen.InstallPackages.InstallPackagesPackage"
+            genModel="schema/InstallPackages.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="installpackages"
+            class="com.nokia.carbide.installpackages.gen.InstallPackages.util.InstallPackagesResourceFactoryImpl"/>
+   </extension>
+</plugin>

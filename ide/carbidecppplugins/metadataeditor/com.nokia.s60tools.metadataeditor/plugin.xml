@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+      point="org.eclipse.core.runtime.products"
+      id="product">      
+      <product name="Metadata Editor" application="org.eclipse.ui.ide.workbench" > 
+          <property name="appName" value="Carbide.c++ Extensions - Metadata Editor"/> 
+     </product> 
+     
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.nokia.s60tools.metadataeditor.editors.APIMetadataEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
+            extensions="metaxml"
+            icon="icons/metadata_file.png"
+            id="com.nokia.s60tools.metadataeditor.editors.APIMetadataEditor"
+            name="Metadata Editor">
+      </editor>
+   </extension>
+   <extension
+         name="Create a Metadata file"
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="com.nokia.s60tools"
+            name="Carbide Extensions"/>
+      <wizard
+            category="com.nokia.s60tools"
+            class="com.nokia.s60tools.metadataeditor.wizards.APIMetadataFileNewWizard"
+            descriptionImage="icons/metadata_editor_55.png"
+            icon="icons/metadata_file.png"
+            id="com.nokia.s60tools.metadataeditor.wizards.APIMetadataFileNewWizard"
+            name="API metadata file"
+            >
+         <description>Create a Metadata file</description>
+      </wizard>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="API Metadata Editor Actions"
+            id="com.nokia.s60tools.metadataeditor.ui.actionSet"
+            label="Metadata Editor"
+            visible="true">
+         <action
+               class="com.nokia.s60tools.metadataeditor.ui.actions.ToolsMenuAction"
+               icon="icons/metadata_editor_16.png"
+               id="com.nokia.s60tools.metadataeditor.ui.actions.ToolsMenuAction"
+               label="API Metadata Editor"
+               menubarPath="com.nokia.carbide.cpp.ui.CarbideMenu/CarbideExtensions"
+               style="push"
+               tooltip="%view.Tooltip"/>
+         <menu
+               id="com.nokia.carbide.cpp.ui.CarbideMenu"
+               label="Carbide"
+               path="additions">
+            <groupMarker name="additions"/>
+         </menu>
+      </actionSet>
+   </extension>   
+   
+
+</plugin>

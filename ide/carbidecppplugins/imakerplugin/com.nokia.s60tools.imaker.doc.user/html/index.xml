@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.index"?>
+
+	<!-- INDEX INSTRUCTIONS
+	
+	Use the index.xml file to define the index entries for the plugin's 
+	help contents. In Eclipse 3.2 and beyond an Inex tab appears in the Help
+	viewer making it possible for user to more easily locate subjects of
+	interest to them.
+		
+	In brief, every file used in the help documentation should have at least one
+	associated index entry for it. Ideally, it's simple to make two entries per
+	page by simply re-wording the subject slightly. For example, a view could
+	be indexed twice like this, 1) Breakpoint view, and 2) Views, Breakpoint.
+	
+	See ??? for details on creating indexes.
+	
+	-->
+
+
+<index>
+
+	<!-- AAAAAAAA -->
+	<!-- BBBBBBBB -->
+	<!-- CCCCCCCC -->	
+
+	<entry keyword="--index topic here--" >
+		<topic href="--url to html file here" />
+	</entry>
+
+	<!-- DDDDDDDD -->	
+	<!-- EEEEEEEE -->	
+	<!-- FFFFFFFF -->
+	<!-- GGGGGGGG -->	
+	<!-- HHHHHHHH -->	
+	<!-- IIIIIIII -->
+	<!-- JJJJJJJJ -->
+	<!-- KKKKKKKK -->
+	<!-- LLLLLLLL -->
+	<!-- MMMMMMMM -->
+	<!-- NNNNNNNN -->
+	<!-- OOOOOOOO -->
+	<!-- PPPPPPPP -->
+	<!-- QQQQQQQQ -->
+	<!-- RRRRRRRR -->
+	<!-- SSSSSSSS -->
+	<!-- TTTTTTTT -->
+	<!-- UUUUUUUU -->
+	<!-- VVVVVVVV -->
+	<!-- WWWWWWWW -->
+	<!-- XXXXXXXX -->
+	<!-- YYYYYYYY -->
+	<!-- ZZZZZZZZ -->
+
+</index>
+

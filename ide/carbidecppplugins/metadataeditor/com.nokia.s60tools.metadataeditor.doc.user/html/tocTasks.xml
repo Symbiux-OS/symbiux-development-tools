@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Tasks">
+	
+	<topic label="Creating a new project" href="html/tasks/create_new_project.htm" >
+	</topic>
+	<topic label="Importing a project" href="html/tasks/import_project.htm" >
+	</topic>
+	<topic label="Creating a new metadata file" href="html/tasks/create_metadata.htm" >
+	</topic>
+	<topic label="Editing a metadata file" href="html/tasks/edit_metadata.htm" >
+	</topic>
+ <topic href="html/tasks/converting_metadata.htm" label="Converting metadata files">
+ </topic>
+	
+</toc>

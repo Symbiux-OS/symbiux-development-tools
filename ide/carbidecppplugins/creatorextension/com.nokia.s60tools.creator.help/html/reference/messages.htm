@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Message components</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Message components</h2>
+<p>The Message component types are: </p>
+<ul>
+<li>SMS</li>
+<li>MMS</li>
+<li>AMS</li>
+<li>Email</li>
+<li>Smart message</li>
+<li>Infrared (IR) message</li>
+<li>BT (Bluetooth) message</li>
+</ul>
+<p>You can either type in the needed values directly into the fields or select the <b>Random</b> component value options to let the S60 Creator tool generate message items randomly. </p><p>You can choose the <b>Item values</b> from the <b>Mode</b> field:</p>
+<ul>
+<li><b>Edit mode</b>: User can edit the field data</li>
+<li><b>Random &ndash; Default length</b>: Random data, default length</li>
+<li><b>Random &ndash; Custom length:</b> Random data, user edits the data length</li>
+<li><b>Random &ndash; Max length:</b> Random data, maximum length for the data</li>
+<li><b>Increase for each copy:</b> applied only with phone number fields in contacts, messages and logs. This mode is used together with the "amount" attribute. When the Increase for each copy mode is selected, phone number will increase for each copy of component created. For example, if phone number "12300" is given, the first copy will have phone number "123000", and the second copy will have "12301", third "12302" and so on. If the Amount attribute of Phone number is used, each copy will have a different phone number.</li>
+</ul>
+<p>Note the following specifics about file usage and contact sets: </p>
+<table width="500" border="1" cellspacing="1" cellpadding="2">
+<colgroup>
+<col width="42*">
+<col width="157*"></colgroup>
+<tbody>
+<tr>
+<td><b>SMS</b><br><b>Smart messages</b><br><b>IR messages</b><br><b>BT messages
+</b></td>
+<td>
+<ul>
+<li><b>From</b> (sender) and <b>To</b> (recipient): data can be taken from Contact sets. </li>
+</ul></td>
+</tr>
+<tr>
+<td><b>MMS</b><br><b>AMS</b><br><b>Email</b></td>
+<td><ul>
+<li><b>Attachment path</b> defines the path from which an attached file is created on the device (by default, <i>c:\data</i>). </li>
+<li><b>Attachment file ID:</b> defines the format and identification for the attached file that is created on the device. For example, in the case of the JPEG file format, three different identifications are possible: 200kB, 25kB and 500kB. For a list of supported file types in the current release, see the <a href="../release_notes.htm#features">Release Notes</a>. </li>
+<li><b>From</b> (sender) and <b>To</b> (recipient): data can be taken from Contact sets. </li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h5>Related concepts</h5>
+<ul>
+<li><a href="../concepts/contact_set.htm">Contact set</a></li>
+</ul>
+
+<h5>Related references</h5>
+<ul>
+<li><a href="generic_items.htm">Generic component reference</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2007-2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

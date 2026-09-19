@@ -1,0 +1,67 @@
+/*
+* Copyright (c) 2003-2009 Nokia Corporation and/or its subsidiary(-ies).
+* All rights reserved.
+* This component and the accompanying materials are made available
+* under the terms of the License "Eclipse Public License v1.0"
+* which accompanies this distribution, and is available
+* at the URL "http://www.eclipse.org/legal/epl-v10.html".
+*
+* Initial Contributors:
+* Nokia Corporation - initial contribution.
+*
+* Contributors:
+*
+* Description: 
+*
+*/
+
+
+
+TARGET			rofsbuild.exe
+TARGETTYPE		exe
+
+// rofsbuild
+SOURCEPATH	../rofsbuild
+SOURCE			 r_obey.cpp r_build.cpp r_rofs.cpp r_driveimage.cpp r_driveutl.cpp
+SOURCE			 rofsbuild.cpp r_coreimage.cpp r_smrimage.cpp
+SOURCE			 fatcluster.cpp fsnode.cpp fatimagegenerator.cpp
+SOURCEPATH	../../imglib/symbolutil
+SOURCE			 symbolprocessunit.cpp bsymutil.cpp loggingexception.cpp logparser.cpp
+SOURCE                   symbolgenerator.cpp
+SOURCEPATH	../../imglib/host
+SOURCE			h_utl.cpp h_file.cpp h_mem.cpp utf16string.cpp
+SOURCEPATH ../rofsbuild/src/cache
+SOURCE cachemanager.cpp cacheexception.cpp cache.cpp cacheablelist.cpp cachevalidator.cpp cachegenerator.cpp cacheentry.cpp
+
+// executable compression
+SOURCEPATH	../../imglib/e32uid
+SOURCE			e32uid.cpp
+sourcepath      ../../imglib/e32image
+source                  e32image.cpp
+sourcepath      ../../imglib/e32image/deflate
+source                  decode.cpp encode.cpp deflate.cpp inflate.cpp panic.cpp
+source                  compress.cpp
+sourcepath  	../../imglib/compress
+source					byte_pair.cpp pagedcompress.cpp
+
+OS_LAYER_SYSTEMINCLUDE_SYMBIAN
+
+USERINCLUDE   ../../imglib/inc ../../imglib/compress ../../imglib/symbolutil
+USERINCLUDE   ../../imglib/patchdataprocessor/include ../../imglib/parameterfileprocessor/include
+USERINCLUDE	  ../../imglib/memmap/include
+USERINCLUDE   ../../imglib/uniconv/include
+USERINCLUDE   ../rofsbuild/inc
+USERINCLUDE   ../../imglib/boostlibrary/
+USERINCLUDE   ../../imglib/boostlibrary/boost
+USERINCLUDE   ../rofsbuild
+
+STATICLIBRARY 	patchdataprocessor parameterfileprocessor memmap
+STATICLIBRARY   boost_thread-1.39 boost_filesystem-1.39 boost_regex-1.39 boost_system-1.39 uniconv
+#ifdef TOOLS2_LINUX
+OPTION    GCC -pthread -O2 -Wno-uninitialized
+#else
+OPTION    GCC -mthreads -O2 -Wno-uninitialized
+#endif
+
+
+VENDORID 0x70000001

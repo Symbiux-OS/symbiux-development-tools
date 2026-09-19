@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Creating On-device Connections">
+   <intro>
+      <description>
+         Use the <b>New Connections</b> window to create, edit, and manage remote connection settings to enable on-device debugging and the installation of remote agents.
+      </description>
+   </intro>
+   <item
+         href="/com.nokia.carbide.cpp.doc.user/html/reference/trk/wnd_new_connection_wizard.htm"
+         title="Open the New Connections window">
+      <description>
+         Use the <b>New Connections</b> window to create, edit, and manage remote connection settings to enable on-device debugging and the installation of remote agents.
+      </description>
+      <subitem
+            label="In the Remote Connections view click the New Connection... icon to open the New Connection window.">
+      </subitem>
+   </item>
+   <item
+         title="Define the remote connection">
+      <description>
+         Use the <b>Edit connection name and type</b> page to define basic remote connection settings.         
+      </description>
+      <subitem
+            label="Enter a name for this connection">
+      </subitem>
+      <subitem
+            label="Select the connection type required to connect to the remote device.">
+      </subitem>
+      <subitem
+            label="Click Next.">
+      </subitem>
+   </item>
+   <item
+         title="Select serial port and device OS">
+      <description>
+         In the <b>Connection settings</b> page specify the connection settings, the device OS, and verify the presence of a remote agent.
+      </description>
+      <subitem
+            label="Select the serial port from the available list. A named COM port (COM4 - BthModem0) indicates an active port.">
+     </subitem>
+      <subitem
+            label="Select the OS used by the device from the dropdown list.">
+      </subitem>
+   </item>
+   <item
+         title="Verify connection and presence of remote agent">
+      <description>
+         Select service to test and click Initiate service testing
+      </description>
+      <subitem
+            label="Select a service in the Select the service to test list.">
+      </subitem>
+      <subitem
+            label="Click Initiate service test to test the connection.">
+      </subitem>
+      <subitem
+            label="Examine Status box for results. Failures indicate that the COM port is not open. Not responding indicates that no service is running on the device.">
+      </subitem>
+      <subitem
+            label="Click Finish to create the connection setting and have it appear in the Remote Connections view.">
+      </subitem>
+   </item>
+   <item
+         href="/com.nokia.carbide.cpp.doc.user/html/reference/trk/view_remote_connection.htm"
+         title="Verify and monitor connections">
+      <description>
+         Verify and monitor connections using the <b>Remote Connections</b> view.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.makeFast=com.nokia.carbide.remoteconnections.view.ConnectionsView)"/>
+   </item>
+</cheatsheet>

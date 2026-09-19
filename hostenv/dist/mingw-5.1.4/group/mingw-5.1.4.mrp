@@ -1,0 +1,10 @@
+component dev_hostenv_dist_mingw-5.1.4
+
+
+source /src/tools/dev/hostenv/dist/mingw-5.1.4
+exports /src/tools/dev/hostenv/dist/mingw-5.1.4/group
+
+ipr B
+
+notes_source release.txt
+

@@ -1,0 +1,10 @@
+component dev_hostenv_dist_cygwin-1.5.25
+
+
+source /src/tools/dev/hostenv/dist/cygwin-1.5.25
+exports /src/tools/dev/hostenv/dist/cygwin-1.5.25/group
+
+ipr B
+
+notes_source release.txt
+

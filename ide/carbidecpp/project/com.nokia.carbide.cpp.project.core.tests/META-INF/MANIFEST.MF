@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Project Core Tests Plug-in
+Bundle-SymbolicName: com.nokia.carbide.cpp.project.core.tests; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.nokia.carbide.cpp.project.core.tests.TestsPlugin
+Bundle-Vendor: Nokia, Inc.
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit,
+ com.nokia.carbide.cpp.project.core,
+ com.nokia.carbide.cdt.builder,
+ com.nokia.cpp.utils.core,
+ com.nokia.carbide.cpp.epoc.engine,
+ com.nokia.carbide.cpp.sdk.core,
+ org.eclipse.cdt.core,
+ com.nokia.carbide.cpp.project.ui,
+ com.nokia.carbide.cpp.api.test.support;bundle-version="1.0.0",
+ com.nokia.carbide.cpp.qt.core;bundle-version="1.4.0",
+ com.trolltech.qtcppproject;bundle-version="1.6.0";resolution:=optional,
+ com.trolltech.qtproject;bundle-version="1.0.1";resolution:=optional
+Bundle-ActivationPolicy: lazy
+Export-Package: com.nokia.carbide.cpp.project.core.tests

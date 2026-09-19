@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Carbide.c++ Extensions - Symbian Foundation Templates Wizard Help Plug-in
+Bundle-SymbolicName: com.nokia.s60tools.symbianfoundationtemplates.doc.user;singleton:=true
+Bundle-Version: 1.3.0
+Bundle-Vendor: Nokia
+Require-Bundle: org.eclipse.help

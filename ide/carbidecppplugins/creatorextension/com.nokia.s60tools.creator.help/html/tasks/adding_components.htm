@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Adding components</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Adding components</h2>
+
+<h5>Before you start</h5>
+<p>In general, you can add as many components (for example, contacts, messages, to-dos, appointments and so on) to the script as needed. Note the following things: </p>
+<ul>
+<li>Working with contact sets is a special case compared to other component items. For more information, see <a href="../concepts/contact_set.htm">Contact set</a>. </li>
+<li>Selecting random values for component items can save you a lot of time in the creation of the script. For a description, see <a href="../concepts/components.htm#random">Random component values</a>.</li>
+</ul>
+<p>To add components to the script, follow these basic steps: </p>
+<ol>
+<li>From the <b>Select component to add</b> list box, select the item of your choice. <p></p><p><img src="screenshots\adding_comp.png"></p></li>
+<li>Click <b>Add</b>. <p>The dialog for the selected component type is displayed.</p></li>
+<li>In the <b>Amount</b> field, type in the amount of entries you want to create of this component type. <p>If you leave this field empty, one entry
+is created by default. </p></li>
+<li>(Optional), add new contact set by clicking the <b>Add new Contact-set</b> button. <p><b>Note:</b> Dialogs for components that can have reference to Contact-set has this button for creating Contact-Sets. Those components are: Contact, Messages (SMS, MMS, AMS, Email, Smart Message, IR message, BT message), Appointment, and Contact Group.</p></li>
+<li>To enter the component values, do any of the following:
+<ul>
+<li>Enter the values of your choice in the <b>Item value</b> field, and how many of these items should be created in the <b>Amount</b> field. <p><b>Note:</b> When filling in the values manually, follow the instructions in the dialogs to enter the data in correct format. </p></li>
+<li><p>The length of an entry for random values can be selected from the <b>Mode</b> drop-down list as follows: </p><img src="screenshots\mode1.png">
+<ul>
+<li><b>Edit mode</b>: User can edit the field data</li>
+<li><b>Random &ndash; Default length</b>: Random data, default length</li>
+<li><b>Random &ndash; Custom length:</b> Random data, user edits the data length</li>
+<li><b>Random &ndash; Max length:</b> Random data, maximum length for the data</li>
+<li><b>Increase for each copy:</b> applied only with phone number fields in contacts, messages and logs. This mode is used together with the "amount" attribute. When the Increase for each copy mode is selected, phone number will increase for each copy of component created. For example, if phone number "12300" is given, the first copy will have phone number "123000", and the second copy will have "12301", third "12302" and so on. If the Amount attribute of Phone number is used, each copy will have a different phone number.</li>
+</ul>
+</li>
+<li>Generate random values for all items at once: select either <b>Default</b> or <b>Max</b>, and click <b>Set random</b>.<p><img src="screenshots\random_.png"></p></li>
+</ul>
+</li>
+<li>To save the script, select <b>File > Save</b>. </li>
+</ol>
+
+<h5>Useful to know</h5>
+<p>The <i>.creatorxml</i> file is used as input for the S60 Creator tool that works on an S60 device or an emulator. You can transfer the Creator file into the device in the same way as any other file, for example, via a USB cable or a Bluetooth connection. On the device, the default location of the file is in <i>c:\data</i>, or at the root of the memory card. </p>
+
+<h5>Related tasks</h5>
+<ul>
+<li><a href="modifying_components.htm">Modifying components</a></li>
+</ul>
+
+<h5>Related references</h5>
+<ul>
+<li><a href="../reference/generic_items.htm">Generic component reference</a></li>
+<li><a href="../reference/contacts.htm">Contact components</a></li>
+<li><a href="../reference/messages.htm">Message components</a></li>
+<li><a href="../reference/calendar.htm">Calendar components</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2007-2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

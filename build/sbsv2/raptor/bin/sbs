@@ -1,0 +1,43 @@
+#!/bin/bash
+# Copyright (c) 2007-2010 Nokia Corporation and/or its subsidiary(-ies).
+# All rights reserved.
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Nokia Corporation - initial contribution.
+#
+# Contributors:
+#
+# Description:
+# raptor script
+# add mingw to the PATH if we are running Cygwin on Windows
+#
+
+# If SBS_HOME is not set in the environment then work it out
+# from the path to this script
+if [ -z "$SBS_HOME" ] ; then
+	temp=$0
+	SBS_HOME=$(cd ${temp%/*} && echo $PWD)
+	export SBS_HOME
+fi
+
+# Call sbs_env script
+source $SBS_HOME/bin/sbs_env
+
+# call raptor_start.py with the arguments
+
+RAPTOR_START="$SBS_HOME/python/raptor_start.py"
+
+if [ -e "$RAPTOR_START" ]; then
+	# run the source version
+	${__PYTHON__} "$RAPTOR_START" "$@"
+elif [ -e "$RAPTOR_START"c ]; then
+	# run the compiled version
+	${__PYTHON__} "$RAPTOR_START"c "$@"
+else
+	echo "Cannot start SBSV2 - $RAPTOR_START not found." 1>&2
+	echo "Check your SBS_HOME environment variable." 1>&2
+fi

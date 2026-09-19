@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Setting up USB serial connection</title>
+  <link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<h2>Setting up USB serial connection</h2>
+<ol>
+  <li>Make sure you have USB cable drivers (such as Nokia Connectivity Cable
+    Drivers for Nokia devices) installed on your PC (either with PC Suite or
+    separately for Nokia devices). The latest version of the drivers is always
+    recommended.</li>
+  <li>In the S60 device, start HtiAdmin by selecting <b>Menu</b> &gt; <b>RnD
+    Tools</b> &gt; <b>HtiAdmin</b>.</li>
+  <li>Stop the HTI Framework if it is running by selecting <b>Options</b> &gt;
+    <b>Stop</b>.</li>
+  <li>Enable USB connection by selecting <b>Options</b> &gt; <b>Comms</b> &gt;
+    <b>Enable USB serial comm</b>.</li>
+  <li>Start the HTI Framework by selecting <b>Options</b> &gt;
+  <b>Start</b>.</li>
+  <li>Connect the device to the PC with a USB cable and select the <b>PC
+    Suite</b> mode. If Windows starts to install drivers, wait for all
+    installations to complete.</li>
+  <li>In the HTI Connection Carbide.c++ Extension, click <img
+    src="../images/environment_co.png"> to open the Preferences dialog. In the
+    dialog click <b>New...</b> to create a new connection, or select Current
+    connection or an existing connection from the drop down list. 
+    <p><b>Note:</b> If you select <b>Current connection</b>, HTI Connection
+    will automatically use the currently active connection.If <b>Current
+    connection</b> is selected, user can change the currently active connection
+    easily either from Remote Connection view, or from a new Trim widget
+    showing the current connection.</p>
+  </li>
+  <li>In <b>Connection name</b>, enter a name for the connection, and in
+    <b>Connection type</b>, select <b>Serial</b>. To edit the serial port
+    settings, click <b>Next</b>.<br>
+    <br>
+    <img src="../images/new_connection_1.png"></li>
+  <li>In <b>Serial Port</b>, select the serial port that is used for USB
+    connection. You can also select a baud rate.<br>
+    <br>
+    <img src="../images/new_connection_2.png"></li>
+  <li>(Optional) To test the connection, click <b>Initiate service testing</b>.
+    The test status is shown in the <b>Status</b> pane: 
+    <ul>
+      <li><i>Status not tested</i></li>
+      <li><i>Connection to HTI agent OK, HTI version x.xx</i></li>
+      <li><i>HTI agent in the device is not responding</i></li>
+      <li><i>Connection failed</i></li>
+    </ul>
+  </li>
+  <li>Click <b>Finish</b> to close the wizard. HTI Connection now starts the
+    Datagateway with the connection you configured. If the Datagateway does not
+    start automatically, start it by clicking <img
+    src="../images/run_exc.gif">. The connection status will be displayed in
+    the status line above the console screen: 
+    <ul>
+      <li><i>Not connected</i></li>
+      <li><i>Testing connection</i></li>
+      <li><i>Trying to connect to &lt;connection name&gt;</i></li>
+      <li><i>Connected to &lt;connection name&gt;</i></li>
+    </ul>
+  </li>
+</ol>
+
+<p>In addition to configuring and starting HTI connections, you can do the
+following:</p>
+<ul>
+  <li>To stop the Datagateway, click <img src="../images/stop.gif">.</li>
+  <li>To edit the connection settings, click <img
+    src="../images/environment_co.png">.</li>
+  <li>To delete a connection, open the <b>Remote Connections</b> view and use
+    the dynamic menu. For details, see <a
+    href="viewing_remote_connections.htm">Viewing remote connections</a>.</li>
+</ul>
+
+<h5>Related tasks</h5>
+<ul>
+  <li><a href="viewing_remote_connections.htm">Viewing remote
+  connections</a></li>
+  <li><a href="set_preferences.htm">Editing HTI connection settings</a></li>
+</ul>
+
+<div id="footer">
+Copyright © 2010 Nokia Corporation and/or its subsidiary(-ies). All rights
+reserved. License: <a
+href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Remote Control" link_to="../com.nokia.carbide.help.common/carbideHelpTOC.xml#anchorCarbideFeature">
+
+	<topic label="Remote Control" href="html/tool.htm" >
+		
+		<topic label="Release Notes" href="html/release_notes.htm" />
+		
+		<topic label="Getting started" href="html/gettingstarted/GS_index.htm">
+			<topic label="Overview" href="html/gettingstarted/overview.htm" />
+			<topic label="Basic walk-through" href="html/gettingstarted/walk_through.htm" />
+		</topic>
+   
+		<topic label="Concepts" href="html/concepts/concepts.htm" >
+			<topic label="Screen Capture mode" href="html/concepts/screen_capture_mode.htm" />
+			<topic label="File Transfer mode" href="html/concepts/file_transfer_mode.htm" />
+			<topic label="Touch User Interface" href="html/concepts/touch_ui.htm" />
+			<topic label="Dynamic context menus" href="html/concepts/context_menus.htm" />
+		</topic>
+			  
+		<topic label="Tasks" href="html/tasks/tasks.htm" >
+			<topic label="Saving screenshots" href="html/tasks/saving_screenshots.htm" />
+			<topic label="Transferring files" href="html/tasks/transferring_files.htm" />
+			<topic label="Using virtual keyboard" href="html/tasks/using_virtual_keyboard.htm" />
+			<topic label="Using PC keyboard" href="html/tasks/using_pc_keyboard.htm" />
+			<topic label="Setting Remote Control preferences" href="html/tasks/setting_preferences.htm" />
+		</topic>
+	   
+		<topic label="Reference" href="html/reference/references.htm" >
+			<topic label="Toolbar" href="html/reference/toolbar.htm" />
+		</topic>
+		   
+		<topic label="Legal" href="html/legal.htm" />
+   		
+	</topic>
+		
+</toc>

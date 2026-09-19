@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Components</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Components</h2>
+<p>The scripts created with Creator Carbide.c++ Extension contain various types of components, such as phonebook items (contacts and contact groups), messages, notes, bookmarks, files, and appointments.</p>
+<p>You can add as many components to the scripts as needed. See the following example of the component view in the <b>Creator Script Editor</b>:</p>
+<p><img src="screenshots\sample_view.png"></p>
+<p>For more information on the specific issues related to component types, see the following references: </p>
+<ul>
+<li><a href="../reference/generic_items.htm">Generic component reference</a></li>
+<li><a href="../reference/contacts.htm">Contact components</a></li>
+<li><a href="../reference/messages.htm">Message components</a></li>
+<li><a href="../reference/calendar.htm">Calendar components</a></li>
+</ul>
+
+<h3><a name="random"></a>Random component values</h3>
+<p>You have two choices for entering component information in Creator Script Editor. You can either directly type in the values of your choice in the <b>Item value</b> field, or select them from the <b>Mode</b> drop-down list. The number of choices in the <b>Mode</b> field depends on the type of the value:</p>
+<ul>
+<li>There is 0 choices with Contact set reference</li>
+<li>Two choices when fixed values in combos</li>
+<li>Four choices when values are in text fields</li>
+<li>Five choices when Phone number Log, Contact, message components</li>
+</ul>
+<p>Using random values means that when the script file is run on the device, the S60 Creator tool randomly generates the component values (such as contact names, phone numbers or to-do items), using a pre-defined resource file.</p>
+<p>The length of an entry for random values can be selected as follows in the <b>Mode</b> drop-down list: </p>
+<ul>
+<li><b>Edit mode</b>: User can edit the field data</li>
+<li><b>Random &ndash; Default length</b>: Random data, default length</li>
+<li><b>Random &ndash; Custom length:</b> Random data, user edits the data length</li>
+<li><b>Random &ndash; Max length:</b> Random data, maximum length for the data</li>
+<li><b>Increase for each copy:</b> applied only with phone number fields in contacts, messages and logs. This mode is used together with the "amount" attribute. When the Increase for each copy mode is selected, phone number will increase for each copy of component created. For example, if phone number "12300" is given, the first copy will have phone number "123000", and the second copy will have "12301", third "12302" and so on. If the Amount attribute of Phone number is used, each copy will have a different phone number.</li>
+</ul>
+<p>In each component dialog, you can save time by applying random values (Edit mode, Random &ndash; Default length, Random &ndash; Custom length, Random &ndash; Max length) for all items and let Creator generate the test data.</p>
+<p><b>Note:</b> When filling in the values manually, ensure that you enter the data in correct format due to a limited data validation in this tool.</p>
+
+<h5>Related concepts</h5>
+<ul>
+<li><a href="contact_set.htm">Contact set</a></li>
+</ul>
+
+<h5>Related tasks</h5>
+<ul>
+<li><a href="../tasks/adding_components.htm">Adding components</a></li>
+<li><a href="../tasks/modifying_components.htm">Modifying components</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2007-2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

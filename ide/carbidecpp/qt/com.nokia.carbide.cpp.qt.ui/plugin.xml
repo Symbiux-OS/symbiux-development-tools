@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <category
+            name="%QtCategoryName"
+            id="com.nokia.carbide.cpp.importWizards.qt">
+      </category>
+      <wizard
+            name="%proImportWizardname"
+            icon="icons/Carbide_Qt_logo.gif"
+            category="com.nokia.carbide.cpp.importWizards.qt"
+            class="com.nokia.carbide.cpp.internal.qt.ui.wizard.QtProFileImportWizard"
+            id="com.nokia.carbide.cpp.qt.ui.wizard.QtProFileImportWizard">
+         <description>
+            %proImportWizardDescription
+         </description>
+      </wizard>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="com.trolltech.qtcppproject.QtCategory"
+            class="com.nokia.carbide.cpp.internal.qt.ui.wizard.NewQtCppProjectWizard"
+            finalPerspective="com.trolltech.qtcppproject.QtCppPerspective"
+            icon="icons/Carbide_Qt_logo.gif"
+            id="com.nokia.carbide.cpp.qt.ui.wizard.NewQtCppProjectWizard"
+            name="%newProjectWizardName"
+            project="true">
+         <description>
+            %newProjectWizardDescription
+         </description>
+      </wizard>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.nokia.carbide.cpp.CarbideCppPerspective">
+         <perspectiveShortcut
+               id="com.trolltech.qtcppproject.QtCppPerspective">
+         </perspectiveShortcut>
+         <newWizardShortcut id="com.nokia.carbide.cpp.qt.ui.wizard.NewQtCppProjectWizard"/>
+      </perspectiveExtension>
+
+      <perspectiveExtension
+            targetID="com.trolltech.qtcppproject.QtCppPerspective">
+         <perspectiveShortcut
+               id="com.nokia.carbide.cpp.CarbideCppPerspective">
+         </perspectiveShortcut>
+         <newWizardShortcut id="com.nokia.carbide.cpp.qt.ui.wizard.NewQtCppProjectWizard"/>
+      </perspectiveExtension>
+   </extension>
+
+   <extension
+         point="com.trolltech.qtcppproject.qmakeEnvironmentModifier">
+      <modifier
+            class="com.nokia.carbide.cpp.internal.qt.ui.QMakeEnvironmentModifier">
+      </modifier>
+   </extension>
+   
+   <extension
+         id="com.nokia.carbide.cpp.internal.qt.ui.qmakeCommandProvider"
+         name="Qt qmake command provider"
+         point="com.trolltech.qtcppproject.qmakeCommandProvider">
+          <provider
+            class="com.nokia.carbide.cpp.internal.qt.ui.CarbideQmakeCommandProvider"
+            name="com.nokia.carbide.cpp.internal.qt.ui.CarbideQmakeCommandProvider"/>
+   </extension>
+   
+   <extension
+         id="com.nokia.carbide.cpp.qt.ui.symbianSDKMgrHook"
+         name="Symbian SDK Manager Hook"
+         point="com.nokia.carbide.cpp.sdk.core.sdkManagerLoadedHook">
+          <provider
+            class="com.nokia.carbide.cpp.internal.qt.ui.QtUIPlugin"
+            name="com.nokia.carbide.cpp.internal.qt.core.SDK-HookClient"/>
+   </extension>
+   
+
+</plugin>

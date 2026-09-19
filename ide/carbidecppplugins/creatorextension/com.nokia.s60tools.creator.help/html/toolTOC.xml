@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<!-- 
+	Links tool docs to main TOC for Carbide help in the defined location. 
+	NOTE: Tool name seems to be ignored here for display purposes but needed to
+	make the link_to section work.
+-->
+
+<!-- Current link_to attribute works on top of Carbide 1.3 -->
+<toc label="Creator" 
+	link_to="../com.nokia.carbide.help.common/carbideHelpTOC.xml#anchorCarbideFeature">
+	
+<!-- 
+    This is old link_to attribute working on top of Carbide 1.2:
+	link_to="../com.nokia.carbide.cpp/nokiaTOC.xml#anchorCarbideFeature">
+	-->
+
+	<!--
+		Define the Creator as it should appear in the TOC. The tool.htm page
+		is the cover page for the tool help.
+	-->
+	<topic label="Creator" href="html/toc.htm" >
+		
+	   <!--
+		   Following the Eclipse guidelines, the tool help is arranged as Concepts,
+		   References, and Tasks. Each has their own associated XML file to make it
+		   easy to edit each section as well as an overview page.
+	   -->
+	   <topic label="Release Notes" href="html/release_notes.htm" />
+		
+	   <topic label="Getting started" href="html/gettingstarted/GS_index.htm">
+     		   <link toc="html/tocGettingStarted.xml" />
+	   </topic>
+   
+	   <topic label="Concepts" href="html/concepts/concepts.htm" >
+     		   <link toc="html/tocConcepts.xml" />
+	   </topic>
+			  
+	   <topic label="Tasks" href="html/tasks/tasks.htm" >
+     		   <link toc="html/tocTasks.xml" />
+	   </topic>
+	   
+	   <topic label="Reference" href="html/reference/references.htm" >
+     		   <link toc="html/tocReference.xml" />
+	   </topic>
+		   
+       <topic label="Legal" href="html/legal.htm" />
+   		
+	</topic>
+		
+</toc>

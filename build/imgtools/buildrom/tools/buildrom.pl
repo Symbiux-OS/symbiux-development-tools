@@ -1,0 +1,132 @@
+#!/usr/bin/perl 
+#
+# Copyright (c) 2005-2009 Nokia Corporation and/or its subsidiary(-ies).
+# All rights reserved.
+# This component and the accompanying materials are made available
+# under the terms of the License "Eclipse Public License v1.0"
+# which accompanies this distribution, and is available
+# at the URL "http://www.eclipse.org/legal/epl-v10.html".
+#
+# Initial Contributors:
+# Nokia Corporation - initial contribution.
+#
+# Contributors:
+#
+# Description: 
+#
+
+
+use FindBin;		# for FindBin::Bin
+my $PerlLibPath;    # fully qualified pathname of the directory containing our Perl modules
+my $PerlEPOCPath;
+
+BEGIN {
+# check user has a version of perl that will cope
+	require 5.005_03;
+# establish the path to the Perl libraries
+    $PerlLibPath = $FindBin::Bin;	
+#    $PerlLibPath =~ s/\//\\/g;
+    $PerlLibPath .= "\\";
+    $PerlLibPath =~ s/\\/\//g;
+    
+    $PerlEPOCPath = $ENV{EPOCROOT};
+    $PerlEPOCPath =~ s/\\/\//g;
+    $PerlEPOCPath .= "\/" unless $PerlEPOCPath =~ /\/$/;
+    $PerlEPOCPath .= "epoc32\/tools\/";
+}
+use lib $PerlEPOCPath."build/lib/";
+use lib $PerlEPOCPath;
+use lib $PerlLibPath;
+
+use buildrom;	# for buildrom module
+use externaltools; #To support External tool invocation
+use romutl;
+use romosvariant;
+
+# add current path and SDK tool path to the begining of environment path
+my $epocroot=&get_epocroot;
+my $delimiter=&env_delimiter;
+$ENV{PATH}="${PerlLibPath}$delimiter${epocroot}epoc32\/tools$delimiter${epocroot}epoc32\/gcc\/bin$delimiter${epocroot}epoc32\/gcc_mingw\/bin$delimiter".$ENV{PATH};
+
+# Main block for buildrom module invocation
+{    
+	# Processes the buildrom command line parameters.
+	&process_cmdline_arguments;
+	
+	my $ignoreconfig = &isIgnoreConfig;
+	
+	&image_content_processing_phase if(!$ignoreconfig);
+
+	#Processes intermediate oby files.  Also processes any new option added to the buildrom in future.
+	&processobyfiles if(!$ignoreconfig);
+
+	# Suppress ROM/ROFS/DataDrive Image creation if "-noimage" option is provided.
+	&suppress_image_generation if(!$ignoreconfig);
+	
+	#Invokes ROMBUILD and ROFSBUILD
+	&invoke_rombuild;
+	
+	&create_smrimage;
+
+	#Process data drive image.
+	&processData;
+}
+
+
+sub processobyfiles {
+
+	
+	# Creates intermediate tmp1.oby file. Preprocessing phase
+	&preprocessing_phase;
+
+	# Creates intermediate tmp2.oby file.  Predefined substitutions
+	&substitution_phase;
+
+	# Creates intermediate tmp3.oby file. Reorganises the ROM IMAGE[<ID>]
+	&reorganize_phase;
+
+	# Creates feature registry configuration file/features data file.
+	&featurefile_creation_phase;
+
+	# Run single Invocation external tool at InvocationPoint1
+
+	&externaltools::runExternalTool("InvocationPoint1", &getOBYDataRef, &getWorkdir);
+	
+	# Creates intermediate tmp4.oby file. Avoids processing of REM ECOM_PLUGIN(xxx,yyy)
+	&plugin_phase;
+	
+	# Creates intermediate tmp5.oby file. Multilinguify phase
+	&multlinguify_phase;
+	
+	# Creates intermediate tmp6.oby file. SPI file creation phase
+	&spi_creation_phase;
+
+	# Run single Invocation external tool at InvocationPoint2
+	&externaltools::runExternalTool("InvocationPoint2",&getOBYDataRef, &getWorkdir);
+	
+	# Creates intermediate tmp7.oby file. Problem Suppression phase
+	&suppress_phase;
+
+	#Process the patched dll data
+	&process_dlldata;
+
+	# Creates intermediate tmp8.oby file. For xip and non-xip images
+	&bitmap_aif_converison_phase;
+	
+	# Creates intermediate tmp9.oby file. Cleaning unnecessary data for ROM image creation.
+	&cleaning_phase;
+	
+	# Run single Invocation external tool at InvocationPoint2.5
+	&externaltools::runExternalTool("InvocationPoint2.5",&getOBYDataRef, &getWorkdir);
+
+	#Creates dump OBY file for final oby file
+	&create_dumpfile;
+
+	# Run single Invocation external tool at InvocationPoint3
+	&externaltools::runExternalTool("InvocationPoint3",&getOBYDataRef, &getWorkdir);
+
+	#ROM directory listing
+	&create_dirlisting;
+
+}
+

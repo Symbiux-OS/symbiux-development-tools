@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="HTI Console Tool&apos;s Actions"
+            id="com.nokia.s60tools.hticonnection.actionSet"
+            label="HTI Connection"
+            visible="true">
+         <menu
+       			id="com.nokia.carbide.cpp.ui.CarbideMenu"
+       			label="&amp;Carbide"
+       			path="additions">
+       			<groupMarker name="additions"/>
+     	 </menu>
+         <action
+               class="com.nokia.s60tools.hticonnection.actions.MainViewOpenAction"
+               icon="icons/hti_console.png"
+               id="com.nokia.s60tools.hticonnection.screen.actions.MainViewOpenAction"
+               label="HTI Connection"
+               menubarPath="com.nokia.carbide.cpp.ui.CarbideMenu/CarbideExtensions"
+               style="push"
+               tooltip="HTI Connection"/>
+      </actionSet>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.keywords">
+    <keyword
+          id="com.nokia.s60tools.hticonnection.preferences.common"
+          label="%htiApiPreference.common">
+    </keyword>
+ </extension>
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.nokia.carbide.cpp.preferences.ExtensionsPreferencesPage"
+            class="com.nokia.s60tools.hticonnection.preferences.HtiApiPreferencePage"
+            id="com.nokia.s60tools.hticonnection.preferences.HtiApiPreferencePage"
+            name="HTI Connection">
+            <keywordReference
+               id="com.nokia.s60tools.hticonnection.preferences.common">
+            </keywordReference>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.nokia.s60tools"
+            name="Carbide Extensions"/>
+      <view
+            category="com.nokia.s60tools"
+            class="com.nokia.s60tools.hticonnection.ui.views.main.MainView"
+            icon="icons/hti_console.png"
+            id="com.nokia.s60tools.hticonnection.ui.views.main.MainView"
+            name="HTI Connection"/>
+   </extension>
+   <extension
+         point="com.nokia.carbide.remoteConnections.service">
+      <service
+            class="com.nokia.s60tools.hticonnection.connection.HTIService">
+      </service>
+   </extension>
+   <extension
+         point="com.nokia.carbide.remoteConnections.connectedServiceFactory">
+      <connectedServiceFactory
+            class="com.nokia.s60tools.hticonnection.connection.HTIConnectedServiceFactory">
+      </connectedServiceFactory>
+   </extension>
+
+</plugin>

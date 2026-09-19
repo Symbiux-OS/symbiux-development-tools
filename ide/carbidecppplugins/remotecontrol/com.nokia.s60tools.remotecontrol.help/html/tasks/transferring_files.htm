@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+  <title>Transferring files with Remote Control</title>
+  <link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<h2>Transferring files with Remote Control</h2>
+
+<p>After you start Carbide.c++ and the Datagateway for the first time, the root
+folder structure of the target device is displayed. Newer versions of <b>HTI
+Framework</b> (versions 1.88, 1.89, 2.1 and newer) also support the display of
+drive, folder, and file sizes.</p>
+
+<p>To navigate to the folder you want to work with, you can either </p>
+<ul>
+  <li>double-click the folder icons;</li>
+  <li>select a path from the <strong>Path</strong> field drop-down menu that
+    lists the ten last visited directory locations; or</li>
+  <li>or enter the folder path in the <b>Path</b> field and press <i>Enter</i>
+    or click <b>Go to directory</b> . You can enter a whole folder path such as
+    <i>C:\Data\Images</i>, and you can use <i>..\</i> to move up in the folder
+    structure.</li>
+</ul>
+
+<p>To transfer files, use the <a href="../reference/toolbar.htm">toolbar
+buttons</a> or right-click in the File Transfer mode, and select a function
+from the context menu. The dynamic context menu contains the following
+functions:</p>
+<ul>
+  <li><b>Download</b> transfers the selected files from the device to the PC.
+    You cannot download folders.</li>
+  <li><b>Download as</b> transfer the selected file from the device to the PC
+    and lets you define a name and location for the file. Note that Download as
+    lets you download only a single file. You cannot download folders.</li>
+  <li><b>Open</b> transfers the selected files from the device to the PC and
+    opens them in Carbide.c++. You cannot download folders.</li>
+  <li><b>Upload</b> transfers the selected files from the PC to the device. You
+    cannot upload folders.</li>
+  <li><b>Delete</b> deletes the selected file(s) and folder(s).</li>
+  <li><b>Copy</b> copies the selected files and folders. Copy is supported in
+    HTI Framework versions 1.91, 2.5 or newer.</li>
+  <li><b>Cut</b> cuts the selected files and folders. Cut is supported in HTI
+    Framework versions 1.91, 2.5 or newer.</li>
+  <li><b>Paste</b> pastes the selected files and folders to the current
+    location. Paste is supported in HTI Framework versions 1.91, 2.5 or
+  newer.</li>
+  <li><b>Rename</b> renames the selected file or folder. Rename is supported in
+    HTI Framework versions 1.91, 2.5 or newer.</li>
+  <li><b>New folder</b> creates a new folder under the selected folder.</li>
+  <li><b>Refresh</b> load the folder structure and contents again.</li>
+  <li><b>Preferences</b> open the Remote Control Preferences dialog.</li>
+</ul>
+
+<p>Note that the dynamic context menu only contain functions that are allowed
+for the selected file or folder.</p>
+
+<p><b>Tip</b>: You can also drag and drop files from Windows Explorer to the
+Remote Control File Transfer view.</p>
+
+<p>When uploading or downloading a file that already exists in the target
+folder, you are asked to confirm the file replace. In this dialog, you can turn
+off this warning by selecting <b>Always replace withouth prompt</b>. You can
+also rename the file by clicking <b>Rename</b>. Note that you can set the
+replacement options also in the <a href="setting_preferences.htm">Remote
+Control preferences</a>.</p>
+
+<p><img src="images\dlg_file_replace.png"></p>
+
+<p>When deleting files or folders, you are asked to confirm the file or folder
+delete. You can set this confirmation off in the <a
+href="setting_preferences.htm">Remote Control preferences</a>.</p>
+
+<h5>Related concepts</h5>
+<ul>
+  <li><a href="../concepts/file_transfer_mode.htm">File Transfer mode</a></li>
+</ul>
+
+<h5>Related tasks</h5>
+<ul>
+  <li><a href="setting_preferences.htm">Setting Remote Control
+  preferences</a></li>
+</ul>
+
+<div id="footer">
+Copyright © 2010 Nokia Corporation and/or its subsidiary(-ies). All rights
+reserved. License: <a
+href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

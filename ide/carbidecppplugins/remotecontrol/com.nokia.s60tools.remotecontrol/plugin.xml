@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            description="Remote Control Tool&apos;s Actions"
+            id="com.nokia.s60tools.remotecontrol.ui.actionSet"
+            label="Remote Control Tool"
+            visible="true">
+         <menu
+       			id="com.nokia.carbide.cpp.ui.CarbideMenu"
+       			label="&amp;Carbide"
+       			path="additions">
+       			<groupMarker name="additions"/>
+     	 </menu>
+         <action
+               class="com.nokia.s60tools.remotecontrol.actions.MainViewOpenAction"
+               icon="icons/remote_control.png"
+               id="com.nokia.s60tools.remotecontrol.actions.MainViewOpenAction"
+               label="Remote Control"
+               menubarPath="com.nokia.carbide.cpp.ui.CarbideMenu/CarbideExtensions"
+               style="push"
+               tooltip="Remote Control"/>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.nokia.s60tools"
+            name="Carbide Extensions"/>
+      <stickyView
+            closeable="true"
+            id="com.nokia.s60tools.remotecontrol.ui.views.main.MainView"
+            location="LEFT"
+            moveable="true"/>
+      <view
+            category="com.nokia.s60tools"
+            class="com.nokia.s60tools.remotecontrol.keyboard.ui.view.KeyboardView"
+            icon="icons/keyboard_view.png"
+            id="com.nokia.s60tools.remotecontrol.keyboard.ui.view.KeyboardView"
+            name="Keyboard (Remote Control)"
+            restorable="true">
+      </view>
+      <view
+            category="com.nokia.s60tools"
+            class="com.nokia.s60tools.remotecontrol.ui.views.main.MainView"
+            icon="icons/remote_control.png"
+            id="com.nokia.s60tools.remotecontrol.ui.views.main.MainView"
+            name="Remote Control"/>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.keywords">
+    <keyword
+          id="com.nokia.s60tools.remotecontrol.common"
+          label="%remoteControlPreference.common">
+    </keyword>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.nokia.carbide.cpp.preferences.ExtensionsPreferencesPage"
+            class="com.nokia.s60tools.remotecontrol.preferences.RCPreferencePage"
+            id="com.nokia.s60tools.remotecontrol.RCPreferencePage"
+            name="Remote Control">
+         <keywordReference
+               id="com.nokia.s60tools.remotecontrol.common">
+         </keywordReference>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="Commands for hardware key shortcuts"
+            id="com.nokia.s60tools.remotecontrol.screen.category"
+            name="RemoteControl - key emulation">
+      </category>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.AppKeyCommand"
+            name="RemoteControl - Application key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.LeftSoftKeyCommand"
+            name="RemoteControl - Left soft key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.RightSoftKeyCommand"
+            name="RemoteControl - Right soft key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.NaviSouthKeyCommand"
+            name="RemoteControl - South navi key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.NaviNorthKeyCommand"
+            name="RemoteControl - North navi key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.NaviEastKeyCommand"
+            name="RemoteControl - East navi key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.NaviWestKeyCommand"
+            name="RemoteControl - West navi key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.NaviCenterKeyCommand"
+            name="RemoteControl - Center navi key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.SendKeyCommand"
+            name="RemoteControl - Send key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.EndKeyCommand"
+            name="RemoteControl - End key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.ClearKeyCommand"
+            name="RemoteControl - Clear key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.PowerKeyCommand"
+            name="RemoteControl - Power key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.GripOpenKeyCommand"
+            name="RemoteControl - Grip open key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.GripClosedKeyCommand"
+            name="RemoteControl - Grip closed key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.EditKeyCommand"
+            name="RemoteControl - Edit key emulation">
+      </command>
+      <command
+            categoryId="com.nokia.s60tools.remotecontrol.screen.category"
+            id="com.nokia.s60tools.remotecontrol.screen.SideKeyCommand"
+            name="RemoteControl - Side (Voice) key emulation">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.AppKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.AppKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.LeftSoftKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.LeftSoftKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.RightSoftKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.RightSoftKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.NaviSouthKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.NaviSouthKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.NaviNorthKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.NaviNorthKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.NaviEastKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.NaviEastKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.NaviWestKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.NaviWestKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.NaviCenterKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.NaviCenterKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.SendKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.SendKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.EndKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.EndKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.ClearKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.ClearKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.PowerKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.PowerKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.GripOpenKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.GripOpenKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.GripClosedKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.GripClosedKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.EditKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.EditKeyCommand">
+      </handler>
+      <handler
+            class="com.nokia.s60tools.remotecontrol.screen.ui.commands.SideKeyCommandHandler"
+            commandId="com.nokia.s60tools.remotecontrol.screen.SideKeyCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="com.nokia.s60tools.remotecontrol.SreenView"
+            name="In ScreenView"
+            parentId="org.eclipse.ui.contexts.window">
+      </context>
+   </extension>
+
+</plugin>

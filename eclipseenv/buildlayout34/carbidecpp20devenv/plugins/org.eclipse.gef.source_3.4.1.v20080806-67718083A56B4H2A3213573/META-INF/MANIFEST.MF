@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.gef.source; singleton=true
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Version: 3.4.1.v20080806-67718083A56B4H2A3213573
+Bundle-Vendor: %providerName
+
+Name: about.mappings
+SHA1-Digest: 91QB8z5MCCOTbdu4tTpoiwih3fU=
+
+Name: about.ini
+SHA1-Digest: C04je2by0ow98symVY5SNMdjNhU=
+
+Name: plugin.properties
+SHA1-Digest: aXjwNDklPNoGxGuyNTmX9vQS5T8=
+
+Name: about.html
+SHA1-Digest: EDMbfdZtAOAztTA0u8UO/Mu1bxc=
+
+Name: src/org.eclipse.gef_3.4.1.v20080806/src.zip
+SHA1-Digest: JqiQ884P0/5x2II7nIaqYZ9kY/M=
+
+Name: plugin.xml
+SHA1-Digest: I0t+o6kXbySrxIY1bLaTaeai3Vc=
+
+Name: META-INF/eclipse.inf
+SHA1-Digest: KyT9FF7C7t86NoBoa2kZT3ZJBfw=
+
+Name: about.properties
+SHA1-Digest: bMuHNjagQ4a3abA/QRvwfrNMAew=
+
+Name: eclipse32.png
+SHA1-Digest: eCk/A3/COXL3S6qAVDOSrlsqmLw=
+

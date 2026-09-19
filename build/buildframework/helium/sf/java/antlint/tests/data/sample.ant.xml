@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+============================================================================ 
+Name        : test.tabchar.ant.xml 
+Part of     : Helium 
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<project name="Sample" xmlns:hlm="http://www.nokia.com/helium">
+    <description>
+        Testing for tab character
+    </description>
+    
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    
+    <var name="var1" value="bar" unset="true"/>
+    <var name="var2" value="bar"  />
+    <var name="var3" unset="true" /> 
+    
+    <macrodef name="pow" uri="http://www.nokia.com/helium">
+        <sequential>
+            <echo>pow</echo>
+        </sequential>
+    </macrodef>
+    
+    
+    
+    <property name="check-property-name" value="test"/>
+    <property name="helium.build.dir" value="output"/>
+    
+    <presetdef name="check_PresetDef.Name" >
+        <echo>check PresetDef Name </echo>
+    </presetdef>
+    
+    <macrodef name="duplicateMacro" uri="http://www.nokia.com/helium">
+        <attribute name="parameter" default="default"/>
+        <sequential>
+            <echo>@{parameter}</echo>
+        </sequential>
+    </macrodef>
+    
+    <target name="hello">
+        <echo>Hello Checking Tab Character</echo>
+    </target>
+    
+    <target name="smile" depends="hello">
+        <echo>Print Smile</echo>
+    </target>
+      
+    <target name="Check_target.Name">
+        <echo>Checking target name</echo>
+    </target>  
+    
+    <target name="check-run-target">
+        <runtarget target="smile"/>
+    </target>
+    
+    <target name="check-ant-call">
+        <antcall target="hello"/>
+    </target>
+    
+    <target name="check-script-size">
+        <hlm:python>
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'
+print 'check-script-size'         
+print 'check-script-size'
+print 'check-script-size'
+        </hlm:python>
+    </target>
+    
+    <target name="check-use-of-if-in-targets">
+        <if>
+            <isset property="build.drive"/>
+            <then>
+                <echo> Using build drive ${build.drive} </echo>
+            </then>
+        </if>
+    </target>
+    
+    <target name="check-use-of-if-else-in-targets">
+        <if>
+            <and>
+                <isset property="major.version"/>
+                <isset property="minor.version"/>
+            </and>
+            <then>
+                <property name="core.build.version" value="1.0"/>
+            </then>
+            <else>
+                <property name="core.build.version" value="2.0"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="check-use-of-if-then-in-targets">
+        <if>
+            <and>
+                <isset property="major.version"/>
+                <isset property="minor.version"/>
+            </and>
+            <then>
+                <property name="core.build.version" value="1.0"/>
+            </then>
+        </if>
+    </target>
+
+    <target name="check-prop-in-script">    
+        <script language="jython" setbeans="false">
+result = None
+if project.getProperty("test.script.property")is not None:
+    result = "found"
+        </script>
+    </target>
+
+    <target name="check-prop-in-scriptcondition">
+        <attribute name="phase" default="compile"/>
+        <sequential>
+            <if>
+                <scriptcondition language="jython" value="false">
+errorsTotal = project.getProperty("build.errors.total")
+if int(r'@{error.limit}') > -1:
+    if int(errorsTotal) > int(r'@{error.limit}'):
+        self.setValue(1)
+                </scriptcondition>
+                <then>
+                    <property name="compile.result" value="1"/>
+                </then>
+                <else>
+                    <property name="compile.result" value="0"/>
+                </else>
+            </if>
+        </sequential>
+    </target>
+
+    <target name="check-prop-in-pythontask">    
+        <hlm:python>
+from path import path
+print abcd
+print "Writing version file...."
+vfile = path(r'${build.drive}'+"/").joinpath('s60_version.txt')
+f = open(str(vfile), 'w')
+f.write(path(r'${s60.getenv.path}').name)
+f.close()
+        </hlm:python>   
+    </target>
+
+    <property name="test.boolean1" value="true"/>
+    <property name="test.boolean2" value="yes"/>
+    <property name="test.boolean3" value="yes"/>
+    
+    <target name="check-use-of-equals">
+        <if>
+            <and>
+                <equals arg1="test.boolean1" arg2="true"/>
+                <equals arg1="test.boolean2" arg2="yes"/>
+                <istrue value="test.boolean3"/>
+            </and>               
+            <then>
+                <echo>Equals</echo>
+            </then>
+        </if>
+    </target>
+
+    <target name="check-jython-script">
+        <script language="jython">
+if ${build.drive} is None:
+    print "Not found"        
+        </script>
+    </target>
+    
+    <target name="check-scriptcondition">
+        <attribute name="phase" default="compile"/>
+        <sequential>
+            <if>
+                <scriptcondition language="jython" value="false">
+errorsTotal = ${build.errors.total}
+if int(r'@{error.limit}') > -1:
+    if int(errorsTotal) > int(r'@{error.limit}'):
+        self.setValue(1)
+                </scriptcondition>
+                <then>
+                    <property name="compile.result" value="1"/>
+                </then>
+                <else>
+                    <property name="compile.result" value="0"/>
+                </else>
+            </if>
+        </sequential>
+    </target>
+
+    <target name="check-tabs">
+    	<echo>checking tab characters</echo>
+    </target>
+    
+    <target name="check-indentation">
+        <echo>checking indentation</echo>
+     </target>
+     
+    <target name="check-empty-catch-finally-block-in-trycatch">
+        <echo>checking for empty catch block in try-catch</echo>
+        <trycatch property="test.try">
+            <try>
+                <condition/>
+            </try>
+        </trycatch>
+    </target> 
+
+    <target name="check-empty-catch-block-in-trycatch">
+        <echo>checking for empty catch block in try-catch</echo>
+        <trycatch property="test.try">
+            <try>
+                <condition/>
+            </try>
+            <finally>
+                <echo> inside finally </echo>
+            </finally>
+        </trycatch>
+    </target> 
+
+    <target name="check-empty-finally-block-in-trycatch">
+        <echo>checking for empty catch block in try-catch</echo>
+        <trycatch property="test.try">
+            <try>
+                <condition/>
+            </try>
+            <catch>
+                <echo> inside catch </echo>
+            </catch>
+        </trycatch>
+    </target> 
+    
+    <target name="check-multiple-catch-blocks-in-trycatch">
+        <echo>checking for empty catch block in try-catch</echo>
+        <trycatch property="test.try">
+            <try>
+                <condition/>
+            </try>
+            <catch>
+                <echo> inside catch1 </echo>
+            </catch>
+            <catch>
+                <echo> inside catch2 </echo>
+            </catch>
+        </trycatch>
+    </target> 
+
+    <!-- Test property to check for invalid string property types.
+    @type string
+    @scope public
+    -->
+    <property name="test.prop.str.1" value="str.prop"/>
+    
+    <!-- Test property to check for invalid string property types.
+    @type string
+    @scope private
+    -->
+    <property name="test.prop.str.2" value="12345"/>
+
+    <!-- Test property to check for invalid integer property types.
+    @type integer
+    @scope public
+    -->
+    <property name="test.prop.int.1" value="123"/>
+
+    <!-- Test property to check for invalid integer property types.
+    @type integer
+    @scope public
+    -->
+    <property name="test.prop.int.2" value="123abc"/>
+     
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.1" value="true"/>
+    
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.2" value="false"/>
+    
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.3" value="t"/>
+    
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.4" value="f"/>
+    
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.5" value="yes"/>
+
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.6" value="no"/>
+
+    <!-- Test property to check for invalid boolean property types.
+    @type boolean
+    @scope public
+    -->
+    <property name="test.prop.bool.7" value="poo"/>
+
+   <!--* @property test.comment.str.prop
+   Test comment property to check for invalid string values.   
+   @type string
+   @scope public
+   @since 10.0
+   -->
+
+   <!--* @property test.comment.int.prop
+   Test comment property to check for invalid integer values.   
+   @type integer
+   @scope public
+   @since 10.0
+   -->
+
+   <!--* @property test.comment.bool.prop
+   Test comment property to check for invalid string values.   
+   @type boolean
+   @scope public
+   @since 10.0
+   -->
+
+   <!-- Test property to check for invalid integer property types.
+   @type number
+   @scope public
+   -->
+   <property name="test.prop.number.1" value="1234"/>
+     
+   <!-- Test property to check for invalid boolean property types.
+   @type flag
+   @scope public
+   -->
+   <property name="test.prop.flag" value="true"/>
+
+   <!-- Test property to check for valid float property types.
+   @type float
+   @scope public
+   -->
+   <property name="test.prop.float.1" value="1.5"/>
+
+   <!-- Test property to check for invalid float property types.
+   @type float
+   @scope public
+   -->
+   <property name="test.prop.float.2" value="1.5a"/>
+
+   <!-- Test property to check for invalid integer property types.
+   @type integer
+   @scope public
+   -->
+   <property name="test.prop.int.3" value="1.8"/>
+
+</project>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Editing a metadata file</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Editing a metadata file</h2>
+<p>You can edit the properties of a metadata file by modifying the name, description and subsystem information of an Application Programming Interface (API), as well as filling in information related to releases, libraries, Software Development Kits (SDKs) and attributes.</p>
+<p>To edit a file:</p>
+<ol>
+<li>To open a metadata file (<i>.metaxml</i>) for editing, do any of the following:
+<ul>
+<li>double-click the file in the project view,</li>
+<li>right-click your project and select <b>Open/Open with > Metadata Editor</b> from the context menu,</li>
+<li>go to <b>File > Open File</b> and browse for the file from your workstation.</li>
+</ul>
+<p>The file is opened for editing, as shown in the following example:</p>
+<img src="images/ME_overview.png">
+<p><b>Important:</b> Some of the displayed fields are different depending on whether your file complies with version 1.0 or version 2.0 of API metadata.</p>
+<p>For instructions on converting files from 1.0 to 2.0, see <a href="converting_metadata.htm">Converting metadata files</a>.</p></li>
+<li>For more information on how to modify the fields, see the following tables:
+<ul>
+<li><a href="edit_metadata.htm#general">General API fields</a></li>
+<li><a href="edit_metadata.htm#edit_release">Release information</a></li>
+<li><a href="edit_metadata.htm#add_libraries">Libraries</a></li>
+<li><a href="edit_metadata.htm#edit_attribs">Attributes</a></li>
+<li><a href="edit_metadata.htm#edit_sdk">Extended SDK (only in v.1.0)</a></li>
+</ul></li>
+<li>To save, click <b>File > Save</b>.</li>
+</ol>
+
+<h3><a name="general"></a>General API fields</h3>
+<p><b>Name</b>, <b>Description</b> and <b>Subsystem</b> fields can be freely edited.</p>
+<p>The <b>ID</b> and <b>Data version</b> fields cannot be modified because they are created automatically. The <b>ID</b> is a unique identifier for the API, which does not change even if its name did.</p>
+<p>The <b>Type</b> field is automatically set to <i>c++</i>.</p>
+<table border="1" cellspacing="1" cellpadding="2">
+<colgroup><col><col></colgroup>
+<tbody>
+<tr>
+<td width="121"><b>Name</b></td>
+<td width="849"><p>If you change the name of the API, the name of the metadata file will be changed as well and the newly renamed file is opened in the view.</p><p>Note that the renamed file is not opened automatically if the file was opened outside the Carbide.c++ IDE workspace by selecting <b>File > Open File...</b>. In this case, the file is closed and a message is displayed prompting
+you to reopen the file manually for further editing.</p>
+</td>
+</tr>
+<tr>
+<td><b>Description</b></td>
+<td><p>A free-form, short description of what the API is for. It will be visible, for example, in the <b>API Query</b> tool in Carbide.c++ IDE, and also in common SDK documentation if the API belongs to a Software Development Kit (SDK).</p>
+</td>
+</tr>
+<tr>
+<td><i>v. 1.0:</i><br>
+<b>Subsystem</b><br>
+<br>
+<i>v. 2.0:</i><br>
+<b>Collection</b>
+</td>
+<td><p>The collection name that owns the API. It has to be the collection directory name in the source hierarchy and found under the package that exports the API.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="edit_release"></a>Release information</h3>
+<table border="1" cellspacing="1" cellpadding="2">
+<colgroup><col><col></colgroup>
+<tbody>
+<tr>
+<td><b>Since version</b></td>
+<td><p>Indicates the release in which the API was first visible in the specified category.</p><p>The field is mandatory if the release is <i>SDK</i> or <i> Public</i>, and optional if it is <i>Domain</i> or <i>Platform</i>.</p>
+</td>
+</tr>
+<tr>
+<td><b>Category</b></td>
+<td><p>Indicates the category of the API.</p>
+<ul>
+<li><i>v. 1.0: </i><b> SDK</b> <br>
+<i>v. 2.0: </i> <b> Public</b><br>
+<br>
+Published in SDK for ISVs (Independent Software Vendors).</li>
+<li><i>v. 1.0: </i><b> Domain</b> <br>
+<i>v. 2.0: </i> <b> Platform</b> <br>
+<br>
+Published to other architecture domains (ADO) and can be used from the other ADOs.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td><b>Deprecated</b></td>
+<td><p>If this box is selected, the API is deprecated, meaning it is not in use anymore. Select the S60 platform version from the <b>Deprecated since </b> menu. </p><p>The <b>Deprecated since</b> value has to be bigger than the value in the <b>Since version</b> menu.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="add_libraries"></a>Libraries</h3>
+<p>This field lists all the libraries needed to use this API.</p>
+<p><b>Note:</b> In Version 2.0 of the API metadata, this is mandatory to define.</p>
+<p>To add new import libraries (.lib files) to the API metadata file:</p>
+<ol>
+<li>Click <b>Add</b> next to the library list.</li>
+<li>In the dialog that opens, enter the name of the library.</li>
+<li>Click <b>OK</b>.</li>
+</ol>
+
+<h3><a name="edit_attribs"></a>Attributes</h3>
+<table border="1" cellspacing="1" cellpadding="2">
+<colgroup><col><col></colgroup>
+<tbody>
+<tr>
+<td><b>HTML Doc provided</b></td>
+<td><p>By default, all SDK APIS should provide documentation in XML format.
+However, in case HTML documentation for an API already exists, the value of
+this field should be <b>Yes</b>.</p></td>
+</tr>
+<tr>
+<td><b>Adaptation</b></td>
+<td><p>This attribute is mandatory and indicates if the API is an adaptation
+API or not. </p><p>Adaptation APIs are interfaces that an S60 licensee needs
+to implement in order to get its platform working.</p></td>
+</tr>
+</tbody>
+</table>
+<h3><a name="edit_sdk"></a>Extended SDK (only in v. 1.0)</h3>
+<p>
+S60 extension SDKs are made to simplify the delivery of non-SDK APIs to 3rd
+party developers. The plug-ins contain APIs that are not in the public SDK
+but are seen important for 3rd parties' business cases. </p><table border="1"
+cellspacing="1" cellpadding="2">
+<colgroup>
+<col>
+<col></colgroup>
+<tbody>
+<tr>
+<td><b>Extended SDK</b></td>
+<td><p>The selection is optional and needs to be specified only if the API
+is a part of an extended SDK.</p>
+</td>
+</tr>
+<tr>
+<td><b>Since version</b></td>
+<td><p>Defines the version since when the API was a part of an extended SDK.</p><p>If the <b>Is Extended SDK</b> box is selected, you must also select the <b>Since version</b> value from the drop-down menu.</p>
+</td>
+</tr>
+<tr>
+<td><b>Deprecated since</b></td>
+<td><p>Defines the version since when the API was deprecated.</p><p>This value has to be bigger than the <b>Since version</b> value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h5>Related tasks</h5>
+<ul>
+	<li><a href="create_metadata.htm">Creating a new metadata file</a></li>
+	<li><a href="converting_metadata.htm">Converting metadata files</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2009 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+  <br>
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

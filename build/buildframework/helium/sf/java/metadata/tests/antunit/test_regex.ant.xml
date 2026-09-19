@@ -1,0 +1,372 @@
+<!-- 
+============================================================================ 
+Name        : test_regex.ant.xml 
+Part of     : Helium AntLib
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<project name="test-metadata-regex" xmlns:au="antlib:org.apache.ant.antunit" xmlns:hlm="http://www.nokia.com/helium">
+    <description>Helium Antlib metadata unittests.</description>
+
+    <property environment="env" />
+    
+    <dirname property="project.dir" file="${ant.file.test-metadata-regex}" />
+    
+    <taskdef resource="com/nokia/helium/metadata/ant/antlib.xml" uri="http://www.nokia.com/helium" />
+    <taskdef name="fmpp" classname="fmpp.tools.AntTask" onerror="report"/>
+
+    <property name="metadata-filterfile" value="${project.dir}/../data/common.csv"/>
+    <property name="metadata-log-files" value="${project.dir}/../data/*.log"/>
+    
+    <hlm:metadatafilterset id="all-regex-filterfile">
+        <metadatafilterset filterfile="${metadata-filterfile}" />
+    </hlm:metadatafilterset>
+
+    <target name="setUp">
+        <echo>---=====================================---</echo>
+        <mkdir dir="${test.temp.dir}" />
+        <delete dir="${test.temp.dir}" />
+        <mkdir dir="${test.temp.dir}" />
+    </target>
+    
+    <target name="tearDown">
+        <delete dir="${test.temp.dir}" />
+        <echo>---=====================================---</echo>
+    </target>
+
+    <!-- Test parser error
+    -->
+    <target name="parser-error">
+        <echo message="all regular expression validation" />
+        <!-- do some checks that files are present and raise asserts if not present-->
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+        
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:sbsmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="all_regex_type.log"/>
+                </fileset>
+                <metadatafilterset refid="all-regex-filterfile" />
+            </hlm:sbsmetadatainput>
+        </hlm:metadatarecord>
+        <!-- check we have created the DB file-->
+        <au:assertTrue>
+            <available type="dir" file="${test.temp.dir}/metadata_db" />
+        </au:assertTrue>
+    </target>
+
+    <target name="parser-error1">
+        <echo message="all regular expression validation" />
+        <!-- do some checks that files are present and raise asserts if not present-->
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+        
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:sbsmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="all_regex1_type.log"/>
+                </fileset>
+                <metadatafilterset refid="all-regex-filterfile" />
+            </hlm:sbsmetadatainput>
+        </hlm:metadatarecord>
+        <!-- check we have created the DB file-->
+        <au:assertTrue>
+            <available type="dir" file="${test.temp.dir}/metadata_db" />
+        </au:assertTrue>
+    </target>
+
+    <target name="test-parser-error-ant-call">
+        <echo>test-parser-error-ant-call</echo>
+        <parallel>
+            <antcall target="parser-error" />
+            <antcall target="parser-error1" />
+        </parallel>
+    </target>
+
+    <!-- Test parser error-->
+    <target name="test-parser-error-keepgoing">
+        <delete dir="${test.temp.dir}/parser_error_db" failonerror="false" />
+        <hlm:metadatarecord database="${test.temp.dir}/parser_error_db" failonerror="false">
+            <hlm:sbsmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="parser_error.log"/>
+                </fileset>
+                <metadatafilterset refid="all-regex-filterfile" />
+            </hlm:sbsmetadatainput>
+        </hlm:metadatarecord>
+    </target>
+
+
+    <!-- Check for all the regular expression defined in the filter file,
+    The log file contains text for matching regular expression.
+    -->
+    <target name="test-all-regex-filterfile">
+        <echo message="all regular expression validation" />
+        <!-- do some checks that files are present and raise asserts if not present-->
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+        
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:sbsmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="*regex*.log"/>
+                </fileset>
+                <metadatafilterset refid="all-regex-filterfile" />
+            </hlm:sbsmetadatainput>
+        </hlm:metadatarecord>
+        <!-- check we have created the DB file-->
+        <au:assertTrue>
+            <available type="dir" file="${test.temp.dir}/metadata_db" />
+        </au:assertTrue>
+    </target>
+
+
+    <!--modify the errors so regex=".*warning U4010" description="mingw error" is no longer 
+    an error but a warning-->
+    <hlm:metadatafilterset id="all-regex-combined">
+        <metadatafilter severity="WARNING" regex=".*warning U4010" description="mingw error" />
+        <metadatafilterset filterfile="${metadata-filterfile}" />
+    </hlm:metadatafilterset>
+
+    <property name="metadata-all-db" value="${test.temp.dir}/log_all_combined_db"/>
+
+    <target name="test-all-regex-combined">
+        <echo message="all regular expression validation" />
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:sbsmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="*regex*.log"/>
+                </fileset>
+                <metadatafilterset refid="all-regex-combined" />
+            </hlm:sbsmetadatainput>
+        </hlm:metadatarecord>
+        <au:assertTrue>
+            <available type="dir" file="${test.temp.dir}/metadata_db" />
+        </au:assertTrue>
+    </target>
+
+
+    <!--
+        create an invalid priority type, so contains message invalid 
+        priority and set to error as priority, validation is done by ant, 
+        and parsing of the xml build script will fail.
+    -->
+    <target name="test-incorrect-severity-error">
+        <echo message="test-regex-validation-error" />
+
+        <au:expectfailure message="INCORRECT is not a legal value for this attribute">
+            <hlm:metadatarecord database="${test.temp.dir}/metadata_db" >
+                <hlm:textmetadatainput>
+                    <fileset dir="${project.dir}/../data/regex" includes="empty.log"/>
+                     <hlm:metadatafilterset id="all-regex-combined-error">
+                        <metadatafilter severity="INCORRECT" regex=".*warning U4010" description="test error handling so incorrect priority" />
+                    </hlm:metadatafilterset>
+                </hlm:textmetadatainput>
+            </hlm:metadatarecord>
+        </au:expectfailure>
+        <!-- no need to check the DB file not present as it won't be-->
+    </target>
+    
+    
+    
+    <!--try to add a different different filter type but not add the parameter so has an error-->
+    <target name="test-all-regex-combined-no-priority">
+        <au:expectfailure message="Invalid filter have been found. Please check your configuration.">
+            <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+                <hlm:textmetadatainput>
+                    <fileset dir="${project.dir}/../data/regex" includes="empty.log" />
+                    <metadatafilterset refid="all-regex-combined-no-priority" />
+                    <!--try to add a different different filter type but not add the parameter so has an error -->
+                    <hlm:metadatafilterset>
+                        <metadatafilter severity="error" regex="^ERROR:.*" />
+                        <metadatafilter regex=".*warning U4010" description="test error handling so incorrect priority" />
+                        <metadatafilter severity="warning" regex="^WARNING*" />
+                    </hlm:metadatafilterset>
+                </hlm:textmetadatainput>
+            </hlm:metadatarecord>
+        </au:expectfailure>
+    </target>
+    
+
+    <!--try to add a different different filter type but not add the parameter so has an error-->
+    <target name="test-all-regex-combined-no-regex">
+        <echo message="all regular expression validation" />
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+
+        <au:expectfailure message="INCORRECT is not a legal value for this attribute">
+            <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+                <hlm:sbsmetadatainput>
+                    <fileset dir="${project.dir}/../data/">
+                        <include  name="*regex*.log"/>
+                    </fileset>
+                    <hlm:metadatafilterset>
+                        <metadatafilter severity="INCORRECT" description="test error handling so incorrect priority" />
+                        <metadatafilter severity="WARNING" description="test error handling so incorrect priority" />
+                        <metadatafilterset filterfile="${metadata-filterfile}" />
+                    </hlm:metadatafilterset>
+                </hlm:sbsmetadatainput>
+            </hlm:metadatarecord>
+        </au:expectfailure>
+        <!-- no need to check the DB file not present as it won't be-->
+    </target>
+    
+    
+    <hlm:metadatafilterset id="text_log_metadata_input">
+        <metadatafilterset filterfile="${project.dir}/../data/common.csv" />
+    </hlm:metadatafilterset>
+
+
+    <hlm:metadatafilterset id="ant_log_metadata_input">
+        <metadatafilterset filterfile="${project.dir}/../data/common.csv" />
+    </hlm:metadatafilterset>
+
+
+    <target name="test-ant_log_metadata_input">
+        <echo message="ant log metadata input validation" />
+        <au:assertFileExists file="${metadata-filterfile}" message="${metadata-filterfile} filter file does not exist"/>
+
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:antmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="*ant*.log"/>
+                </fileset>
+                <metadatafilterset refid="ant_log_metadata_input" />
+            </hlm:antmetadatainput>
+        </hlm:metadatarecord>
+        <au:assertTrue>
+            <available type="dir" file="${test.temp.dir}/metadata_db" />
+        </au:assertTrue>
+    </target>
+
+    <property name="metadata-read-ftl" value="${project.dir}/../../src/templates/readdata.xml.ftl"/>
+    <property name="metadata-read-output" value="${test.temp.dir}/readdata.html"/>
+
+    <hlm:metadatafilterset id="text.log.metadata.input.filterset">
+        <metadatafilterset filterfile="${project.dir}/../data/common.csv" />
+    </hlm:metadatafilterset>
+    
+    <target name="test-countseverity">
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:textmetadatainput>
+                <fileset dir="${project.dir}/../data/countseverity">
+                    <include  name="*_fixslashes*.log"/>
+                </fileset>
+                <metadatafilterset refid="text.log.metadata.input.filterset" />
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+
+        <hlm:metadataCountSeverity severity="error" database="${test.temp.dir}/metadata_db" property="errors">
+                <fileset dir="${project.dir}/../data/countseverity">
+                    <include  name="*_fixslashes*.log"/>
+                </fileset>
+        </hlm:metadataCountSeverity>
+        <echo message="${errors}" />
+        <au:assertTrue>
+            <equals arg1="${errors}" arg2="24"/>
+        </au:assertTrue>
+        <au:assertTrue>
+            <hlm:metadataHasSeverity severity="error"  database="${test.temp.dir}/metadata_db">
+                <fileset dir="${project.dir}/../data/countseverity">
+                    <include  name="*_fixslashes*.log"/>
+                </fileset>
+            </hlm:metadataHasSeverity>
+        </au:assertTrue>
+        <au:assertFalse>
+            <hlm:metadataHasSeverity severity="fatal"  database="${test.temp.dir}/metadata_db">
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="*_fixslashes*.log"/>
+                </fileset>
+            </hlm:metadataHasSeverity>
+        </au:assertFalse>
+        
+    </target>
+    
+    <target name="test-very-long-warning">
+        <delete dir="${test.temp.dir}/very_long_warning_db" failonerror="false" />
+
+        <hlm:metadatarecord database="${test.temp.dir}/very_long_warning_db">
+            <hlm:textmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include  name="very_long_warning.log"/>
+                </fileset>
+                <metadatafilterset>
+                    <metadatafilter severity="INFO" regex="^INFO:" description="info" />
+                    <metadatafilter severity="WARNING" regex=".*warning C4503:.*" description="warning" />
+                </metadatafilterset>
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+
+        <hlm:metadataCountSeverity severity="warning" log="${project.dir}/../data/very_long_warning.log" database="${test.temp.dir}/very_long_warning_db" property="warnings"/>
+        <echo message="test-very-long-warning: ${warnings}" />
+        <au:assertTrue>
+            <equals arg1="${warnings}" arg2="1"/>
+        </au:assertTrue>
+    </target>
+
+    <target name="test-log-with-same-root-name">
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:textmetadatainput>
+                <fileset dir="${project.dir}/../data/regex">
+                    <include name="log-with-same-root-name.log*"/>
+                </fileset>
+                <metadatafilterset>
+                    <metadatafilter severity="ERROR" regex="^ERROR:.*" description="error" />
+                </metadatafilterset>
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+        <hlm:metadataCountSeverity severity="error" log="${project.dir}/../data/regex/log-with-same-root-name.log" database="${test.temp.dir}/metadata_db" property="log-with-same-root-name.log.error"/>
+        <echo>log-with-same-root-name.log.error: ${log-with-same-root-name.log.error}</echo>
+        <au:assertTrue message="We should only find 1 error">
+            <equals arg1="${log-with-same-root-name.log.error}" arg2="1"/>
+        </au:assertTrue>
+    </target>
+
+    <target name="test-release-database-metadatatask">
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:textmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include name="test-release-database-metadatatask.log"/>
+                </fileset>
+                <metadatafilterset>
+                    <metadatafilter severity="ERROR" regex="^ERROR:.*" description="error" />
+                </metadatafilterset>
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+    </target>
+
+    <target name="test-release-database-fmpp">
+        <echo>test-release-database-fmpp</echo>
+        <hlm:metadatarecord database="${test.temp.dir}/metadata_db">
+            <hlm:textmetadatainput>
+                <fileset dir="${project.dir}/../data/">
+                    <include name="test-release-database-metadatatask.log"/>
+                </fileset>
+                <metadatafilterset>
+                    <metadatafilter severity="ERROR" regex="^ERROR:.*" description="error" />
+                </metadatafilterset>
+            </hlm:textmetadatainput>
+        </hlm:metadatarecord>
+        <fmpp sourceFile="${project.dir}/../data/test-release-database-fmpp.ini.ftl"
+                     outputfile="${test.temp.dir}/test-release-database-fmpp.ini">
+            <data expandProperties="yes">
+                dbPath: ${test.temp.dir}/metadata_db
+                ant: antProperties()
+            </data>
+        </fmpp>        
+    </target>
+    
+</project>

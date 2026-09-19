@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.mylyn.discovery.core.connectorDiscovery">
+      
+      <connectorDescriptor
+            categoryId="com.nokia.carbide.rndutilities.category"
+            description="An easy way of sharing a device screen on a PC and controlling a device with a PC"
+            groupId="com.nokia.carbide.rndutilities.category"
+            id="com.nokia.carbide.extensions.remotecontrol.feature.group"
+            kind="task"
+            license="EPL 1.0"
+            name="Remote Control"
+            provider="Nokia"
+            siteUrl="${SITE_URL}">
+         <overview
+               summary="%summary"
+               screenshot="images/RC_shot.png"
+               url="http://developer.symbian.org/wiki/index.php/Remote_Control_Carbide_Extension">
+         </overview>
+         <icon
+               image32="images/RC_icon.png">
+         </icon>
+      </connectorDescriptor>
+
+   </extension>
+</plugin>

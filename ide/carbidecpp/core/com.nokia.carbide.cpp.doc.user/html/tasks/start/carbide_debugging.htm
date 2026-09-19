@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="LASTUPDATED" content="06/17/05 11:09:43" />
+<title>Debugging a Symbian OS Program on the S60 Emulator</title>
+<link rel="StyleSheet" href="../../../book.css" type="text/css"/>
+</head>
+<body >
+<h2>Debugging a Symbian Program</h2>
+<p>Use the Carbide.c++ debugger to debug a compiled Symbian program in an emulator or on-device. The same process works for other emulators and target devices as well.</p>
+<p class="note"><b>NOTE</b> This example uses the Symbian Emulator included with the Symbian^3 SDK. The steps are identical for on-device debugging, although a <span class="code">.sym</span> file is not needed for emulator builds.</p>
+<div class="step">
+  <h4>Debugging a Symbian program</h4>
+<p class="note"><b>NOTE</b> You can only debug compiled programs. Use the <a href="../projects/prj_build.htm">Build Project</a> command to compile project sources into a binary file if you do not already have an executable in the project. A symbolics (<span class="code">.sym</span>) file is also required for debugging on a target device. Ensure that a <span class="code">.sym</span> file has been created. If you are importing an existing application, you may have to rebuild the application and create a related <span class="code">.sym</span> file. Make sure a <span class="code">.sym</span> file has been created in the output directory.</p>
+  <ol>
+    <li>Set a breakpoint in the MyProject program</li>
+    <p>Open the <span class="code">\src\OortCloudAppUI.cpp</span> file and <a href="../breakpoints/pgm_bp_setting.htm">set a breakpoint</a> in the <span class="code">HandleCommandL</span> routine.</p>
+    <p align="center"><img src="images/debug_set_breakpoint.png" width="678" height="281" /></p>
+  <p class="figure">Figure 1 - Breakpoint set in COortCloudAppUI::HandleCommandL routine. </p>
+  <li>Launch the Carbide debugger and Symbian  Emulator</li>
+  <p><a href="../../debugger/debug/cmds_starting.htm">Start</a> the Carbide debugger which launches the Symbian  Emulator, then installs and launches the executable. For on-device debugging, the application is installed on the target device.</p>
+  <p>The OortCloud application launches (Figure 2). </p>
+    <p align="center"><img src="images/wnd_symbian_emulator_01.png" alt="Symbian Emulator" width="238" height="458"></p>
+    <p class="figure">Figure 2 - OortCloud application running on Symbian Emulator </p>
+    <p class="note"><b>NOTE</b> For SDKs prior to the S60 5th Edition it may be necessary to locate the installed application and manually launch it in the emulator or on the target device.</p>
+    <li>Click the Options soft-key on the Symbian Emulator to display the Options menu.</li>
+	<li>Choose the Message menu item and press the Select soft-key to send a message  (Figure 3).</li>
+	<p></p><p align="center"><img src="images/wnd_symbian_emulator_02.png" alt="Menu selection" width="378" height="431"></p>
+  <p class="figure">Figure 3 - Send Message to OortCloud application </p>
+  <p>The <span class="code">HandleCommandL</span> breakpoint  is hit in the program and control returns to the Carbide debugger (Figure 4). You can now set additional breakpoints, examine variables, or use the <a href="../../debugger/debug/viewing_debug.htm">Debug</a> view buttons to control the program. </p>
+  <p align="center"><img src="images/wnd_symbian_emulator_03.png" alt="Breakpoint hit" width="678" height="281"></p>
+  <p class="figure">Figure 4 - Back in the COortCloudAppUI::HandleCommandL routine</p>
+  </ol>
+  <p>That's it for this basic introduction to debugging with Carbide.c++.</p>
+</div>
+<h5>Concepts</h5>
+  <ul>
+    <li><a href="../../concepts/Projects.html">Projects</a></li>
+</ul>
+  <h5>Tasks</h5>
+  <ul>
+    <li><a href="../CreatingNewProjects.html">Creating Projects</a></li>
+    <li><a href="../projects/prj_build.htm">Building Projects</a></li>
+    <li><a href="../projects/prj_debug_config.htm">Creating a Launch Configuration</a></li>
+  </ul>
+  <div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. <br>License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a></div>
+
+</body>
+</html>

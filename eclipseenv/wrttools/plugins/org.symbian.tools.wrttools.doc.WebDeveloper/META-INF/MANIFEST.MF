@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-Vendor: Nokia
+Bundle-Version: 1.4.0
+Bundle-Name: Web Developer's Library 1.4
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.symbian.tools.wrttools.doc.WebDeveloper;singleton:=true
+Import-Package: org.eclipse.core.runtime,
+ org.eclipse.ui.plugin,
+ org.osgi.framework
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+

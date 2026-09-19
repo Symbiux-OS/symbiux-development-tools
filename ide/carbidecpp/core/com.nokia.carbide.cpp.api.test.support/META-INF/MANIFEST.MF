@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Support Plug-in
+Bundle-SymbolicName: com.nokia.carbide.cpp.api.test.support;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Nokia, Inc.
+Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.nokia.carbide.cpp.api.test.support.gen.InfImportTestData,
+ com.nokia.carbide.cpp.api.test.support.gen.InfImportTestData.impl,
+ com.nokia.carbide.cpp.api.test.support.gen.InfImportTestData.util,
+ com.nokia.carbide.cpp.api.test.support.xml

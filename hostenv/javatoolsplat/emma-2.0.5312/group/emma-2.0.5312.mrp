@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_emma-2.0.5312
+
+source /src/tools/dev/hostenv/javatoolsplat/emma-2.0.5312
+
+exports /src/tools/dev/hostenv/javatoolsplat/emma-2.0.5312/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/emma-2.0.5312/group/release.txt

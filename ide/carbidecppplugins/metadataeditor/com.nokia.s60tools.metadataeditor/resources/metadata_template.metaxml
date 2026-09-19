@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<api id="METADATA_API_ID" dataversion="METADATA_DATA_VERSION">
+  <name>METADATA_API_NAME</name>
+  <description>METADATA_API_DESCRIPTION</description>
+  <type>METADATA_API_TYPE</type>
+  <subsystem>METADATA_API_SUBSYSTEM</subsystem>
+  <libs>
+    <lib name="METADATA_LIB_NAME" />
+  </libs>
+  <release category="METADATA_RELEASE_CATEGORTY" sinceversion="METADATA_RELEASE_SINCE" deprecatedsince="METADATA_RELEASE_DEPRECATED_SINCE"/>
+  <attributes>
+     <!-- This indicates wether the api provedes separate html documentation -->
+     <!-- or is the additional documentation generated from headers. -->
+     <!-- If you are unsuere then the value is "no" -->
+     <htmldocprovided>METADATA_HTML_DOC_PROVIDED</htmldocprovided>
+     <adaptation>METADATA_ADAPTATION<adaptation/>
+     <extendedsdk sinceversion="METADATA_EXTENDED_SDK_SINCEVERSION" deprecatedsince="METADATA_EXTENDED_SDK_DEPRECATED_SINCE"/>
+  </attributes>
+</api>

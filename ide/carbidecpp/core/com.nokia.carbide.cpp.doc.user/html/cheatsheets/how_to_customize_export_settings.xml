@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cheatsheet
+      title="Share my Settings">
+`	<intro
+        href="/com.nokia.carbide.cpp.doc.user/html/tasks/custom/carb_export_setup.htm">
+    	<description>
+			Use the <b>Export</b> menu option to export your customized settings. Once exported you can then import them to other workspaces or share with your team members so everyone uses the same settings.
+    	</description>
+	</intro>
+	<item
+       title="Share your Custom Settings">
+		<description>
+     Under the <b>File &gt; Export</b> menu option to open the Export wizard and save your customized settings.
+     
+			
+		</description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.file.export"/>
+	</item>
+ <item
+       title="Select settings to share">
+    <description>
+       Select the <b>General &gt; Installed Feature Configuration</b> option and click <b>Next</b>.
+    </description>
+ </item>
+   <item
+         title="Select features to export">
+      <description>
+         In the <b>Export Installed Features Confguration</b> choose one or more  installed features, then click <b>Finish</b>.
+      </description>
+   </item>
+</cheatsheet>

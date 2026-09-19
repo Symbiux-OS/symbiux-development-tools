@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<buildlog sbs_version="2.4.2 [2009-02-06 release]" xmlns="http://symbian.com/xml/build/log" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symbian.com/xml/build/log http://symbian.com/xml/build/log/1_0.xsd">
+
+<info>sbs: version 2.4.2 [2009-02-06 release]
+</info>
+<info>Making J:/epoc32/build/Cone/makefile.default</info>
+
+<info>Regression for bug 9091. Don't report info lines with SBSv2 error checker</info>
+<info>Could not write toolcheck cache: [Errno 2] No such file or directory: u'R:\\\\epoc32\\build\\toolcheck_cache__armv5_udeb.tmp'</info>
+
+<error>tool 'SBS_JAVATC' from config 'none' did not return version 'version \"1\.[5-9]' as required.
+Command 'D:/sources/trk/tcf/tcftrk/group/[undefined] -version' returned:
+(this line excised to avoid false positive)
+
+Check your environment and configuration.
+
+</error>
+
+<info>Executing 'make -r -f "J:/epoc32/build/Cone/makefile.default" -j 4
+DESCRAMBLE="C:/Symbian/SITK/sbs/bin/sbs_descramble.exe sbs2631027042"'</info>
+
+<recipe name='win32def2lib' host='1USL10151' layer='' component=''
+bldinf='J:/src/common/generic/app-framework/cone/group/BLD.INF'
+mmp='J:/src/common/generic/app-framework/cone/tef/TConeTestServer.mmp'
+config='winscw_udeb.test' platform='winscw' phase='DEFAULT'>
+
+<warning>While Searching for a SPECIFIED DEFFILE: file not found: L:/src/common/generic/app-framework/cone/bwins/CONExu.DEF</warning>
+
+<![CDATA[
+
++ J:/src/common/generic/app-framework/cone/bwins/TCONETESTSERVERu.DEF
+J://epoc32/build/cone/group/tconetestserver_exe/winscw/udeb/tconetestserver.prep.def
+
+J:/src/common/generic/app-framework/cone/bwins/TCONETESTSERVERu.DEF: line 1:
+EXPORTS: command not found
+
+J:/src/common/generic/app-framework/cone/bwins/TCONETESTSERVERu.DEF: line 2:
+syntax error near unexpected token `('
+
+J:/src/common/generic/app-framework/cone/bwins/TCONETESTSERVERu.DEF: line 2: `
+?NewServer@@YAHXZ @ 1 NONAME ; int __cdecl NewServer(void)'
+
+]]><time start='1223996908.197000000' elapsed='0.485' />
+
+<status exit='failed' code='2' forcesuccess=''/>
+
+</recipe>
+
+make: *** [J://epoc32/release/winscw/udeb/tconetestserver.lib] Error 2
+
+make: *** Waiting for unfinished jobs....
+
+</buildlog>
+
+<![CDATA[
++ C:/APPS/rvct22_616/bin/armlink.exe --diag_suppress 6331 --bpabi --reloc --no_scanlib --datacompressor=off --debug --dll --split --rw-base 0x400000 --symver_soname --soname 'helloworld{000a0000}[e800005a].exe' --entry _E32Startup 'P:/epoc32/release/armv5/udeb/eexe.lib(uc_exe_.o)' -o P:/epoc32/release/armv5/udeb/helloworld.exe.sym --symbols --list P:/epoc32/release/armv5/udeb/helloworld.exe.map --via P:/epoc32/build/helloworld/c_34df0185eb73bae4/helloworld_exe/armv5/udeb/helloworld_udeb_objects.via P:/epoc32/release/armv5/udeb/usrt2_2.lib P:/epoc32/release/armv5/lib/euser.dso P:/epoc32/release/armv5/lib/apparc.dso P:/epoc32/release/armv5/lib/cone.dso P:/epoc32/release/armv5/lib/eikcore.dso P:/epoc32/release/armv5/lib/gdi.dso P:/epoc32/release/armv5/lib/drtaeabi.dso P:/epoc32/release/armv5/lib/dfpaeabi.dso P:/epoc32/release/armv5/lib/dfprvct2_2.dso P:/epoc32/release/armv5/lib/drtrvct2_2.dso 'C:/APPS/rvct22_616/lib/armlib/h_t__uf.l(switch8.o)'
+Fatal error: L6002U: Could not open file P:/epoc32/build/helloworld/c_34df0185eb73bae4/helloworld_exe/armv5/udeb/HelloWorld_AppUi.o: No such file or directory
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning, 0 error and 1 fatal error messages.
+]]>

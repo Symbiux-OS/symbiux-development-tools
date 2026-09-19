@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Tasks">
+	
+	<!-- Enter topic entries here for Tasks section of help -->
+	
+	<topic label="Creating the script file" href="html/tasks/creating_xml_file.htm" />
+	<topic label="Adding components" href="html/tasks/adding_components.htm" />
+	<topic label="Modifying components" href="html/tasks/modifying_components.htm" />
+	<topic label="Running script in device" href="html/tasks/run_in_device.htm" />
+	<topic label="Setting Creator preferences" href="html/tasks/setting_creator_preferences.htm" />
+
+	
+</toc>

@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+============================================================================
+Name        : compile.ant.xml
+Part of     : Helium
+
+Copyright (c) 2009 Nokia Corporation and/or its subsidiary(-ies).
+All rights reserved.
+This component and the accompanying materials are made available
+under the terms of the License "Eclipse Public License v1.0"
+which accompanies this distribution, and is available
+at the URL "http://www.eclipse.org/legal/epl-v10.html".
+
+Initial Contributors:
+Nokia Corporation - initial contribution.
+
+Contributors:
+
+Description:
+
+============================================================================
+-->
+<!--* @package compile -->
+<project name="compile" xmlns:hlm="http://www.nokia.com/helium"
+    xmlns:rsel="antlib:org.apache.tools.ant.types.resources.selectors">
+    <description>
+        Targets related to compile stage. It includes cmaker,
+        ec, ebs, sbs, sbs-ec build system.
+    </description>
+    
+    <!--* @property sysdef.configurations.list
+    Comma-separated list of System Definition configuration names to be built in the compile-main stage.
+    @type string
+    @editable required
+    @scope public
+    -->
+    
+    <!--* @property compile.cmd.clean.enabled
+    Set to true if it clean compilation.  
+    @type boolean
+    @scope public
+    @since 11.0
+    -->
+    
+    <!--* @property internal.compile.cmd.clean.enabled
+    Set to true if compile.cmd.clean.enabled is set to true.  
+    @type boolean
+    @scope private
+    -->
+    
+    <!--* @property compile.cmd.clean
+    Set to true if it clean compilation. - deprecated: Start using compile.cmd.clean.enabled property.  
+    @type boolean
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!--* @property compile.discard.result.enabled
+    Set to true to discard the previous compilation results.  
+    @type boolean
+    @scope public
+    @since 11.0
+    -->
+    
+    <!--* @property internal.compile.discard.result.enabled
+    Set to true if compile.discard.result.enabled set to true.  
+    @type boolean
+    @scope private
+    @since 11.0
+    -->
+    
+    <!--* @property compile.discard.result
+    Set to true to discard the previous compilation results. - deprecated: Start using compile.discard.result.enabled property.  
+    @type boolean
+    @scope public
+    @deprecated since 11.0
+    -->
+    
+    <!-- Property declaration -->
+    <!-- Suffix used in genxml related output files. This value is added into file names to show that they are genxml related. Used in log files, genxml output files and component list for EE images. Normally does not need to be set.
+    @type string
+    @scope private
+    -->
+    <property name="genxml.output.file.suffix" value="genxml" />
+    <!-- Path of sysdef dtd
+    @type string
+    -->
+    <property name="compile.sysdef.dtd.stub" location="${helium.dir}/tools/common/dtd/sysdef_dtd_1_4_0.xml" />
+    <!-- Name of the signal input to be able to override the compile-main target.
+    @type string
+    @scope private
+    -->
+    <property name="compile.signal.input" value="compileSignalInput" />
+    <!-- Compilation summary file for diamonds.
+    @type string
+    @scope private
+    -->
+    <property name="diamonds.compile.summary" location="${compile.log.dir}/${build.id}_compile_diamonds.xml" />
+    
+    <!--* @property sysdef3.enabled
+     This property enables sbs compilation based on system definition schema 3.0.0. 
+     @type boolean
+     @scope public
+     @editable required
+     @since 11.0
+     -->
+    <property name="sysdef3.enabled" value="true" />
+    
+    <!--* @property internal.sysdef3.enabled
+     To run the sysdef3 dependent tasks if sysdef3.enabled set to true. 
+     @type boolean
+     @scope private
+     -->
+     
+    <!-- Check is sysdef3 enabled. -->
+    <condition property="internal.sysdef3.enabled">
+        <istrue value="${sysdef3.enabled}" />
+    </condition>
+    
+    <!-- To check is it clean compilation -->
+    <condition property="internal.compile.cmd.clean.enabled" value="true" else="false">
+        <or>
+            <istrue value="${compile.cmd.clean.enabled}" />
+            <istrue value="${compile.cmd.clean}" />
+        </or>
+    </condition>
+    
+    <!-- To check is it required to discard old compilation results -->
+    <condition property="internal.compile.discard.result.enabled" value="true" else="false">
+        <or>
+            <istrue value="${compile.discard.result.enabled}" />
+            <istrue value="${compile.discard.result}" />
+        </or>
+    </condition> 
+    
+    <!-- including common compilation macros -->
+    <hlm:typedef file="${helium.dir}/tools/compile/compile.antlib.xml" uri="http://www.nokia.com/helium"/>
+    <import file="nokiacompile.ant.xml" />
+    <import file="cmaker.ant.xml" />
+    <import file="ec/ec.ant.xml" />
+    <import file="ebs/ebs.ant.xml" />
+    <import file="sbs/sbs.ant.xml" />
+    <import file="sis.ant.xml" />
+    <import file="qt/qt.ant.xml" />
+    <import file="coverity.ant.xml" />
+
+    <!-- A few basic steps (directory creation) that are needed before starting compilation. -->
+    <target name="prebuild">
+        <!-- Needed for the emulator to work. -->
+        <mkdir dir="${build.drive}/epoc32/winscw/d"/>
+        <!-- Build from source workaround as Symbian release is not completely unzipped. -->
+        <mkdir dir="${build.drive}/epoc32/release/winscw/udeb/z/resource/fonts"/>
+        <mkdir dir="${build.drive}/epoc32/release/winscw/urel/z/resource/fonts"/>
+        <mkdir dir="${build.drive}/epoc32/include/osextensions"/>
+    </target>
+
+    <!-- Does all the necessary steps before starting the component build -->
+    <target name="precompile" depends="create-canonical-sysdef-file,precompile-ec,run-coverity-configure"/>
+
+    <!-- post operation for EC builds, submits the compile time and lists all the built components-->
+    <target name="postcompile" depends="postcompile-ec,render-build-duplicates,post-coverity,sbs-checksource" unless="env.HLM_SUBCON" />
+    
+    
+    <!-- Pre-processes all System Definition input files.
+
+    Any Ant properties used in the files will be replaced by their values.
+    Also the Symbian System Definition files needs to have \src inserted
+    in front of the paths of the units.
+    -->
+    <target name="preprocess-sysdef-files">
+        <mkdir dir="${build.output.dir}/build/input"/>
+        <delete verbose="true">
+            <fileset dir="${build.output.dir}/build/input/" includes="**"/>
+        </delete>
+
+        <fail message="No sysdef files found">
+            <condition>
+                <resourcecount refid="system.definition.files" when="equal" count="0" />
+            </condition>
+        </fail>
+
+        <for param="file">
+            <resources refid="system.definition.files"/>
+            <sequential>
+                <copy todir="${build.output.dir}/build/input" verbose="true">
+                    <fileset file="@{file}"/>
+                    <filterchain>
+                        <replaceregex pattern="bldFile=&quot;common" replace="bldFile=&quot;src\\\\common" flags="gi"/>
+                        <replaceregex pattern="mrp=&quot;common" replace="mrp=&quot;src\\\\common" flags="gi"/>
+                        <replaceregex pattern="bldFile=&quot;cedar" replace="bldFile=&quot;src\\\\cedar" flags="gi"/>
+                        <replaceregex pattern="mrp=&quot;cedar" replace="mrp=&quot;src\\\\cedar" flags="gi"/>
+                        <expandproperties/>
+                    </filterchain>
+                    <mapper>
+                        <scriptmapper language="jython">
+<![CDATA[
+import os
+counter = project.getProperty(".unique.counter");
+if not counter:
+    counter = 0
+else:
+    counter = int(counter)
+counter = counter + 1
+project.setProperty(".unique.counter", str(counter));
+(drive, _) = os.path.splitdrive(r'@{file}')
+path = r'@{file}'.replace(drive + os.sep, "%08d%s" % ((counter-1), os.sep), 1)
+self.addMappedName(path)
+]]>
+                        </scriptmapper>
+                    </mapper>
+                </copy>
+            </sequential>
+        </for>
+    </target>
+
+
+    <!-- Merges all preprocessed System Definition files into one combined file. -->
+    <target name="create-canonical-sysdef-file" depends="preprocess-sysdef-files">
+        <mkdir dir="${compile.log.dir}" />
+        <if>
+            <istrue value="${sysdef3.enabled}" />
+            <then>
+                <for param="file" keepgoing="true">
+                    <resources refid="system.definition.files" />
+                    <sequential>
+                        <trycatch reference="internal.sysdef3.validation.error">
+                            <try>
+                                <xmlvalidate file="@{file}" lenient="true" />
+                            </try>
+                            <catch>
+                                <echo>ERROR: ${toString:internal.sysdef3.validation.error}</echo>
+                                <throw refid="internal.sysdef3.validation.error" />
+                            </catch>
+                        </trycatch>                        
+                    </sequential>
+                </for>
+                <mkdir dir="${temp.build.dir}/root" />
+                <mkdir dir="${temp.build.dir}/join" />
+                <delete>
+                    <fileset dir="${temp.build.dir}/root" />
+                    <fileset dir="${temp.build.dir}/join" />
+                </delete>
+                <if>
+                    <resourcecount when="ne" count="0">
+                        <restrict>
+                            <resources refid="system.definition.files" />
+                            <rsel:and>
+                                <rsel:name name="**${file.separator}package_definition.xml" />
+                                <rsel:not>
+                                    <hlm:isVendorPackage />
+                                </rsel:not>
+                            </rsel:and>
+                        </restrict>
+                    </resourcecount>
+                    <then>
+                        <!-- creating the root sysdef file for packages referenced directly -->
+                        <hlm:createRootSysdef destFile="${temp.build.dir}/root/generated.root.xml" epocroot="${build.drive}/"
+                            checkPackageExists="${internal.compile.cmd.clean.enabled}">
+                            <restrict>
+                                <resources refid="system.definition.files" />
+                                <rsel:and>
+                                    <rsel:name name="**${file.separator}package_definition.xml" />
+                                    <rsel:not>
+                                        <hlm:isVendorPackage />
+                                    </rsel:not>
+                                </rsel:and>
+                            </restrict>
+                        </hlm:createRootSysdef>
+                    </then>
+                </if>
+                <if>
+                    <resourcecount when="ne" count="0">
+                        <restrict>
+                            <resources refid="system.definition.files" />
+                            <rsel:and>
+                                <rsel:name name="**${file.separator}package_definition.xml" />
+                                <hlm:isVendorPackage />
+                            </rsel:and>
+                        </restrict>
+                    </resourcecount>
+                    <then>
+                        <hlm:createRootSysdef destFile="${temp.build.dir}/root/generated_vendor.root.xml" epocroot="${build.drive}/"
+                            checkPackageExists="${internal.compile.cmd.clean.enabled}">
+                            <restrict>
+                                <resources refid="system.definition.files" />
+                                <rsel:and>
+                                    <rsel:name name="**${file.separator}package_definition.xml" />
+                                    <hlm:isVendorPackage />
+                                </rsel:and>
+                            </restrict>
+                        </hlm:createRootSysdef>
+                    </then>
+                </if>
+                <!-- Joining all the Root sysdef files -->
+                <for param="file">
+                    <path>
+                        <restrict>
+                            <resources refid="system.definition.files" />
+                            <rsel:not>
+                                <rsel:name name="**${file.separator}package_definition.xml" />
+                            </rsel:not>
+                        </restrict>
+                        <fileset dir="${temp.build.dir}/root" includes="generated.root.xml" />
+                        <fileset dir="${temp.build.dir}/root" includes="generated_vendor.root.xml" />
+                    </path>
+                    <sequential>
+                        <hlm:joinSysdef epocroot="${build.drive}/" srcfile="@{file}" 
+                            destfile="@{file}.join.xml" />
+                        <move todir="${temp.build.dir}/join/">
+                            <fileset file="@{file}.join.xml" />
+                            <mapper>
+                                <scriptmapper language="jython">
+<![CDATA[
+import os
+counter = project.getProperty(".unique.counter");
+if not counter:
+    counter = 0
+else:
+    counter = int(counter)
+counter = counter + 1
+project.setProperty(".unique.counter", str(counter));
+(drive, _) = os.path.splitdrive(r'@{file}')
+path = r'@{file}'.replace(drive + os.sep, "%08d%s" % ((counter-1), os.sep), 1)
+self.addMappedName(path)
+]]>
+                                </scriptmapper>
+                            </mapper>
+                        </move>
+                    </sequential>
+                </for>
+                <!-- Merging all the joined files together -->
+                <hlm:mergeSysdef epocroot="${build.drive}/" destfile="${canonical.sysdef.file}">
+                    <fileset dir="${temp.build.dir}/join" includes="**/*.xml" />
+                </hlm:mergeSysdef>
+                <hlm:assertFileExists file="${canonical.sysdef.file}" />
+                <hlm:metadatarecord database="${metadata.dbfile}">
+                    <hlm:sysdefmetadatainput file="${canonical.sysdef.file}" />
+                </hlm:metadatarecord>
+            </then>
+            <else>
+                <pathconvert pathsep=" " property="system.definition.files.list">
+                    <fileset dir="${build.output.dir}/build/input/" includes="**"/>
+                    <chainedmapper>
+                        <globmapper from="*" to="-x '*'" casesensitive="no"/>
+                    </chainedmapper>
+                </pathconvert>
+                <hlm:compileGenxmlMergeMacro input="-x ${compile.sysdef.dtd.stub} ${system.definition.files.list}"
+                                            output="${canonical.sysdef.file}" logfile="${compile.log.dir}/${build.id}.sysdef_genxmlmerge.log"/>
+            </else>
+        </if>
+    </target>
+
+    <!-- Supports a cleaning of binaries before starting compilation, based on a SysDef configuration.
+    @deprecated Please consider using ido-prep-clean target.
+    -->
+    <target name="compile-clean" depends="create-canonical-sysdef-file"
+      if="sysdef.clean.configuration">
+        <antcall target="compile-configuration" inheritRefs="true">
+            <param name="sysdef.configuration" value="${sysdef.clean.configuration}"/>
+            <param name="compile.signal.input" value="compileCleanSignalInput"/>
+            <param name="internal.compile.discard.result.enabled" value="true"/>
+        </antcall>
+    </target>
+
+
+    <!-- Creates a input file for EBS using Symbian genxml tool. -->
+    <target name="genxml">
+        <if>
+            <or>
+                <isset property="build.system.ebs"/>
+                <isset property="build.system.ebs-ant"/>
+            </or>
+            <then>
+                <hlm:compileGenxmlMacro input="-x ${canonical.sysdef.file}"
+                                        configuration="${sysdef.configuration}"
+                                        output="${genxml.output.file}"
+                                        log="${compile.log.dir}/${build.id}.${sysdef.configuration}_${genxml.output.file.suffix}.log" />
+            </then>
+        </if>
+    </target>
+
+
+    <!-- Postprocess genxml generated file by prefixing all commands with echos.
+
+    Reads in the genxml generated command file (ready to be fed to EBS) and
+    replaces all the command strings in the Execute statements with strings
+    prefixed with echos.  For example, this target changes the following
+    Execute statement:
+    <pre>
+      '<Execute ID="123" CommandLine="bldmake bldfiles -k"/>
+
+    to:
+
+      '<Execute ID="123" CommandLine="echo bldmake bldfiles -k"/>
+    </pre>
+    Properties:
+
+      ebs.dry-run         When set, echo will be added to commands.
+      genxml.output.file  The XML file with commands to be executed (by EBS).
+
+    -->
+    <target name="postprocess-genxml" if="ebs.dry-run">
+      <!-- The 'echo' prefix will be added to the command even though it might
+    already exist there. This is due to a problem with a regular expression;
+    for some reason negative lookbehind assertion did not work due to syntax
+    not being correct (python expression with less-than character within a
+    python string within XML data; sounds messy and it was). -->
+        <hlm:python>
+import fileinput
+import re
+
+COMMANDLINE_RE = r'CommandLine="(.*?)"'
+ECHO_REPLACEMENT = r'CommandLine="echo \1"'
+
+for line in fileinput.input(["${genxml.output.file}"], inplace=True):
+    print re.sub(COMMANDLINE_RE, ECHO_REPLACEMENT, line).rstrip()
+        </hlm:python>
+    </target>
+
+
+    <!-- Takes a specific timestamp at the start of the compilation stage.
+
+    This is used at the end of compilation to log the compile time to the GTI
+    database.
+	@deprecated Implementation of the feature has changed, and the target is not needed anymore
+    -->
+    <target name="record-compile-start-time">
+        <echo>Warning: this target is deprecated, please remove it from your configuration</echo>
+    </target>
+
+  <!-- Runs the Symbian scanlog and HTMLscanlog tools, as well as a Helium tool, for
+  scanning the compilation log. -->
+    <target name="compile-scanlog">
+        <if>
+            <!-- Only run is SBS is in use and sbs.hlm.scanlog is defined -->
+            <or>
+                <isset property="build.system.sbs"/>
+                <isset property="build.system.sbs-ec"/>
+            </or>
+            <then>
+                <if>
+                    <not>
+                        <isfalse value="${internal.compile.discard.result.enabled}"/>
+                    </not>
+                    <then>
+                        <delete file="${compile.log.dir}/${build.id}.${sysdef.configuration}_compile.log.xml" failonerror="false"/>
+                    </then>
+                </if>
+            </then>
+            <else>
+                <exec executable="perl" dir="${build.drive}/" output="${compile.log.dir}/${build.id}.${sysdef.configuration}_scan1.log" failonerror="${failonerror}">
+                    <arg value="${epocroot}epoc32/tools/scanlog.pl"/>
+                    <arg file="${compile.log.dir}/${build.id}.${sysdef.configuration}_compile.log"/>
+                </exec>
+                <exec executable="perl" dir="${build.drive}/" failonerror="${failonerror}">
+                    <arg value="${epocroot}epoc32/tools/htmlscanlog.pl"/>
+                    <arg value="-v"/>
+                    <arg value="-v"/>
+                    <arg value="-l"/>
+                    <arg file="${compile.log.dir}/${build.id}.${sysdef.configuration}_compile.log"/>
+                    <arg value="-o"/>
+                    <arg file="${build.log.dir}/${build.id}.${sysdef.configuration}_scan2.html"/>
+                </exec>
+                <hlm:assertFileExists file="${build.log.dir}/${build.id}.${sysdef.configuration}_scan2.html"/>
+                <if>
+                    <!--
+                      Only generate the log.xml if we want the results to be included in the final results
+                      or get them used by the signaling mechanism.
+                    -->
+                    <isfalse value="${internal.compile.discard.result.enabled}"/>
+                    <then>
+                        <hlm:metadatarecord database="${metadata.dbfile}">
+                            <hlm:abldmetadatainput>
+                                <fileset casesensitive="false" file="${compile.log.dir}/${build.id}.${sysdef.configuration}_compile.log" />
+                                <metadatafilterset refid="filterset.compile" />
+                            </hlm:abldmetadatainput>
+                        </hlm:metadatarecord>
+                        <hlm:compileLogSignalMacro compile.summary.file="${compile.log.dir}/${build.id}.${sysdef.configuration}_compile.log" 
+                            error.limit="${build.errors.limit}" phase="compile"/>
+                        <!-- Todo: metadata: insert assertions for metadata parsing here -->
+                    </then>
+                </if>
+            </else>
+        </if>
+    </target>
+
+  <!-- Compiles one System Definition configuration.
+
+  Certain properties must be defined to call this. It is intended to be called using
+  an antcall from within a loop.
+  -->
+    <target name="compile-configuration" depends="run-qmake,genxml,postprocess-genxml,compile-ebs,compile-genxml-ec,
+                        compile-ec-helium,compile-ebs-ant,compile-sbs,compile-scanlog"/>
+
+  <!-- Executes each of the System Definition configurations in turn. -->
+    <target name="do-compile-main">
+        <propertyregex property="sysdef.configurations.list" input="${sysdef.configurations.list}"
+                       regexp="\s*(\S+?)\s*,\s*(\S+?)\s*" replace="\1,\2" global="true" casesensitive="false"
+                       override="true" defaultValue="${sysdef.configurations.list}"/>
+
+        <for list="${sysdef.configurations.list}" delimiter="," param="sysdef.config">
+            <sequential>
+                <antcall target="compile-configuration" inheritRefs="true">
+                    <param name="sysdef.configuration" value="@{sysdef.config}"/>
+                    <param name="genxml.output.file" location="${temp.build.dir}/${build.id}.@{sysdef.config}_${genxml.output.file.suffix}.xml" />
+                </antcall>
+            </sequential>
+        </for>
+    </target>
+    <var name="build.errors.total" value="" unset="true"/>
+
+    <!-- Starts the actual compilation  phase of a build -->
+    <target name="compile-main" depends="precompile,do-compile-main,postcompile"/>
+
+    <!-- Creates a .csv log of the sizes of all the binaries created in the build. -->
+    <target name="binary-sizes-log" if="binary.sizes.output">
+        <hlm:startSpecificLogMacro name="${compile.log.dir}/${build.id}_binary_sizes.log" phase="compile"/>
+        <!-- File containing data related to flash image size
+        @type string
+        @scope private
+        -->
+        <property name="binary.sizes.output.file" location="${build.log.dir}/${build.id}_flash_image_size_data.csv"/>
+        <pathconvert pathsep=";" property="build.logs.list">
+            <fileset dir="${compile.log.dir}" includes="*_build.log" excludes="*ant_build.log;*_zipup_build.log"/>
+        </pathconvert>
+        <pathconvert pathsep=";" property="binary.sizes.rom.logs.list">
+            <fileset refid="binary.sizes.rom.logs"/>
+        </pathconvert>
+        <hlm:python>
+import logging
+import compilation
+import sysdef.api
+#logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
+
+logging.info('Reading the System Sefinition information')
+sysDef = sysdef.api.SystemDefinition(r'${canonical.sysdef.file}')
+
+bnsizelogger = compilation.BinarySizeLogger(sysDef)
+# Read in the output binaries of each unit
+bnsizelogger.read_output_binaries_per_unit(r'${build.logs.list}'.split(';'))
+
+# Read in the binary sizes listed in the ROM output logs
+bnsizelogger.read_binary_sizes_in_rom_output_logs(r'${binary.sizes.rom.logs.list}'.split(';'))
+
+# Write out a .csv file containing
+bnsizelogger.write2csvfile(r'${binary.sizes.output.file}', r'${sysdef.configurations.list}'.split(','))
+        </hlm:python>
+        <hlm:assertFileExists file="${binary.sizes.output.file}"/>
+        <hlm:stopSpecificLogMacro name="${compile.log.dir}/${build.id}_binary_sizes.log" phase="compile"/>
+    </target>
+
+
+    <!-- Run codescanner to perform analysis on source code.
+    Logs will be created under ${build.log.dir}/codescanner/
+    Property ${codescanner.path} needs to be set to indicate what code to analyse.
+    -->
+    <target name="codescanner">
+        <mkdir dir="${build.log.dir}"/>
+        <mkdir dir="${build.log.dir}/codescanner"/>
+        <hlm:codescanner dest="${build.log.dir}/codescanner" format="${codescanner.format}" configuration="${codescanner.config}" auto="${codescanner.log.unique}" >
+            <path refid="codescanner.path"/>
+        </hlm:codescanner>
+        <move todir="${build.log.dir}/codescanner" includeemptydirs="false">
+            <fileset dir="${build.log.dir}/codescanner" includes="*.*"/>
+            <mapper type="glob" from="*" to="${build.id}_*"/>
+        </move>
+    </target>
+
+
+    <!-- Updates the UAProf header.
+
+    TODO: Is this still needed? -->
+    <target name="update-uaprof-header">
+        <property name="uaprof.cenrep.file" value="${build.drive}/epoc32/data/Z/private/10202be9/101F8731.txt"/>
+        <copy file="${uaprof.cenrep.file}" tofile="${uaprof.cenrep.file}.original"/>
+        <replace file="${uaprof.cenrep.file}" token="@version@" value="${build.version}" encoding="UTF-16LE" summary="true"/>
+    </target>
+
+
+  <!-- Runs a number of postbuild steps that must be run after compilation is complete,
+  but before ROM images and zipping are started. -->
+    <target name="postbuild" depends="update-uaprof-header,sisfiles" unless="env.HLM_SUBCON">
+        <antcall target="security-checker"/>
+        <antcall target="dump-swicertstore"/>
+        <antcall target="check-stub-sis"/>
+    </target>
+
+</project>
+

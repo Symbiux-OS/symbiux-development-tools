@@ -1,0 +1,131 @@
+2008/10/14 17:49:29 Starting cygwin install, version 2.573.2.3
+2008/10/14 17:49:29 io_stream_cygfile: fopen(/etc/setup/last-action) failed 2 No such file or directory
+2008/10/14 17:49:29 io_stream_cygfile: fopen(/etc/setup/last-mirror) failed 2 No such file or directory
+2008/10/14 17:49:29 io_stream_cygfile: fopen(/etc/setup/last-connection) failed 2 No such file or directory
+2008/10/14 17:49:29 io_stream_cygfile: fopen(/etc/setup/last-cache) failed 2 No such file or directory
+2008/10/14 17:49:29 io_stream_cygfile: fopen(/etc/setup/last-extrakeys) failed 2 No such file or directory
+2008/10/14 17:49:29 Current Directory: C:\Documents and Settings\jonc\Desktop
+2008/10/14 17:49:29 Changing gid to Users
+2008/10/14 17:49:29 Could not open service McShield for query, start and stop. McAfee may not be installed, or we don't have access.
+2008/10/14 17:49:31 io_stream_cygfile: fopen(/etc/setup/installed.db) failed 2 No such file or directory
+2008/10/14 17:49:31 source: network install
+2008/10/14 17:49:32 root: D:\cygwin binary user
+2008/10/14 17:49:39 root: D:\cygwin binary user
+2008/10/14 17:50:16 io_stream_cygfile: fopen(/etc/setup/last-cache) failed 2 No such file or directory
+2008/10/14 17:50:16 Selected local directory: D:\cygwin\local_packages
+2008/10/14 17:50:17 net: Direct
+2008/10/14 17:50:17 io_stream_cygfile: fopen(/etc/setup/mirrors-lst) failed 2 No such file or directory
+2008/10/14 17:50:32 io_stream_cygfile: fopen(/etc/setup/mirrors-lst) failed 2 No such file or directory
+2008/10/14 17:50:32 io_stream_cygfile: fopen(/etc/setup/last-mirror) failed 2 No such file or directory
+2008/10/14 17:50:32 site: http://cygwin.basemirror.de/
+2008/10/14 17:50:34 io_stream_cygfile: fopen(/etc/setup/timestamp) failed 2 No such file or directory
+2008/10/14 17:52:05 Adding required dependency atk: Selecting version 1.10.3-1 for installation.
+2008/10/14 17:52:05 Adding required dependency glib2: Selecting version 2.10.3-1 for installation.
+2008/10/14 17:52:05 Adding required dependency libapr1-devel: Selecting version 1.3.3-1 for installation.
+2008/10/14 17:52:05 Adding required dependency libaprutil1-devel: Selecting version 1.3.4-1 for installation.
+2008/10/14 17:52:05 Adding required dependency ncurses: Selecting version 5.5-3 for installation.
+2008/10/14 17:52:05 Adding required dependency pkg-config: Selecting version 0.23a-2 for installation.
+2008/10/14 17:52:06 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/apr1/apr1-1.3.3-1.tar.bz2
+2008/10/14 17:52:06 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/aprutil1/aprutil1-1.3.4-1.tar.bz2
+2008/10/14 17:52:07 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/atk/atk-1.10.3-1.tar.bz2
+2008/10/14 17:52:07 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/atk/atk-runtime/atk-runtime-1.10.3-1.tar.bz2
+2008/10/14 17:52:09 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/bash/bash-3.2.39-20.tar.bz2
+2008/10/14 17:52:09 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/clear/clear-1.0-2.tar.bz2
+2008/10/14 17:52:19 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/coreutils/coreutils-6.10-1.tar.bz2
+2008/10/14 17:52:19 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/crypt/crypt-1.1-1.tar.bz2
+2008/10/14 17:52:25 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/cygwin/cygwin-1.5.25-15.tar.bz2
+2008/10/14 17:52:27 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gawk/gawk-3.1.6-1.tar.bz2
+2008/10/14 17:52:28 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/glib2/glib2-2.10.3-1.tar.bz2
+2008/10/14 17:52:29 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/glib2/glib2-runtime/glib2-runtime-2.10.3-1.tar.bz2
+2008/10/14 17:52:30 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/grep/grep-2.5.3-1.tar.bz2
+2008/10/14 17:52:30 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libapr1/libapr1-devel/libapr1-devel-1.3.3-1.tar.bz2
+2008/10/14 17:52:31 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libaprutil1/libaprutil1-devel/libaprutil1-devel-1.3.4-1.tar.bz2
+2008/10/14 17:52:33 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libiconv/libiconv2/libiconv2-1.11-1.tar.bz2
+2008/10/14 17:52:34 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gettext/libintl3/libintl3-0.14.5-1.tar.bz2
+2008/10/14 17:52:34 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gettext/libintl8/libintl8-0.15-1.tar.bz2
+2008/10/14 17:52:35 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/ncurses/libncurses8/libncurses8-5.5-3.tar.bz2
+2008/10/14 17:52:36 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pcre/libpcre0/libpcre0-7.8-1.tar.bz2
+2008/10/14 17:52:36 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/readline/libreadline6/libreadline6-5.2.12-10.tar.bz2
+2008/10/14 17:52:36 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/mktemp/mktemp-1.5-4.tar.bz2
+2008/10/14 17:52:38 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/ncurses/ncurses-5.5-3.tar.bz2
+2008/10/14 17:52:39 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pkg-config/pkg-config-0.23a-2.tar.bz2
+2008/10/14 17:52:39 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pkgconfig/pkgconfig-0.17.2-3.tar.bz2
+2008/10/14 17:52:39 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/sed/sed-4.1.5-2.tar.bz2
+2008/10/14 17:52:40 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/terminfo/terminfo-5.5_20061104-1.tar.bz2
+2008/10/14 17:52:43 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/texinfo/texinfo-4.8a-1.tar.bz2
+2008/10/14 17:52:45 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/tzcode/tzcode-2008a-1.tar.bz2
+2008/10/14 17:52:46 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/unzip/unzip-5.52-2.tar.bz2
+2008/10/14 17:52:46 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/zip/zip-2.32-2.tar.bz2
+2008/10/14 17:52:46 Downloaded D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_update-info-dir/_update-info-dir-00760-1.tar.bz2
+2008/10/14 17:52:47 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/apr1/apr1-1.3.3-1.tar.bz2
+2008/10/14 17:52:47 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/aprutil1/aprutil1-1.3.4-1.tar.bz2
+2008/10/14 17:52:47 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/atk/atk-1.10.3-1.tar.bz2
+2008/10/14 17:52:48 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/atk/atk-runtime/atk-runtime-1.10.3-1.tar.bz2
+2008/10/14 17:52:48 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/bash/bash-3.2.39-20.tar.bz2
+2008/10/14 17:52:48 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/clear/clear-1.0-2.tar.bz2
+2008/10/14 17:52:48 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/coreutils/coreutils-6.10-1.tar.bz2
+2008/10/14 17:52:50 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/crypt/crypt-1.1-1.tar.bz2
+2008/10/14 17:52:50 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/cygwin/cygwin-1.5.25-15.tar.bz2
+2008/10/14 17:52:52 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gawk/gawk-3.1.6-1.tar.bz2
+2008/10/14 17:52:52 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/glib2/glib2-2.10.3-1.tar.bz2
+2008/10/14 17:52:53 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/GNOME/glib2/glib2-runtime/glib2-runtime-2.10.3-1.tar.bz2
+2008/10/14 17:52:53 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/grep/grep-2.5.3-1.tar.bz2
+2008/10/14 17:52:53 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libapr1/libapr1-devel/libapr1-devel-1.3.3-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libaprutil1/libaprutil1-devel/libaprutil1-devel-1.3.4-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/libiconv/libiconv2/libiconv2-1.11-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gettext/libintl3/libintl3-0.14.5-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/gettext/libintl8/libintl8-0.15-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/ncurses/libncurses8/libncurses8-5.5-3.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pcre/libpcre0/libpcre0-7.8-1.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/readline/libreadline6/libreadline6-5.2.12-10.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_obsolete/mktemp/mktemp-1.5-4.tar.bz2
+2008/10/14 17:52:54 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/ncurses/ncurses-5.5-3.tar.bz2
+2008/10/14 17:52:55 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pkg-config/pkg-config-0.23a-2.tar.bz2
+2008/10/14 17:52:55 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/pkgconfig/pkgconfig-0.17.2-3.tar.bz2
+2008/10/14 17:52:55 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/sed/sed-4.1.5-2.tar.bz2
+2008/10/14 17:52:55 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/terminfo/terminfo-5.5_20061104-1.tar.bz2
+2008/10/14 17:53:03 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/texinfo/texinfo-4.8a-1.tar.bz2
+2008/10/14 17:53:04 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/tzcode/tzcode-2008a-1.tar.bz2
+2008/10/14 17:53:08 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/unzip/unzip-5.52-2.tar.bz2
+2008/10/14 17:53:08 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/zip/zip-2.32-2.tar.bz2
+2008/10/14 17:53:08 Installing file://D:\cygwin\local_packages/http%3a%2f%2fcygwin.basemirror.de%2f/release/_update-info-dir/_update-info-dir-00760-1.tar.bz2
+2008/10/14 17:53:08 Visited: 32 nodes out of 1128.
+2008/10/14 17:53:08 Dependency ordered install:
+2008/10/14 17:53:08 cygwin
+2008/10/14 17:53:08 libapr1-devel
+2008/10/14 17:53:08 apr1
+2008/10/14 17:53:08 crypt
+2008/10/14 17:53:08 libaprutil1-devel
+2008/10/14 17:53:08 aprutil1
+2008/10/14 17:53:08 libiconv2
+2008/10/14 17:53:08 libintl3
+2008/10/14 17:53:08 glib2
+2008/10/14 17:53:08 glib2-runtime
+2008/10/14 17:53:08 atk
+2008/10/14 17:53:08 atk-runtime
+2008/10/14 17:53:08 libintl8
+2008/10/14 17:53:08 texinfo
+2008/10/14 17:53:08 _update-info-dir
+2008/10/14 17:53:08 gawk
+2008/10/14 17:53:08 tzcode
+2008/10/14 17:53:08 coreutils
+2008/10/14 17:53:08 terminfo
+2008/10/14 17:53:08 libncurses8
+2008/10/14 17:53:08 libreadline6
+2008/10/14 17:53:08 bash
+2008/10/14 17:53:08 ncurses
+2008/10/14 17:53:08 clear
+2008/10/14 17:53:08 libpcre0
+2008/10/14 17:53:08 grep
+2008/10/14 17:53:08 mktemp
+2008/10/14 17:53:08 pkg-config
+2008/10/14 17:53:08 pkgconfig
+2008/10/14 17:53:08 sed
+2008/10/14 17:53:08 unzip
+2008/10/14 17:53:08 zip
+2008/10/14 17:53:08 running: D:\cygwin\bin\bash.exe -c /etc/postinstall/update-info-dir.sh
+2008/10/14 17:53:13 running: D:\cygwin\bin\bash.exe -c /etc/postinstall/coreutils.sh
+2008/10/14 17:53:16 running: D:\cygwin\bin\bash.exe -c /etc/postinstall/terminfo.sh
+2008/10/14 17:53:17 running: D:\cygwin\bin\bash.exe -c /etc/postinstall/bash.sh
+2008/10/14 17:53:57 note: Installation Complete
+2008/10/14 17:53:57 Ending cygwin install

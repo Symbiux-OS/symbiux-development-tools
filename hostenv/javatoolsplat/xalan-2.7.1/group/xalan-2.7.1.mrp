@@ -1,0 +1,9 @@
+component dev_hostenv_javatoolsplat_xalan-2.7.1
+
+source /src/tools/dev/hostenv/javatoolsplat/xalan-2.7.1
+
+exports /src/tools/dev/hostenv/javatoolsplat/xalan-2.7.1/group
+
+ipr T
+
+notes_source /src/tools/dev/hostenv/javatoolsplat/xalan-2.7.1/group/release.txt

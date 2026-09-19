@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>Troubleshooting</title>
+<link href="../../book.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<h2>Troubleshooting</h2>
+<p>The following table lists the messages that may be displayed when using the HTI Connection.</p>
+
+<table width="709" border="1" cellspacing="1" cellpadding="2">
+<colgroup>
+<col width="94*">
+<col width="95*"></colgroup>
+<thead>
+	<tr>
+		<td><b>Message</b></td>
+		<td><b>Action</b></td>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>HTI agent in the device is not responding.</td>
+		<td><ul>
+			<li>Ensure that you have started the HTI framework in the device.</li>
+			<li>Ensure that your device is connected to a computer.</li>
+			<li>From computer settings, check which COM port is used.</li>
+			<li>Check the port and host fields (if using TCP/IP connection type).</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Connection failed.</td>
+		<td><ul>
+			<li>Select the correct COM port (if using serial connection type).</li>
+			<li>Check the port and host fields (if using TCP/IP connection type).</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Warning: Testing of a connection will close the existing connection.</td>
+		<td>You can resume the connection after the testing by clicking <b>Cancel.</b></td>
+	</tr>	
+	<tr>
+		<td>Datagateway has been shutdown unexpectedly. Do you want to manage connections?
+		<ul>
+			<li><b>Yes</b>: Opens the HTI Connection preferences dialog.</li>
+			<li><b>No</b>: Continues as before.</li>
+		</ul>
+		</td>
+		<td>Datagateway has been stopped by an unknown reason. It can be restarted either by clicking the <b>Start Datagateway</b> button in toolbar or by changing/testing settings in HTI Connection preferences.</td>
+	</tr>
+</tbody>
+</table>
+
+<h5>Related tasks</h5>
+<ul>
+	<li><a href="../tasks/comm_usb.htm">Setting up USB serial connection</a></li>
+	<li><a href="../tasks/comm_bt.htm">Setting up Bluetooth connection</a></li>
+	<li><a href="../tasks/set_preferences.htm">Editing HTI connection settings</a></li>
+</ul>
+
+<div id="footer">Copyright &copy; 2010 Nokia Corporation and/or its subsidiary(-ies). All rights reserved. 
+License: <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.</div>
+</body>
+</html>

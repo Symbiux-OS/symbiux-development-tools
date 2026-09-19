@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension point="org.eclipse.core.runtime.contentTypes"> 
+      <file-association 
+       content-type="org.eclipse.cdt.managedbuilder.core.executableFile"
+       file-extensions="app, aps, csy, fsy, ldd, pdd, esy, tsy, mdl, drv, cpm, pdl, prt, wsy, fxt, pyd"/>
+   </extension> 
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="Carbide.c++ Debugger"
+            category="org.eclipse.cdt.debug.ui.CDebugPreferencePage"
+            class="com.nokia.cdt.debug.cw.symbian.ui.GlobalSettings"
+            id="com.nokia.cdt.debug.cw.symbian.ui.GlobalSettings">
+            <keywordReference id="com.nokia.cdt.debug.cw.symbian.carbidecommon"/>
+            <keywordReference id="com.nokia.cdt.debug.cw.symbian.carbidedebugger"/>
+      </page>
+   </extension>
+  <extension
+         point="org.eclipse.cdt.debug.core.CDebugger">
+      <debugger
+            platform="*"
+            name="Symbian Debugger"
+            modes="run,attach"
+            cpu="*"
+            class="com.nokia.cdt.debug.cw.symbian.SymbianDebugger"
+            id="com.nokia.cdt.debug.cw.symbian.SymbianDebugger">
+      </debugger>
+   </extension>
+ 
+ <!-- Import Executable Wizard -->
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <wizard
+            icon="icons/icon_symbian.gif"
+            name="Symbian OS Executable"
+            category="com.nokia.carbide.cpp.importWizards.symbianos"
+            class="com.nokia.cdt.debug.cw.symbian.ImportSymbianExecutableWizard"
+            id="com.nokia.cdt.debug.cw.symbian.ImportSymbianExecutableWizard">
+            <description> 
+              Imports a Symbian executable file. Will create a project and launch configuration for debugging.
+          </description>
+      </wizard>
+   </extension>
+ 
+ <!-- *************** Console Factory **************** -->
+   <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            label="New Windows System Messages Console"
+            class="com.nokia.cdt.debug.cw.symbian.SystemMessagesConsoleFactory"/>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            label="New Emulation Program Output Console"
+            class="com.nokia.cdt.debug.cw.symbian.DebugMessagesConsoleFactory"/>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            label="New Emulator Output Console"
+            class="com.nokia.cdt.debug.cw.symbian.DebugTraceConsoleFactory"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.console.consolePageParticipants">
+      <consolePageParticipant
+            class="com.freescale.cdt.debug.cw.core.ui.console.ConsolePageParticipant"
+            id="com.freescale.cdt.debug.cw.core.ui.console.ConsolePageParticipant">
+         <enablement>
+            <instanceof value="com.freescale.cdt.debug.cw.core.ui.console.LoggingConsole"/>
+         </enablement>
+      </consolePageParticipant>
+   </extension>
+ 
+  <extension
+         point="org.eclipse.cdt.debug.core.BreakpointActionType">
+      <actionType
+            name="%SkipAction.name"
+            class="com.nokia.cdt.debug.cw.symbian.breakpointactions.SkipAction"
+            id="com.nokia.cdt.debug.cw.symbian.breakpointactions.SkipAction"/>
+   </extension>
+  <extension
+         point="org.eclipse.cdt.debug.ui.BreakpointActionPage">
+      <actionPage
+             class="com.nokia.cdt.debug.cw.symbian.breakpointactions.SkipActionPage"
+            id="com.nokia.cdt.debug.cw.symbian.breakpointactions.SkipActionPage"
+            actionType="com.nokia.cdt.debug.cw.symbian.breakpointactions.SkipAction"/>
+   </extension>
+  
+ <!-- *************** Binary Parser **************** -->
+   <extension
+         id="SymbianE32"
+         name="Symbian E32 Parser"
+         point="org.eclipse.cdt.core.BinaryParser">
+      <cextension>
+         <run
+               class="com.nokia.cdt.debug.cw.symbian.binaryparser.SymbianE32Parser">
+         </run>
+      </cextension>
+   </extension>
+    
+   <!-- *************** Preference Page Keyword Filtering **************** -->
+   <extension
+         point="org.eclipse.ui.keywords">
+      <keyword
+            id="com.nokia.cdt.debug.cw.symbian.carbidedebugger"
+            label="%carbcPreference.carbidedebugger">
+      </keyword>
+      <keyword
+            id="com.nokia.cdt.debug.cw.symbian.carbidecommon"
+            label="%carbcPreference.common">
+      </keyword>
+   </extension>
+
+</plugin>
