@@ -1,0 +1,8 @@
+--- a/glob/glob.c
++++ b/glob/glob.c
+@@ -210 +210 @@
+-#if !defined __alloca && !defined __GNU_LIBRARY__
++#if !defined __alloca
+@@ -233 +233 @@
+-#ifndef __GNU_LIBRARY__
++#ifndef __stat

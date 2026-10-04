@@ -1,0 +1,16 @@
+--- a/Modules/getbuildinfo.c
++++ b/Modules/getbuildinfo.c
+@@ -8,5 +8 @@
+-#ifdef __DATE__
+-#define DATE __DATE__
+-#else
+-#define DATE "xx/xx/xx"
+-#endif
++#define DATE "Jan 01 1970"
+@@ -16,5 +12 @@
+-#ifdef __TIME__
+-#define TIME __TIME__
+-#else
+-#define TIME "xx:xx:xx"
+-#endif
++#define TIME "00:00:00"

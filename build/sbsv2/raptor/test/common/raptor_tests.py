@@ -36,9 +36,10 @@ debug_mode_active = False
 
 # Environment #################################################################
 
-# On MYS there is USERNAME but not USER
+# On MSYS there is USERNAME but not USER.  Minimal containers can omit both,
+# so keep the test environment deterministic instead of raising KeyError.
 if 'USER' not in os.environ:
-	os.environ['USER'] = os.environ['USERNAME']
+	os.environ['USER'] = os.environ.get('USERNAME', 'unknown')
 
 def activate_debug():
 	"""

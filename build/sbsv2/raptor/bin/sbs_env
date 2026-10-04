@@ -15,11 +15,20 @@
 # manages common environment settings
 #
 
-# Ensure that the host type is set for Raptor:
-eval $($SBS_HOME/bin/gethost.sh -e)
-
-if [ -z "$HOSTPLATFORM" ]; then
+# Ensure that the host type is set for Raptor.  Capture the output first so a
+# failing detector cannot be hidden by a successful, empty eval.
+if ! host_environment="$("$SBS_HOME/bin/gethost.sh" -e)"; then
 	echo "Error: HOSTPLATFORM could not be determined." 1>&2
+	exit 1
+fi
+
+if ! eval "$host_environment"; then
+	echo "Error: HOSTPLATFORM could not be imported." 1>&2
+	exit 1
+fi
+
+if [ -z "${HOSTPLATFORM:-}" ] || [ -z "${HOSTPLATFORM_DIR:-}" ] || [ -z "${HOSTPLATFORM32_DIR:-}" ]; then
+	echo "Error: HOSTPLATFORM, HOSTPLATFORM_DIR and HOSTPLATFORM32_DIR must be set." 1>&2
 	exit 1
 fi
 
@@ -52,67 +61,75 @@ EOERROR
 	exit 1
 fi
 
-if [ "$OSTYPE" == "cygwin" ]; then
+# gethost.sh is the source of truth here: Bash reports different OSTYPE values
+# under Cygwin, MSYS and MinGW even though all use the win32 Raptor payload.
+if [ "$HOSTPLATFORM_DIR" = "win32" ]; then
 
 	SBS_HOME=${SBS_HOME//\\//}
 
-	__MINGW__=${SBS_MINGW:-$SBS_HOME/$HOSTPLATFORM_DIR/mingw}
-	__PYTHON__=${SBS_PYTHON:-$SBS_HOME/$HOSTPLATFORM_DIR/python264/python.exe}
-	export PYTHONPATH=${SBS_PYTHONPATH:-$SBS_HOME/$HOSTPLATFORM_DIR/python264}
-			
+	__MINGW__="${SBS_MINGW:-$SBS_HOME/$HOSTPLATFORM_DIR/mingw}"
+	__PYTHON__="${SBS_PYTHON:-$SBS_HOME/$HOSTPLATFORM_DIR/python264/python.exe}"
+	export PYTHONPATH="${SBS_PYTHONPATH:-$SBS_HOME/$HOSTPLATFORM_DIR/python264}"
+
 	# work out which version of Cygwin to use
 	# use SBS_CYGWIN17 if set and assume 1.7,
 	# otherwise use SBS_CYGWIN and assume 1.5
 	# Tell Cygwin 1.5 not to map unix security attributes to windows to
 	# prevent raptor from potentially creating read-only files:
-	if [ -z "$SBS_CYGWIN17" ]; then
-			__CYGWIN__=$SBS_CYGWIN
-			export CYGWIN='nontsec nosmbntsec'
-			
+	if [ -z "${SBS_CYGWIN17:-}" ]; then
+		__CYGWIN__="${SBS_CYGWIN:-}"
+		export CYGWIN='nontsec nosmbntsec'
 	else
-			__CYGWIN__=$SBS_CYGWIN17
-			export CYGWIN=nodosfilewarning
-			__MOUNTOPTIONS__='-o noacl -o user'
-			__UMOUNTOPTIONS__=
+		__CYGWIN__="$SBS_CYGWIN17"
+		export CYGWIN=nodosfilewarning
+		__MOUNTOPTIONS__='-o noacl -o user'
+		__UMOUNTOPTIONS__=
 	fi
-    # Command for unifying path strings. For example, "c:\some\path" and
-    # "/cygdrive/c/some/path" will both be converted into "c:/some/path".
-	u="$__CYGWIN__/bin/cygpath.exe -m"
+	# Command for unifying path strings. For example, "c:\some\path" and
+	# "/cygdrive/c/some/path" will both be converted into "c:/some/path".
+	__CYGPATH__="$__CYGWIN__/bin/cygpath.exe"
 
-	__MINGW__=$($u "$__MINGW__")
-	
-	export SBS_HOME=$($u "$SBS_HOME")
+	__MINGW__="$("$__CYGPATH__" -m "$__MINGW__")"
+	export SBS_HOME="$("$__CYGPATH__" -m "$SBS_HOME")"
 
-	export PATH=${__MINGW__}/bin:${__CYGWIN__}/bin:$SBS_HOME/$HOSTPLATFORM_DIR/bin:$PATH
-	
+	export PATH="${__MINGW__}/bin:${__CYGWIN__}/bin:$SBS_HOME/$HOSTPLATFORM_DIR/bin${PATH:+:$PATH}"
+
 	# The python and PYTHONPATH used by Raptor are determined by, in order of precedence:
 	#  1. the SBS_PYTHON and SBS_PYTHONPATH environment variables (if set)
 	#  2. the python shipped locally with Raptor (if present)
 	#  3. the python on the system PATH and the PYTHONPATH set in the system environment
 
-	__LOCAL_PYTHON__=$SBS_HOME/win32/python264/python.exe
+	__LOCAL_PYTHON__="$SBS_HOME/win32/python264/python.exe"
 
-	if [ -n "$SBS_PYTHON" ]; then
-		export __PYTHON__=$SBS_PYTHON
+	if [ -n "${SBS_PYTHON:-}" ]; then
+		export __PYTHON__="$SBS_PYTHON"
 	elif [ -f "$__LOCAL_PYTHON__" ]; then
-		export __PYTHON__=$__LOCAL_PYTHON__
-		export SBS_PYTHON=$__PYTHON__
-		export PYTHONPATH=
+		export __PYTHON__="$__LOCAL_PYTHON__"
+		export SBS_PYTHON="$__PYTHON__"
+		export PYTHONPATH=""
 	else
 		export __PYTHON__=python.exe
 	fi
-	export __PYTHON__=$($u "$__PYTHON__")		
+	export __PYTHON__="$("$__CYGPATH__" -m "$__PYTHON__")"
 
-	if [ -n "$SBS_PYTHONPATH" ]; then
-		export PYTHONPATH=$($u "$SBS_PYTHONPATH")
+	if [ -n "${SBS_PYTHONPATH:-}" ]; then
+		export PYTHONPATH="$("$__CYGPATH__" -m "$SBS_PYTHONPATH")"
 	fi
 
-else	
+else
 	PYDIR=python27 # not exported on purpose
-	export PYTHONPATH=${SBS_PYTHONPATH:-$SBS_HOME/$HOSTPLATFORM_DIR/$PYDIR/lib}
-	PATH=$SBS_HOME/$HOSTPLATFORM_DIR/$PYDIR/bin:$SBS_HOME/$HOSTPLATFORM_DIR/bin:$PATH
-	LD_LIBRARY_PATH=$SBS_HOME/$HOSTPLATFORM_DIR/$PYDIR/lib:$SBS_HOME/$HOSTPLATFORM_DIR/bv/lib:$LD_LIBRARY_PATH
+	python_root="$SBS_HOME/$HOSTPLATFORM_DIR/$PYDIR"
+	export PYTHONPATH="${SBS_PYTHONPATH:-$python_root/lib}"
+	PATH="$python_root/bin:$SBS_HOME/$HOSTPLATFORM_DIR/bin${PATH:+:$PATH}"
+	LD_LIBRARY_PATH="$python_root/lib:$SBS_HOME/$HOSTPLATFORM_DIR/bv/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
+	export SBS_SHELL="${SBS_SHELL:-/bin/bash}"
 	export PATH LD_LIBRARY_PATH
-	export __PYTHON__=python
+	if [ -n "${SBS_PYTHON:-}" ]; then
+		export __PYTHON__="$SBS_PYTHON"
+	elif [ -x "$python_root/bin/python" ]; then
+		export __PYTHON__="$python_root/bin/python"
+	else
+		export __PYTHON__=python
+	fi
 fi

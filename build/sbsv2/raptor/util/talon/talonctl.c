@@ -22,6 +22,9 @@
 #include "log.h"
 
 #include <stdlib.h>
+#ifndef HOST_WIN
+#include <strings.h>
+#endif
 
 /* The output semaphore. */
 sbs_semaphore talon_sem;

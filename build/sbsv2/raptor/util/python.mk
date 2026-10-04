@@ -21,6 +21,7 @@ RAPTOR_PYTHON_VER:=2.7
 
 PYTHON_SOURCEDIR:=$(OUTPUTPATH)/Python-$(RAPTOR_PYTHON_VER)
 PYTHON_TAR:=$(SBS_HOME)/util/ext/Python-$(RAPTOR_PYTHON_VER).tar.bz2
+PYTHON_REPRODUCIBLE_PATCH:=$(SBS_HOME)/util/patches/python-2.7-reproducible-buildinfo.patch
 PYINSTALLROOT:=$(INSTALLROOT)/python$(subst .,,$(RAPTOR_PYTHON_VER))
 
 define b_python
@@ -30,12 +31,13 @@ all:: python
 
 python: $(PYINSTALLROOT)/bin/python
 	
-$(PYINSTALLROOT)/bin/python: $(PYTHON_TAR) 
+$(PYINSTALLROOT)/bin/python: $(PYTHON_TAR) $(PYTHON_REPRODUCIBLE_PATCH)
 	rm -rf $(PYTHON_SOURCEDIR) && \
 	cd $(OUTPUTPATH) && \
 	tar -xjf $(PYTHON_TAR) && \
 	(  \
 	cd $(PYTHON_SOURCEDIR) && \
+	patch -p1 < $(PYTHON_REPRODUCIBLE_PATCH) && \
 	CFLAGS="-O3 $(GCCTUNE) -s" ./configure --prefix=$(PYINSTALLROOT) --enable-shared --with-threads --enable-bzip2 && \
 	$(MAKE) -j8 && $(MAKE) install \
 	)
@@ -46,4 +48,3 @@ $(cleanlog)
 endef
 
 $(eval $(b_python))
-

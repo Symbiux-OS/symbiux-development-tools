@@ -19,6 +19,7 @@ RAPTOR_MAKE_VER:=3.81
 
 MAKE_SOURCEDIR:=$(OUTPUTPATH)/make-$(RAPTOR_MAKE_VER)
 MAKE_TAR:=$(SBS_HOME)/util/ext/make-$(RAPTOR_MAKE_VER).tar.bz2
+MAKE_MODERN_GLIBC_PATCH:=$(SBS_HOME)/util/patches/make-3.81-modern-glibc.patch
 
 
 define b_make
@@ -29,13 +30,14 @@ all:: make
 
 make: $(INSTALLROOT)/bin/make
 	
-$(INSTALLROOT)/bin/make: $(MAKE_TAR) 
+$(INSTALLROOT)/bin/make: $(MAKE_TAR) $(MAKE_MODERN_GLIBC_PATCH)
 	rm -rf $(MAKE_SOURCEDIR) && \
 	cd $(OUTPUTPATH) && \
 	tar -xjf $(MAKE_TAR) && \
 	(  \
 	cd $(MAKE_SOURCEDIR) && \
-	CFLAGS="-O2 $(GCCTUNE)" ./configure --prefix=$(INSTALLROOT) --disable-job-server && \
+	patch -p1 < $(MAKE_MODERN_GLIBC_PATCH) && \
+	ac_cv_func_bsd_signal=no CFLAGS="-O2 $(GCCTUNE)" ./configure --prefix=$(INSTALLROOT) --disable-job-server && \
 	$(MAKE) -j8 && $(MAKE) install \
 	)
 endef

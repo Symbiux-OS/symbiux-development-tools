@@ -43,6 +43,8 @@ class HostPlatform(object):
 	"""
 	hostplatforms = ["win32", "win64", "linux2"]
 	hostplatform = sys.platform
+	if hostplatform.startswith("linux"):
+		hostplatform = "linux2"
 
 	@classmethod
 	def IsKnown(cls, platformpattern):
@@ -1293,7 +1295,7 @@ class ToolSet(object):
 	irrelevant_vars = ['PWD','OLDPWD','PID','PPID', 'SHLVL' ]
 
 
-	shell_version=".*GNU bash, version [34].*"
+	shell_version=".*GNU bash, version ([3-9]|[1-9][0-9]+)\\..*"
 	shell_re = re.compile(shell_version)
 	if 'SBS_BUILD_DIR' in os.environ:
 		cachefile_basename = str(generic_path.Join(os.environ['SBS_BUILD_DIR'],"toolcheck_cache_"))

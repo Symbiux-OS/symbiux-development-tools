@@ -87,12 +87,12 @@
 		<env name='SBS_BUILD_DIR' default='$(EPOCROOT)/epoc32/build' type='path'/>
 
 		<set name='DATE' value='$(SBS_GNUDATE)' type='tool'/>
-		<set name='GNUCPP' value='$(SBS_GNUCPP)' type='tool' versionCommand='$(GNUCPP) --version' versionResult='cpp(.exe)? .* [345]\..*'/>
+		<set name='GNUCPP' value='$(SBS_GNUCPP)' type='tool' versionCommand='$(GNUCPP) --version' versionResult='cpp(.exe)? .* ([3-9]|[1-9][0-9]+)\..*'/>
 		<set name='GNUCP' value='$(SBS_GNUCP)' type='tool' versionCommand='$(GNUCP) --version' versionResult='cp(.exe)?\s*\((GNU\s*)?coreutils\)\s*[5-9]\..*'/>
 		<set name='GNUMV' value='$(SBS_GNUMV)' type='tool' versionCommand='$(GNUMV) --version' versionResult='mv(.exe)?\s*\((GNU\s*)?coreutils\)\s*[5-9]\..*'/>
 		<set name='GNUCAT' value='$(SBS_GNUCAT)' type='tool' versionCommand='$(GNUCAT) --version' versionResult='cat(.exe)?\s*\((GNU\s*)?coreutils\)\s*[5-9]\..*'/>
 		<set name='GNUMAKE38' value='$(SBS_GNUMAKE38)' type='tool' versionCommand='$(GNUMAKE38) -v' versionResult='GNU Make 3.8[1-9]'/>
-		<set name='GNUSED' value='$(SBS_GNUSED)' type='tool' versionCommand='$(GNUSED) --version' versionResult='GNU sed version [3-9].*'/>
+		<set name='GNUSED' value='$(SBS_GNUSED)' type='tool' versionCommand='$(GNUSED) --version' versionResult='.*GNU sed.* ([3-9]|[1-9][0-9]+)\..*'/>
 		<set name='GNUMKDIR' value='$(SBS_GNUMKDIR)' type='tool' versionCommand='$(GNUMKDIR) --version' versionResult='.*'/>
 		<set name='GNURM' value='$(SBS_GNURM)' type='tool' versionCommand='$(GNURM) --version' versionResult='rm.*coreutils.*'/>
 		<set name='GNULN' value='$(SBS_GNULN)' type='tool' versionCommand='$(GNULN) --version' versionResult='ln.*coreutils.*'/>

@@ -11,59 +11,56 @@
 # Contributors:
 #
 
-CXX    = g++296 
-YACC   = bison
-LEX    = flex
+CXX ?= g++
 
 BLDDIR = ../build
 SRCDIR = ../src
 INCDIR = ../inc
 
-SOURCE = main.cpp \
-	 array.cpp astring.cpp ccodes.cpp ctable.cpp \
-	 datatype.cpp errorhan.cpp fileacc.cpp fileline.cpp \
-	 indextab.cpp linklist.cpp mem.cpp \
-	 nameidma.cpp numval.cpp rcbinstr.cpp \
-	 rcostrm.cpp \
-	 rcscan.cpp rcstack.cpp resource.cpp \
-	 stack.cpp stringar.cpp structst.cpp \
-	 unicode_compressor.cpp \
- 	 localise.cpp \
-	 qualifar.cpp messages.cpp
+UPPER_SOURCE = ARRAY.CPP ASTRING.CPP CCODES.CPP CTABLE.CPP \
+	DATATYPE.CPP ERRORHAN.CPP FILEACC.CPP FILELINE.CPP \
+	INDEXTAB.CPP LINKLIST.CPP MEM.CPP NAMEIDMA.CPP NUMVAL.CPP \
+	RCBINSTR.CPP RCOSTRM.CPP RCSCAN.CPP RCSTACK.CPP RESOURCE.CPP \
+	STACK.CPP STRINGAR.CPP STRUCTST.CPP UNICODE_COMPRESSOR.CPP \
+	QUALIFAR.CPP
 
-GENSRC = rcompl.cpp rcomp.cpp
-OBJECT = $(addprefix $(BLDDIR)/, $(notdir $(SOURCE:.cpp=.o) \
-					  $(GENSRC:.cpp=.o)))
+# rcomp.cpp, rcomp.hpp and rcompl.cpp are the checked-in parser sources.  They
+# deliberately remain inputs: regenerating them with a modern Bison/Flex can
+# change the accepted grammar and the generated resource output.
+LOWER_SOURCE = main.cpp localise.cpp messages.cpp rcomp.cpp rcompl.cpp
+
+OBJECT = $(addprefix $(BLDDIR)/, \
+	$(UPPER_SOURCE:.CPP=.o) $(LOWER_SOURCE:.cpp=.o))
+DEPS = $(OBJECT:.o=.d)
 TARGET = $(BLDDIR)/rcomp
 
-VPATH  = $(SRCDIR) $(BLDDIR)
+RCOMP_ARCH_FLAGS ?= -m32
+RCOMP_STD ?= -std=gnu++98
+RCOMP_CPPFLAGS = -D__LINUX__ -D__TOOLS2__ -I$(INCDIR) -I$(SRCDIR)
+RCOMP_CXXFLAGS = $(RCOMP_ARCH_FLAGS) $(RCOMP_STD) -MMD -MP
+RCOMP_LDFLAGS = $(RCOMP_ARCH_FLAGS)
 
-dummy := $(shell mkdir -p $(BLDDIR))
+.PHONY: all clean test
 
 all: $(TARGET)
 
 $(TARGET): $(OBJECT)
-	$(CXX) $^ -o $@
-	strip $@
-	
-$(OBJECT): $(BLDDIR)/rcomp.hpp
+	$(CXX) $(LDFLAGS) $(RCOMP_LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(OBJECT): $(BLDDIR)/%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -D __LINUX__ -I $(INCDIR) -I $(BLDDIR) -c $< -o $@
+$(BLDDIR):
+	mkdir -p "$@"
 
-$(BLDDIR)/rcompl.cpp: rcomp.l
-	$(LEX) -t $< > $@
+$(BLDDIR)/%.o: $(SRCDIR)/%.CPP | $(BLDDIR)
+	$(CXX) $(CPPFLAGS) $(RCOMP_CPPFLAGS) $(CXXFLAGS) $(RCOMP_CXXFLAGS) -c "$<" -o "$@"
 
-$(BLDDIR)/rcomp.cpp $(BLDDIR)/rcomp.hpp: $(SRCDIR)/rcomp.y
-	$(YACC) -d $< -o $(BLDDIR)/rcomp.cpp
+$(BLDDIR)/%.o: $(SRCDIR)/%.cpp | $(BLDDIR)
+	$(CXX) $(CPPFLAGS) $(RCOMP_CPPFLAGS) $(CXXFLAGS) $(RCOMP_CXXFLAGS) -c "$<" -o "$@"
 
 clean:
-	rm -f $(OBJECT) $(TARGET)
-	rm -f $(addprefix $(BLDDIR)/, $(GENSRC) rcomp.hpp)
+	rm -f $(OBJECT) $(DEPS) $(TARGET)
 	-rmdir $(BLDDIR)
 
-test:
-	@echo "stuff in ../tsrc"
+test: $(TARGET)
+	bash ./test-rcomp.sh "$(abspath $(TARGET))"
 
-.PHONY: all clean test
-
+-include $(DEPS)
